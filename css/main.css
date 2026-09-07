@@ -143,7 +143,12 @@ a:hover { text-decoration-thickness: 3px; }
 .band--stamp   { background: var(--stamp); color: var(--on-colour); }
 .band--ink     { background: var(--ink); color: var(--on-colour); }
 
-.band--wire a, .band--embargo a, .band--stamp a, .band--ink a { color: var(--on-colour); }
+/* Links inherit --wire, which is a paper-only value on a coloured ground.
+   Every coloured surface must restate it — bands AND blocks. --block--fill
+   carries ink, never white. */
+.band--wire a, .band--embargo a, .band--stamp a, .band--ink a,
+.block--wire a, .block--embargo a, .block--stamp a, .block--ink a { color: var(--on-colour); }
+.block--fill a { color: var(--ink); }
 
 /* Anything that dims text on a colour ground must be re-checked: 85% white
    composites well below AA on a mid hue. Full --on-colour is safe on all four. */

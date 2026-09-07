@@ -45,11 +45,25 @@ it.** It fills the dateline bar and the sources block, both carrying `--ink`.
 
 ### Paper-only ink
 
-`--ink-quiet #55504A` is 7.30:1 on paper and **fails on every colour ground**.
-Any coloured surface — band *or* block — must restate the colour of anything
-using it. This is a live rule, not theory: the first verify run failed on
-`.slug` inside `.block--stamp` at 1.39:1 and inside `.block--fill` at 2.45:1.
-Both are now covered. Add a new `.block--*` variant and you must add it here too.
+Two tokens are **paper-only** and fail on every colour ground:
+
+- `--ink-quiet #55504A` — 7.30:1 on paper, used by `.slug` and `.caption`
+- `--wire` as the default link colour — 6.71:1 on paper, 1.25:1 on `--stamp`
+
+Any coloured surface — band *or* block — must restate both. This is a live rule,
+not theory. It has now failed verification twice, and both times only on a
+`.block--*`, because the original rule covered `.band--*` alone:
+
+| Run | Failure | Ratio |
+|---|---|---|
+| Pilot | `.slug` in `.block--stamp` | 1.39:1 |
+| Pilot | `.slug` in `.block--fill` | 2.45:1 |
+| Generated | story link in `.block--stamp` | 1.25:1 |
+
+**Adding a new `.block--*` variant means adding it to both selector lists.**
+The generated pages made headings into links, which the hand-written pilot did
+not have — a reminder that a component gains new inner elements over time and
+the colour rules have to cover the surface, not the snapshot.
 
 Never dim white on a colour ground. `rgba(255,255,255,0.85)` composites well
 below AA on a mid hue. Use solid `--on-colour`.
@@ -133,7 +147,7 @@ Anything not on this list does not exist. Adding a component means adding it her
 `--sunk` `--wire` `--embargo` `--stamp` `--ink`) · `.cols` (+ `--2` `--3`) ·
 `.block` (+ `--wire` `--embargo` `--stamp` `--fill` `--paper`) · `.story` (+
 `--lead`, `.story__num` `.story__title` `.story__signal` `.story__source`) ·
-`.daycount` · `.watch` · `.archive` · `.figure` (+ `.figure__frame` `.caption`) ·
+`.daycount` (also as a link to a story page) · `.watch` · `.archive` · `.figure` (+ `.figure__frame` `.caption`) ·
 `.lead` · `.kicker` · `.btn` (+ `--ghost`) · `.skip-link` · `.site-footer`
 
 ## 8. Verification
@@ -149,14 +163,14 @@ every contrast check.
 Then Lighthouse (mobile) via the chrome-devtools MCP against
 `http://127.0.0.1:8799/<page>`.
 
-**Current status — both pages:**
+**Current status — all five generated pages pass** contrast and 320px reflow
+with zero failures. Lighthouse (mobile) spot-checks:
 
-| Check | index.html | briefs/2026-09-07.html |
-|---|---|---|
-| Contrast | 0 failures | 0 failures |
-| Reflow @320px | no overflow | no overflow |
-| Lighthouse a11y | 100 (39 passed, 0 failed) | 100 (48 passed, 0 failed) |
-| Best practices / SEO | 100 / 100 | 100 / 100 |
+| Page | a11y | Best practices | SEO |
+|---|---|---|---|
+| `index.html` | 100 (39/0) | 100 | 100 |
+| `briefs/2026-09-07.html` | 100 (48/0) | 100 | 100 |
+| `stories/nvidia-hugging-face.html` | 100 (46/0) | 100 | 100 |
 
 Note: headless Chrome clamps its viewport to 500px, so a `--window-size=320`
 screenshot proves nothing. `verify.sh` measures true narrow reflow in a
@@ -164,6 +178,12 @@ fixed-width iframe.
 
 ## 9. Migration status
 
-This is a **pilot**: the design system, a landing page and one real content page.
-No legacy stylesheet exists, so the two-stylesheet coexistence rule does not
-apply yet. Remaining pages and the publishing pipeline come after approval.
+Pilot approved. Every page is now **generated** by `publish.py` from markdown in
+Victor's workspace — see `README.md`. No page is hand-maintained, so a component
+change lands everywhere at once and `verify.sh` must be re-run across all pages,
+not just the one you were editing.
+
+No legacy stylesheet exists, so the two-stylesheet coexistence rule never applied.
+
+Not yet done: the GitHub remote and Pages (visibility undecided), and the hook
+that runs `publish.py` when Victor writes a new brief.
