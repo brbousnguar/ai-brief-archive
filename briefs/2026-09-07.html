@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Brief — Sept 7, 2026</title>
+<meta name="description" content="Nvidia closes on Hugging Face, scrutiny catches up with GPT-6 Astra, and OpenAI's chief scientist publishes a warning.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="container masthead__inner">
+    <p class="masthead__name"><a href="../index.html">AI BRIEF</a></p>
+    <span class="masthead__tag">Wire archive · brahim bousnguar</span>
+  </div>
+</header>
+<hr class="tape">
+
+<main id="main">
+
+  <div class="band">
+    <div class="container">
+      <p class="dateline">
+        <span>AI BRIEF</span><span class="dateline__sep">·</span>
+        <span>SEP 07 2026</span><span class="dateline__sep">·</span>
+        <span>16:43 CEST</span><span class="dateline__sep">·</span>
+        <span>SWEEP: HOME FEED + 2 ACCOUNTS</span>
+      </p>
+      <h1>Consolidation, scrutiny, and a warning from inside</h1>
+      <p class="lead">Nvidia's Hugging Face deal moves from rumour to confirmed, the Astra launch enters its
+      fact-check phase, and OpenAI's own chief scientist publishes the week's most uncomfortable essay.</p>
+    </div>
+  </div>
+
+  <div class="band band--sunk">
+    <div class="container">
+      <figure class="figure">
+        <div class="figure__frame">
+          <svg viewBox="0 0 560 210" role="img" aria-labelledby="rs-title rs-desc">
+            <title id="rs-title">Running stories across five briefings, Sept 3 to Sept 7</title>
+            <desc id="rs-desc">Two stories, Nvidia–Hugging Face and GPT-6 Astra, each led or appeared in
+            five consecutive briefings. Filled circles mark a lead slot, open circles a mention, and a
+            diamond marks the one entry that carried a genuinely new angle.</desc>
+
+            <!-- day axis -->
+            <line x1="150" y1="46" x2="510" y2="46" stroke="var(--ink)" stroke-width="2"/>
+            <g font-family="IBM Plex Mono, monospace" font-size="12" fill="var(--ink)" text-anchor="middle">
+              <text x="150" y="34">SEP 3</text>
+              <text x="240" y="34">SEP 4</text>
+              <text x="330" y="34">SEP 5</text>
+              <text x="420" y="34">SEP 6</text>
+              <text x="510" y="34">SEP 7</text>
+            </g>
+
+            <!-- lane 1 -->
+            <text x="8" y="100" font-family="Archivo, sans-serif" font-weight="700" font-size="13" fill="var(--ink)">NVIDIA / HF</text>
+            <line x1="150" y1="95" x2="510" y2="95" stroke="var(--ink)" stroke-width="1" stroke-dasharray="3 4"/>
+            <circle cx="150" cy="95" r="11" fill="var(--stamp)"/>
+            <circle cx="240" cy="95" r="11" fill="var(--stamp)"/>
+            <circle cx="330" cy="95" r="9" fill="var(--paper)" stroke="var(--ink)" stroke-width="2"/>
+            <circle cx="420" cy="95" r="9" fill="var(--paper)" stroke="var(--ink)" stroke-width="2"/>
+            <circle cx="510" cy="95" r="11" fill="var(--stamp)"/>
+
+            <!-- lane 2 -->
+            <text x="8" y="155" font-family="Archivo, sans-serif" font-weight="700" font-size="13" fill="var(--ink)">GPT-6 ASTRA</text>
+            <line x1="150" y1="150" x2="510" y2="150" stroke="var(--ink)" stroke-width="1" stroke-dasharray="3 4"/>
+            <circle cx="150" cy="150" r="11" fill="var(--stamp)"/>
+            <circle cx="240" cy="150" r="11" fill="var(--stamp)"/>
+            <circle cx="330" cy="150" r="11" fill="var(--stamp)"/>
+            <circle cx="420" cy="150" r="9" fill="var(--paper)" stroke="var(--ink)" stroke-width="2"/>
+            <path d="M510 138 L522 150 L510 162 L498 150 Z" fill="var(--embargo)"/>
+
+            <!-- legend -->
+            <g font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--ink)">
+              <circle cx="16" cy="194" r="7" fill="var(--stamp)"/>
+              <text x="30" y="198">LED THE BRIEF</text>
+              <circle cx="170" cy="194" r="6" fill="var(--paper)" stroke="var(--ink)" stroke-width="2"/>
+              <text x="184" y="198">MENTIONED</text>
+              <path d="M320 186 L329 194 L320 202 L311 194 Z" fill="var(--embargo)"/>
+              <text x="336" y="198">NEW ANGLE</text>
+            </g>
+          </svg>
+        </div>
+        <figcaption class="caption">Across five briefings only one entry — the Sept 7 Astra fact-check — carried
+        anything that had not already been reported. Everything else was the same two announcements restated.</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="band">
+    <div class="container">
+      <h2>Top signal</h2>
+
+      <article class="story story--lead">
+        <span class="story__num">01</span>
+        <span class="daycount">Running story · day 5</span>
+        <h3 class="story__title">Nvidia confirms it is acquiring Hugging Face</h3>
+        <p>Hugging Face's own account linked to Nvidia's blog post announcing the deal, reported at roughly
+        $13B. It formalises a partnership running since Nvidia became Hugging Face's infrastructure provider
+        in 2023, and folds in the French robotics arm Pollen Robotics.</p>
+        <p class="story__signal"><strong>Signal:</strong> the open-model hub the whole ecosystem leans on is
+        about to have one very large, very interested owner.</p>
+        <p class="story__source">Source: https://blogs.nvidia.com/blog/nvidia-to-acquire-hugging-face</p>
+      </article>
+
+      <article class="story">
+        <span class="story__num">02</span>
+        <span class="daycount">New angle</span>
+        <h3 class="story__title">Scrutiny catches up with the Astra launch</h3>
+        <p>ZDNET published "OpenAI's new Astra model is finally here — why safety experts are worried," and
+        the viral clip of Astra operating a computer at superhuman speed was community fact-checked: it was a
+        pre-planned, batched sequence of clicks and keypresses rather than live real-time control.</p>
+        <p class="story__signal"><strong>Signal:</strong> the pushback is now as much of the story as the demos.</p>
+        <p class="story__source">Source: https://openai.com/index/safety-overview-gpt-6-astra/</p>
+      </article>
+
+      <article class="story">
+        <span class="story__num">03</span>
+        <h3 class="story__title">OpenAI's chief scientist publishes a stark essay</h3>
+        <p>Jakub Pachocki posted "An Alien Mind," on why he is concerned about the next few years and the
+        choices needed to keep the future in human hands. Sam Altman reposted it as "an important post."</p>
+        <p class="story__signal"><strong>Signal:</strong> this unease is coming from inside OpenAI's
+        leadership, not from outside critics.</p>
+      </article>
+
+      <article class="story">
+        <span class="story__num">04</span>
+        <h3 class="story__title">Anthropic says Claude produced a formalized proof of Fermat's Last Theorem</h3>
+        <p>A full Lean-verified formalization — a task that normally takes mathematicians years to hand-check.</p>
+        <p class="story__signal"><strong>Signal:</strong> a concrete, checkable win for AI-assisted formal
+        mathematics rather than another benchmark claim.</p>
+      </article>
+    </div>
+  </div>
+
+  <div class="band band--wire">
+    <div class="container">
+      <span class="slug">Worth watching</span>
+      <ul class="watch">
+        <li>Trump: "Whoever wins AI, wins… this is bigger than the internet" — driving heavy engagement as
+        US–China race framing.</li>
+        <li>Alexandr Wang teasing "Muse Spark 1.3 Max," early testers calling it "opus level." No formal
+        announcement yet.</li>
+        <li>Mistral brings the AI Engineer summit back to Paris, Sept 23–24 at Station F.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="band band--sunk">
+    <div class="container">
+      <div class="cols cols--2">
+        <div class="block block--paper">
+          <span class="slug">Bottom line</span>
+          <p class="lead" style="margin:0">Consolidation, scrutiny and unease landed in the same week: Nvidia
+          locking down the open-model hub while OpenAI's own chief scientist publishes a warning about where
+          the field is going.</p>
+        </div>
+        <div class="block block--fill">
+          <span class="slug">Sources scanned</span>
+          <p class="story__source" style="margin:0">X/Twitter home feed via profile=brahim, plus @karpathy and
+          @NVIDIAAI. Sweep was thin — the feed had little new AI signal since the previous check.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="end-mark">-30-</p>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p style="margin:0"><a href="../index.html">← All briefs</a></p>
+  </div>
+</footer>
+</body>
+</html>
