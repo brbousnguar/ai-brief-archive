@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Brief — Sep 11 2026</title>
+<meta name="description" content="Anthropic details state-linked misuse of Claude for weapons research and surveillance; OpenAI puts its full-duplex voice model in the API; Cognition ships a near-frontier coding model at a fraction of the cost, and Salesforce demos Claude wired into Slack at Dreamforce.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="container masthead__inner">
+    <p class="masthead__name"><a href="../index.html">AI BRIEF</a></p>
+    <span class="masthead__tag">Wire archive &middot; brahim bousnguar</span>
+  </div>
+</header>
+<hr class="tape">
+
+<main id="main">
+  <div class="band">
+    <div class="container">
+      <p class="dateline"><span>AI BRIEF</span><span class="dateline__sep">&middot;</span><span>SEP 11 2026</span><span class="dateline__sep">&middot;</span><span>07:10 CEST</span></p>
+      <h1>Anthropic&#x27;s threat intelligence report, OpenAI opens GPT-Live-1 to developers, Cognition ships SWE-2</h1>
+      <p class="lead">Anthropic details state-linked misuse of Claude for weapons research and surveillance; OpenAI puts its full-duplex voice model in the API; Cognition ships a near-frontier coding model at a fraction of the cost, and Salesforce demos Claude wired into Slack at Dreamforce.</p>
+    </div>
+  </div>
+
+  <div class="band">
+    <div class="container">
+      <h2>Top signal</h2>
+      <article class="story story--lead">
+        <span class="story__num">01</span>
+        <h3 class="story__title">Anthropic publishes its third threat intelligence report, including weapons-related cases</h3>
+        <p>Anthropic posted its most detailed threat intelligence report to date, covering misuse attempts across the eight months since its last report (previous ones were in March, August and November 2025). It describes disrupting suspected state-sponsored groups, financially motivated criminals, spyware vendors, and propaganda operations, including a network of fake dating apps and surveillance systems used to monitor dissidents. Per Anthropic&#x27;s own report, six cases involved actors trying to use Claude to support weapons design or the intelligence-gathering and procurement that weapons programs depend on — three in China, two in Russia, one in Yemen. Anthropic says every operation in the report was disrupted and the findings were shared with authorities and industry partners.</p>
+        <p class="story__signal"><strong>Signal:</strong> not hypothetical risk — six documented cases of state-linked actors trying to use Claude for weapons-program work, alongside surveillance and fraud operations Anthropic says it caught and shut down.</p>
+        <p class="story__source">Source: https://www.anthropic.com/threat-intelligence-report-september-2026</p>
+      </article>
+      <article class="story">
+        <span class="story__num">02</span>
+        <h3 class="story__title">OpenAI opens GPT-Live-1, its full-duplex voice model, to the API</h3>
+        <p>OpenAI Developers announced GPT-Live-1 is now available in the API, letting developers build voice agents that listen while they speak (full duplex) instead of the rigid turn-by-turn handoffs of older voice bots, and choose which backend model handles the reasoning. Per OpenAI&#x27;s own comparisons, it scored 80.1% on an internal benchmark versus 45.4% for GPT-Realtime-2.1, with turn-taking latency of 0.8s versus 1.4s — company-reported numbers, not independently verified. Pricing is $0.05/minute, with twelve voices and automatic transcripts included. OpenAI&#x27;s own team called the reaction to hands-on demos &quot;so good.&quot;</p>
+        <p class="story__signal"><strong>Signal:</strong> the &quot;talk over each other naturally&quot; voice model that shipped to ChatGPT in July is now something any developer can build on, at a genuinely cheap $0.05/minute.</p>
+        <p class="story__source">Source: https://superpowerdaily.com/posts/openai-releases-gpt-live-1-api-for-voice-apps-that-talk-and-listen-together</p>
+      </article>
+      <article class="story">
+        <span class="story__num">03</span>
+        <h3 class="story__title">Cognition ships SWE-2, a near-frontier coding model at a fraction of the cost, and launches Devin Voice on top of it</h3>
+        <p>Cognition posted the launch of SWE-2, its newest Devin coding model, post-trained from Moonshot&#x27;s Kimi K3 with reinforcement learning scaled to a multi-trillion-parameter regime for the first time. Per Cognition&#x27;s own benchmark, it scores 50.0% on FrontierCode 1.1 — within a point of Fable 5.1&#x27;s 50.9% and a few points behind GPT-6 Astra&#x27;s 53.3% — at what the company says is up to 70% lower cost than recent frontier models. The same day, Cognition (reposted by OpenAI Developers) launched Devin Voice, a phone interface for the coding agent built on OpenAI&#x27;s new GPT-Live API and SWE-2: you talk, Devin ships code.</p>
+        <p class="story__signal"><strong>Signal:</strong> Cognition is chasing frontier coding scores at commodity prices rather than chasing the top of the leaderboard outright — and immediately used the day-one voice API to ship a phone interface for Devin.</p>
+        <p class="story__source">Source: https://cognition.com/blog/swe-2</p>
+      </article>
+      <article class="story">
+        <span class="story__num">04</span>
+        <h3 class="story__title">Salesforce demos Claude wired into every Slack and CRM surface at Dreamforce</h3>
+        <p>Marc Benioff posted a Dreamforce demo of &quot;Slackforce&quot; and &quot;Claudeforce&quot; — Claude running natively inside Salesforce&#x27;s UI with governed access to Sales, Service, Marketing, Tableau, Data 360 and Slack. Per reporting picked up from CIO/MarketScale, Salesforce is making Claude the default model behind Slack features like Slackbot, &quot;Claude Tag&quot; and &quot;Slack Code,&quot; meaning CRM updates and approvals increasingly happen inside chat rather than a CRM tab. The partnership itself isn&#x27;t new (announced late August), but this is the first public, in-product demo of it running.</p>
+        <p class="story__signal"><strong>Signal:</strong> not a new partnership — Salesforce and Anthropic&#x27;s &quot;Claudeforce&quot; tie-up was announced back in Q2 earnings in late August — but this week&#x27;s Dreamforce (#DF26) is the first live demo of Claude embedded directly into Slack, Sales, Service, Tableau and Data 360.</p>
+        <p class="story__source">Source: https://www.marketscale.com/industries/software-and-technology/claudeforce-puts-claude-in-salesforce-and-cios-will-have-to-track-token-use</p>
+      </article>
+    </div>
+  </div>
+
+  <div class="band band--wire">
+    <div class="container">
+      <span class="slug">Worth watching</span>
+      <ul class="watch">
+        <li>DeepSeek-V4.1-Flash, the multimodal model DeepSeek shipped yesterday, is now rolling out on Ollama&#x27;s cloud for Max and Team accounts, with wider access coming.</li>
+        <li>A video of Claude in Chrome replicating a profile picture in JS Paint using only simulated brush clicks (no code) went viral among devs — Anthropic&#x27;s Boris Cherny reacted &quot;wait what.&quot;</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="band band--sunk">
+    <div class="container">
+      <div class="cols cols--2">
+        <div class="block block--paper">
+          <span class="slug">Bottom line</span>
+          <p class="lead" style="margin:0">No single bombshell this run — a sobering safety disclosure from Anthropic landed alongside a wave of shipped product: a cheap full-duplex voice API, a cost-efficient coding model with a voice front-end built on it same-day, and enterprise AI moving from announcement to live demo at Salesforce&#x27;s Dreamforce.</p>
+        </div>
+        <div class="block block--fill">
+          <span class="slug">Sources scanned</span>
+          <p class="story__source" style="margin:0">X/Twitter home feed via profile=brahim, plus @AnthropicAI and @OpenAI (OpenAI had nothing beyond its pinned Sept 3 GPT-6 Astra post).</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="end-mark">-30-</p>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p style="margin:0"><a href="../index.html">&larr; All briefs</a></p>
+  </div>
+</footer>
+</body>
+</html>
