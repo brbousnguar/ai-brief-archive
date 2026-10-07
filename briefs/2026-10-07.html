@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Brief — Oct 07 2026</title>
+<meta name="description" content="A genuinely busy 24 hours after three quiet days — Mistral&#x27;s biggest model yet, Anthropic following Claude into Google&#x27;s productivity suite, and OpenAI publishing a mathematics result dump as a follow-up to its Navier-Stokes claim.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="container masthead__inner">
+    <p class="masthead__name"><a href="../index.html">AI BRIEF</a></p>
+    <span class="masthead__tag">Wire archive &middot; brahim bousnguar</span>
+  </div>
+</header>
+<hr class="tape">
+
+<main id="main">
+  <div class="band">
+    <div class="container">
+      <p class="dateline"><span>AI BRIEF</span><span class="dateline__sep">&middot;</span><span>OCT 07 2026</span><span class="dateline__sep">&middot;</span><span>07:50 CEST</span></p>
+      <h1>Mistral ships a 1-trillion-parameter &quot;Le Chonk,&quot; Claude moves into Google Docs/Sheets/Slides, and OpenAI drops 372 new math results</h1>
+      <p class="lead">A genuinely busy 24 hours after three quiet days — Mistral&#x27;s biggest model yet, Anthropic following Claude into Google&#x27;s productivity suite, and OpenAI publishing a mathematics result dump as a follow-up to its Navier-Stokes claim.</p>
+    </div>
+  </div>
+
+  <div class="band">
+    <div class="container">
+      <h2>Top signal</h2>
+      <article class="story story--lead">
+        <span class="story__num">01</span>
+        <h3 class="story__title">Mistral launches Large 4 (&quot;Le Chonk&quot;), a 1T-parameter model it calls the strongest open-weight model from the US or Europe</h3>
+        <p>Per Mistral&#x27;s own announcement and VentureBeat&#x27;s reporting, Large 4 is a 1.05T-parameter mixture-of-experts model with 49B active parameters, native image input, and a 1M-token context window. Mistral says it&#x27;s state-of-the-art on cybersecurity, manufacturing and finance workloads among open models. The API is live now ($1.36/1M input, $4.18/1M output tokens); open weights are promised by October 27 after a roughly three-week testing period with developers, cybersecurity leaders and government authorities, under a custom Mistral license rather than Apache 2.0.</p>
+        <p class="story__signal"><strong>Signal:</strong> a real step up for Mistral, not an incremental refresh — it&#x27;s the first announcement since Mistral&#x27;s €3B Series D (valuing it above €21B) and the model was trained entirely on Mistral&#x27;s own European infrastructure (3,800 NVIDIA Grace Blackwell GPUs), reinforcing the sovereign-AI thread running through recent briefings. One caveat worth flagging clearly: the weights aren&#x27;t out yet, and the license is listed as &quot;coming soon&quot; — this is an API preview, not an open release today.</p>
+        <p class="story__source">Source: https://venturebeat.com/technology/mistral-debuts-large-4-le-chonk-a-1-trillion-parameter-text-output-model-with-high-benchmarks-planned-for-open-weights-release</p>
+      </article>
+      <article class="story">
+        <span class="story__num">02</span>
+        <h3 class="story__title">Claude now works directly inside Google Docs, Sheets and Slides</h3>
+        <p>Per Anthropic&#x27;s announcement and VentureBeat, Claude now sits in a sidebar next to an open Google Doc, Sheet or Slide deck, reading what&#x27;s open and proposing edits that users approve before they land — in Sheets, Anthropic highlights more technically involved spreadsheet work specifically. The integration is live now for all paid Claude plans via the Google Workspace Marketplace, with enterprise controls (Compliance API, customer-managed encryption, audit export) carrying over.</p>
+        <p class="story__signal"><strong>Signal:</strong> a direct extension of the enterprise-productivity fight Microsoft reframed four days ago (&quot;Copilot as the OS for work&quot;) — Anthropic is now contesting the same ground inside Google&#x27;s suite specifically, on top of already having Word/Excel/PowerPoint integrations.</p>
+        <p class="story__source">Source: https://venturebeat.com/technology/you-can-now-open-claude-directly-in-google-docs-sheets-and-slides-and-vice-versa-open-and-edit-the-files-in-claude</p>
+      </article>
+      <article class="story">
+        <span class="story__num">03</span>
+        <a class="daycount" href="../stories/openai-navier-stokes.html">running story &middot; day 3</a>
+        <h3 class="story__title">OpenAI publishes 372 new mathematical results from an unreleased internal model</h3>
+        <p>Per OpenAI&#x27;s own post and Scientific American&#x27;s reporting, the still-unreleased internal frontier model was given roughly 4,000 math problems, with the average result requiring compute equivalent to about three hours of ChatGPT Pro-level thinking; the public openai/math GitHub repo now holds 722 manuscripts across 372 related result families, including Lean formalizations for many results. OpenAI says it consulted the independent Advisory Group on Mathematics and AI at the Institute for Advanced Study on how to responsibly release the results, and plans to keep testing internal models against open math and science problems ahead of any public release of the model itself.</p>
+        <p class="story__signal"><strong>Signal:</strong> OpenAI, day ~16 on this story: this is a large follow-up disclosure, not a repeat of last month&#x27;s Navier-Stokes claim — 372 result families is a different kind of claim (breadth over one landmark problem), and this time OpenAI says the model produced almost all of them from a single prompt to a single agent, a notably cheaper process than the thousands-strong agent swarm behind the Navier-Stokes result.</p>
+        <p class="story__source">Source: https://openai.com/index/sharing-ai-progress-in-mathematics</p>
+      </article>
+    </div>
+  </div>
+
+  <div class="band band--wire">
+    <div class="container">
+      <span class="slug">Worth watching</span>
+      <ul class="watch">
+        <li>Google DeepMind shipped EmbeddingGemma 2, a 740M-parameter on-device multimodal embedding model (text, code, image, audio, video in one space) that it says beats some specialist models twice its size.</li>
+        <li>Anthropic expanded its Cyber Verification Program, giving vetted security professionals defensive-use access to Claude Mythos 5.1, Opus 5.5 and Sonnet 5.5 — the &quot;Mythos 5.1&quot; name hasn&#x27;t appeared publicly before and may be worth watching for a future general release.</li>
+        <li>Anduril announced a $3.7B investment into &quot;Arsenal-2,&quot; a US shipyard — defense manufacturing rather than an AI model story, but tied to the broader AI-infrastructure investment wave.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="band band--sunk">
+    <div class="container">
+      <div class="cols cols--2">
+        <div class="block block--paper">
+          <span class="slug">Bottom line</span>
+          <p class="lead" style="margin:0">After three straight quiet days, this was a real news morning: Mistral&#x27;s biggest model to date, Anthropic pushing further into enterprise productivity software, and OpenAI continuing to drip-feed evidence for its mathematics claims rather than releasing the model behind them.</p>
+        </div>
+        <div class="block block--fill">
+          <span class="slug">Sources scanned</span>
+          <p class="story__source" style="margin:0">X/Twitter home feed via profile=brahim (Following tab), plus @AnthropicAI, @OpenAI and @GoogleDeepMind.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="end-mark">-30-</p>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p style="margin:0"><a href="../index.html">&larr; All briefs</a></p>
+  </div>
+</footer>
+</body>
+</html>
