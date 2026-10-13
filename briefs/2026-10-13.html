@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Brief — Oct 13 2026</title>
+<meta name="description" content="Meta finally crossed into frontier territory after 14 months and a $100B+ rebuild of its AI org, landing informal S-tier rankings alongside Claude Opus 5.5 — while Anthropic detailed how its newest anti-distillation defenses are choking off rivals trying to copy Claude&#x27;s reasoning.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="container masthead__inner">
+    <p class="masthead__name"><a href="../index.html">AI BRIEF</a></p>
+    <span class="masthead__tag">Wire archive &middot; brahim bousnguar</span>
+  </div>
+</header>
+<hr class="tape">
+
+<main id="main">
+  <div class="band">
+    <div class="container">
+      <p class="dateline"><span>AI BRIEF</span><span class="dateline__sep">&middot;</span><span>OCT 13 2026</span><span class="dateline__sep">&middot;</span><span>07:40 CEST</span></p>
+      <h1>Meta ships its first real frontier model, Muse Wonder — and Anthropic says it&#x27;s cut Claude-copying by up to 99%</h1>
+      <p class="lead">Meta finally crossed into frontier territory after 14 months and a $100B+ rebuild of its AI org, landing informal S-tier rankings alongside Claude Opus 5.5 — while Anthropic detailed how its newest anti-distillation defenses are choking off rivals trying to copy Claude&#x27;s reasoning.</p>
+    </div>
+  </div>
+
+  <div class="band">
+    <div class="container">
+      <h2>Top signal</h2>
+      <article class="story story--lead">
+        <span class="story__num">01</span>
+        <h3 class="story__title">Meta launches Muse Wonder, its first model with genuine frontier performance</h3>
+        <p>Per Meta&#x27;s own announcement, Muse Wonder and Muse Wonder Full are built for personal and professional agentic tasks — navigating an insurance claim, parsing a lease, building a working app — and are available now via the Meta Model API and Muse Code, with Muse Wonder rolling out to Muse subscribers ($20 or $100/month) soon. Meta AI chief Alexandr Wang (speaking to CNBC) said the model, codenamed Watermelon, is priced &quot;meaningfully below&quot; OpenAI and Anthropic&#x27;s leading models, aimed squarely at agents that currently stumble on everyday tasks like booking reservations.</p>
+        <p class="story__signal"><strong>Signal:</strong> this is the payoff moment for Zuckerberg&#x27;s 14-month, $100B+ overhaul of Meta&#x27;s AI effort (Meta Superintelligence Labs, the $14B Scale AI deal, Alexandr Wang as AI chief) — independent benchmarks place Muse Wonder Full genuinely near the frontier, and informal community rankings (not Meta&#x27;s own) put it S-tier alongside Claude Opus 5.5, ahead of GPT-6.1 Sol. Worth noting clearly: the strongest version, Muse Wonder Full, is only available to Muse Code subscribers, not the free API tier.</p>
+        <p class="story__source">Source: https://about.fb.com/news/2026/10/introducing-muse-wonder-models</p>
+      </article>
+      <article class="story">
+        <span class="story__num">02</span>
+        <a class="daycount" href="../stories/anthropic-threat-intel.html">running story &middot; day 2</a>
+        <h3 class="story__title">Anthropic says new defenses cut data harvested from Claude via distillation attacks by 90-99%</h3>
+        <p>Per Anthropic&#x27;s own research post, the core defense is &quot;preserved thinking&quot;: since August 31, 2026, new API accounts can no longer edit Claude&#x27;s prior reasoning context, making it much harder to use proxy networks to repeatedly extract Claude&#x27;s internal reasoning — the part of a response distillers value most, since it teaches a smaller model how Claude reaches an answer, not just what it says. Anthropic has also blocked older, weaker models from reading newer models&#x27; reasoning, and changed how Claude Sonnet 5.5&#x27;s reasoning transcripts are exposed.</p>
+        <p class="story__signal"><strong>Signal:</strong> Anthropic, following up on its September disclosure that seven China-based labs (including Alibaba, Moonshot, DeepSeek, Z.ai, MiniMax) ran industrial-scale distillation attacks against Claude — this post is the technical follow-through, not a repeat: concrete defenses and a measured effectiveness number (90-99% less harvested data) rather than just an accusation.</p>
+        <p class="story__source">Source: https://www.anthropic.com/research/distillation-defenses</p>
+      </article>
+    </div>
+  </div>
+
+  <div class="band band--wire">
+    <div class="container">
+      <span class="slug">Worth watching</span>
+      <ul class="watch">
+        <li>Mistral&#x27;s visual-grounding claim for Large 4 (&quot;Le Chonk&quot;) — 42% on the Dense 200 benchmark, narrowly ahead of GPT-6 Astra&#x27;s 41% — is getting wider independent review coverage today, but the underlying claim is from Mistral&#x27;s original Oct 6 launch, not new news.</li>
+        <li>OpenAI shared no new announcements since Oct 7; its account has been quiet through the weekend and today.</li>
+        <li>Theo (t3.gg)&#x27;s informal model-ranking post sparked discussion by placing Claude Opus 5.5 and Meta&#x27;s new Muse Wonder in the same top tier, well ahead of &quot;everything else.&quot;</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="band band--sunk">
+    <div class="container">
+      <div class="cols cols--2">
+        <div class="block block--paper">
+          <span class="slug">Bottom line</span>
+          <p class="lead" style="margin:0">Meta&#x27;s Muse Wonder is the first time its own model, not just its Muse product wrapper, looks genuinely competitive with OpenAI and Anthropic&#x27;s best — while Anthropic used the same week to show it&#x27;s playing defense well against rivals trying to copy Claude outright.</p>
+        </div>
+        <div class="block block--fill">
+          <span class="slug">Sources scanned</span>
+          <p class="story__source" style="margin:0">X/Twitter home feed via profile=brahim (Following tab), plus @AnthropicAI and @OpenAI.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="end-mark">-30-</p>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p style="margin:0"><a href="../index.html">&larr; All briefs</a></p>
+  </div>
+</footer>
+</body>
+</html>
