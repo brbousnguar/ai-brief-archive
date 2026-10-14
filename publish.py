@@ -44,6 +44,11 @@ Each brief opens with a main picture, the share image of its first story whose
 source page has one, cached in images.json. An optional `image:` front-matter
 key pins one by hand. See "The main picture" in README.md.
 
+Briefs that narrate.py has recorded get a player under the picture. The
+recording is keyed to a hash of speech(brief), so a brief that changed since
+it was recorded shows no player until it is recorded again. See "The audio
+version" in README.md.
+
 `story:` is what makes running stories work: two briefs carrying the same slug
 become one story page with a timeline, and the brief links there instead of
 re-explaining the story. `angle: new` marks the entry that carried something
@@ -53,6 +58,7 @@ genuinely new — everything else in a repeat story is a restatement.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import html
 import http.client
 import json
@@ -92,6 +98,9 @@ GENERIC_IMAGE = re.compile(r"default|logo|favicon|placeholder", re.IGNORECASE)
 # How long a brief keeps retrying a source that refused or timed out (403, 429…)
 # before it settles for no picture.
 RETRY_DAYS = 7
+
+# Written by narrate.py: audio/<date>.mp3 plus a manifest keyed by brief date.
+AUDIO_DIR = "audio"
 
 
 class BriefError(ValueError):
@@ -420,6 +429,138 @@ def resolve_cover(brief: Brief, cache: dict, fetch: bool) -> Cover | None:
     return None
 
 
+# ---------------------------------------------------------------- audio
+
+
+_MAGNITUDE = {"K": "thousand", "M": "million", "B": "billion", "T": "trillion"}
+# A bare figure like 24B or $52M, but not one inside a model name (LFM2.5-24B-A2B).
+_FIGURE = re.compile(r"(?<![\w.-])(\$?)(\d+(?:\.\d+)?)([KMBT])(\+?)(?![\w.]\w)")
+
+
+def _say_figure(m: re.Match) -> str:
+    dollar, number, unit, plus = m.groups()
+    return f"{'more than ' if plus else ''}{number} {_MAGNITUDE[unit]}{' dollars' if dollar else ''}"
+
+
+def _spoken(text: str) -> str:
+    """Page text as the voice should read it: no markup, no URLs, no slashes.
+
+    Plus the few spellings Kokoro reads wrong, checked by transcribing a
+    recording back with Whisper: "~50%" came out as "tilde", "$52M" as "52 M dollar".
+    """
+    text = re.sub(r"\[([^\]]+)\]\([^)]*\)", r"\1", text)  # a markdown link reads as its words
+    text = re.sub(r"https?://\S+", "", text)
+    text = re.sub(r"[*`]+", "", text)
+    text = re.sub(r"(?<=[A-Za-z])/(?=[A-Za-z])", ", ", text)  # X/Twitter -> "X, Twitter"
+    text = text.replace("&", " and ")
+    text = re.sub(r"~\s?(?=\d)", "about ", text)
+    text = _FIGURE.sub(_say_figure, text)
+    text = re.sub(r"(?<![\w.])(\d+(?:\.\d+)?)x\b", r"\1 times", text)  # 1.7x faster
+    text = re.sub(r"\bv(\d+(?:\.\d+)+)\b", r"version \1", text)  # v0.22.0
+    return re.sub(r"\s+", " ", text).strip()
+
+
+def _sentence(text: str) -> str:
+    text = text.strip()
+    return text if text[-1:] in ".?!" else text + "."
+
+
+def speech(brief: Brief) -> list[list[str]]:
+    """What the audio version says: sections of paragraphs, in page order.
+
+    Headline and lead, each story with its signal, worth watching, bottom line.
+    Leaves out what only works on screen: story numbers, day counters, source
+    URLs and the sources-scanned note.
+    """
+    sections = [[_sentence(brief.title), brief.lead]]
+    for item in brief.items:
+        story = [_sentence(item.title), *item.body]
+        if item.signal:
+            story.append("Signal: " + _sentence(item.signal))
+        sections.append(story)
+    if brief.watching:
+        sections.append(["Worth watching.", *brief.watching])
+    if brief.bottom_line:
+        sections.append(["Bottom line.", brief.bottom_line])
+    return [[t for t in map(_spoken, section) if t] for section in sections]
+
+
+def speech_sha(brief: Brief) -> str:
+    """The recording's key. Any change to what would be read changes it."""
+    return hashlib.sha256(json.dumps(speech(brief)).encode()).hexdigest()[:16]
+
+
+def load_audio(out: Path, briefs: list[Brief]) -> dict[str, dict]:
+    """Recordings that still match their brief, by slug. Stale ones are dropped."""
+    manifest_path = out / AUDIO_DIR / "manifest.json"
+    if not manifest_path.exists():
+        return {}
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    found = {}
+    for brief in briefs:
+        entry = manifest.get(brief.slug)
+        if (
+            entry
+            and entry.get("sha") == speech_sha(brief)
+            and (out / AUDIO_DIR / entry["file"]).exists()
+        ):
+            found[brief.slug] = entry
+    return found
+
+
+def _clock(seconds: float) -> str:
+    seconds = round(seconds)
+    return f"{seconds // 60}:{seconds % 60:02d}"
+
+
+def _asset_version(path: Path) -> str:
+    """A cache-buster that changes only when the file does."""
+    return hashlib.sha256(path.read_bytes()).hexdigest()[:8] if path.exists() else "0"
+
+
+# Square caps, like the timeline marks. The play triangle and pause bars are filled.
+LISTEN_ICONS = {
+    "play": '<svg class="listen__i-play" viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M7 4.5v15L19.5 12z"/></svg>',
+    "pause": '<svg class="listen__i-pause" viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M6 4.5h4.5v15H6zM13.5 4.5H18v15h-4.5z"/></svg>',
+    "back": '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M3 12a9 9 0 1 0 2.64-6.36"/><path d="M3 3v6h6"/></svg>',
+    "forward": '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg>',
+    "cast": '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M7 17H3V4h18v13h-4"/><path d="M12 14l5 6H7z"/></svg>',
+}
+
+
+def listen_player(brief: Brief, audio: dict) -> str:
+    """The brief's audio player.
+
+    The native <audio controls> is the no-script fallback. js/listen.js turns
+    on the .listen__player card and drives that same element, which is what
+    keeps lock-screen controls and background play working on a phone. html.js
+    is set in the head, so nothing shifts when the script arrives.
+    """
+    src = f"../{AUDIO_DIR}/{audio['file']}"
+    length, seconds = _clock(audio["seconds"]), audio["seconds"]
+    i = LISTEN_ICONS
+    return f"""      <div class="listen" id="listen" data-title="{E(brief.title)}" data-date="{E(brief.stamp)}" data-slug="{E(brief.slug)}" data-duration="{seconds}">
+        <p class="listen__label">Listen &middot; {length} &middot; read by an AI voice</p>
+        <audio controls preload="none" src="{E(src)}">
+          <a href="{E(src)}">Download the audio (MP3)</a>
+        </audio>
+        <div class="listen__player">
+          <button class="listen__play" type="button" aria-label="Play the brief">{i["play"]}{i["pause"]}</button>
+          <div class="listen__main">
+            <p class="listen__head"><span class="listen__title">Listen<span class="listen__more"> to this brief</span></span><span class="listen__time"><span class="listen__cur">0:00</span> / <span class="listen__dur">{length}</span></span></p>
+            <input class="listen__seek" type="range" min="0" max="{int(seconds)}" step="1" value="0" aria-label="Position in the audio">
+            <div class="listen__row">
+              <button class="listen__btn" type="button" data-skip="-15" aria-label="Back 15 seconds">{i["back"]}<span>15</span></button>
+              <button class="listen__btn" type="button" data-skip="30" aria-label="Forward 30 seconds"><span>30</span>{i["forward"]}</button>
+              <button class="listen__btn listen__rate" type="button" aria-label="Playback speed 1×">1×</button>
+              <button class="listen__btn listen__cast" type="button" aria-label="Play on another device" hidden>{i["cast"]}</button>
+              <p class="listen__note"><span class="listen__more">Read by an </span>AI voice &middot; <a href="{E(src)}" download aria-label="Download the MP3">MP3 <span aria-hidden="true">&darr;</span></a></p>
+            </div>
+          </div>
+        </div>
+      </div>"""
+
+
 # ---------------------------------------------------------------- rendering
 
 E = html.escape
@@ -433,6 +574,7 @@ def page(
     path: str,
     cover: Cover | None = None,
     share_title: str | None = None,
+    audio: bool = False,
 ) -> str:
     up = "../" * depth
     url = SITE_URL + path
@@ -447,6 +589,15 @@ def page(
     if cover:
         share.append(f'<meta property="og:image" content="{E(cover.image)}">')
         share.append('<meta name="twitter:card" content="summary_large_image">')
+    if audio:
+        # The site's only script. Set html.js before paint so the player card,
+        # not the native control, is what renders first; undo it if the
+        # script fails to load.
+        share.append("<script>document.documentElement.classList.add('js')</script>")
+        share.append(
+            f'<script defer src="{up}js/listen.js?v={_asset_version(ROOT / "js/listen.js")}" '
+            "onerror=\"document.documentElement.classList.remove('js')\"></script>"
+        )
     head = "\n".join(share)
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -457,7 +608,7 @@ def page(
 <meta name="description" content="{E(description)}">
 {head}
 {FONTS}
-<link rel="stylesheet" href="{up}css/main.css">
+<link rel="stylesheet" href="{up}css/main.css?v={_asset_version(ROOT / "css/main.css")}">
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -551,7 +702,9 @@ def cover_figure(cover: Cover) -> str:
     )
 
 
-def render_brief(brief: Brief, stories: dict[str, Story], cover: Cover | None) -> str:
+def render_brief(
+    brief: Brief, stories: dict[str, Story], cover: Cover | None, audio: dict | None
+) -> str:
     dateline = [f"<span>AI BRIEF</span>", f"<span>{E(brief.stamp)}</span>"]
     if brief.time:
         dateline.append(f"<span>{E(brief.time.upper())}</span>")
@@ -560,6 +713,10 @@ def render_brief(brief: Brief, stories: dict[str, Story], cover: Cover | None) -
     out = ['  <div class="band">\n    <div class="container">']
     if cover:
         out.append(cover_figure(cover))
+    if audio:
+        # Under the picture, above a headline that runs to six lines on a
+        # phone: play is on the first screen.
+        out.append(listen_player(brief, audio))
     out.append(f'      <p class="dateline">{bar}</p>')
     out.append(f"      <h1>{E(brief.title)}</h1>")
     if brief.lead:
@@ -649,7 +806,9 @@ def render_story(story: Story) -> str:
     return "\n".join(out)
 
 
-def render_index(briefs: list[Brief], stories: dict[str, Story], cover: Cover | None) -> str:
+def render_index(
+    briefs: list[Brief], stories: dict[str, Story], cover: Cover | None, audio: dict | None
+) -> str:
     latest = briefs[0]
     dateline = [f"<span>LATEST</span>", f"<span>{E(latest.stamp)}</span>"]
     if latest.time:
@@ -662,7 +821,15 @@ def render_index(briefs: list[Brief], stories: dict[str, Story], cover: Cover | 
         f'      <p class="dateline">{bar}</p>',
         f"      <h1>{E(latest.title)}</h1>",
         f'      <p class="lead">{E(latest.lead)}</p>',
-        f'      <p><a class="btn" href="briefs/{E(latest.slug)}.html">Read the brief</a></p>',
+        '      <p style="display:flex;flex-wrap:wrap;gap:0.75rem">'
+        f'<a class="btn" href="briefs/{E(latest.slug)}.html">Read the brief</a>'
+        + (
+            f' <a class="btn btn--ghost" href="briefs/{E(latest.slug)}.html#listen">'
+            f'Listen &middot; {_clock(audio["seconds"])}</a>'
+            if audio
+            else ""
+        )
+        + "</p>",
         "    </div>\n  </div>\n",
         '  <div class="band band--ink">\n    <div class="container">',
         '      <span class="slug">What this is</span>',
@@ -746,6 +913,7 @@ def main() -> int:
     cache = json.loads(cache_path.read_text(encoding="utf-8")) if cache_path.exists() else {}
     covers = {b.slug: resolve_cover(b, cache, fetch=not args.no_fetch) for b in briefs}
     cache_path.write_text(json.dumps(cache, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    recordings = load_audio(args.out, briefs)
 
     for brief in briefs:
         (args.out / "briefs" / f"{brief.slug}.html").write_text(
@@ -753,10 +921,11 @@ def main() -> int:
                 f"AI Brief — {brief.stamp.title()}",
                 brief.lead or brief.title,
                 1,
-                render_brief(brief, stories, covers[brief.slug]),
+                render_brief(brief, stories, covers[brief.slug], recordings.get(brief.slug)),
                 f"briefs/{brief.slug}.html",
                 cover=covers[brief.slug],
                 share_title=brief.title,
+                audio=brief.slug in recordings,
             ),
             encoding="utf-8",
         )
@@ -781,7 +950,7 @@ def main() -> int:
             "The durable layer behind a Telegram AI briefing: running stories tracked "
             "over time, full sources, and every brief kept.",
             0,
-            render_index(briefs, stories, covers[briefs[0].slug]),
+            render_index(briefs, stories, covers[briefs[0].slug], recordings.get(briefs[0].slug)),
             "",
             cover=covers[briefs[0].slug],
         ),
@@ -791,6 +960,7 @@ def main() -> int:
     pictured = sum(1 for c in covers.values() if c)
     print(f"wrote {len(briefs)} brief page(s), {running} story page(s), index.html")
     print(f"pictures on {pictured} of {len(briefs)} brief(s)")
+    print(f"audio on {len(recordings)} of {len(briefs)} brief(s)")
     return 0
 
 

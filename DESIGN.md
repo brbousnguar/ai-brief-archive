@@ -153,7 +153,56 @@ same two announcements led five briefings running and only one entry carried
 anything new. Look for that shape of diagram: the one that makes the honest
 limitation impossible to miss.
 
-## 6. Concision
+## 6. Audio
+
+A brief from 2026-10-14 on can be listened to: on a walk, on the bus, with the
+phone in a pocket. `narrate.py` records it and README.md explains the recording.
+This section covers what the reader sees and hears.
+
+### The player (`.listen`)
+
+- **The native `<audio>` is the player.** `js/listen.js` skins it and never
+  replaces it. Playing the real element is what keeps playback going with the
+  screen locked and puts the headline and skip buttons on the lock screen
+  (Media Session, with the main picture as artwork). Never swap it for Web
+  Audio or a custom decoder.
+- **The site's only script, and only where it is needed.** It is loaded on a
+  brief page that has a recording, nowhere else. An inline head script sets
+  `html.js` before paint, so the card renders first and nothing shifts. If the
+  script fails to load, the class is removed. Without script, a mono label sits
+  over the browser's own control.
+- **Under the picture, above the dateline.** A briefing headline runs to six
+  lines on a phone, and play has to be on the first screen.
+- **Always says it is an AI voice.** The no-script label and the card note
+  both say so. Never drop it to save space: on a narrow screen the note
+  shortens to "AI voice", it is never removed.
+- **Flat, paper only.** A `--rule` border on paper. The play block is `--wire`
+  carrying `--on-colour` (7.17:1) and turns `--ink` on hover. The track is a
+  ruled bar with `--wire` for what has played and `--paper-sunk` for the rest,
+  and a square `--ink` thumb. Times and the note use `--ink-quiet`, which is
+  paper-only. No radius, no shadow.
+- **Touch first.** Every control is at least 44px. Back 15 s and forward 30 s
+  are the buttons a walker reaches for. Speed steps 1, 1.25, 1.5, 1.75, 2,
+  0.75. The speed is remembered, and so is the position, per brief
+  (`localStorage`), so a reload offers "Resume from 3:12".
+
+### The mini-player (`.dock`)
+
+It appears only once playback has started **and** the card has scrolled away,
+and never on load. It is fixed to the bottom on paper with one top `--rule`, a
+4px progress line in `--wire`, play/pause, the headline (ellipsed), the time,
+and a close button that pauses. Without motion: it appears and disappears, it
+does not slide. The page gains bottom padding while it shows, so it never
+covers the last line.
+
+### What is read
+
+The page in reading order, minus what only works on screen: headline, lead,
+each story with its signal, worth watching, bottom line. Story numbers, day
+counters, URLs and the sources-scanned note are not read. Plain neutral voice,
+no music, no intro, no sign-off.
+
+## 7. Concision
 
 Target **~900 words of running prose** per page. Tables, captions and source
 lists count separately.
@@ -163,7 +212,7 @@ dropping a date, a hedge, a source or an attribution — on a site whose value i
 being trustworthy, the qualifications are the product. Do not game the target by
 tabulating things nobody would naturally tabulate.
 
-## 7. Components
+## 8. Components
 
 Anything not on this list does not exist. Adding a component means adding it here.
 
@@ -172,13 +221,22 @@ Anything not on this list does not exist. Adding a component means adding it her
 `.block` (+ `--wire` `--embargo` `--stamp` `--fill` `--paper`) · `.story` (+
 `--lead`, `.story__num` `.story__title` `.story__signal` `.story__source`) ·
 `.daycount` (also as a link to a story page) · `.watch` · `.archive` · `.figure` (+ `.figure__frame` `.caption`) ·
-`.cover` (+ `.cover__frame` `.cover__credit`) · `.lead` · `.kicker` · `.btn` (+
-`--ghost`) · `.skip-link` · `.site-footer`
+`.cover` (+ `.cover__frame` `.cover__credit`) · `.listen` (+ `.listen__label`
+`.listen__player` `.listen__play` `.listen__main` `.listen__head` `.listen__title`
+`.listen__time` `.listen__seek` `.listen__row` `.listen__btn` `.listen__rate`
+`.listen__note`) · `.dock` (+ `.dock__bar` `.dock__row` `.dock__play`
+`.dock__title` `.dock__time` `.dock__close`) · `.lead` · `.kicker` · `.btn` (+
+`--ghost`, used for the index's "Listen" link) · `.skip-link` · `.site-footer`
 
-## 8. Verification
+Script hooks, not components: `.listen__cur` `.listen__dur` `.listen__more`
+`.listen__cast` `.listen__i-play` `.listen__i-pause` `.dock__dur`. State
+classes: `html.js`, `html.has-dock`, and `.is-playing` `.is-loading` `.is-error`
+on the player.
+
+## 9. Verification
 
 ```bash
-bash ~/.claude/skills/brb-flat-poster-theme/scripts/verify.sh . index.html briefs/2026-09-07.html
+bash ~/Server/.claude/skills/brb-flat-poster-theme/scripts/verify.sh . index.html briefs/2026-09-07.html
 ```
 
 Serve from the **site root** and pass subdirectory pages as arguments — never
@@ -197,12 +255,18 @@ with zero failures. Lighthouse (mobile) spot-checks:
 | `briefs/2026-09-07.html` | 100 (48/0) | 100 | 100 |
 | `stories/nvidia-hugging-face.html` | 100 (46/0) | 100 | 100 |
 | `briefs/2026-10-14.html` (with `.cover`) | 100 (43/0) | 100 | 100 |
+| `briefs/2026-10-14.html` (with `.cover` + `.listen`) | 100 (52/0) | 100 | 100 |
+| `index.html` (with the Listen link) | 100 (43/0) | 100 | 100 |
+
+The player was also driven in Chromium and WebKit at 320px and 390px. Play,
+skip, speed, the dock, close and resume after a reload all work, with zero
+console errors.
 
 Note: headless Chrome clamps its viewport to 500px, so a `--window-size=320`
 screenshot proves nothing. `verify.sh` measures true narrow reflow in a
 fixed-width iframe.
 
-## 9. Migration status
+## 10. Migration status
 
 Pilot approved. Every page is now **generated** by `publish.py` from markdown in
 Victor's workspace — see `README.md`. No page is hand-maintained, so a component
@@ -213,4 +277,4 @@ No legacy stylesheet exists, so the two-stylesheet coexistence rule never applie
 
 Live on GitHub Pages at <https://heybrahim.com/ai-brief-archive/>. The launchd
 job `ai.openclaw.victor-publish` runs `publish-hook.sh` whenever Victor writes a
-brief.
+brief. The hook pushes the text first, then records the audio and pushes again.

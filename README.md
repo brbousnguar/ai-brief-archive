@@ -14,7 +14,8 @@ to it.
 Victor (the OpenClaw AI-news agent) writes one markdown file per briefing into
 his own workspace. `publish.py` turns those into a static site:
 
-- **a page per brief** — a main picture, then the full item list with sources
+- **a page per brief** — a main picture, an audio version, then the full item
+  list with sources
 - **a page per running story** — every appearance of a story on one timeline,
   so a repeat is shown as *what changed* rather than re-explained
 - **an index** — latest brief, running stories, and the full archive
@@ -35,6 +36,41 @@ VentureBeat often answer a script with 403/429) is *not* cached and is retried o
 the next run, for up to seven days. To pin a picture by hand, add
 `image: https://…` to the brief's front matter, or edit its `images.json` entry.
 
+### The audio version
+
+From 2026-10-14 on, each brief also has a recording, for listening on a walk or
+the bus. Older briefs stay text-only. The player sits under the main picture.
+It is a skin over the page's own `<audio>`, so it keeps playing with the screen
+locked, and the phone's lock screen shows the headline with skip buttons. It has
+back 15 s and forward 30 s, a speed control, and a mini-player docked at the
+bottom once the card scrolls away. The position is kept, so a stop picks up
+where it left off. Without JavaScript the browser's own audio control shows
+instead.
+
+`narrate.py` records it with **Kokoro-82M** (voice `af_heart`, through
+mlx-audio), locally on the mini. It needs no API and costs nothing, takes about
+30 seconds a brief, and the card says it is an AI voice. The script reads the
+headline, lead, each story with its signal, worth watching and the bottom line.
+It leaves out sources and URLs. `publish.speech()` builds that text, and it also
+respells the few things Kokoro misreads (`~50%`, `$52M`, `1.7x`, `v0.22.0`).
+Print it with `narrate.py --say DATE`.
+
+Output is `audio/<date>.mp3` (mono, 40 kbps, -16 LUFS, about 2.5 MB for a
+9-minute brief) and `audio/manifest.json`. Each manifest entry carries a hash of
+the text it read, and `publish.py` shows a player only while that hash still
+matches the brief. When a same-day re-run changes the brief, the old recording
+disappears from the page until the hook records the new one, a minute later.
+
+The voice needs its own venv, kept outside the repo because the hook commits
+with `git add -A`:
+
+```bash
+tts/setup.sh                                          # once; pinned in tts/requirements.txt
+~/.local/share/ai-brief-tts/venv/bin/python narrate.py              # record what is new or changed
+~/.local/share/ai-brief-tts/venv/bin/python narrate.py --date 2026-10-14 --force
+python3 narrate.py --say 2026-10-14                   # what would be read; no venv needed
+```
+
 A story becomes a running story the second time it appears. That is the point of
 the site: the Telegram brief links to the story page instead of restating the
 same announcement each run.
@@ -48,8 +84,10 @@ target app and never touches the database.
 
 ## Requirements
 
-- Python 3.11+ (standard library only — no dependencies)
+- Python 3.11+ (standard library only — no dependencies) for `publish.py`
 - Victor's brief directory at `~/Server/agents/openclaw/victor/briefs/`
+- For the audio only: an Apple Silicon Mac, `ffmpeg` with libmp3lame, and the
+  venv from `tts/setup.sh`
 
 ## Run
 
@@ -67,7 +105,7 @@ file, so it works as a pre-commit or CI gate.
 Then verify — never skip this, the palette hides failures that eyeballing misses:
 
 ```bash
-bash ~/.claude/skills/brb-flat-poster-theme/scripts/verify.sh . \
+bash ~/Server/.claude/skills/brb-flat-poster-theme/scripts/verify.sh . \
   index.html briefs/*.html stories/*.html
 ```
 
@@ -131,25 +169,33 @@ rendering a page with quietly missing content.
 
 ## Tech stack
 
-Static HTML and CSS, no build step and no JavaScript. Rendered by a single
+Static HTML and CSS, no build step. The one script is `js/listen.js`, the audio
+player, and it is only loaded on a page with a recording. Rendered by a single
 dependency-free Python script. Fonts come from Google Fonts and each brief's main
-picture from its publisher; everything else is local. Served by GitHub Pages
+picture from its publisher; everything else, the recordings included, is local. Served by GitHub Pages
 under the heybrahim.com custom domain of the `brbousnguar.github.io` user site.
 
 ## Repository layout
 
 ```
 publish.py          the only thing that writes HTML
+narrate.py          the only thing that writes audio
 css/main.css        the design system — see DESIGN.md
+js/listen.js        the audio player, the site's only script
 DESIGN.md           the spec; changes in the same commit as the CSS
-publish-hook.sh     launchd entry point: pull, render, commit, push
+publish-hook.sh     launchd entry point: pull, render, push; then record, push
+tts/                setup.sh + pinned requirements for the voice venv
 images.json         main-picture cache, one entry per brief (written by publish.py)
+audio/              <date>.mp3 + manifest.json (written by narrate.py)
 index.html          generated
 briefs/*.html       generated, one per briefing
 stories/*.html      generated, one per running story
 ```
 
-Generated pages are committed so GitHub Pages can serve them directly.
+Generated pages and recordings are committed so GitHub Pages can serve them
+directly. Recordings are the one thing that makes the repo grow, at about 2.5 MB
+a brief, and a same-day re-run that changes the brief adds another. If it ever
+nears GitHub's 1 GB guidance, move `audio/` to release assets or another host.
 
 ## Notes
 

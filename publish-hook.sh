@@ -44,22 +44,41 @@ if ! ./publish.py --source "$SOURCE" --check; then
     exit 0
 fi
 
-./publish.py --source "$SOURCE" || { echo "FATAL: render failed"; exit 1; }
-
-if git diff --quiet && git diff --cached --quiet && [ -z "$(git status --porcelain)" ]; then
-    echo "no change to publish"
-    exit 0
-fi
-
 LATEST=$(ls -1 "$SOURCE"/*.md 2>/dev/null | tail -1 | xargs -I{} basename {} .md)
-git add -A
-git -c user.name=brbousnguar -c user.email=brbousnguar@gmail.com \
-    commit -q -m "content: publish brief ${LATEST:-update}" || {
-        echo "nothing staged after all"; exit 0; }
+PAGE="https://heybrahim.com/ai-brief-archive/briefs/${LATEST}.html"
 
-if git push -q origin main; then
-    echo "published ${LATEST:-update} -> https://heybrahim.com/ai-brief-archive/briefs/${LATEST}.html"
-else
+# Commit and push whatever the render changed. Returns 1 when there was
+# nothing to publish; a failed push stops the hook.
+publish() {
+    [ -n "$(git status --porcelain)" ] || return 1
+    git add -A
+    git -c user.name=brbousnguar -c user.email=brbousnguar@gmail.com \
+        commit -q -m "$1" || return 1
+    git push -q origin main && return 0
     echo "ERROR: push failed — commit is local only, run 'git push' in $REPO"
     exit 1
+}
+
+# 1. The text. Out first, so the audio can never hold a brief back.
+./publish.py --source "$SOURCE" || { echo "FATAL: render failed"; exit 1; }
+if publish "content: publish brief ${LATEST:-update}"; then
+    echo "published ${LATEST:-update} -> ${PAGE}"
+else
+    echo "no change to publish"
+fi
+
+# 2. The audio version, recorded on this machine (Kokoro, about 30 s a brief).
+# It goes out as a second push; until then the page shows no player, never a
+# stale one. A failed recording leaves the brief text-only and is retried on
+# the next trigger.
+TTS_PY="${AIBRIEF_TTS_VENV:-$HOME/.local/share/ai-brief-tts/venv}/bin/python"
+if [ ! -x "$TTS_PY" ]; then
+    echo "SKIP audio: no voice venv at $TTS_PY (run tts/setup.sh)"
+    exit 0
+fi
+HF_HUB_DISABLE_PROGRESS_BARS=1 PYTHONWARNINGS=ignore "$TTS_PY" narrate.py --source "$SOURCE" ||
+    echo "WARN: recording failed; publishing whatever was recorded"
+./publish.py --source "$SOURCE" --no-fetch >/dev/null || { echo "FATAL: render failed"; exit 1; }
+if publish "audio: narrate brief ${LATEST:-update}"; then
+    echo "audio ${LATEST:-update} -> ${PAGE}#listen"
 fi
