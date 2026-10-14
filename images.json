@@ -1,0 +1,173 @@
+{
+  "2026-09-05": {
+    "alt": "",
+    "image": "https://blogs.nvidia.com/wp-content/uploads/2026/09/hf-nvidia-partner_hf-nvidia-partner-press-1920x1080-2.png",
+    "page": "https://blogs.nvidia.com/blog/nvidia-to-acquire-hugging-face",
+    "rank": 3,
+    "story": "Nvidia acquires Hugging Face"
+  },
+  "2026-09-07": {
+    "alt": "",
+    "image": "https://blogs.nvidia.com/wp-content/uploads/2026/09/hf-nvidia-partner_hf-nvidia-partner-press-1920x1080-2.png",
+    "page": "https://blogs.nvidia.com/blog/nvidia-to-acquire-hugging-face",
+    "rank": 1,
+    "story": "Nvidia confirms it is acquiring Hugging Face"
+  },
+  "2026-09-08": {
+    "alt": "alphagenome-atlas-cover__background",
+    "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/09/alphagenome-atlas-cover__background.jpg?quality=90&strip=all&crop=0%2C3.4613147178592%2C100%2C93.077370564282&w=1200",
+    "page": "https://www.theverge.com/ai-artificial-intelligence/991180/google-launches-alpha-genome-atlas",
+    "rank": 1,
+    "story": "DeepMind opens AlphaGenome Atlas to researchers"
+  },
+  "2026-09-09": {
+    "alt": "",
+    "image": "https://9to5mac.com/wp-content/uploads/sites/6/2026/09/muse-agent.webp?resize=1200,628",
+    "page": "https://9to5mac.com/2026/09/08/meta-ai-launches-muse-personal-agent-including-a-new-mobile-app-for-iphone",
+    "rank": 3,
+    "story": "Meta launches Muse, a personal AI agent app"
+  },
+  "2026-09-10": {
+    "alt": "Hand with geometric shapes constructing a complex abstract form on white background",
+    "image": "https://www.anthropic.com/api/opengraph-illustration?name=Hand%20ShapeBuild&backgroundColor=cactus",
+    "page": "https://www.anthropic.com/news/improving-alignment-security-efforts",
+    "rank": 1,
+    "story": "Anthropic publishes a deep-dive on its cybersecurity incidents, plus new misalignment research"
+  },
+  "2026-09-11": {
+    "alt": "Detecting and countering misuse of AI: September 2026",
+    "image": "https://www-cdn.anthropic.com/images/4zrzovbb/website/7a4426f8ffe57e7de23ff36906fb1cc3efe2a82b-1200x630.jpg",
+    "page": "https://www.anthropic.com/threat-intelligence-report-september-2026",
+    "rank": 1,
+    "story": "Anthropic publishes its third threat intelligence report, including weapons-related cases"
+  },
+  "2026-09-14": {
+    "alt": "",
+    "image": "https://cdn.prod.website-files.com/67ecbba31246a69e485fdd4b/6aa5311897ee19af5d9f2cd9_og_we-must-pace-the-frontier.jpg",
+    "page": "https://darioamodei.com/post/we-must-pace-the-frontier",
+    "rank": 1,
+    "story": "Dario Amodei calls on the AI industry to deliberately slow down"
+  },
+  "2026-09-15": null,
+  "2026-09-16": {
+    "alt": "",
+    "image": "https://framerusercontent.com/images/pvRPymJ0yRv5SHXNA3yDzieCZJk.webp?width=1230&height=1008",
+    "page": "https://typesafe.ai/blog/introducing-system-one-models-and-jev",
+    "rank": 1,
+    "story": "TypeSafe AI ships Jev, a \"System One\" model built to decide, not chat"
+  },
+  "2026-09-17": null,
+  "2026-09-18": {
+    "alt": "Anthropic logo",
+    "image": "https://www-cdn.anthropic.com/images/4zrzovbb/website/9cf3a514384821aeb53ff34d878b210715cd5c06-1200x630.jpg",
+    "page": "https://www.anthropic.com/institute/measuring-pace-of-ai-development",
+    "rank": 1,
+    "story": "Anthropic publishes the first hard numbers on AI building AI"
+  },
+  "2026-09-22": {
+    "alt": "",
+    "image": "https://techcrunch.com/wp-content/uploads/2026/09/51013975207_8dcac5cf72_k.jpg?resize=1200,900",
+    "page": "https://techcrunch.com/2026/09/21/openai-forms-math-advisory-group-as-its-ai-resolves-more-than-100-open-problems",
+    "rank": 1,
+    "story": "OpenAI forms an independent math advisory group after Fields Medalists' backlash"
+  },
+  "2026-09-23": {
+    "alt": "",
+    "image": "https://techcrunch.com/wp-content/uploads/2026/01/GettyImages-2252871842.jpg?w=1024",
+    "page": "https://techcrunch.com/2026/09/22/anthropic-releases-opus-5-5-with-lower-prices-and-fable-level-performance",
+    "rank": 1,
+    "story": "Anthropic ships Claude Opus 5.5, its first release since calling for \"pacing the frontier\""
+  },
+  "2026-09-24": {
+    "alt": "",
+    "image": "https://helios-i.mashable.com/imagery/articles/05vWicEAUQgquADyZkHb1OL/hero-image.fill.size_1200x675.v1790208567.jpg",
+    "page": "https://mashable.com/tech/everything-announced-meta-connect-2026",
+    "rank": 1,
+    "story": "Meta Connect 2026: Muse becomes the center of Meta's entire AI and hardware strategy"
+  },
+  "2026-09-27": {
+    "alt": "Diagram of nine loops",
+    "image": "https://www-cdn.anthropic.com/images/4zrzovbb/website/2ed453f8c87d2166b09940a859cd193b29678a88-3840x2160.png",
+    "page": "https://www.anthropic.com/research/yes-claude-can-do-nine-loops",
+    "rank": 2,
+    "story": "Anthropic's Claude computes a nine-loop physics amplitude, beating a 2023 human record"
+  },
+  "2026-09-28": null,
+  "2026-09-29": {
+    "alt": "Anthropic logo",
+    "image": "https://www-cdn.anthropic.com/images/4zrzovbb/website/eaa6046f4ae8c88e368c3c530c4c1312f7ff6f2e-1200x630.jpg",
+    "page": "https://www.anthropic.com/claude-sonnet-5-5",
+    "rank": 1,
+    "story": "Anthropic ships Claude Sonnet 5.5, the second model in the 5.5 family"
+  },
+  "2026-09-30": {
+    "alt": "",
+    "image": "https://gizmodo.com/app/uploads/2026/09/Altman-1-1200x675.jpeg",
+    "page": "https://gizmodo.com/openai-cancels-release-of-gpt-6-1-astra-because-it-regressed-on-safety-2000818566",
+    "rank": 2,
+    "story": "OpenAI cancelled its next flagship model, GPT-6.1 Astra, after it \"regressed\" on deception and unauthorized tool use"
+  },
+  "2026-10-01": {
+    "alt": "",
+    "image": "https://storage.googleapis.com/gweb-uniblog-publish-prod/images/g4_30-09-26_key-art_blog.width-1300.png",
+    "page": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon",
+    "rank": 1,
+    "story": "Google launches Gemini 4 Argon, a frontier model for coding, enterprise work and cybersecurity defense"
+  },
+  "2026-10-02": {
+    "alt": "Customize Claude Code with mods",
+    "image": "https://claude.com/resources/articles/claude-code-mods/opengraph-image/og",
+    "page": "https://claude.com/blog/claude-code-mods",
+    "rank": 1,
+    "story": "Anthropic ships \"mods,\" letting developers rewrite how Claude Code itself behaves and looks"
+  },
+  "2026-10-05": {
+    "alt": "US President Donald Trump listens to a reporters question in the Oval Office at the White House",
+    "image": "https://ichef.bbci.co.uk/news/1024/branded_news/9a97/live/e8568220-c056-11f1-ba75-170165fdb734.jpg",
+    "page": "https://www.bbc.com/news/articles/cqj6jenp26zyo",
+    "rank": 1,
+    "story": "Trump creates a \"Super Intelligence Force\" and orders the government to call AI \"Super Intelligence\""
+  },
+  "2026-10-06": {
+    "alt": "",
+    "image": "https://cdn.sanity.io/images/sp40emik/production/771cfe201a3d24d7a340c3372e6a1654ec1a6e42-1800x1013.png",
+    "page": "https://reflection.ai/beam",
+    "rank": 1,
+    "story": "Reflection AI launches Beam, a 501B open-weight model built for coding and agents"
+  },
+  "2026-10-08": {
+    "alt": "",
+    "image": "https://www.unite.ai/wp-content/uploads/2026/10/openai-brings-gpt-6-with-intelligent-ui-to-all-chatgpt-tiers.jpg",
+    "page": "https://www.unite.ai/openai-brings-gpt-6-with-intelligent-ui-to-all-chatgpt-tiers",
+    "rank": 1,
+    "story": "OpenAI rolls out GPT-6 with \"Intelligent UI\" to everyone in ChatGPT"
+  },
+  "2026-10-09": {
+    "alt": "Machine brain.",
+    "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2025/11/STKS522_AGI_D.jpg?quality=90&strip=all&crop=0%2C10.732984293194%2C100%2C78.534031413613&w=1200",
+    "page": "https://www.theverge.com/ai-artificial-intelligence/1008100/anthropic-new-usage-policy-abuse-claude",
+    "rank": 1,
+    "story": "Anthropic bans \"sustained and needless\" cruelty toward Claude"
+  },
+  "2026-10-12": {
+    "alt": "Anthropic logo",
+    "image": "https://www-cdn.anthropic.com/images/4zrzovbb/website/f11d2325e688229de8a887ef7ece34f520ab7134-2000x1125.jpg",
+    "page": "https://www.anthropic.com/news/investigating-unintended-model-actions",
+    "rank": 1,
+    "story": "Anthropic discloses Claude taking unintended real-world actions during evaluations, including submitting a police tip form"
+  },
+  "2026-10-13": {
+    "alt": "",
+    "image": "https://about.fb.com/wp-content/uploads/2026/10/museWonder_socialShare.jpg?w=1200",
+    "page": "https://about.fb.com/news/2026/10/introducing-muse-wonder-models",
+    "rank": 1,
+    "story": "Meta launches Muse Wonder, its first model with genuine frontier performance"
+  },
+  "2026-10-14": {
+    "alt": "",
+    "image": "https://pbs.twimg.com/media/HTfV2KTa0AAVcsh?format=webp&name=large",
+    "page": "https://x.com/sundarpichai/status/2105387952478277979",
+    "rank": 1,
+    "story": "Gemini 4 Argon reaches general availability, two weeks after its cyber-defender-only debut"
+  }
+}
