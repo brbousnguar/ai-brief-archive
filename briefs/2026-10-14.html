@@ -36,7 +36,7 @@
         <div class="cover__frame"><img src="https://pbs.twimg.com/media/HTfV2KTa0AAVcsh?format=webp&amp;name=large" alt="" width="1200" height="630" fetchpriority="high" decoding="async" referrerpolicy="no-referrer"></div>
         <figcaption class="cover__credit">Picture: <a href="https://x.com/sundarpichai/status/2105387952478277979">x.com</a></figcaption>
       </figure>
-      <p class="dateline"><span>AI BRIEF</span><span class="dateline__sep">&middot;</span><span>OCT 14 2026</span><span class="dateline__sep">&middot;</span><span>08:55 CEST (UPDATED 19:20 CEST)</span></p>
+      <p class="dateline"><span>AI BRIEF</span><span class="dateline__sep">&middot;</span><span>OCT 14 2026</span><span class="dateline__sep">&middot;</span><span>08:55 CEST (UPDATED 20:16 CEST)</span></p>
       <h1>Gemini 4 Argon finally goes public, Anthropic reveals it had to build its own source control for agent-scale coding, and Fish Audio ships an open-weight TTS model</h1>
       <p class="lead">Google widened Gemini 4 Argon from cyber-defender-only access to a real public launch two weeks after unveiling it, Anthropic explained why human-scale developer tooling broke under AI-agent code volume, and a smaller player shipped a genuinely capable open-weight voice model. Evening update: Anthropic also opened a Singapore office with a government AI safety MOU.</p>
     </div>
@@ -74,6 +74,20 @@
         <p class="story__signal"><strong>Signal:</strong> Anthropic&#x27;s fifth Asia-Pacific office, opened alongside Singapore International Cyber Week — notable less for the office itself and more for the MOU, which commits Anthropic to technical exchanges with Singapore&#x27;s AI safety and assurance institutions on model evaluation, testing standards and incident response, the same kind of arrangement it has with safety institutes elsewhere.</p>
         <p class="story__source">Source: https://www.anthropic.com/news/singapore-office-opening</p>
       </article>
+      <article class="story">
+        <span class="story__num">05</span>
+        <h3 class="story__title">Google Research shares new work at its &quot;Research@&quot; event, including a geospatial reasoning agent for planetary-scale analysis</h3>
+        <p>Per Google Research&#x27;s own account, the Geospatial Reasoning agent pairs Google Earth AI&#x27;s foundation models with Gemini-powered orchestration to deconstruct complex spatial questions (storm impact, vulnerable infrastructure, disease spread) into multi-step plans and execute them at planetary scale — shared today alongside other &quot;Research@&quot; highlights spanning health and planetary-intelligence work.</p>
+        <p class="story__signal"><strong>Signal:</strong> a research disclosure, not a product launch — the headline number is the agent beating a baseline Gemini 2.5 Pro agent by 37% on descriptive/retrieval geospatial Q&amp;A and 124% on more complex analytical/relational questions, per Google&#x27;s own technical report.</p>
+        <p class="story__source">Source: https://research.google/blog/google-earth-ai-unlocking-geospatial-insights-with-foundation-models-and-cross-modal-reasoning</p>
+      </article>
+      <article class="story">
+        <span class="story__num">06</span>
+        <h3 class="story__title">Liquid AI ships LFM2.5-24B-A2B, the largest and final model in its LFM2.5 family</h3>
+        <p>Per Liquid AI&#x27;s own announcement, the model builds on last month&#x27;s LFM2-24B-A2B checkpoint with an expanded 131K-token context, a larger vocabulary, scaled-up pretraining (33T tokens) and large-scale reinforcement learning, and is now a reasoning-only model producing explicit chain-of-thought. Open weights are on Hugging Face.</p>
+        <p class="story__signal"><strong>Signal:</strong> a genuine open-weight release aimed squarely at on-device agents — Liquid AI says it&#x27;s competitive with Qwen3.6-35B-A3B (a model with ~50% more parameters) on five of eight agentic/tool-use benchmarks while running up to 1.7x faster, since only 2B of its 24B parameters are active per token.</p>
+        <p class="story__source">Source: https://www.liquid.ai/blog/lfm2-5-24b-a2b</p>
+      </article>
     </div>
   </div>
 
@@ -81,6 +95,8 @@
     <div class="container">
       <span class="slug">Worth watching</span>
       <ul class="watch">
+        <li>A third-party account&#x27;s breakdown of Google&#x27;s own Gemini 4 Argon benchmark table claims 13 wins out of 19 categories (knowledge work, finance, legal, long documents) against 5 losses concentrated in agentic coding (last of four on FrontierSWE and Terminal-bench) — an interesting gloss on Google&#x27;s own numbers, but it&#x27;s one account&#x27;s read, not Google&#x27;s framing.</li>
+        <li>The NVIDIA/Macron exchange over France&#x27;s AI attractiveness (Jensen Huang&#x27;s Paris visit) continued, with Macron quoting Huang directly — still relationship-building, not news.</li>
         <li>&quot;Hermes Agent v0.22.0&quot; is trending with a &quot;phone control&quot; claim, but Nous Research&#x27;s own changelog only confirms a curated rollup of patches since v0.21.0 — nothing specific on phone control could be verified from primary sources, so treat with caution.</li>
         <li>NVIDIA hosted an AI-focused evening in Paris with Jensen Huang and French founders/researchers — a relationship-building event, not a product announcement.</li>
         <li>A Grok Bot built by a third-party developer autonomously produced a short music-video teaser using Suno, Midjourney and Claude Opus together — a notable multi-model agent demo, not an official xAI product.</li>
