@@ -1,0 +1,9 @@
+# Kokoro-82M through mlx-audio, Apple Silicon only. Pinned to the set that
+# recorded the first brief; bump them together and listen before shipping.
+mlx==0.32.3
+mlx-audio==0.5.9
+misaki[en]==0.9.4
+numpy==2.5.4
+spacy==3.8.16
+transformers==5.19.0
+en_core_web_sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.8.0/en_core_web_sm-3.8.0-py3-none-any.whl

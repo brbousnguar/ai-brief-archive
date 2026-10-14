@@ -257,6 +257,122 @@ a:hover { text-decoration-thickness: 3px; }
     margin: 0.6rem 0 0;
 }
 
+/* ---- Listen player ------------------------------------------------------- */
+/* The audio version. Without script: a mono label over the browser's own
+   <audio controls preload="none">. With js/listen.js (html.js is set in the
+   head before paint): the .listen__player card, a skin over that same
+   <audio>, plus the docked .dock once playback starts and the card scrolls
+   away. Paper only — the time and note use paper-only ink. */
+
+.listen {
+    margin: 0 0 clamp(1.5rem, 1.2rem + 1.4vw, 2.5rem); max-width: 40rem;
+    padding: 0.75rem 0.9rem 0.9rem; border: var(--rule); background: var(--paper);
+}
+.listen__label {
+    margin: 0 0 0.5rem; font-family: var(--font-mono); font-size: var(--t-xs);
+    letter-spacing: 0.08em; text-transform: uppercase;
+}
+.listen audio { display: block; width: 100%; height: 40px; }
+
+.listen__player { display: none; }
+.js .listen { padding: 0; }
+.js .listen__label, .js .listen audio { display: none; }
+.js .listen__player { display: grid; grid-template-columns: 88px minmax(0, 1fr); }
+
+.listen svg, .dock svg { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: square; stroke-linejoin: miter; }
+.listen__play svg { fill: currentColor; stroke: none; }
+.listen__i-pause, .is-playing .listen__i-play { display: none; }
+.is-playing .listen__i-pause { display: block; }
+
+.listen__play {
+    display: grid; place-items: center;
+    border: 0; border-right: var(--rule); border-radius: 0;
+    background: var(--wire); color: var(--on-colour); cursor: pointer;
+}
+.listen__play:hover { background: var(--ink); }
+.listen__play:focus-visible { outline-color: var(--on-colour); outline-offset: -9px; }
+.is-loading .listen__play svg { opacity: 0.55; }
+
+.listen__main { padding: 0.85rem 1rem 0.6rem; min-width: 0; }
+.listen__head {
+    display: flex; justify-content: space-between; align-items: baseline; gap: 0.75rem;
+    margin: 0; font-family: var(--font-mono); font-size: var(--t-xs);
+}
+.listen__title { font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; }
+.listen__time { color: var(--ink-quiet); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.is-error .listen__title { color: var(--stamp); }
+
+/* The track is a ruled bar: wire for what has played, sunk paper for the rest. */
+.listen__seek {
+    --p: 0%;
+    display: block; width: 100%; height: 28px; margin: 0.4rem 0 0.2rem;
+    -webkit-appearance: none; appearance: none; background: transparent; cursor: pointer;
+}
+.listen__seek::-webkit-slider-runnable-track {
+    height: 8px; border: 2px solid var(--ink);
+    background: linear-gradient(to right, var(--wire) var(--p), var(--paper-sunk) var(--p));
+}
+.listen__seek::-webkit-slider-thumb {
+    -webkit-appearance: none; width: 12px; height: 22px; margin-top: -9px;
+    border: 0; border-radius: 0; background: var(--ink);
+}
+.listen__seek::-moz-range-track { height: 8px; border: 2px solid var(--ink); background: var(--paper-sunk); }
+.listen__seek::-moz-range-progress { height: 8px; background: var(--wire); }
+.listen__seek::-moz-range-thumb { width: 12px; height: 22px; border: 0; border-radius: 0; background: var(--ink); }
+.listen__seek:focus-visible { outline: 3px solid var(--wire); outline-offset: 2px; }
+
+.listen__row { display: flex; flex-wrap: wrap; align-items: center; gap: 0.25rem 0.4rem; margin-left: -0.5rem; }
+.listen__btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 0.35rem;
+    min-width: 44px; min-height: 44px; padding: 0 0.5rem;
+    border: 2px solid transparent; border-radius: 0; background: transparent; color: var(--ink);
+    font-family: var(--font-mono); font-size: var(--t-xs); font-weight: 500; cursor: pointer;
+}
+.listen__btn:hover { background: var(--ink); color: var(--paper); }
+.listen__btn[hidden] { display: none; }
+.listen__rate { min-width: 56px; min-height: 32px; margin: 0 0.25rem; border-color: var(--ink); font-variant-numeric: tabular-nums; }
+.listen__note {
+    margin: 0 0 0 auto; font-family: var(--font-mono); font-size: var(--t-xs);
+    color: var(--ink-quiet); white-space: nowrap;
+}
+
+/* The dock: full width along the bottom, paper with one ink rule, progress on top. */
+.dock {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 60;
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    background: var(--paper); border-top: var(--rule);
+}
+.dock[hidden] { display: none; }
+.dock__bar { height: 4px; background: var(--paper-sunk); }
+.dock__bar span { display: block; width: 0; height: 100%; background: var(--wire); }
+.dock__row { display: flex; align-items: center; gap: 0.9rem; min-height: 60px; }
+.dock__play { flex: none; width: 44px; height: 44px; border: 0; }
+.dock__play svg { width: 22px; height: 22px; }
+.dock__play:focus-visible { outline-color: var(--wire); outline-offset: 2px; }
+.dock__title {
+    flex: 1; min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
+    font-family: var(--font-display); font-weight: 700; color: var(--ink); text-decoration: none;
+}
+.dock__title:hover { text-decoration: underline; }
+.dock__time {
+    flex: none; margin: 0; font-family: var(--font-mono); font-size: var(--t-xs);
+    color: var(--ink-quiet); font-variant-numeric: tabular-nums;
+}
+.dock__close {
+    flex: none; display: grid; place-items: center; width: 44px; height: 44px; margin-right: -10px;
+    border: 0; border-radius: 0; background: transparent; color: var(--ink); cursor: pointer;
+}
+.dock__close:hover { background: var(--ink); color: var(--paper); }
+.has-dock body { padding-bottom: calc(68px + env(safe-area-inset-bottom, 0px)); }
+
+@media (max-width: 480px) {
+    .js .listen__player { grid-template-columns: 64px minmax(0, 1fr); }
+    .listen__main { padding: 0.75rem 0.75rem 0.5rem 0.85rem; }
+    .listen__more, .dock__dur { display: none; }
+    .dock__row { gap: 0.6rem; }
+    .dock__title { font-size: var(--t-sm); }
+}
+
 .lead { font-size: var(--t-lead); }
 .kicker {
     font-family: var(--font-mono);
