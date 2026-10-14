@@ -5,15 +5,35 @@ a handful of items read on a commute and discarded. This is where the detail
 lives: running stories tracked across days rather than restated each time, every
 source link kept, and nothing thrown away.
 
+Live at **<https://heybrahim.com/ai-brief-archive/>**. The old
+`brbousnguar.github.io/ai-brief-archive/` address only 301s there, so never link
+to it.
+
 ## What it does
 
 Victor (the OpenClaw AI-news agent) writes one markdown file per briefing into
 his own workspace. `publish.py` turns those into a static site:
 
-- **a page per brief** — the full item list with sources
+- **a page per brief** — a main picture, then the full item list with sources
 - **a page per running story** — every appearance of a story on one timeline,
   so a repeat is shown as *what changed* rather than re-explained
 - **an index** — latest brief, running stories, and the full archive
+
+### The main picture
+
+Each brief opens with one picture: the share image (`og:image`) of the first
+story whose source page has one. Bare homepages are skipped, because their share
+image is the site's logo card, not the story's, and so is any image whose path
+says `logo` or `default`. The picture is **hotlinked from the publisher and
+credited** with a link to that story's source — never rehosted, never generated.
+It is also the page's own `og:image`, so a shared brief link previews with it.
+
+Lookups are cached in `images.json`, one entry per brief date, so each brief is
+fetched once and a re-render is offline. A brief with no usable picture is stored
+as `null` and renders text-only. A source that refused or timed out (OpenAI and
+VentureBeat often answer a script with 403/429) is *not* cached and is retried on
+the next run, for up to seven days. To pin a picture by hand, add
+`image: https://…` to the brief's front matter, or edit its `images.json` entry.
 
 A story becomes a running story the second time it appears. That is the point of
 the site: the Telegram brief links to the story page instead of restating the
@@ -38,6 +58,7 @@ target app and never touches the database.
 ./publish.py --source DIR     # render from somewhere else
 ./publish.py --check          # parse only, write nothing
 ./publish.py --out DIR        # write somewhere else
+./publish.py --no-fetch       # render without looking up pictures (cache only)
 ```
 
 `--check` parses every brief and writes nothing. It exits non-zero on a malformed
@@ -95,6 +116,7 @@ One or two sentences.
 | `lead` | front matter | Standfirst under the headline |
 | `time` | front matter | Shown in the dateline bar |
 | `sources` | front matter | What was actually swept — only what was really opened |
+| `image` | front matter | Optional. An `https://` picture that overrides the automatic one |
 | `story` | item | Slug tying this item to a running story. **This is what enables cross-brief tracking** |
 | `signal` | item | The one-line read on what it means |
 | `source` | item | A real URL. Rejected at parse time if it is not one |
@@ -110,8 +132,9 @@ rendering a page with quietly missing content.
 ## Tech stack
 
 Static HTML and CSS, no build step and no JavaScript. Rendered by a single
-dependency-free Python script. Fonts come from Google Fonts; everything else is
-local.
+dependency-free Python script. Fonts come from Google Fonts and each brief's main
+picture from its publisher; everything else is local. Served by GitHub Pages
+under the heybrahim.com custom domain of the `brbousnguar.github.io` user site.
 
 ## Repository layout
 
@@ -119,6 +142,8 @@ local.
 publish.py          the only thing that writes HTML
 css/main.css        the design system — see DESIGN.md
 DESIGN.md           the spec; changes in the same commit as the CSS
+publish-hook.sh     launchd entry point: pull, render, commit, push
+images.json         main-picture cache, one entry per brief (written by publish.py)
 index.html          generated
 briefs/*.html       generated, one per briefing
 stories/*.html      generated, one per running story
