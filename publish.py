@@ -40,6 +40,10 @@ Source format — one file per brief, `YYYY-MM-DD.md`:
     # Bottom line
     One or two sentences.
 
+Each brief opens with a main picture, the share image of its first story whose
+source page has one, cached in images.json. An optional `image:` front-matter
+key pins one by hand. See "The main picture" in README.md.
+
 `story:` is what makes running stories work: two briefs carrying the same slug
 become one story page with a timeline, and the brief links there instead of
 re-explaining the story. `angle: new` marks the entry that carried something
@@ -50,14 +54,26 @@ from __future__ import annotations
 
 import argparse
 import html
+import http.client
+import json
 import re
+import ssl
 import sys
-from dataclasses import dataclass, field
+import urllib.error
+import urllib.request
+from dataclasses import asdict, dataclass, field
 from datetime import date as Date
+from html.parser import HTMLParser
 from pathlib import Path
+from urllib.parse import urljoin, urlparse
 
 ROOT = Path(__file__).resolve().parent
 DEFAULT_SOURCE = Path.home() / "Server/agents/openclaw/victor/briefs"
+
+# The archive is served from heybrahim.com. brbousnguar.github.io/ai-brief-archive/
+# still works, but only as a 301 to this address, so never link to it.
+SITE_URL = "https://heybrahim.com/ai-brief-archive/"
+HOME_URL = "https://heybrahim.com/"
 
 FONTS = (
     '<link rel="preconnect" href="https://fonts.googleapis.com">\n'
@@ -68,6 +84,14 @@ FONTS = (
 )
 
 ITEM_KEYS = {"story", "signal", "source", "angle"}
+
+USER_AGENT = f"Mozilla/5.0 (compatible; AIBriefArchive/1.0; +{SITE_URL})"
+SHARE_IMAGE_KEYS = ("og:image:secure_url", "og:image", "twitter:image", "twitter:image:src")
+# A share image that is really the publisher's logo card says nothing about the story.
+GENERIC_IMAGE = re.compile(r"default|logo|favicon|placeholder", re.IGNORECASE)
+# How long a brief keeps retrying a source that refused or timed out (403, 429…)
+# before it settles for no picture.
+RETRY_DAYS = 7
 
 
 class BriefError(ValueError):
@@ -95,6 +119,7 @@ class Brief:
     lead: str
     time: str = ""
     sources: str = ""
+    image: str = ""
     items: list[Item] = field(default_factory=list)
     watching: list[str] = field(default_factory=list)
     bottom_line: str = ""
@@ -147,7 +172,10 @@ def parse_brief(path: Path) -> Brief:
         lead=meta.get("lead", ""),
         time=meta.get("time", ""),
         sources=meta.get("sources", ""),
+        image=meta.get("image", ""),
     )
+    if brief.image and not brief.image.startswith("https://"):
+        raise BriefError(f"{path.name}: image must be an https:// URL -> {brief.image!r}")
 
     section = None  # None | "watching" | "bottom"
     item: Item | None = None
@@ -266,13 +294,160 @@ def collect_stories(briefs: list[Brief]) -> dict[str, Story]:
     return stories
 
 
+# ---------------------------------------------------------------- cover pictures
+
+
+@dataclass
+class Cover:
+    """A brief's main picture: the share image of one of its own stories.
+
+    Hotlinked from the publisher and credited, never rehosted and never
+    generated. `page` is the story source it came from, `rank` that story's slot.
+    """
+
+    image: str
+    page: str
+    story: str = ""
+    rank: int = 1
+    alt: str = ""
+
+    @property
+    def credit(self) -> str:
+        return urlparse(self.page).netloc.removeprefix("www.")
+
+
+class _MetaParser(HTMLParser):
+    def __init__(self) -> None:
+        super().__init__()
+        self.meta: dict[str, str] = {}
+
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        if tag != "meta":
+            return
+        found = dict(attrs)
+        key = (found.get("property") or found.get("name") or "").lower()
+        if key and found.get("content") and key not in self.meta:
+            self.meta[key] = found["content"].strip()
+
+
+def _ssl_context() -> ssl.SSLContext:
+    context = ssl.create_default_context()
+    # python.org builds ship without a CA bundle until someone runs "Install
+    # Certificates"; macOS keeps a current one here.
+    if Path("/etc/ssl/cert.pem").exists():
+        context.load_verify_locations("/etc/ssl/cert.pem")
+    return context
+
+
+_SSL = _ssl_context()
+
+
+def _open(url: str, accept: str):
+    request = urllib.request.Request(url, headers={"User-Agent": USER_AGENT, "Accept": accept})
+    return urllib.request.urlopen(request, timeout=12, context=_SSL)
+
+
+def share_image(url: str) -> tuple[str, str] | None:
+    """Return (image URL, alt text) for a page's share image, or None if it has none.
+
+    Raises OSError or HTTPException when the page could not be read at all, so
+    the caller can tell "no picture" from "try again later".
+    """
+    try:
+        with _open(url, "text/html") as response:
+            final = response.geturl()
+            charset = response.headers.get_content_charset() or "utf-8"
+            raw = response.read(800_000)
+    except urllib.error.HTTPError as exc:
+        if exc.code in (404, 410):
+            return None
+        raise
+
+    parser = _MetaParser()
+    parser.feed(raw.decode(charset, "replace"))
+    image = next((parser.meta[k] for k in SHARE_IMAGE_KEYS if parser.meta.get(k)), "")
+    if not image:
+        return None
+    image = urljoin(final, image)
+    if not image.startswith("https://") or GENERIC_IMAGE.search(urlparse(image).path):
+        return None
+
+    # Only "gone" disqualifies the image. Image CDNs often refuse a bot user
+    # agent (401/403/429) that they serve to every reader's browser.
+    try:
+        with _open(image, "image/*") as response:
+            if not response.headers.get_content_type().startswith("image/"):
+                return None
+    except urllib.error.HTTPError as exc:
+        if exc.code in (404, 410):
+            return None
+    return image, parser.meta.get("og:image:alt", "")
+
+
+def resolve_cover(brief: Brief, cache: dict, fetch: bool) -> Cover | None:
+    """Pick the brief's main picture, from the cache when it has been looked up before.
+
+    The first story whose source page has a real share image wins. Bare
+    homepages are skipped: their share image is the site's, not the story's.
+    """
+    if brief.image:
+        return Cover(image=brief.image, page=brief.image, story=brief.title)
+    if brief.slug in cache:
+        entry = cache[brief.slug]
+        return Cover(**entry) if entry else None
+    if not fetch:
+        return None
+
+    unreachable = False
+    for rank, item in enumerate(brief.items, start=1):
+        if not item.source or not urlparse(item.source).path.strip("/"):
+            continue
+        try:
+            found = share_image(item.source)
+        except (OSError, http.client.HTTPException, ValueError) as exc:
+            print(f"  picture: {brief.slug} could not read {item.source} ({exc})")
+            unreachable = True
+            continue
+        if found:
+            cover = Cover(image=found[0], page=item.source, story=item.title, rank=rank, alt=found[1])
+            cache[brief.slug] = asdict(cover)
+            return cover
+
+    # A refusal or a timeout may clear up, so only settle for "no picture" when
+    # every source answered, or the brief is too old to keep asking about.
+    if not unreachable or (Date.today() - brief.date).days > RETRY_DAYS:
+        cache[brief.slug] = None
+    return None
+
+
 # ---------------------------------------------------------------- rendering
 
 E = html.escape
 
 
-def page(title: str, description: str, depth: int, body: str) -> str:
+def page(
+    title: str,
+    description: str,
+    depth: int,
+    body: str,
+    path: str,
+    cover: Cover | None = None,
+    share_title: str | None = None,
+) -> str:
     up = "../" * depth
+    url = SITE_URL + path
+    share = [
+        f'<link rel="canonical" href="{E(url)}">',
+        '<meta property="og:site_name" content="AI Brief">',
+        f'<meta property="og:type" content="{"article" if depth else "website"}">',
+        f'<meta property="og:title" content="{E(share_title or title)}">',
+        f'<meta property="og:description" content="{E(description)}">',
+        f'<meta property="og:url" content="{E(url)}">',
+    ]
+    if cover:
+        share.append(f'<meta property="og:image" content="{E(cover.image)}">')
+        share.append('<meta name="twitter:card" content="summary_large_image">')
+    head = "\n".join(share)
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -280,6 +455,7 @@ def page(title: str, description: str, depth: int, body: str) -> str:
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{E(title)}</title>
 <meta name="description" content="{E(description)}">
+{head}
 {FONTS}
 <link rel="stylesheet" href="{up}css/main.css">
 </head>
@@ -301,7 +477,7 @@ def page(title: str, description: str, depth: int, body: str) -> str:
 
 <footer class="site-footer">
   <div class="container">
-    <p style="margin:0"><a href="{up}index.html">&larr; All briefs</a></p>
+    <p style="margin:0"><a href="{up}index.html">&larr; All briefs</a> &middot; <a href="{HOME_URL}">heybrahim.com</a></p>
   </div>
 </footer>
 </body>
@@ -356,17 +532,36 @@ mention, and a diamond marks an entry that carried a genuinely new angle.</desc>
 </svg>"""
 
 
-def render_brief(brief: Brief, stories: dict[str, Story]) -> str:
+def cover_figure(cover: Cover) -> str:
+    """The main picture, credited to the page it came from.
+
+    It opens the page, above the headline, so it is never lazy-loaded. The fixed frame ratio reserves
+    the space before the image arrives, and `object-fit: cover` crops whatever
+    shape the publisher chose into it.
+    """
+    which = "" if cover.rank == 1 else f" &middot; story {cover.rank:02d}"
+    return (
+        '      <figure class="cover">\n'
+        '        <div class="cover__frame">'
+        f'<img src="{E(cover.image)}" alt="{E(cover.alt)}" width="1200" height="630" '
+        'fetchpriority="high" decoding="async" referrerpolicy="no-referrer"></div>\n'
+        f'        <figcaption class="cover__credit">Picture: '
+        f'<a href="{E(cover.page)}">{E(cover.credit)}</a>{which}</figcaption>\n'
+        "      </figure>"
+    )
+
+
+def render_brief(brief: Brief, stories: dict[str, Story], cover: Cover | None) -> str:
     dateline = [f"<span>AI BRIEF</span>", f"<span>{E(brief.stamp)}</span>"]
     if brief.time:
         dateline.append(f"<span>{E(brief.time.upper())}</span>")
     bar = '<span class="dateline__sep">&middot;</span>'.join(dateline)
 
-    out = [
-        '  <div class="band">\n    <div class="container">',
-        f'      <p class="dateline">{bar}</p>',
-        f"      <h1>{E(brief.title)}</h1>",
-    ]
+    out = ['  <div class="band">\n    <div class="container">']
+    if cover:
+        out.append(cover_figure(cover))
+    out.append(f'      <p class="dateline">{bar}</p>')
+    out.append(f"      <h1>{E(brief.title)}</h1>")
     if brief.lead:
         out.append(f'      <p class="lead">{E(brief.lead)}</p>')
     out.append("    </div>\n  </div>\n")
@@ -454,7 +649,7 @@ def render_story(story: Story) -> str:
     return "\n".join(out)
 
 
-def render_index(briefs: list[Brief], stories: dict[str, Story]) -> str:
+def render_index(briefs: list[Brief], stories: dict[str, Story], cover: Cover | None) -> str:
     latest = briefs[0]
     dateline = [f"<span>LATEST</span>", f"<span>{E(latest.stamp)}</span>"]
     if latest.time:
@@ -463,6 +658,7 @@ def render_index(briefs: list[Brief], stories: dict[str, Story]) -> str:
 
     out = [
         '  <div class="band">\n    <div class="container">',
+        *([cover_figure(cover)] if cover else []),
         f'      <p class="dateline">{bar}</p>',
         f"      <h1>{E(latest.title)}</h1>",
         f'      <p class="lead">{E(latest.lead)}</p>',
@@ -523,6 +719,9 @@ def main() -> int:
     ap.add_argument("--source", type=Path, default=DEFAULT_SOURCE)
     ap.add_argument("--out", type=Path, default=ROOT)
     ap.add_argument("--check", action="store_true", help="parse only, write nothing")
+    ap.add_argument(
+        "--no-fetch", action="store_true", help="never look up pictures; use images.json only"
+    )
     args = ap.parse_args()
 
     try:
@@ -541,13 +740,23 @@ def main() -> int:
     (args.out / "briefs").mkdir(parents=True, exist_ok=True)
     (args.out / "stories").mkdir(parents=True, exist_ok=True)
 
+    # Each brief's picture is looked up once and kept here, so a re-render is
+    # offline and gives the same page every time.
+    cache_path = args.out / "images.json"
+    cache = json.loads(cache_path.read_text(encoding="utf-8")) if cache_path.exists() else {}
+    covers = {b.slug: resolve_cover(b, cache, fetch=not args.no_fetch) for b in briefs}
+    cache_path.write_text(json.dumps(cache, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+
     for brief in briefs:
         (args.out / "briefs" / f"{brief.slug}.html").write_text(
             page(
                 f"AI Brief — {brief.stamp.title()}",
                 brief.lead or brief.title,
                 1,
-                render_brief(brief, stories),
+                render_brief(brief, stories, covers[brief.slug]),
+                f"briefs/{brief.slug}.html",
+                cover=covers[brief.slug],
+                share_title=brief.title,
             ),
             encoding="utf-8",
         )
@@ -561,6 +770,7 @@ def main() -> int:
                 f"How the {story.title} story developed across {story.days} briefings.",
                 1,
                 render_story(story),
+                f"stories/{story.slug}.html",
             ),
             encoding="utf-8",
         )
@@ -571,12 +781,16 @@ def main() -> int:
             "The durable layer behind a Telegram AI briefing: running stories tracked "
             "over time, full sources, and every brief kept.",
             0,
-            render_index(briefs, stories),
+            render_index(briefs, stories, covers[briefs[0].slug]),
+            "",
+            cover=covers[briefs[0].slug],
         ),
         encoding="utf-8",
     )
 
+    pictured = sum(1 for c in covers.values() if c)
     print(f"wrote {len(briefs)} brief page(s), {running} story page(s), index.html")
+    print(f"pictures on {pictured} of {len(briefs)} brief(s)")
     return 0
 
 

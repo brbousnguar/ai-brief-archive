@@ -112,7 +112,31 @@ not randomise it.
 
 ## 5. Imagery
 
-Authored inline SVG only. No photography, no generated imagery.
+Authored inline SVG only, with **one exception: the main picture.** No generated
+imagery, ever.
+
+### The main picture (`.cover`)
+
+Each brief, and the index's latest brief, opens with one photograph: the share
+image of one of the brief's own stories (see README). It sits **above the
+dateline**, because briefing headlines run to six or seven lines and push
+anything placed under them off the first screen.
+
+- **Borrowed, not ours.** Hotlinked from the publisher, never rehosted, and
+  always credited — `.cover__credit` names the source domain and links to the
+  story, plus `· story 0N` when the picture is not the lead's.
+- **One fixed frame.** `aspect-ratio: 1.91 / 1` (the share-image standard), with
+  `object-fit: cover` and `object-position: 50% 0`. The ratio reserves space, so
+  the page does not jump when the image arrives. The crop is anchored to the top
+  because charts and tables, the common shape on X, keep their headers there.
+- **Flat like everything else.** Hard edges, the standard `--rule` border, and a
+  `--paper-sunk` ground while the image loads. No overlays, gradients or text
+  set on the picture.
+- **Paper bands only.** The credit uses `--ink-quiet` and the default link
+  colour, both paper-only.
+- **Never lazy-loaded.** It is the first thing on the page.
+
+### Diagrams
 
 - **Inline**, never `<img src="*.svg">` — inline SVG inherits the custom
   properties, so diagrams restyle with the theme.
@@ -148,7 +172,8 @@ Anything not on this list does not exist. Adding a component means adding it her
 `.block` (+ `--wire` `--embargo` `--stamp` `--fill` `--paper`) · `.story` (+
 `--lead`, `.story__num` `.story__title` `.story__signal` `.story__source`) ·
 `.daycount` (also as a link to a story page) · `.watch` · `.archive` · `.figure` (+ `.figure__frame` `.caption`) ·
-`.lead` · `.kicker` · `.btn` (+ `--ghost`) · `.skip-link` · `.site-footer`
+`.cover` (+ `.cover__frame` `.cover__credit`) · `.lead` · `.kicker` · `.btn` (+
+`--ghost`) · `.skip-link` · `.site-footer`
 
 ## 8. Verification
 
@@ -171,6 +196,7 @@ with zero failures. Lighthouse (mobile) spot-checks:
 | `index.html` | 100 (39/0) | 100 | 100 |
 | `briefs/2026-09-07.html` | 100 (48/0) | 100 | 100 |
 | `stories/nvidia-hugging-face.html` | 100 (46/0) | 100 | 100 |
+| `briefs/2026-10-14.html` (with `.cover`) | 100 (43/0) | 100 | 100 |
 
 Note: headless Chrome clamps its viewport to 500px, so a `--window-size=320`
 screenshot proves nothing. `verify.sh` measures true narrow reflow in a
@@ -185,5 +211,6 @@ not just the one you were editing.
 
 No legacy stylesheet exists, so the two-stylesheet coexistence rule never applied.
 
-Not yet done: the GitHub remote and Pages (visibility undecided), and the hook
-that runs `publish.py` when Victor writes a new brief.
+Live on GitHub Pages at <https://heybrahim.com/ai-brief-archive/>. The launchd
+job `ai.openclaw.victor-publish` runs `publish-hook.sh` whenever Victor writes a
+brief.

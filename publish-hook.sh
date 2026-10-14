@@ -20,6 +20,18 @@ echo "--- $(date '+%Y-%m-%d %H:%M:%S') trigger"
 
 cd "$REPO" || { echo "FATAL: no repo at $REPO"; exit 1; }
 
+# Publish from main only. On a feature branch the commit below would land on
+# that branch and the push would send a stale main.
+BRANCH=$(git branch --show-current)
+if [ "$BRANCH" != "main" ]; then
+    echo "SKIP: checkout is on '$BRANCH', not main; publishing resumes on main"
+    exit 0
+fi
+
+# Pick up anything merged on GitHub (a reviewed PR) first, or the push below is
+# rejected as non-fast-forward and the brief never goes out.
+git pull -q --rebase --autostash origin main || echo "WARN: pull failed; rendering on local main"
+
 # WatchPaths fires the moment a file is touched, which can be mid-heredoc.
 # Let the write settle before reading it.
 sleep 3
@@ -46,7 +58,7 @@ git -c user.name=brbousnguar -c user.email=brbousnguar@gmail.com \
         echo "nothing staged after all"; exit 0; }
 
 if git push -q origin main; then
-    echo "published ${LATEST:-update} -> https://brbousnguar.github.io/ai-brief-archive/"
+    echo "published ${LATEST:-update} -> https://heybrahim.com/ai-brief-archive/briefs/${LATEST}.html"
 else
     echo "ERROR: push failed — commit is local only, run 'git push' in $REPO"
     exit 1

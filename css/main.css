@@ -234,6 +234,29 @@ a:hover { text-decoration-thickness: 3px; }
 .figure__frame svg { display: block; width: 100%; min-width: 560px; height: auto; }
 .caption { font-size: var(--t-sm); color: var(--ink-quiet); margin: 0.75rem 0 0; }
 
+/* ---- Cover picture ------------------------------------------------------- */
+/* The one photograph on a page: a story's own share image, hotlinked and
+   credited. It opens the first band, above the dateline, so it is seen
+   before a long headline pushes it off screen. Paper bands only — the credit
+   uses paper-only ink. */
+
+.cover { margin: 0 0 clamp(1.5rem, 1.2rem + 1.4vw, 2.5rem); max-width: 62rem; }
+.cover__frame {
+    border: var(--rule);
+    background: var(--paper-sunk);
+    aspect-ratio: 1.91 / 1;
+    overflow: hidden;
+}
+.cover__frame img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 0; }
+.cover__credit {
+    font-family: var(--font-mono);
+    font-size: var(--t-xs);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-quiet);
+    margin: 0.6rem 0 0;
+}
+
 .lead { font-size: var(--t-lead); }
 .kicker {
     font-family: var(--font-mono);
