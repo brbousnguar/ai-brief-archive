@@ -169,8 +169,9 @@ rendering a page with quietly missing content.
 
 ## Tech stack
 
-Static HTML and CSS, no build step. The one script is `js/listen.js`, the audio
-player, and it is only loaded on a page with a recording. Rendered by a single
+Static HTML and CSS, no build step. The scripts are `js/listen.js`, the audio
+player, which is only loaded on a page with a recording, and a short inline one
+on `404.html` that waits for a brief still being published. Rendered by a single
 dependency-free Python script. Fonts come from Google Fonts and each brief's main
 picture from its publisher; everything else, the recordings included, is local. Served by GitHub Pages
 under the heybrahim.com custom domain of the `brbousnguar.github.io` user site.
@@ -188,6 +189,7 @@ tts/                setup.sh + pinned requirements for the voice venv
 images.json         main-picture cache, one entry per brief (written by publish.py)
 audio/              <date>.mp3 + manifest.json (written by narrate.py)
 index.html          generated
+404.html            generated; waits for a brief that is still being published
 briefs/*.html       generated, one per briefing
 stories/*.html      generated, one per running story
 ```

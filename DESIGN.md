@@ -166,8 +166,9 @@ This section covers what the reader sees and hears.
   screen locked and puts the headline and skip buttons on the lock screen
   (Media Session, with the main picture as artwork). Never swap it for Web
   Audio or a custom decoder.
-- **The site's only script, and only where it is needed.** It is loaded on a
-  brief page that has a recording, nowhere else. An inline head script sets
+- **Only where it is needed.** It is loaded on a brief page that has a
+  recording, nowhere else. (The only other script is the 404 page's wait,
+  below.) An inline head script sets
   `html.js` before paint, so the card renders first and nothing shifts. If the
   script fails to load, the class is removed. Without script, a mono label sits
   over the browser's own control.
@@ -202,7 +203,25 @@ each story with its signal, worth watching, bottom line. Story numbers, day
 counters, URLs and the sources-scanned note are not read. Plain neutral voice,
 no music, no intro, no sign-off.
 
-## 7. Concision
+## 7. The 404 page
+
+GitHub Pages serves `404.html` for any missing address in the archive. Its
+default page is a dead end, and the usual way to reach it is a brief link
+opened straight from Telegram: Victor sends the link the moment he writes the
+file, about a minute before the page is live.
+
+So for a brief dated within the last day or two, an inline script turns the
+page into "This brief is on its way". The dateline reads `Publishing`, and the
+script checks every 8 seconds (`HEAD`, no cache) and reloads once the page is
+up, keeping `#listen`. It gives up after four minutes and says so. Any other
+address gets "Not here, or not yet" and the button to all briefs. Without
+script, the text covers both cases and asks for a reload.
+
+Every link on it is absolute (`/ai-brief-archive/…`), because it is served at
+whatever depth the missing address had. It is `noindex` and carries no share
+tags. It uses only existing components.
+
+## 8. Concision
 
 Target **~900 words of running prose** per page. Tables, captions and source
 lists count separately.
@@ -212,7 +231,7 @@ dropping a date, a hedge, a source or an attribution — on a site whose value i
 being trustworthy, the qualifications are the product. Do not game the target by
 tabulating things nobody would naturally tabulate.
 
-## 8. Components
+## 9. Components
 
 Anything not on this list does not exist. Adding a component means adding it here.
 
@@ -233,7 +252,7 @@ Script hooks, not components: `.listen__cur` `.listen__dur` `.listen__more`
 classes: `html.js`, `html.has-dock`, and `.is-playing` `.is-loading` `.is-error`
 on the player.
 
-## 9. Verification
+## 10. Verification
 
 ```bash
 bash ~/Server/.claude/skills/brb-flat-poster-theme/scripts/verify.sh . index.html briefs/2026-09-07.html
@@ -266,7 +285,7 @@ Note: headless Chrome clamps its viewport to 500px, so a `--window-size=320`
 screenshot proves nothing. `verify.sh` measures true narrow reflow in a
 fixed-width iframe.
 
-## 10. Migration status
+## 11. Migration status
 
 Pilot approved. Every page is now **generated** by `publish.py` from markdown in
 Victor's workspace — see `README.md`. No page is hand-maintained, so a component
