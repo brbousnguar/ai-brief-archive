@@ -571,13 +571,14 @@ def page(
     description: str,
     depth: int,
     body: str,
-    path: str,
+    path: str | None,
     cover: Cover | None = None,
     share_title: str | None = None,
     audio: bool = False,
+    up: str | None = None,
 ) -> str:
-    up = "../" * depth
-    url = SITE_URL + path
+    up = "../" * depth if up is None else up
+    url = SITE_URL + (path or "")
     share = [
         f'<link rel="canonical" href="{E(url)}">',
         '<meta property="og:site_name" content="AI Brief">',
@@ -589,6 +590,9 @@ def page(
     if cover:
         share.append(f'<meta property="og:image" content="{E(cover.image)}">')
         share.append('<meta name="twitter:card" content="summary_large_image">')
+    if path is None:
+        # Not a page of its own (the 404): nothing to share or index.
+        share = ['<meta name="robots" content="noindex">']
     if audio:
         # The site's only script. Set html.js before paint so the player card,
         # not the native control, is what renders first; undo it if the
@@ -878,6 +882,61 @@ def render_index(
     return "\n".join(out)
 
 
+# The 404 page waits for a brief this young: Victor sends the link the moment he
+# writes the file, about a minute before GitHub Pages has the page up.
+WAIT_SCRIPT = """<script>
+(function () {
+  var m = location.pathname.match(/\\/briefs\\/(\\d{4}-\\d{2}-\\d{2})\\.html$/);
+  var age = m ? (Date.now() - Date.parse(m[1] + 'T00:00:00Z')) / 864e5 : NaN;
+  if (!(age > -1 && age < 2)) return;
+  var status = document.getElementById('missing-status');
+  document.getElementById('missing-slug').textContent = 'Publishing';
+  document.getElementById('missing-title').textContent = 'This brief is on its way';
+  document.getElementById('missing-lead').textContent =
+    'It was filed a moment ago and goes live about a minute after the message is sent. ' +
+    'This page opens it by itself as soon as it is up.';
+  var tries = 0;
+  function check() {
+    tries++;
+    fetch(location.pathname + '?live=' + Date.now(), { method: 'HEAD', cache: 'no-store' })
+      .then(function (r) { if (r.ok) location.reload(); else later(); }, later);
+  }
+  function later() {
+    if (tries >= 30) {
+      status.textContent = 'Still not up after four minutes, so it may not have published. Every brief that did is in the archive.';
+      return;
+    }
+    status.textContent = 'Checking every few seconds…';
+    setTimeout(check, 8000);
+  }
+  check();
+})();
+</script>"""
+
+
+def render_missing() -> str:
+    """404.html. GitHub Pages serves it for any missing address in the archive.
+
+    Its default 404 is a dead end, and the most common way here is a brief
+    link opened from Telegram before the page is live. So for a recent brief
+    this page says it is on its way and opens it when it is up (WAIT_SCRIPT).
+    The text without script covers both cases.
+    """
+    return "\n".join([
+        '  <div class="band">\n    <div class="container">',
+        '      <p class="dateline"><span>AI BRIEF</span><span class="dateline__sep">&middot;</span>'
+        '<span id="missing-slug">Not found</span></p>',
+        '      <h1 id="missing-title">Not here, or not yet</h1>',
+        '      <p class="lead" id="missing-lead">A brief goes live about a minute after its message is '
+        "sent. If you followed a link from one just now, reload in a moment. Otherwise this address "
+        "does not exist.</p>",
+        '      <p class="caption" id="missing-status" role="status" style="margin-bottom:1.5rem"></p>',
+        f'      <p><a class="btn" href="{E(urlparse(SITE_URL).path)}index.html">All briefs</a></p>',
+        "    </div>\n  </div>\n",
+        WAIT_SCRIPT,
+    ])
+
+
 # ---------------------------------------------------------------- driver
 
 
@@ -953,6 +1012,19 @@ def main() -> int:
             render_index(briefs, stories, covers[briefs[0].slug], recordings.get(briefs[0].slug)),
             "",
             cover=covers[briefs[0].slug],
+        ),
+        encoding="utf-8",
+    )
+
+    # Served for missing addresses at any depth, so every link in it is absolute.
+    (args.out / "404.html").write_text(
+        page(
+            "Not found — AI Brief",
+            "This address is not in the AI brief archive, or not yet.",
+            0,
+            render_missing(),
+            None,
+            up=urlparse(SITE_URL).path,
         ),
         encoding="utf-8",
     )
