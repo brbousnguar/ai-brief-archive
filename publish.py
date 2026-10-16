@@ -120,6 +120,14 @@ PODCAST_ART = "icons/podcast.png"
 FEED_ENTRIES = 50
 REPO_URL = "https://github.com/brbousnguar/ai-brief-archive"
 
+# Visit counting (#21), on every page. Cloudflare Web Analytics is the same
+# cookieless beacon heybrahim.com carries (its token is public by design; this
+# is the heybrahim.com site's token, so the archive shows up there under its
+# own host, and a site of its own is a one-constant swap). Google Analytics 4
+# loads only once GA4_ID holds a measurement ID ("G-…"); empty means no tag.
+CF_BEACON_TOKEN = "5fa2715383d04f25bb5d45fdb806263f"
+GA4_ID = ""
+
 # The masthead nav (#15): the same five links on every page. "Latest" is the
 # newest brief itself, one tap from anywhere; Follow is the About page's feed
 # section.
@@ -733,6 +741,35 @@ def _nav(up: str, current: str | None, latest: str | None) -> str:
     return '<nav class="masthead__nav" aria-label="Site">' + "\n      ".join(links) + "</nav>"
 
 
+def analytics_tags() -> list[str]:
+    """The visit counters (#21): the Cloudflare beacon, and the GA4 tag once it has an ID."""
+    tags = []
+    if CF_BEACON_TOKEN:
+        tags.append(
+            '<script defer src="https://static.cloudflareinsights.com/beacon.min.js" '
+            f"data-cf-beacon='{{\"token\": \"{CF_BEACON_TOKEN}\"}}'></script>"
+        )
+    if GA4_ID:
+        tags.append(f'<script async src="https://www.googletagmanager.com/gtag/js?id={GA4_ID}"></script>')
+        tags.append(
+            "<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}"
+            f"gtag('js',new Date());gtag('config','{GA4_ID}');</script>"
+        )
+    return tags
+
+
+def counting_note() -> str:
+    """One sentence for the About page on what is counted (#21)."""
+    counters = []
+    if CF_BEACON_TOKEN:
+        counters.append("Cloudflare Web Analytics, which counts page views, referrers and rough country without a cookie")
+    if GA4_ID:
+        counters.append("Google Analytics, which sets its own cookies")
+    if not counters:
+        return "Nothing counts the visits."
+    return "Visits are counted by " + ", and by ".join(counters) + ". Nothing else is collected."
+
+
 def page(
     title: str,
     description: str,
@@ -774,6 +811,7 @@ def page(
     # The feeds, on every page, so a reader's feed button finds them (#15).
     tags.append(f'<link rel="alternate" type="application/atom+xml" title="AI Brief" href="{SITE_URL}{FEED_PATH}">')
     tags.append(f'<link rel="alternate" type="application/rss+xml" title="AI Brief, audio" href="{SITE_URL}{PODCAST_PATH}">')
+    tags += analytics_tags()
     if share:
         # The share row's buttons (#15). Deferred: the row works as links without it.
         tags.append(f'<script defer src="{up}js/share.js?v={_asset_version(ROOT / "js/share.js")}"></script>')
@@ -1239,6 +1277,7 @@ def render_about(briefs: list[Brief]) -> str:
         f'      <p style="max-width:62ch;margin:0">Made by <a href="{HOME_URL}">Brahim Bousnguar</a>, '
         "who built Victor and this archive. The code that renders it is public on "
         f'<a href="{REPO_URL}">GitHub</a>. Corrections and requests go through heybrahim.com.</p>',
+        f'      <p style="max-width:62ch;margin:1rem 0 0">{counting_note()}</p>',
         "    </div>\n  </div>\n",
     ])
 
