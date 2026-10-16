@@ -29,6 +29,9 @@ his own workspace. `publish.py` turns those into a static site:
 - **feeds, plain text and a share row** — an Atom feed with the full text, a
   podcast feed of the recordings, a `.txt` of every brief, and share / copy
   buttons at the end of each one (#15)
+- **visit counts** — the Cloudflare Web Analytics beacon on every page,
+  cookieless; the Google Analytics tag once `GA4_ID` holds a measurement
+  ID (#21)
 
 ### The main picture
 
@@ -121,6 +124,18 @@ the page so the clipboard write happens inside the tap), email, LinkedIn, X and
 the plain-text file. `js/share.js` only turns on the three buttons that need
 an API; the rest are links. `llms.txt` at the root lists all of this for an
 agent that lands on the site.
+
+
+### Counting visits (#21)
+
+Every page carries the Cloudflare Web Analytics beacon, the same cookieless
+snippet heybrahim.com uses: page views, referrers and rough country, nothing
+stored on the reader's device. `CF_BEACON_TOKEN` in `publish.py` is the
+heybrahim.com site's token (public by design), so the archive shows up in that
+dashboard under its own host; giving it a site of its own in Cloudflare is a
+one-constant swap. `GA4_ID` holds the Google Analytics 4 measurement ID; while
+it is empty no Google script loads. The About page says what is counted, from
+the same two constants.
 
 ## Why the agent does not publish
 
@@ -219,7 +234,8 @@ rendering a page with quietly missing content.
 Static HTML and CSS, no build step. The scripts are `js/listen.js`, the audio
 player, only loaded on a page with a recording, `js/share.js`, the share row's
 buttons, on brief pages, and a short inline one on `404.html` that waits for a
-brief still being published. Rendered by a single
+brief still being published, plus the Cloudflare Web Analytics beacon on every
+page (#21; the Google Analytics tag joins it once `GA4_ID` is set). Rendered by a single
 dependency-free Python script. Each brief's main picture comes from its
 publisher; everything else — the fonts under `fonts/`, the recordings — is
 local, so a reader's browser talks to this host and the publisher's, nothing
