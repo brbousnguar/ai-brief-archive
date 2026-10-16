@@ -133,8 +133,9 @@ snippet heybrahim.com uses: page views, referrers and rough country, nothing
 stored on the reader's device. `CF_BEACON_TOKEN` in `publish.py` is the
 heybrahim.com site's token (public by design), so the archive shows up in that
 dashboard under its own host; giving it a site of its own in Cloudflare is a
-one-constant swap. `GA4_ID` holds the Google Analytics 4 measurement ID; while
-it is empty no Google script loads. The About page says what is counted, from
+one-constant swap. `GA4_ID` holds the Google Analytics 4 measurement ID, set since #23
+(account "heybrahim", property "AI Brief", web stream "AI Brief web" on
+b.bousnguar@gmail.com); emptied, no Google script loads. The About page says what is counted, from
 the same two constants.
 
 ## Why the agent does not publish
