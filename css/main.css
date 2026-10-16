@@ -103,6 +103,13 @@
 
     --radius-dot: 50%;          /* the only radius in the system */
     --rule: 2px solid var(--ink);
+
+    /* Pull to refresh in the installed app (#29, js/pull-refresh.js): a paper
+       dot with a wire arrow, solid wire once a release will reload. A hard ink
+       ring, not the script's soft shadow: the system has no shadows. */
+    --ptr-bg: var(--paper);
+    --ptr-fg: var(--wire);
+    --ptr-shadow: 0 0 0 2px var(--ink);
 }
 
 *, *::before, *::after { box-sizing: border-box; }

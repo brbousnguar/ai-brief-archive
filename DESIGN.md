@@ -173,6 +173,19 @@ button (`.site-footer__cookies`, set like the footer's links) reopens it, with
 the current answer in a quiet mono line (`.consent__now`), so withdrawing is
 as easy as agreeing.
 
+### Pull to refresh (#29)
+
+Opened from the home screen, the brief has no reload button, so the installed
+app gets one gesture: at the top of a page, drag down and let go. The
+indicator (`.ptr`, built by `js/pull-refresh.js`, `aria-hidden`) is a 40px dot
+that follows the finger down from under the status bar: `--paper` with a
+`--wire` arrow that turns as you pull, then solid `--wire` with a `--paper`
+arrow once a release will reload. It is a `--radius-dot` circle with a 2px ink
+ring, not a shadow, so the form language holds. With reduced motion the arrow
+does not turn or spin. In a browser tab the script does nothing: the browser
+has its own reload. A drag that starts on the player's seek bar, a field or a
+panel that scrolls on its own never reloads.
+
 ### Counting (#19)
 
 Numbers are wire furniture, so they are mono and quiet, except on the index
@@ -373,7 +386,7 @@ Anything not on this list does not exist. Adding a component means adding it her
 `.dock__title` `.dock__time` `.dock__close`) · `.consent` (+ `.consent__row`
 `.consent__text` `.consent__choices` `.consent__btn` `.consent__now`) · `.lead` ·
 `.kicker` · `.btn` (+ `--ghost`, used for the index's "Listen" link) ·
-`.skip-link` · `.site-footer` (+ `.site-footer__cookies`)
+`.skip-link` · `.site-footer` (+ `.site-footer__cookies`) · `.ptr` (built by `js/pull-refresh.js`, installed app only)
 
 Script hooks, not components: `.listen__cur` `.listen__dur` `.listen__more`
 `.listen__cast` `.listen__i-play` `.listen__i-pause` `.dock__dur`, and on the share
