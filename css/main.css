@@ -336,6 +336,26 @@ a:hover { text-decoration-thickness: 3px; }
     color: var(--ink-quiet); white-space: nowrap;
 }
 
+/* Read-along (#7). On a brief whose recording carries paragraph times, the block
+   the voice is reading: a sunk-paper tint 8px beyond the text with a 3px wire rule
+   on its left edge, both box-shadows so nothing moves (the offset shadow shows only
+   past the spread one; the rule ends 11px out, inside the 20px gutter). On the wire
+   band the tint is the band's blue deepened with a fifth of ink (white type keeps
+   more than its 7:1) and the rule is --on-colour. The signal keeps
+   its embargo rule and only gains the tint. While playing, timed blocks are tap targets. */
+[data-t] { scroll-margin-top: 1.5rem; scroll-margin-bottom: 96px; }
+.is-listening [data-t] { cursor: pointer; }
+.is-reading {
+    background: var(--paper-sunk);
+    box-shadow: 0 0 0 8px var(--paper-sunk), -3px 0 0 8px var(--wire);
+    transition: background-color 0.15s, box-shadow 0.15s;
+}
+.story__signal.is-reading { box-shadow: 0 0 0 8px var(--paper-sunk); }
+.band--wire .is-reading {
+    background: color-mix(in srgb, var(--wire) 80%, var(--ink));
+    box-shadow: 0 0 0 8px color-mix(in srgb, var(--wire) 80%, var(--ink)), -3px 0 0 8px var(--on-colour);
+}
+
 /* The dock: full width along the bottom, paper with one ink rule, progress on top. */
 .dock {
     position: fixed; left: 0; right: 0; bottom: 0; z-index: 60;

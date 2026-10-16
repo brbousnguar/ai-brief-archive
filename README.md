@@ -47,6 +47,16 @@ bottom once the card scrolls away. The position is kept, so a stop picks up
 where it left off. Without JavaScript the browser's own audio control shows
 instead.
 
+Since #7 the player also **follows the brief paragraph by paragraph**: the
+block being read is marked and kept on screen until you scroll away, a tap on a
+paragraph while playing reads from there, the skip buttons become previous /
+next paragraph (also from earbuds and the lock screen), Space pauses and R
+repeats the paragraph. The recorder reads one paragraph at a time, so it knows
+exactly where each starts and stores those seconds as `marks` in the manifest;
+`publish.py` writes them on the page's blocks as `data-t`. A recording without
+marks is re-recorded on the next run, and until then its page keeps the
+15 s / 30 s buttons.
+
 `narrate.py` records it with **Kokoro-82M** (voice `af_heart`, through
 mlx-audio), locally on the mini. It needs no API and costs nothing, takes about
 30 seconds a brief, and the card says it is an AI voice. The script reads the

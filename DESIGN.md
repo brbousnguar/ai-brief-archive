@@ -187,6 +187,30 @@ This section covers what the reader sees and hears.
   0.75. The speed is remembered, and so is the position, per brief
   (`localStorage`), so a reload offers "Resume from 3:12".
 
+### Read-along (#7)
+
+- **The page follows the voice.** The blocks the voice reads carry `data-t`,
+  the second each starts; the recorder knows them exactly because it reads one
+  paragraph at a time. The block being read gets `.is-reading`: a `--paper-sunk`
+  tint 8px beyond the text with a 3px `--wire` rule on its left edge, both
+  box-shadows so nothing moves. On the wire band the tint is the band's blue
+  deepened with a fifth of `--ink` (a `color-mix`, no new token; white type
+  keeps more than its 7:1) and the rule is `--on-colour`. The signal keeps its
+  embargo rule and only gains the tint. No radius, no shadow beyond those two.
+- **It scrolls with the voice, not against the reader.** The block is brought
+  into the band above the dock only when it is off screen, with the page's own
+  scroll behaviour (plain under reduced motion). A wheel, a swipe or an arrow
+  key stops the following; it resumes once the block being read is on screen
+  again.
+- **Step by paragraph.** The card's buttons become previous / next paragraph
+  (a bar-and-triangle glyph with a ¶), and so do earbud and lock-screen
+  previous / next. Back within two seconds of a start goes to the paragraph
+  before. While playing, timed blocks show a pointer and a tap reads from
+  there; links, the player and a text selection are left alone. Space pauses,
+  R repeats the paragraph.
+- **Falls back cleanly.** A brief without paragraph times keeps the 15 s / 30 s
+  buttons and nothing is marked.
+
 ### The mini-player (`.dock`)
 
 It appears only once playback has started **and** the card has scrolled away,

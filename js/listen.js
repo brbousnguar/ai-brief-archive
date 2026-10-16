@@ -5,8 +5,14 @@
    without this script (or before it loads) the native control shows instead.
    Playing the real element is what keeps the lock-screen controls, background
    play and AirPlay working on a phone; Media Session adds the headline and the
-   skip buttons there. The position is kept per brief in localStorage, best
-   effort, so a walk can stop and pick up again. */
+   buttons there. The position is kept per brief in localStorage, best
+   effort, so a walk can stop and pick up again.
+   Read-along (#7): when the page carries data-t on the blocks the voice reads
+   (the second each one starts in the MP3), the block being read is marked and
+   kept on screen until the reader scrolls away, a tap on a block while playing
+   jumps there, the card's buttons, earbuds and the lock screen step by
+   paragraph, Space pauses and R repeats the paragraph. Without those times the
+   card keeps its 15 s / 30 s skips. */
 (function () {
   var root = document.querySelector('.listen');
   var ui = root && root.querySelector('.listen__player');
@@ -32,6 +38,14 @@
   var cardVisible = true;
   var savedAt = 0;
 
+  // The blocks the voice reads, in time order (#7).
+  var paras = Array.prototype.slice.call(document.querySelectorAll('[data-t]')).map(function (el) {
+    return { el: el, t: +el.dataset.t };
+  }).filter(function (p) { return isFinite(p.t); }).sort(function (a, b) { return a.t - b.t; });
+  var byPara = paras.length >= 2 && !!ui.querySelector('[data-para]');
+  var reading = -1;        // index of the block being read
+  var following = true;    // keep the block on screen, until the reader scrolls away
+
   function store(k, v) {
     try { v === null ? localStorage.removeItem(k) : localStorage.setItem(k, String(v)); } catch (e) {}
   }
@@ -51,6 +65,57 @@
   }
   function now() {
     return audio.readyState ? audio.currentTime : (pending || 0);
+  }
+
+  // ── Read-along (#7) ─────────────────────────────────────────────────────
+  function paraAt(t) {
+    var i = -1;
+    for (var k = 0; k < paras.length; k++) { if (paras[k].t <= t + 0.05) i = k; else break; }
+    return i;
+  }
+  function readable() {    // the band of the viewport above the dock
+    return { top: 0, bottom: dock.hidden ? innerHeight : dock.getBoundingClientRect().top };
+  }
+  function inView(el) {
+    var r = el.getBoundingClientRect(), v = readable();
+    return r.top >= v.top && r.bottom <= v.bottom;
+  }
+  function keep(el) {
+    var r = el.getBoundingClientRect(), v = readable();
+    if (r.top >= v.top + 8 && r.bottom <= v.bottom - 8) return;
+    // No behavior given: the page's scroll-behavior applies, plain under reduced motion.
+    el.scrollIntoView({ block: r.height > (v.bottom - v.top) * 0.6 ? 'start' : 'center' });
+  }
+  function mark(i, scroll) {
+    if (!byPara || i === reading) return;
+    var prev = reading >= 0 ? paras[reading].el : null;
+    if (prev) prev.classList.remove('is-reading');
+    reading = i;
+    if (i < 0) return;
+    paras[i].el.classList.add('is-reading');
+    if (!scroll) return;
+    // A reader who had scrolled away is reading along again when the block just read was on screen.
+    if (!following && prev && inView(prev)) following = true;
+    if (following) keep(paras[i].el);
+  }
+  function jump(i) {
+    following = true;
+    if (i < 0) { goTo(0); return; }
+    mark(i, true);
+    goTo(paras[i].t);
+  }
+  function step(dir) {
+    var t = now(), i = paraAt(t);
+    if (dir < 0) jump(i >= 0 && t - paras[i].t <= 2 ? i - 1 : i);   // back: this paragraph's start, or the one before when it just began
+    else if (i + 1 < paras.length) jump(i + 1);
+  }
+  function repeat() {
+    jump(paraAt(now()));
+    start();
+  }
+  function away() { following = false; }
+  function editing(el) {
+    return !!(el && el.closest && el.closest('input, textarea, select, button, a, [contenteditable]'));
   }
 
   // ── Docked mini-player ──────────────────────────────────────────────────
@@ -93,6 +158,8 @@
     seek.setAttribute('aria-valuetext', spoken(t) + ' of ' + spoken(total));
     cur.textContent = dockCur.textContent = clock(t);
     dockBar.style.width = p + '%';
+    // Nothing is marked until the voice has started once; after that the mark follows seeks too.
+    mark(started ? paraAt(t) : -1, !dragging && !audio.paused && pending === null);
   }
 
   function setTotal(s) {
@@ -106,6 +173,7 @@
   function playing(on) {
     root.classList.toggle('is-playing', on);
     dock.classList.toggle('is-playing', on);
+    document.documentElement.classList.toggle('is-listening', on && byPara);
     var label = on ? 'Pause' : (now() > 0 && !audio.ended ? 'Resume from ' + clock(now()) : 'Play the brief');
     play.setAttribute('aria-label', label);
     dockPlay.setAttribute('aria-label', on ? 'Pause' : 'Play');
@@ -148,6 +216,30 @@
 
   ui.querySelectorAll('[data-skip]').forEach(function (b) {
     b.addEventListener('click', function () { goTo(now() + +b.dataset.skip); });
+  });
+  ui.querySelectorAll('[data-para]').forEach(function (b) {
+    b.addEventListener('click', function () { step(+b.dataset.para); });
+  });
+
+  if (byPara) {
+    // A tap on a block while playing reads from there; links, the player, figures and a text selection are left alone.
+    document.addEventListener('click', function (e) {
+      if (audio.paused || !e.target.closest) return;
+      if (e.target.closest('a, button, input, figure, svg, .listen, .dock')) return;
+      var sel = window.getSelection && getSelection();
+      if (sel && String(sel).length) return;
+      var el = e.target.closest('[data-t]');
+      if (el) jump(paras.map(function (p) { return p.el; }).indexOf(el));
+    });
+    // Scrolling by hand stops the page following the voice; it follows again once the reader catches up.
+    addEventListener('wheel', away, { passive: true });
+    addEventListener('touchmove', away, { passive: true });
+  }
+  document.addEventListener('keydown', function (e) {
+    if (!started || e.altKey || e.ctrlKey || e.metaKey || editing(e.target)) return;
+    if (byPara && ['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Home', 'End'].indexOf(e.key) >= 0) away();
+    if (e.key === ' ') { e.preventDefault(); toggle(); }
+    else if (byPara && (e.key === 'r' || e.key === 'R')) { e.preventDefault(); repeat(); }
   });
 
   seek.addEventListener('input', function () {
@@ -229,13 +321,18 @@
       if (og) art.push({ src: og.content, sizes: '1200x630' });
       ms.metadata = new MediaMetadata({ title: name, artist: 'AI Brief · ' + root.dataset.date, album: 'heybrahim.com', artwork: art });
     } catch (e) {}
-    [
+    var actions = [
       ['play', start],
       ['pause', function () { audio.pause(); }],
-      ['seekbackward', function (d) { goTo(now() - (d.seekOffset || 15)); }],
-      ['seekforward', function (d) { goTo(now() + (d.seekOffset || 30)); }],
       ['seekto', function (d) { goTo(d.seekTime); }]
-    ].forEach(function (a) {
+    ];
+    if (byPara) {   // earbuds and the lock screen step by paragraph (#7)
+      actions.push(['previoustrack', function () { step(-1); }], ['nexttrack', function () { step(1); }]);
+    } else {
+      actions.push(['seekbackward', function (d) { goTo(now() - (d.seekOffset || 15)); }],
+                   ['seekforward', function (d) { goTo(now() + (d.seekOffset || 30)); }]);
+    }
+    actions.forEach(function (a) {
       try { ms.setActionHandler(a[0], a[1]); } catch (e) {}
     });
   }
