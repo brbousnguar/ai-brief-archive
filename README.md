@@ -19,7 +19,13 @@ his own workspace. `publish.py` turns those into a static site:
   list with sources
 - **a page per running story** — every appearance of a story on one timeline,
   so a repeat is shown as *what changed* rather than re-explained
-- **an index** — latest brief, running stories, and the full archive
+- **an index** — latest brief, running stories, and the full archive grouped
+  by week
+- **a stories index and an About page** — every running story on one list;
+  what the brief is, how it is made, what it is not, how to follow it
+- **feeds, plain text and a share row** — an Atom feed with the full text, a
+  podcast feed of the recordings, a `.txt` of every brief, and share / copy
+  buttons at the end of each one (#15)
 
 ### The main picture
 
@@ -85,6 +91,32 @@ python3 narrate.py --say 2026-10-14                   # what would be read; no v
 A story becomes a running story the second time it appears. That is the point of
 the site: the Telegram brief links to the story page instead of restating the
 same announcement each run.
+
+### Follow and share (#15)
+
+Every page has the same nav: Latest (the newest brief itself), Stories
+(`stories/index.html`, every running story), Archive (the index's week-by-week
+list), About and Follow (`about.html`, how a brief is made, what it is not, and
+the feeds). The index says under "What this is" that an agent writes the brief
+and nobody edits it.
+
+Two feeds, linked from every page's `<head>` so a feed reader finds them:
+
+- `feed.xml` — Atom, the latest 50 briefs with their full text as HTML and
+  absolute links.
+- `podcast.xml` — RSS with an `<enclosure>` per recording, duration and size
+  from `audio/manifest.json`, and `icons/podcast.png` (3000 px square, drawn by
+  `tools/make_icons.py`) as artwork. The brief page is the episode's guid, so a
+  re-recording updates the episode in place. Any podcast app takes it as a feed
+  by URL.
+
+Each brief also exists as `briefs/<date>.txt`, the same text with no markup,
+for pasting into a chat. The share row at the end of a brief offers the phone's
+share sheet, copy link, copy as text (the `.txt` text, from a `<template>` on
+the page so the clipboard write happens inside the tap), email, LinkedIn, X and
+the plain-text file. `js/share.js` only turns on the three buttons that need
+an API; the rest are links. `llms.txt` at the root lists all of this for an
+agent that lands on the site.
 
 ## Why the agent does not publish
 
@@ -181,8 +213,9 @@ rendering a page with quietly missing content.
 ## Tech stack
 
 Static HTML and CSS, no build step. The scripts are `js/listen.js`, the audio
-player, which is only loaded on a page with a recording, and a short inline one
-on `404.html` that waits for a brief still being published. Rendered by a single
+player, only loaded on a page with a recording, `js/share.js`, the share row's
+buttons, on brief pages, and a short inline one on `404.html` that waits for a
+brief still being published. Rendered by a single
 dependency-free Python script. Each brief's main picture comes from its
 publisher; everything else — the fonts under `fonts/`, the recordings — is
 local, so a reader's browser talks to this host and the publisher's, nothing
@@ -204,19 +237,24 @@ narrate.py          the only thing that writes audio
 css/main.css        the design system — see DESIGN.md
 fonts/              Archivo, Source Serif 4, IBM Plex Mono as latin woff2 subsets
 js/listen.js        the audio player
+js/share.js         the share row's buttons (share sheet, copy link, copy as text)
 sw.js               service worker: pages network-first, CSS/JS/icons/fonts cached, audio untouched
 site.webmanifest    makes the archive installable (Add to Home Screen)
 tools/make_icons.py draws the mark; writes icons/, apple-touch-icon.png, favicon.ico
-icons/              mark.svg (also inlined in the masthead) + PWA icons, generated
+icons/              mark.svg (also inlined in the masthead) + PWA icons + podcast.png, generated
 DESIGN.md           the spec; changes in the same commit as the CSS
 publish-hook.sh     launchd entry point: pull, render, push; then record, push
 tts/                setup.sh + pinned requirements for the voice venv
 images.json         main-picture cache, one entry per brief (written by publish.py)
 audio/              <date>.mp3 + manifest.json (written by narrate.py)
 index.html          generated
+about.html          generated: how the brief is made, what it is not, how to follow it
 404.html            generated; waits for a brief that is still being published
-briefs/*.html       generated, one per briefing
-stories/*.html      generated, one per running story
+briefs/*.html       generated, one per briefing; briefs/*.txt the same as plain text
+stories/*.html      generated, one per running story; stories/index.html lists them
+feed.xml            generated: Atom, full text
+podcast.xml         generated: RSS with the recordings as enclosures
+llms.txt            generated: where everything is, for an agent
 ```
 
 Generated pages and recordings are committed so GitHub Pages can serve them

@@ -242,6 +242,23 @@ a:hover { text-decoration-thickness: 3px; }
 /* The mark (#11): square, hard-edged like everything else, sat on the cap height. */
 .masthead__mark { display: inline-block; width: 0.9em; height: 0.9em; margin-right: 0.3em; vertical-align: -0.08em; }
 .masthead__tag { font-family: var(--font-mono); font-size: var(--t-xs); letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-quiet); }
+/* The nav (#15): five mono links, the current one on a stamp-red rule. Right
+   of the name from 720px, its own row under it on a phone. Each link is a
+   44px tap target. */
+.masthead__nav {
+    display: flex; flex-wrap: wrap; gap: 0 1.1rem; margin-left: auto;
+    font-family: var(--font-mono); font-size: var(--t-xs); letter-spacing: 0.12em; text-transform: uppercase;
+}
+.masthead__nav a {
+    display: inline-flex; align-items: center; min-height: 44px;
+    color: var(--ink); text-decoration: none; border-bottom: 3px solid transparent;
+}
+.masthead__nav a:hover { border-bottom-color: var(--ink); }
+.masthead__nav a[aria-current] { border-bottom-color: var(--stamp); }
+@media (max-width: 719px) {
+    .masthead__nav { flex-basis: 100%; margin-left: 0; }
+    .masthead__inner { padding-bottom: 0.4rem; }
+}
 
 /* ---- Story blocks -------------------------------------------------------- */
 
@@ -286,9 +303,44 @@ a:hover { text-decoration-thickness: 3px; }
 .watch li { border-top: 1px solid var(--ink); padding: 0.85rem 0; }
 .watch li:first-child { border-top: 0; }
 
-.archive { list-style: none; padding: 0; margin: 0; font-family: var(--font-mono); font-size: var(--t-sm); }
-.archive li { display: flex; flex-wrap: wrap; gap: 0.4rem 1rem; padding: 0.6rem 0; border-top: 1px solid var(--ink); }
-.archive li:first-child { border-top: 0; }
+/* The archive list (#15): on the index grouped by week under a slug heading
+   on a rule, on the stories index flat. The day in mono, the headline in the
+   reading face, the meta in quiet mono under it; from 720px the meta takes a
+   third column. */
+.archive { list-style: none; padding: 0; margin: 0; }
+.archive__week { margin: 1.75rem 0 0; padding-bottom: 0.4rem; border-bottom: var(--rule); font-weight: 500; line-height: 1.4; }
+.archive li { display: grid; grid-template-columns: 4.5rem minmax(0, 1fr); gap: 0.15rem 1rem; padding: 0.7rem 0; border-top: 1px solid var(--ink); }
+.archive > li:first-child { border-top: 0; }
+.archive__date, .archive__meta {
+    font-family: var(--font-mono); font-size: var(--t-xs); letter-spacing: 0.08em;
+    color: var(--ink-quiet); padding-top: 0.3rem;
+}
+.archive__date { text-transform: uppercase; }
+.archive__title { grid-column: 2; font-weight: 600; color: var(--ink); line-height: 1.35; text-decoration: none; }
+.archive__title:hover { text-decoration: underline; text-decoration-thickness: 3px; }
+.archive__meta { grid-column: 2; padding-top: 0; }
+@media (min-width: 720px) {
+    .archive li { grid-template-columns: 4.5rem minmax(0, 1fr) auto; }
+    .archive__meta { grid-column: 3; padding-top: 0.3rem; white-space: nowrap; }
+}
+
+/* The share row at the end of a brief (#15): mono buttons like the player's,
+   in the closing band above the pager. The three that need script stay
+   hidden until it runs; the status line keeps its height so nothing jumps. */
+.share { margin: 0 0 var(--gap); }
+.share__row { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.share__btn {
+    display: inline-flex; align-items: center; min-height: 44px; padding: 0 0.9rem;
+    border: 2px solid var(--ink); border-radius: 0; background: var(--paper); color: var(--ink);
+    font-family: var(--font-mono); font-size: var(--t-xs); font-weight: 500; letter-spacing: 0.1em;
+    text-transform: uppercase; text-decoration: none; cursor: pointer;
+}
+.share__btn:hover { background: var(--ink); color: var(--paper); }
+.share__btn[hidden] { display: none; }
+.share__status {
+    min-height: 1.5em; margin: 0.5rem 0 0;
+    font-family: var(--font-mono); font-size: var(--t-xs); color: var(--ink-quiet);
+}
 
 /* Previous / next brief at the end of a brief (#13). Two paper cells on an ink
    rule, like .cols; the date is a slug and the headline is set in the display

@@ -58,6 +58,7 @@ genuinely new — everything else in a repeat story is a restatement.
 from __future__ import annotations
 
 import argparse
+import email.utils
 import hashlib
 import html
 import http.client
@@ -68,10 +69,10 @@ import sys
 import urllib.error
 import urllib.request
 from dataclasses import asdict, dataclass, field
-from datetime import date as Date
+from datetime import date as Date, datetime, timedelta
 from html.parser import HTMLParser
 from pathlib import Path
-from urllib.parse import urljoin, urlparse
+from urllib.parse import quote, urljoin, urlparse
 
 ROOT = Path(__file__).resolve().parent
 DEFAULT_SOURCE = Path.home() / "Server/agents/openclaw/victor/briefs"
@@ -109,6 +110,21 @@ RETRY_DAYS = 7
 
 # Written by narrate.py: audio/<date>.mp3 plus a manifest keyed by brief date.
 AUDIO_DIR = "audio"
+
+# The feeds (#15). Atom carries every brief in full for a feed reader; the
+# podcast RSS carries the recordings, with the square artwork
+# tools/make_icons.py writes, for a podcast app.
+FEED_PATH = "feed.xml"
+PODCAST_PATH = "podcast.xml"
+PODCAST_ART = "icons/podcast.png"
+FEED_ENTRIES = 50
+REPO_URL = "https://github.com/brbousnguar/ai-brief-archive"
+
+# The masthead nav (#15): the same five links on every page. "Latest" is the
+# newest brief itself, one tap from anywhere; Follow is the About page's feed
+# section.
+NAV = (("latest", "Latest"), ("stories", "Stories"), ("archive", "Archive"),
+       ("about", "About"), ("follow", "Follow"))
 
 
 class BriefError(ValueError):
@@ -701,6 +717,22 @@ def article_jsonld(brief: Brief, cover: Cover | None) -> dict:
     return data
 
 
+def _nav(up: str, current: str | None, latest: str | None) -> str:
+    """The masthead nav (#15), the current page marked with aria-current."""
+    hrefs = {
+        "latest": f"{up}briefs/{latest}.html" if latest else f"{up}index.html",
+        "stories": f"{up}stories/index.html",
+        "archive": f"{up}index.html#archive",
+        "about": f"{up}about.html",
+        "follow": f"{up}about.html#follow",
+    }
+    links = [
+        f'<a href="{E(hrefs[key])}"{" aria-current=\"page\"" if key == current else ""}>{label}</a>'
+        for key, label in NAV
+    ]
+    return '<nav class="masthead__nav" aria-label="Site">' + "\n      ".join(links) + "</nav>"
+
+
 def page(
     title: str,
     description: str,
@@ -713,10 +745,13 @@ def page(
     up: str | None = None,
     published: str | None = None,
     jsonld: dict | None = None,
+    current: str | None = None,
+    latest: str | None = None,
+    share: bool = False,
 ) -> str:
     up = "../" * depth if up is None else up
     url = SITE_URL + (path or "")
-    share = [
+    tags = [
         f'<link rel="canonical" href="{E(url)}">',
         '<meta property="og:site_name" content="AI Brief">',
         f'<meta property="og:type" content="{"article" if depth else "website"}">',
@@ -725,27 +760,33 @@ def page(
         f'<meta property="og:url" content="{E(url)}">',
     ]
     if cover:
-        share.append(f'<meta property="og:image" content="{E(cover.image)}">')
-        share.append('<meta name="twitter:card" content="summary_large_image">')
+        tags.append(f'<meta property="og:image" content="{E(cover.image)}">')
+        tags.append('<meta name="twitter:card" content="summary_large_image">')
     if published:
-        share.append(f'<meta property="article:published_time" content="{E(published)}">')
+        tags.append(f'<meta property="article:published_time" content="{E(published)}">')
     if jsonld:
         # "<" is escaped so no value can close the script element.
         blob = json.dumps(jsonld, ensure_ascii=False).replace("<", "\\u003c")
-        share.append(f'<script type="application/ld+json">{blob}</script>')
+        tags.append(f'<script type="application/ld+json">{blob}</script>')
     if path is None:
         # Not a page of its own (the 404): nothing to share or index.
-        share = ['<meta name="robots" content="noindex">']
+        tags = ['<meta name="robots" content="noindex">']
+    # The feeds, on every page, so a reader's feed button finds them (#15).
+    tags.append(f'<link rel="alternate" type="application/atom+xml" title="AI Brief" href="{SITE_URL}{FEED_PATH}">')
+    tags.append(f'<link rel="alternate" type="application/rss+xml" title="AI Brief, audio" href="{SITE_URL}{PODCAST_PATH}">')
+    if share:
+        # The share row's buttons (#15). Deferred: the row works as links without it.
+        tags.append(f'<script defer src="{up}js/share.js?v={_asset_version(ROOT / "js/share.js")}"></script>')
     if audio:
         # The player script. Set html.js before paint so the player card,
         # not the native control, is what renders first; undo it if the
         # script fails to load.
-        share.append("<script>document.documentElement.classList.add('js')</script>")
-        share.append(
+        tags.append("<script>document.documentElement.classList.add('js')</script>")
+        tags.append(
             f'<script defer src="{up}js/listen.js?v={_asset_version(ROOT / "js/listen.js")}" '
             "onerror=\"document.documentElement.classList.remove('js')\"></script>"
         )
-    head = "\n".join(share)
+    head = "\n".join(tags)
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -765,6 +806,7 @@ def page(
   <div class="container masthead__inner">
     <p class="masthead__name"><a href="{up}index.html">{_mark_svg()}AI BRIEF</a></p>
     <span class="masthead__tag">Wire archive &middot; brahim bousnguar</span>
+    {_nav(up, current, latest)}
   </div>
 </header>
 <hr class="tape">
@@ -776,7 +818,7 @@ def page(
 
 <footer class="site-footer">
   <div class="container">
-    <p style="margin:0"><a href="{up}index.html">&larr; All briefs</a> &middot; <a href="{HOME_URL}">heybrahim.com</a></p>
+    <p style="margin:0"><a href="{up}index.html">&larr; All briefs</a> &middot; <a href="{up}stories/index.html">Stories</a> &middot; <a href="{up}about.html">About</a> &middot; <a href="{up}{FEED_PATH}">Feed</a> &middot; <a href="{up}{PODCAST_PATH}">Podcast</a> &middot; <a href="{HOME_URL}">heybrahim.com</a></p>
   </div>
 </footer>
 </body>
@@ -870,7 +912,8 @@ def hero(media: list[str], text: list[str]) -> list[str]:
 
 
 def pager(older: Brief | None, newer: Brief | None) -> str:
-    """Previous / next brief at the end of each brief (#13)."""
+    """Previous / next brief at the end of each brief (#13). The caller puts
+    it in the closing band, under the share row."""
     def cell(brief: Brief | None, label: str, extra: str = "") -> str:
         if brief:
             return (f'        <a class="pager__link{extra}" href="../briefs/{E(brief.slug)}.html">'
@@ -885,12 +928,351 @@ def pager(older: Brief | None, newer: Brief | None) -> str:
                 '<span class="pager__title">This is the first brief</span></div>')
 
     return "\n".join([
-        '  <div class="band">\n    <div class="container">',
         '      <nav class="pager" aria-label="Other briefs">',
         cell(older, "&larr; Previous brief"),
         cell(newer, "Next brief &rarr;", " pager__link--next"),
-        "      </nav>\n    </div>\n  </div>\n",
+        "      </nav>",
     ])
+
+
+def plain_text(brief: Brief, stories: dict[str, Story]) -> str:
+    """The brief as plain text (#15): briefs/<date>.txt, and what "Copy as
+    text" puts on the clipboard. Pastes into a chat or an email as it is."""
+    url = f"{SITE_URL}briefs/{brief.slug}.html"
+    head = f"AI BRIEF · {brief.stamp}" + (f" · {brief.time.upper()}" if brief.time else "")
+    lines = [head, url, "", brief.title, ""]
+    if brief.lead:
+        lines += [brief.lead, ""]
+    for rank, item in enumerate(brief.items, start=1):
+        lines.append(f"{rank:02d} · {item.title}")
+        story = stories.get(item.story or "")
+        if story and story.is_running:
+            lines.append(f"Running story: {SITE_URL}stories/{story.slug}.html")
+        lines += item.body
+        if item.signal:
+            lines.append(f"Signal: {item.signal}")
+        if item.source:
+            lines.append(f"Source: {item.source}")
+        lines.append("")
+    if brief.watching:
+        lines += ["WORTH WATCHING"] + [f"- {w}" for w in brief.watching] + [""]
+    if brief.bottom_line:
+        lines += ["BOTTOM LINE", brief.bottom_line, ""]
+    if brief.sources:
+        lines += [f"Sources scanned: {public_sources(brief.sources)}", ""]
+    lines.append(f"Written by an agent from public feeds. Every brief and source: {SITE_URL}")
+    return "\n".join(lines) + "\n"
+
+
+def share_row(brief: Brief, text: str) -> str:
+    """The share row at the end of a brief (#15).
+
+    Email, LinkedIn, X and the plain-text file are links and work without
+    script. js/share.js shows the three buttons that need an API: the phone's
+    own share sheet, copy link, and copy as text. The text sits in a <template>
+    on the page so the clipboard write happens inside the tap; Safari refuses
+    one that waits on a fetch first.
+    """
+    url = f"{SITE_URL}briefs/{brief.slug}.html"
+    q = lambda s: quote(s, safe="")
+    body = brief.title + "\n\n" + (brief.lead + "\n\n" if brief.lead else "") + url
+    mail = f"mailto:?subject={q('AI Brief: ' + brief.title)}&body={q(body)}"
+    linkedin = f"https://www.linkedin.com/sharing/share-offsite/?url={q(url)}"
+    x = f"https://x.com/intent/post?text={q(brief.title)}&url={q(url)}"
+    ext = ' target="_blank" rel="noopener"'
+    return "\n".join([
+        f'      <div class="share" data-url="{E(url)}" data-title="{E(brief.title)}">',
+        '        <span class="slug">Share this brief</span>',
+        '        <div class="share__row">',
+        '          <button class="share__btn" type="button" data-share hidden>Share&hellip;</button>',
+        '          <button class="share__btn" type="button" data-copy="link" hidden>Copy link</button>',
+        '          <button class="share__btn" type="button" data-copy="text" hidden>Copy as text</button>',
+        f'          <a class="share__btn" href="{E(mail)}">Email</a>',
+        f'          <a class="share__btn" href="{E(linkedin)}"{ext}>LinkedIn</a>',
+        f'          <a class="share__btn" href="{E(x)}"{ext}>X</a>',
+        f'          <a class="share__btn" href="{E(brief.slug)}.txt">Plain text</a>',
+        "        </div>",
+        '        <p class="share__status" role="status" aria-live="polite"></p>',
+        "      </div>",
+        f'      <template id="brief-text">{E(text)}</template>',
+    ])
+
+
+def archive_list(briefs: list[Brief], recordings: dict[str, dict]) -> list[str]:
+    """Every brief, grouped by week (#15): the day in mono, the headline in the
+    reading face, and what the brief holds (stories, listening time)."""
+    out: list[str] = []
+    week: Date | None = None
+    for brief in briefs:
+        monday = brief.date - timedelta(days=brief.date.weekday())
+        if monday != week:
+            if week is not None:
+                out.append("      </ul>")
+            week = monday
+            out.append(f'      <h3 class="slug archive__week">Week of {E(monday.strftime("%b %d %Y"))}</h3>')
+            out.append('      <ul class="archive">')
+        n = len(brief.items)
+        meta = f"{n} stor{'y' if n == 1 else 'ies'}"
+        audio = recordings.get(brief.slug)
+        if audio:
+            meta += f" &middot; listen {_clock(audio['seconds'])}"
+        out.append(
+            f'        <li><span class="archive__date">{E(brief.date.strftime("%a %d"))}</span>'
+            f'<a class="archive__title" href="briefs/{E(brief.slug)}.html">{E(brief.title)}</a>'
+            f'<span class="archive__meta">{meta}</span></li>'
+        )
+    out.append("      </ul>")
+    return out
+
+
+def render_stories(stories: dict[str, Story]) -> str:
+    """stories/index.html (#15): every running story, newest movement first."""
+    running = sorted(
+        (s for s in stories.values() if s.is_running),
+        key=lambda s: (s.latest.brief.date, s.days),
+        reverse=True,
+    )
+    once = len(stories) - len(running)
+    out = [
+        '  <div class="band">\n    <div class="container">',
+        '      <p class="dateline"><span>RUNNING STORIES</span><span class="dateline__sep">&middot;</span>'
+        f"<span>{len(running)} OPEN</span></p>",
+        "      <h1>Running stories</h1>",
+        '      <p class="lead" style="max-width:62ch">A story gets a page of its own the second time it '
+        "appears, with every appearance on one timeline, so a repeat shows what changed instead of "
+        "re-explaining it. Newest movement first; the date is the last brief the story was in.</p>",
+        '      <ul class="archive">',
+    ]
+    for story in running:
+        first = story.appearances[0].brief
+        tag = "new angle" if story.latest.item.is_new_angle else "still moving"
+        out.append(
+            f'        <li><span class="archive__date">{E(story.latest.brief.date.strftime("%b %d"))}</span>'
+            f'<a class="archive__title" href="{E(story.slug)}.html">{E(story.title)}</a>'
+            f'<span class="archive__meta">day {story.days} &middot; since {E(first.stamp)} &middot; {tag}</span></li>'
+        )
+    out.append("      </ul>")
+    out.append(
+        f'      <p class="caption">{once} more stories have appeared once. Each gets a page the day '
+        "it comes up again.</p>"
+    )
+    out.append("    </div>\n  </div>\n")
+    return "\n".join(out)
+
+
+def render_about(briefs: list[Brief]) -> str:
+    """about.html (#15): what the brief is, how it is made, what it is not,
+    and how to follow it. What a reader who arrived from a shared link asks."""
+    first = briefs[-1]
+    return "\n".join([
+        '  <div class="band">\n    <div class="container">',
+        '      <p class="dateline"><span>ABOUT</span><span class="dateline__sep">&middot;</span>'
+        f"<span>SINCE {E(first.stamp)}</span></p>",
+        "      <h1>A daily brief on AI, written by an agent</h1>",
+        '      <p class="lead" style="max-width:62ch">Victor, an agent running on a Mac mini, reads the '
+        "public feeds each morning, picks the few stories that matter and writes them up. This site "
+        "keeps every brief it has written, with the sources, and tracks the stories that keep "
+        "coming back.</p>",
+        "    </div>\n  </div>\n",
+        '  <div class="band band--sunk">\n    <div class="container">',
+        "      <h2>How a brief is made</h2>",
+        '      <div class="cols cols--3">',
+        '        <div class="block block--wire">',
+        '          <span class="slug">1 &middot; Sweep</span>',
+        '          <p style="margin-bottom:0">Around seven in the morning, Paris time, Victor opens the '
+        "X/Twitter following feed and a few named accounts in a browser and reads what moved "
+        "overnight. The bottom of each brief says exactly which sources were opened; an account it "
+        "did not open is never listed.</p>",
+        "        </div>",
+        '        <div class="block block--paper">',
+        '          <span class="slug">2 &middot; Write</span>',
+        '          <p style="margin-bottom:0">It merges duplicates, ranks what is left and writes four '
+        "to six items in its own words, each with a one-line read on what it means and a link to the "
+        "post or page it came from. A story it has covered before is marked as running, and only "
+        "what changed is written.</p>",
+        "        </div>",
+        '        <div class="block block--fill">',
+        '          <span class="slug">3 &middot; Publish</span>',
+        '          <p style="margin-bottom:0">The brief goes out on Telegram first. A job on the same '
+        "machine renders this page from the markdown within a minute, then records the audio "
+        "version with a local synthetic voice and publishes that too. Nobody edits a brief before "
+        "it goes out, and none is deleted after.</p>",
+        "        </div>",
+        "      </div>\n    </div>\n  </div>\n",
+        '  <div class="band">\n    <div class="container">',
+        "      <h2>What it is not</h2>",
+        '      <p style="max-width:62ch">Not a news organisation, and not reporting of its own. Every '
+        "claim traces to a public post or page, linked under the story, because a language model can "
+        "misread a post, miss a correction or weigh a story wrong; the link is there to check. "
+        "Nothing here is advice.</p>",
+        '      <p style="max-width:62ch;margin:0">The picture on a brief is the share image of one of '
+        "its own stories, loaded from the publisher and credited under it. Nothing is rehosted or "
+        f'generated. A publisher who would rather not appear can say so through <a href="{HOME_URL}">'
+        "heybrahim.com</a> and the picture goes.</p>",
+        "    </div>\n  </div>\n",
+        '  <div class="band band--sunk" id="follow">\n    <div class="container">',
+        "      <h2>Follow</h2>",
+        '      <div class="cols cols--2">',
+        '        <div class="block block--wire">',
+        '          <span class="slug">In a feed reader</span>',
+        '          <h3 style="margin-top:0">Atom feed</h3>',
+        "          <p>The full text of every brief, the moment it is published.</p>",
+        f'          <p class="story__source" style="margin:0"><a href="{FEED_PATH}">{SITE_URL}{FEED_PATH}</a></p>',
+        "        </div>",
+        '        <div class="block">',
+        '          <span class="slug">In a podcast app</span>',
+        '          <h3 style="margin-top:0">Audio feed</h3>',
+        "          <p>Every brief read by an AI voice, a few minutes each. Add the address to Apple "
+        "Podcasts, Overcast or Pocket Casts as a feed by URL.</p>",
+        f'          <p class="story__source" style="margin:0"><a href="{PODCAST_PATH}">{SITE_URL}{PODCAST_PATH}</a></p>',
+        "        </div>",
+        "      </div>",
+        '      <p style="max-width:62ch;margin:var(--gap) 0 0">Or install the site as an app: in Safari '
+        "on an iPhone, Share, then Add to Home Screen. Every brief also exists as plain text at the "
+        "same address ending in .txt, for pasting into a chat; the share row at the end of a brief "
+        "copies it.</p>",
+        "    </div>\n  </div>\n",
+        '  <div class="band">\n    <div class="container">',
+        "      <h2>Who</h2>",
+        f'      <p style="max-width:62ch;margin:0">Made by <a href="{HOME_URL}">Brahim Bousnguar</a>, '
+        "who built Victor and this archive. The code that renders it is public on "
+        f'<a href="{REPO_URL}">GitHub</a>. Corrections and requests go through heybrahim.com.</p>',
+        "    </div>\n  </div>\n",
+    ])
+
+
+def brief_html(brief: Brief, stories: dict[str, Story]) -> str:
+    """The brief as plain HTML with absolute links, for the Atom feed (#15)."""
+    out = []
+    if brief.lead:
+        out.append(f"<p><em>{E(brief.lead)}</em></p>")
+    for rank, item in enumerate(brief.items, start=1):
+        out.append(f"<h2>{rank:02d} &middot; {E(item.title)}</h2>")
+        story = stories.get(item.story or "")
+        if story and story.is_running:
+            out.append(f'<p><a href="{SITE_URL}stories/{E(story.slug)}.html">Running story</a></p>')
+        out += [f"<p>{E(p)}</p>" for p in item.body]
+        if item.signal:
+            out.append(f"<p><strong>Signal:</strong> {E(item.signal)}</p>")
+        if item.source:
+            out.append(f"<p>Source: {source_link(item.source)}</p>")
+    if brief.watching:
+        out.append("<h2>Worth watching</h2><ul>" + "".join(f"<li>{E(w)}</li>" for w in brief.watching) + "</ul>")
+    if brief.bottom_line:
+        out.append(f"<h2>Bottom line</h2><p>{E(brief.bottom_line)}</p>")
+    if brief.sources:
+        out.append(f"<p><small>Sources scanned: {E(public_sources(brief.sources))}</small></p>")
+    return "\n".join(out)
+
+
+def instant(brief: Brief) -> str:
+    """published_at() as a full timestamp, which the feeds require. A brief
+    without a time is dated midnight UTC rather than given an invented hour."""
+    iso = published_at(brief)
+    return iso if "T" in iso else f"{iso}T00:00:00Z"
+
+
+def render_feed(briefs: list[Brief], stories: dict[str, Story]) -> str:
+    """feed.xml: Atom, full content (#15)."""
+    entries = []
+    for brief in briefs[:FEED_ENTRIES]:
+        url = f"{SITE_URL}briefs/{brief.slug}.html"
+        entries.append("\n".join([
+            "  <entry>",
+            f"    <title>{E(brief.title)}</title>",
+            f'    <link rel="alternate" type="text/html" href="{E(url)}"/>',
+            f"    <id>{E(url)}</id>",
+            f"    <published>{instant(brief)}</published>",
+            f"    <updated>{instant(brief)}</updated>",
+            f"    <summary>{E(brief.lead or brief.title)}</summary>",
+            f'    <content type="html">{E(brief_html(brief, stories))}</content>',
+            "  </entry>",
+        ]))
+    return "\n".join([
+        '<?xml version="1.0" encoding="utf-8"?>',
+        '<feed xmlns="http://www.w3.org/2005/Atom">',
+        "  <title>AI Brief</title>",
+        "  <subtitle>A daily brief on AI, written by an agent from public feeds, with every source kept.</subtitle>",
+        f"  <id>{SITE_URL}</id>",
+        f'  <link rel="alternate" type="text/html" href="{SITE_URL}"/>',
+        f'  <link rel="self" type="application/atom+xml" href="{SITE_URL}{FEED_PATH}"/>',
+        f"  <updated>{instant(briefs[0])}</updated>",
+        f"  <author><name>AI Brief</name><uri>{SITE_URL}</uri></author>",
+        f"  <icon>{SITE_URL}icons/icon-192.png</icon>",
+        *entries,
+        "</feed>",
+        "",
+    ])
+
+
+def render_podcast(briefs: list[Brief], recordings: dict[str, dict]) -> str:
+    """podcast.xml: RSS with an enclosure per recording (#15). The brief page
+    is the episode's guid, so a re-recording updates the episode in place."""
+    items = []
+    for brief in briefs:
+        audio = recordings.get(brief.slug)
+        if not audio:
+            continue
+        url = f"{SITE_URL}briefs/{brief.slug}.html"
+        mp3 = f"{SITE_URL}{AUDIO_DIR}/{audio['file']}"
+        when = email.utils.format_datetime(datetime.fromisoformat(instant(brief)))
+        items.append("\n".join([
+            "    <item>",
+            f"      <title>{E(brief.title)}</title>",
+            f"      <link>{E(url)}</link>",
+            f"      <guid>{E(url)}</guid>",
+            f"      <pubDate>{when}</pubDate>",
+            f"      <description>{E(brief.lead or brief.title)}</description>",
+            f'      <enclosure url="{E(mp3)}" length="{audio["bytes"]}" type="audio/mpeg"/>',
+            f"      <itunes:duration>{round(audio['seconds'])}</itunes:duration>",
+            "      <itunes:episodeType>full</itunes:episodeType>",
+            "    </item>",
+        ]))
+    built = email.utils.format_datetime(datetime.fromisoformat(instant(briefs[0])))
+    return "\n".join([
+        '<?xml version="1.0" encoding="utf-8"?>',
+        '<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:atom="http://www.w3.org/2005/Atom">',
+        "  <channel>",
+        "    <title>AI Brief</title>",
+        f"    <link>{SITE_URL}</link>",
+        f'    <atom:link rel="self" type="application/rss+xml" href="{SITE_URL}{PODCAST_PATH}"/>',
+        "    <language>en</language>",
+        "    <description>The audio version of AI Brief: a daily brief on AI, written by an agent from public feeds and read by a synthetic voice. Every source is kept at ai.heybrahim.com.</description>",
+        "    <itunes:author>AI Brief</itunes:author>",
+        f'    <itunes:image href="{SITE_URL}{PODCAST_ART}"/>',
+        "    <itunes:explicit>false</itunes:explicit>",
+        '    <itunes:category text="Technology"/>',
+        '    <itunes:category text="News"><itunes:category text="Tech News"/></itunes:category>',
+        "    <itunes:type>episodic</itunes:type>",
+        f"    <lastBuildDate>{built}</lastBuildDate>",
+        *items,
+        "  </channel>",
+        "</rss>",
+        "",
+    ])
+
+
+def render_llms(briefs: list[Brief]) -> str:
+    """llms.txt: where everything is, for an agent that lands here (#15)."""
+    return f"""# AI Brief
+
+> A daily brief on AI, written by an agent from public feeds and published as written, most weekday mornings around 07:30 Paris time. Every brief is kept with its sources, and a story that comes back gets a page that tracks it across days.
+
+## Read
+- Latest brief: {SITE_URL}briefs/{briefs[0].slug}.html
+- Every brief: {SITE_URL}briefs/YYYY-MM-DD.html, with the same text as plain text at {SITE_URL}briefs/YYYY-MM-DD.txt
+- Archive, newest first: {SITE_URL}
+- Running stories: {SITE_URL}stories/index.html
+- About, and how a brief is made: {SITE_URL}about.html
+
+## Follow
+- Atom feed, full text: {SITE_URL}{FEED_PATH}
+- Podcast feed, the audio versions: {SITE_URL}{PODCAST_PATH}
+- Sitemap: {SITE_URL}sitemap.xml
+
+## Source
+- Code and brief format: {REPO_URL}
+"""
 
 
 def render_brief(
@@ -970,7 +1352,10 @@ def render_brief(
         )
         out.append("        </div>\n      </div>\n    </div>\n  </div>\n")
 
+    out.append('  <div class="band">\n    <div class="container">')
+    out.append(share_row(brief, plain_text(brief, stories)))
     out.append(pager(older, newer))
+    out.append("    </div>\n  </div>\n")
     return "\n".join(out)
 
 
@@ -1011,9 +1396,10 @@ def render_story(story: Story) -> str:
 
 
 def render_index(
-    briefs: list[Brief], stories: dict[str, Story], cover: Cover | None, audio: dict | None
+    briefs: list[Brief], stories: dict[str, Story], cover: Cover | None, recordings: dict[str, dict]
 ) -> str:
     latest = briefs[0]
+    audio = recordings.get(latest.slug)
     text = [
         "      " + dateline("LATEST", latest),
         f"      <h1{h1_class(latest.title)}>{H(latest.title)}</h1>",
@@ -1038,6 +1424,9 @@ def render_index(
         "of items, ninety seconds, read on a commute and discarded. This is the layer underneath it: "
         "running stories tracked across days rather than restated each morning, every source link "
         "kept, and nothing thrown away.</p>",
+        '      <p class="caption" style="max-width:62ch;margin:0">Written by an agent most weekday '
+        'mornings from public feeds, and published as written. <a href="about.html">How it is made</a> '
+        '&middot; <a href="about.html#follow">Follow by feed or podcast</a></p>',
         "    </div>\n  </div>\n",
     ]
 
@@ -1066,16 +1455,17 @@ def render_index(
             body = story.latest.item.body[0] if story.latest.item.body else ""
             out.append(f'          <p style="margin-bottom:0">{E(body)}</p>')
             out.append("        </div>")
-        out.append("      </div>\n    </div>\n  </div>\n")
-
-    out.append('  <div class="band band--sunk">\n    <div class="container">')
-    out.append("      <h2>Every brief</h2>\n      <ul class=\"archive\">")
-    for brief in briefs:
+        out.append("      </div>")
         out.append(
-            f'        <li><span>{E(brief.stamp)}</span>'
-            f'<a href="briefs/{E(brief.slug)}.html">{E(brief.title)}</a></li>'
+            f'      <p class="caption" style="margin-top:1rem"><a href="stories/index.html">'
+            f"All {len(running)} running stories &rarr;</a></p>"
         )
-    out.append("      </ul>\n    </div>\n  </div>\n")
+        out.append("    </div>\n  </div>\n")
+
+    out.append('  <div class="band band--sunk" id="archive">\n    <div class="container">')
+    out.append("      <h2>Every brief</h2>")
+    out += archive_list(briefs, recordings)
+    out.append("    </div>\n  </div>\n")
     return "\n".join(out)
 
 
@@ -1139,8 +1529,9 @@ def render_missing() -> str:
 
 def render_sitemap(briefs: list[Brief], stories: dict[str, Story]) -> str:
     """sitemap.xml. The archive is a host of its own, so it lists its own pages."""
-    entries = [(SITE_URL, briefs[0].slug)]
+    entries = [(SITE_URL, briefs[0].slug), (f"{SITE_URL}about.html", None)]
     entries += [(f"{SITE_URL}briefs/{b.slug}.html", b.slug) for b in briefs]
+    entries += [(f"{SITE_URL}stories/index.html", briefs[0].slug)]
     entries += [(f"{SITE_URL}stories/{s.slug}.html", None) for s in stories.values() if s.is_running]
     rows = [
         f"  <url><loc>{E(loc)}</loc>" + (f"<lastmod>{day}</lastmod>" if day else "") + "</url>"
@@ -1188,6 +1579,8 @@ def main() -> int:
     cache_path.write_text(json.dumps(cache, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     recordings = load_audio(args.out, briefs)
 
+    latest = briefs[0].slug
+
     # briefs is newest first: the brief after this one is the newer one.
     for i, brief in enumerate(briefs):
         newer = briefs[i - 1] if i > 0 else None
@@ -1206,8 +1599,14 @@ def main() -> int:
                 audio=brief.slug in recordings,
                 published=published_at(brief),
                 jsonld=article_jsonld(brief, covers[brief.slug]),
+                current="latest" if i == 0 else None,
+                latest=latest,
+                share=True,
             ),
             encoding="utf-8",
+        )
+        (args.out / "briefs" / f"{brief.slug}.txt").write_text(
+            plain_text(brief, stories), encoding="utf-8"
         )
 
     for story in stories.values():
@@ -1220,9 +1619,38 @@ def main() -> int:
                 1,
                 render_story(story),
                 f"stories/{story.slug}.html",
+                current="stories",
+                latest=latest,
             ),
             encoding="utf-8",
         )
+
+    (args.out / "stories" / "index.html").write_text(
+        page(
+            "Running stories — AI Brief",
+            f"The {running} AI stories the brief is tracking across days, newest movement first.",
+            1,
+            render_stories(stories),
+            "stories/index.html",
+            current="stories",
+            latest=latest,
+        ),
+        encoding="utf-8",
+    )
+
+    (args.out / "about.html").write_text(
+        page(
+            "About — AI Brief",
+            "What AI Brief is, how an agent writes it every morning, what it is not, "
+            "and how to follow it by feed or podcast.",
+            0,
+            render_about(briefs),
+            "about.html",
+            current="about",
+            latest=latest,
+        ),
+        encoding="utf-8",
+    )
 
     (args.out / "index.html").write_text(
         page(
@@ -1230,9 +1658,11 @@ def main() -> int:
             "The durable layer behind a Telegram AI briefing: running stories tracked "
             "over time, full sources, and every brief kept.",
             0,
-            render_index(briefs, stories, covers[briefs[0].slug], recordings.get(briefs[0].slug)),
+            render_index(briefs, stories, covers[briefs[0].slug], recordings),
             "",
             cover=covers[briefs[0].slug],
+            current="archive",
+            latest=latest,
         ),
         encoding="utf-8",
     )
@@ -1246,6 +1676,7 @@ def main() -> int:
             render_missing(),
             None,
             up=urlparse(SITE_URL).path,
+            latest=latest,
         ),
         encoding="utf-8",
     )
@@ -1254,9 +1685,13 @@ def main() -> int:
     (args.out / "robots.txt").write_text(
         f"User-agent: *\nAllow: /\n\nSitemap: {SITE_URL}sitemap.xml\n", encoding="utf-8"
     )
+    (args.out / FEED_PATH).write_text(render_feed(briefs, stories), encoding="utf-8")
+    (args.out / PODCAST_PATH).write_text(render_podcast(briefs, recordings), encoding="utf-8")
+    (args.out / "llms.txt").write_text(render_llms(briefs), encoding="utf-8")
 
     pictured = sum(1 for c in covers.values() if c)
-    print(f"wrote {len(briefs)} brief page(s), {running} story page(s), index.html")
+    print(f"wrote {len(briefs)} brief page(s) and .txt, {running} story page(s), "
+          f"index.html, stories/index.html, about.html, {FEED_PATH}, {PODCAST_PATH}, llms.txt")
     print(f"pictures on {pictured} of {len(briefs)} brief(s)")
     print(f"audio on {len(recordings)} of {len(briefs)} brief(s)")
     return 0

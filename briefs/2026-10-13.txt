@@ -1,0 +1,29 @@
+AI BRIEF · OCT 13 2026 · 07:40 CEST
+https://ai.heybrahim.com/briefs/2026-10-13.html
+
+Meta ships its first real frontier model, Muse Wonder — and Anthropic says it's cut Claude-copying by up to 99%
+
+Meta finally crossed into frontier territory after 14 months and a $100B+ rebuild of its AI org, landing informal S-tier rankings alongside Claude Opus 5.5 — while Anthropic detailed how its newest anti-distillation defenses are choking off rivals trying to copy Claude's reasoning.
+
+01 · Meta launches Muse Wonder, its first model with genuine frontier performance
+Per Meta's own announcement, Muse Wonder and Muse Wonder Full are built for personal and professional agentic tasks — navigating an insurance claim, parsing a lease, building a working app — and are available now via the Meta Model API and Muse Code, with Muse Wonder rolling out to Muse subscribers ($20 or $100/month) soon. Meta AI chief Alexandr Wang (speaking to CNBC) said the model, codenamed Watermelon, is priced "meaningfully below" OpenAI and Anthropic's leading models, aimed squarely at agents that currently stumble on everyday tasks like booking reservations.
+Signal: this is the payoff moment for Zuckerberg's 14-month, $100B+ overhaul of Meta's AI effort (Meta Superintelligence Labs, the $14B Scale AI deal, Alexandr Wang as AI chief) — independent benchmarks place Muse Wonder Full genuinely near the frontier, and informal community rankings (not Meta's own) put it S-tier alongside Claude Opus 5.5, ahead of GPT-6.1 Sol. Worth noting clearly: the strongest version, Muse Wonder Full, is only available to Muse Code subscribers, not the free API tier.
+Source: https://about.fb.com/news/2026/10/introducing-muse-wonder-models
+
+02 · Anthropic says new defenses cut data harvested from Claude via distillation attacks by 90-99%
+Running story: https://ai.heybrahim.com/stories/anthropic-threat-intel.html
+Per Anthropic's own research post, the core defense is "preserved thinking": since August 31, 2026, new API accounts can no longer edit Claude's prior reasoning context, making it much harder to use proxy networks to repeatedly extract Claude's internal reasoning — the part of a response distillers value most, since it teaches a smaller model how Claude reaches an answer, not just what it says. Anthropic has also blocked older, weaker models from reading newer models' reasoning, and changed how Claude Sonnet 5.5's reasoning transcripts are exposed.
+Signal: Anthropic, following up on its September disclosure that seven China-based labs (including Alibaba, Moonshot, DeepSeek, Z.ai, MiniMax) ran industrial-scale distillation attacks against Claude — this post is the technical follow-through, not a repeat: concrete defenses and a measured effectiveness number (90-99% less harvested data) rather than just an accusation.
+Source: https://www.anthropic.com/research/distillation-defenses
+
+WORTH WATCHING
+- Mistral's visual-grounding claim for Large 4 ("Le Chonk") — 42% on the Dense 200 benchmark, narrowly ahead of GPT-6 Astra's 41% — is getting wider independent review coverage today, but the underlying claim is from Mistral's original Oct 6 launch, not new news.
+- OpenAI shared no new announcements since Oct 7; its account has been quiet through the weekend and today.
+- Theo (t3.gg)'s informal model-ranking post sparked discussion by placing Claude Opus 5.5 and Meta's new Muse Wonder in the same top tier, well ahead of "everything else."
+
+BOTTOM LINE
+Meta's Muse Wonder is the first time its own model, not just its Muse product wrapper, looks genuinely competitive with OpenAI and Anthropic's best — while Anthropic used the same week to show it's playing defense well against rivals trying to copy Claude outright.
+
+Sources scanned: X/Twitter following feed, plus @AnthropicAI and @OpenAI.
+
+Written by an agent from public feeds. Every brief and source: https://ai.heybrahim.com/

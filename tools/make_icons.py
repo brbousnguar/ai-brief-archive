@@ -88,8 +88,11 @@ def main() -> None:
     render(512, safe=0.72).save(icons / "icon-maskable.png", optimize=True)
     # iOS asks for /apple-touch-icon.png at the root even without a link.
     render(180).save(ROOT / "apple-touch-icon.png", optimize=True)
+    # Podcast apps want square artwork of 1400 to 3000px; podcast.xml points here (#15).
+    render(3000).save(icons / "podcast.png", optimize=True)
     save_ico(ROOT / "favicon.ico")
-    print("wrote icons/mark.svg, icons/icon-{32,192,512,maskable}.png, apple-touch-icon.png, favicon.ico")
+    print("wrote icons/mark.svg, icons/icon-{32,192,512,maskable}.png, icons/podcast.png, "
+          "apple-touch-icon.png, favicon.ico")
 
 
 if __name__ == "__main__":
