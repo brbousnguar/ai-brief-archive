@@ -297,6 +297,43 @@ a:hover { text-decoration-thickness: 3px; }
     padding: 0.2rem 0.5rem;
 }
 
+/* ---- Counting ------------------------------------------------------------ */
+
+/* The facts line under a brief's lead (#19): quiet mono, what the brief
+   holds and how long it takes. */
+.facts { margin: 0; font-family: var(--font-mono); font-size: var(--t-xs); letter-spacing: 0.08em; color: var(--ink-quiet); }
+
+/* The tally on the index (#19): five unequal blocks in .cols, the first on
+   wire and wider, one big number each over a slug. Two columns on a phone,
+   the first block across both. */
+.cols--tally { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.cols--tally > :first-child { grid-column: 1 / -1; }
+@media (min-width: 720px) {
+    .cols--tally { grid-template-columns: minmax(0, 1.6fr) repeat(4, minmax(0, 1fr)); }
+    .cols--tally > :first-child { grid-column: auto; }
+}
+.cols--tally a.block { color: var(--ink); text-decoration: none; }
+.cols--tally a.block:hover .tally__n { text-decoration: underline; text-decoration-thickness: 3px; }
+.cols--tally .slug { margin-bottom: 0; }
+.tally__n {
+    display: block; margin-bottom: 0.4rem;
+    font-family: var(--font-display); font-weight: 800; font-size: var(--t-h2);
+    letter-spacing: -0.03em; line-height: 1;
+}
+
+/* The sources table (#19): slug headings on a rule, ruled rows, numbers in
+   tabular mono on the right. */
+.table { width: 100%; border-collapse: collapse; font-size: var(--t-sm); }
+.table th {
+    font-family: var(--font-mono); font-size: var(--t-xs); font-weight: 500; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--ink-quiet); text-align: left;
+    padding: 0 0.75rem 0.5rem 0; border-bottom: var(--rule);
+}
+.table td { padding: 0.55rem 0.75rem 0.55rem 0; border-top: 1px solid var(--ink); vertical-align: top; overflow-wrap: anywhere; }
+.table tbody tr:first-child td { border-top: 0; }
+.table .num { text-align: right; font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+.table td:last-child, .table th:last-child { padding-right: 0; white-space: nowrap; }
+
 /* ---- Lists --------------------------------------------------------------- */
 
 .watch { list-style: none; padding: 0; margin: 0; }

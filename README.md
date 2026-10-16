@@ -23,6 +23,9 @@ his own workspace. `publish.py` turns those into a static site:
   by week
 - **a stories index and an About page** — every running story on one list;
   what the brief is, how it is made, what it is not, how to follow it
+- **counts** — a facts line under each brief (stories, running, sources,
+  minutes to read, listening time), a tally on the index, and `sources.html`,
+  every source domain by story count (#19)
 - **feeds, plain text and a share row** — an Atom feed with the full text, a
   podcast feed of the recordings, a `.txt` of every brief, and share / copy
   buttons at the end of each one (#15)
@@ -250,6 +253,7 @@ images.json         main-picture cache, one entry per brief (written by publish.
 audio/              <date>.mp3 + manifest.json (written by narrate.py)
 index.html          generated
 about.html          generated: how the brief is made, what it is not, how to follow it
+sources.html        generated: every source domain, by story count and last seen
 404.html            generated; waits for a brief that is still being published
 briefs/*.html       generated, one per briefing; briefs/*.txt the same as plain text
 stories/*.html      generated, one per running story; stories/index.html lists them

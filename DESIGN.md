@@ -158,6 +158,19 @@ LinkedIn, X and the plain-text file are links and need nothing. The status
 line (`.share__status`) keeps its height so a "Link copied" does not move the
 pager.
 
+### Counting (#19)
+
+Numbers are wire furniture, so they are mono and quiet, except on the index
+tally where they are the point. The facts line (`.facts`) under a brief's lead
+says what it holds and how long it takes (stories, running, sources, minutes
+to read at 230 words a minute, listening time). The tally (`.cols--tally`) is
+five unequal blocks in `.cols`: the first on `--wire` and 1.6 times wider,
+the last on `--telex`, one display-face number (`.tally__n`) over a slug each;
+on a phone two columns with the first block across both. The sources table
+(`.table`) has slug headings on an ink rule, ruled rows, and right-aligned
+tabular mono numbers (`.num`). Story pages say the span in days and how many
+entries carried a new angle in their existing caption.
+
 ## 5. Imagery
 
 Authored inline SVG only, with **one exception: the main picture.** No generated
@@ -337,6 +350,7 @@ Anything not on this list does not exist. Adding a component means adding it her
 `.cover` (+ `.cover__frame` `.cover__credit`) · `.hero` (+ `.hero__media`
 `.hero__text` `--text`) · `.h1--long` · `.pager` (+ `.pager__link` `--next`
 `.pager__title`) · `.share` (+ `.share__row` `.share__btn` `.share__status`) ·
+`.facts` · `.cols--tally` (+ `.tally__n`) · `.table` (+ `.num`) ·
 `.listen` (+ `.listen__label`
 `.listen__player` `.listen__play` `.listen__main` `.listen__head` `.listen__title`
 `.listen__time` `.listen__seek` `.listen__row` `.listen__btn` `.listen__rate`
