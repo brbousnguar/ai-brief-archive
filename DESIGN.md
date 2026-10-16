@@ -241,7 +241,7 @@ up, keeping `#listen`. It gives up after four minutes and says so. Any other
 address gets "Not here, or not yet" and the button to all briefs. Without
 script, the text covers both cases and asks for a reload.
 
-Every link on it is absolute (`/ai-brief-archive/…`), because it is served at
+Every link on it is absolute (`/…`), because it is served at
 whatever depth the missing address had. It is `noindex` and carries no share
 tags. It uses only existing components.
 
@@ -318,6 +318,6 @@ not just the one you were editing.
 
 No legacy stylesheet exists, so the two-stylesheet coexistence rule never applied.
 
-Live on GitHub Pages at <https://heybrahim.com/ai-brief-archive/>. The launchd
+Live on GitHub Pages at <https://ai.heybrahim.com/>. The launchd
 job `ai.openclaw.victor-publish` runs `publish-hook.sh` whenever Victor writes a
 brief. The hook pushes the text first, then records the audio and pushes again.

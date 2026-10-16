@@ -45,7 +45,7 @@ if ! ./publish.py --source "$SOURCE" --check; then
 fi
 
 LATEST=$(ls -1 "$SOURCE"/*.md 2>/dev/null | tail -1 | xargs -I{} basename {} .md)
-PAGE="https://heybrahim.com/ai-brief-archive/briefs/${LATEST}.html"
+PAGE="https://ai.heybrahim.com/briefs/${LATEST}.html"
 
 # Commit and push whatever the render changed. Returns 1 when there was
 # nothing to publish; a failed push stops the hook.

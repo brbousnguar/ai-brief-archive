@@ -5,9 +5,10 @@ a handful of items read on a commute and discarded. This is where the detail
 lives: running stories tracked across days rather than restated each time, every
 source link kept, and nothing thrown away.
 
-Live at **<https://heybrahim.com/ai-brief-archive/>**. The old
-`brbousnguar.github.io/ai-brief-archive/` address only 301s there, so never link
-to it.
+Live at **<https://ai.heybrahim.com/>**, its own host since it has its own
+look (the `CNAME` file sets it). The old `heybrahim.com/ai-brief-archive/…`
+links are forwarded there, same path, by heybrahim.com's `404.html`, and
+`brbousnguar.github.io/ai-brief-archive/` 301s there. Never link to either.
 
 ## What it does
 
