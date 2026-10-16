@@ -135,6 +135,29 @@ and Android round the corners themselves. The maskable icon pulls the holes in
 to 72% so Android's circle crop keeps all four. In the masthead it is inlined
 as `.masthead__mark`, 0.9em square, `aria-hidden` (the link text names it).
 
+### The nav, the archive list and the share row (#15)
+
+The masthead carries five mono links (`.masthead__nav`): Latest, Stories,
+Archive, About, Follow, the same on every page. The current one sits on a 3px
+`--stamp` rule, the only place that red is a line. From 720px the nav sits
+right of the name; on a phone it takes its own row under it. Each link is a
+44px tap target.
+
+The archive (`.archive`) is no longer a mono wall. On the index it is grouped
+by week under a slug heading on an ink rule (`.archive__week`); each row is
+the day in mono (`.archive__date`), the headline in the reading face at body
+size (`.archive__title`), and what the brief holds, stories and listening
+time, in quiet mono (`.archive__meta`): three columns from 720px, the meta
+under the headline on a phone. The stories index uses the same list, flat.
+
+The share row (`.share`) closes a brief, above the pager and in the same
+band. Its buttons (`.share__btn`) are the player's: 44px mono, hard-edged,
+ink on paper, inverted on hover. The three that need an API (the share sheet,
+copy link, copy as text) render `hidden` and `js/share.js` shows them; Email,
+LinkedIn, X and the plain-text file are links and need nothing. The status
+line (`.share__status`) keeps its height so a "Link copied" does not move the
+pager.
+
 ## 5. Imagery
 
 Authored inline SVG only, with **one exception: the main picture.** No generated
@@ -304,14 +327,17 @@ tabulating things nobody would naturally tabulate.
 
 Anything not on this list does not exist. Adding a component means adding it here.
 
-`.masthead` · `.tape` · `.dateline` · `.slug` · `.end-mark` · `.band` (+
+`.masthead` (+ `.masthead__nav`) · `.tape` · `.dateline` · `.slug` · `.end-mark` · `.band` (+
 `--sunk` `--wire` `--embargo` `--stamp` `--ink`) · `.cols` (+ `--2` `--3`) ·
 `.block` (+ `--wire` `--embargo` `--stamp` `--fill` `--paper`) · `.story` (+
 `--lead`, `.story__num` `.story__title` `.story__signal` `.story__source`) ·
-`.daycount` (also as a link to a story page) · `.watch` · `.archive` · `.figure` (+ `.figure__frame` `.caption`) ·
+`.daycount` (also as a link to a story page) · `.watch` · `.archive` (+
+`.archive__week` `.archive__date` `.archive__title` `.archive__meta`) ·
+`.figure` (+ `.figure__frame` `.caption`) ·
 `.cover` (+ `.cover__frame` `.cover__credit`) · `.hero` (+ `.hero__media`
 `.hero__text` `--text`) · `.h1--long` · `.pager` (+ `.pager__link` `--next`
-`.pager__title`) · `.listen` (+ `.listen__label`
+`.pager__title`) · `.share` (+ `.share__row` `.share__btn` `.share__status`) ·
+`.listen` (+ `.listen__label`
 `.listen__player` `.listen__play` `.listen__main` `.listen__head` `.listen__title`
 `.listen__time` `.listen__seek` `.listen__row` `.listen__btn` `.listen__rate`
 `.listen__note`) · `.dock` (+ `.dock__bar` `.dock__row` `.dock__play`

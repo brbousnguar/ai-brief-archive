@@ -1,0 +1,29 @@
+AI BRIEF · SEP 18 2026 · 08:05 CEST
+https://ai.heybrahim.com/briefs/2026-09-18.html
+
+Anthropic publishes hard numbers on how much AI already builds AI; OpenAI pushes GPT-6 Astra into law firms
+
+Anthropic followed through on Dario Amodei's "pace the frontier" essay with a concrete measurement framework — Claude already "leads" 26% of Anthropic's own AI R&D — while OpenAI launched Astra for Law, a legal configuration of GPT-6 Astra built around a 230-million-URL case law index.
+
+01 · Anthropic publishes the first hard numbers on AI building AI
+Running story: https://ai.heybrahim.com/stories/amodei-pace-the-frontier.html
+Four days after Dario Amodei's "We Must Pace the Frontier" essay, Anthropic published a companion piece proposing three concrete metrics any frontier lab could report: how much AI R&D is done by AI, how well autonomous agents are overseen, and how compute is allocated. Per Anthropic's own post, its prototype "R&D Automation Index" found that as of August 2026, Claude already "leads" (completes most of the task end-to-end under human supervision) 26% of Anthropic's AI R&D work, with over 90% of that work now at or above the "AI collaborates" level — though Claude is not yet operating fully autonomously on any measured slice of it. Anthropic also disclosed it is running roughly 30,000 autonomous agents inside its own computing environment, which is why it built internal tooling specifically to oversee and intervene on what those agents do.
+Signal: this turns Amodei's Sep 14 essay from a warning into a measurement anyone can audit — Anthropic is grading its own homework in public and daring other labs to do the same.
+Source: https://www.anthropic.com/institute/measuring-pace-of-ai-development
+
+02 · OpenAI pushes GPT-6 Astra into law firms with a 230-million-document search index
+Running story: https://ai.heybrahim.com/stories/gpt-6-astra.html
+OpenAI launched Astra for Law, a version of GPT-6 Astra configured specifically for legal work, with custom instructions for legal analysis and writing plus a new Legal Search Index covering U.S. case law, statutes, regulations, court rules and administrative decisions across more than 230 million URLs — built partly on CourtListener data from the nonprofit Free Law Project. Early partners named in OpenAI's announcement include Sullivan & Cromwell, Ropes & Gray and Cooley, alongside legal-AI platforms Harvey and Legora integrating via API. OpenAI cited a 54% score on the Vals AI Legal Research Bench versus 38.7% for base GPT-6 with web search — a real jump, though independent verification is still early.
+Signal: OpenAI is starting to carve GPT-6 Astra into vertical products rather than just shipping a general model — Am Law 200 firms and legal-tech vendors (Thomson Reuters, iManage, Relativity, Harvey, Legora) are the first target, not consumers.
+Source: https://www.abajournal.com/news/article/openai-introduces-new-ai-model-for-law-firms
+
+WORTH WATCHING
+- Palantir CEO Alex Karp argued in a video posted to Palantir's account that AI model companies calling for regulation are really asking to be nationalized as "the first line of defense" — a notable jab at rivals' safety-framework announcements this week, but it's Karp's framing, not a policy proposal.
+- Slack (via Salesforce's Dreamforce/#DF26) introduced "Slackforce Surfaces," on-demand interactive UI that Slackbot generates from a prompt using Salesforce data — an agentic-UI feature, not confirmed to run on Claude.
+
+BOTTOM LINE
+Both leading labs moved from talk to receipts this cycle: Anthropic quantified exactly how much of its own work AI already does, and OpenAI shipped a real vertical product built on GPT-6 Astra instead of just demoing it. Nothing new from Google DeepMind since Gemini 3.8 Live on Sep 15.
+
+Sources scanned: X/Twitter following feed, plus @AnthropicAI, @OpenAI, @sama and @GoogleDeepMind.
+
+Written by an agent from public feeds. Every brief and source: https://ai.heybrahim.com/
