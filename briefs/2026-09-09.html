@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AI Brief — Sep 09 2026</title>
+<title>A math proof, a resignation, and a launch — all landed in the last 12 hours — AI Brief, Sep 09 2026</title>
 <meta name="description" content="OpenAI claims a solved Millennium Prize problem, clouded by a credit dispute; an Anthropic researcher quits warning the labs are &quot;gambling with our lives&quot;; and Meta ships Muse, its personal AI agent app.">
 <link rel="canonical" href="https://ai.heybrahim.com/briefs/2026-09-09.html">
 <meta property="og:site_name" content="AI Brief">
@@ -13,6 +13,8 @@
 <meta property="og:url" content="https://ai.heybrahim.com/briefs/2026-09-09.html">
 <meta property="og:image" content="https://9to5mac.com/wp-content/uploads/sites/6/2026/09/muse-agent.webp?resize=1200,628">
 <meta name="twitter:card" content="summary_large_image">
+<meta property="article:published_time" content="2026-09-09T07:20+02:00">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "NewsArticle", "headline": "A math proof, a resignation, and a launch — all landed in the last 12 hours", "description": "OpenAI claims a solved Millennium Prize problem, clouded by a credit dispute; an Anthropic researcher quits warning the labs are \"gambling with our lives\"; and Meta ships Muse, its personal AI agent app.", "datePublished": "2026-09-09T07:20+02:00", "url": "https://ai.heybrahim.com/briefs/2026-09-09.html", "mainEntityOfPage": "https://ai.heybrahim.com/briefs/2026-09-09.html", "isAccessibleForFree": true, "author": {"@type": "Organization", "name": "AI Brief", "url": "https://ai.heybrahim.com/"}, "publisher": {"@type": "Person", "name": "Brahim Bousnguar", "url": "https://heybrahim.com/"}, "image": ["https://9to5mac.com/wp-content/uploads/sites/6/2026/09/muse-agent.webp?resize=1200,628"]}</script>
 <link rel="icon" href="../favicon.ico" sizes="32x32">
 <link rel="icon" href="../icons/mark.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../apple-touch-icon.png">
@@ -23,10 +25,9 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="AI Brief">
 <script>if ("serviceWorker" in navigator) addEventListener("load", function () { navigator.serviceWorker.register("../sw.js"); });</script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="../css/main.css?v=dba005b2">
+<link rel="preload" href="../fonts/archivo-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../fonts/source-serif-4-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../css/main.css?v=d5945257">
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -42,13 +43,19 @@
 <main id="main">
   <div class="band">
     <div class="container">
+      <div class="hero">
+        <div class="hero__media">
       <figure class="cover">
-        <div class="cover__frame"><img src="https://9to5mac.com/wp-content/uploads/sites/6/2026/09/muse-agent.webp?resize=1200,628" alt="" width="1200" height="630" fetchpriority="high" decoding="async" referrerpolicy="no-referrer"></div>
+        <div class="cover__frame"><img src="https://9to5mac.com/wp-content/uploads/sites/6/2026/09/muse-agent.webp?resize=1200,628" alt="" width="1200" height="630" fetchpriority="high" decoding="async" referrerpolicy="no-referrer" onerror="this.closest('.cover').hidden=true;var h=this.closest('.hero');if(h)h.classList.add('hero--text')"></div>
         <figcaption class="cover__credit">Picture: <a href="https://9to5mac.com/2026/09/08/meta-ai-launches-muse-personal-agent-including-a-new-mobile-app-for-iphone">9to5mac.com</a> &middot; story 03</figcaption>
       </figure>
-      <p class="dateline"><span>AI BRIEF</span><span class="dateline__sep">&middot;</span><span>SEP 09 2026</span><span class="dateline__sep">&middot;</span><span>07:20 CEST</span></p>
+        </div>
+        <div class="hero__text">
+      <p class="dateline"><span>AI BRIEF</span><span class="dateline__sep">&middot;</span><time datetime="2026-09-09">SEP 09 2026</time><span class="dateline__sep">&middot;</span><time datetime="2026-09-09T07:20+02:00">07:20 CEST</time></p>
       <h1>A math proof, a resignation, and a launch — all landed in the last 12 hours</h1>
       <p class="lead">OpenAI claims a solved Millennium Prize problem, clouded by a credit dispute; an Anthropic researcher quits warning the labs are &quot;gambling with our lives&quot;; and Meta ships Muse, its personal AI agent app.</p>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -61,21 +68,21 @@
         <h3 class="story__title">OpenAI says its AI solved the Navier-Stokes Millennium Prize Problem</h3>
         <p>OpenAI announced its system produced an analytical proof and Lean-verified formalization that a smooth fluid at rest can develop a singularity in finite time, resolving one of the Clay Institute&#x27;s Millennium Prize problems. Per OpenAI&#x27;s own writeup, roughly 10,000 concurrent agents worked the problem starting September 1st, reaching the result about 88 hours later on September 5th, with Lean formalization taking a further 17 hours via GPT-6 Astra; Axios reports the compute cost ran into the millions of dollars. OpenAI says it won&#x27;t claim the $1M prize. The announcement is shadowed by controversy: per Nature and Axios, OpenAI started the push after hearing rumors that mathematicians Levent Alpöge (Harvard) and Tristan Buckmaster (NYU) had solved a version of the problem using Anthropic&#x27;s models; on X, Sam Altman and OpenAI&#x27;s Sebastien Bubeck both posted defending how the release was handled after questions about Alpöge&#x27;s authorship credit.</p>
         <p class="story__signal"><strong>Signal:</strong> a genuine first — computer-generated proof of a 200-year-old open problem — immediately tangled up in a credit dispute over unpublished outside work.</p>
-        <p class="story__source">Source: https://openai.com/index/navier-stokes-solution</p>
+        <p class="story__source">Source: <a href="https://openai.com/index/navier-stokes-solution" title="https://openai.com/index/navier-stokes-solution">openai.com/index/navier-stokes-solution</a></p>
       </article>
       <article class="story">
         <span class="story__num">02</span>
         <h3 class="story__title">Anthropic researcher resigns, says labs are &quot;gambling with our lives&quot;</h3>
         <p>Jacob Coxon posted on X that he resigned from Anthropic, writing &quot;I spent the last three years doing pretraining research at both OpenAI and Anthropic. Neither company is acting responsibly. They are racing straight to self-improving superintelligence and gambling with our lives.&quot; The Wall Street Journal confirmed the resignation, reporting Coxon is leaving the industry entirely over fears the labs are building self-improving systems they won&#x27;t be able to control. It&#x27;s trending on X as one of today&#x27;s top news items.</p>
         <p class="story__signal"><strong>Signal:</strong> an insider with three years of pretraining work at both OpenAI and Anthropic just said neither company is acting responsibly.</p>
-        <p class="story__source">Source: https://www.wsj.com/tech/ai/anthropic-researcher-quits-over-out-of-control-ai-fears-707b7628</p>
+        <p class="story__source">Source: <a href="https://www.wsj.com/tech/ai/anthropic-researcher-quits-over-out-of-control-ai-fears-707b7628" title="https://www.wsj.com/tech/ai/anthropic-researcher-quits-over-out-of-control-ai-fears-707b7628">wsj.com/tech/ai/anthropic-researcher-quits-over-out-of-cont…</a></p>
       </article>
       <article class="story">
         <span class="story__num">03</span>
         <h3 class="story__title">Meta launches Muse, a personal AI agent app</h3>
         <p>Meta and its Muse account posted the launch on X; AP and 9to5Mac confirm it&#x27;s a dedicated app (iOS live now, more platforms coming) plus WhatsApp integration, for users 18+, US-only at launch. It runs on Muse Spark 1.3, the model Meta shipped six days earlier, and Meta is pitching tasks like booking travel, drafting emails, and turning a saved recipe into a grocery list. Free with weekly limits; paid tier unlocks more.</p>
         <p class="story__signal"><strong>Signal:</strong> Meta&#x27;s consumer answer to agentic AI ships as a standalone app, not just a chatbot feature.</p>
-        <p class="story__source">Source: https://9to5mac.com/2026/09/08/meta-ai-launches-muse-personal-agent-including-a-new-mobile-app-for-iphone</p>
+        <p class="story__source">Source: <a href="https://9to5mac.com/2026/09/08/meta-ai-launches-muse-personal-agent-including-a-new-mobile-app-for-iphone" title="https://9to5mac.com/2026/09/08/meta-ai-launches-muse-personal-agent-including-a-new-mobile-app-for-iphone">9to5mac.com/2026/09/08/meta-ai-launches-muse-personal-agent…</a></p>
       </article>
     </div>
   </div>
@@ -99,9 +106,18 @@
         </div>
         <div class="block block--fill">
           <span class="slug">Sources scanned</span>
-          <p class="story__source" style="margin:0">X/Twitter home feed via profile=brahim, plus @OpenAI, @AnthropicAI, @sama, and @karpathy (karpathy had nothing new — stale posts only).</p>
+          <p class="story__source" style="margin:0">X/Twitter following feed, plus @OpenAI, @AnthropicAI, @sama, and @karpathy (karpathy had nothing new — stale posts only).</p>
         </div>
       </div>
+    </div>
+  </div>
+
+  <div class="band">
+    <div class="container">
+      <nav class="pager" aria-label="Other briefs">
+        <a class="pager__link" href="../briefs/2026-09-08.html"><span class="slug">&larr; Previous brief &middot; SEP 08 2026</span><span class="pager__title">DeepMind opens the genome, Anthropic pulls in more coding talent</span></a>
+        <a class="pager__link pager__link--next" href="../briefs/2026-09-10.html"><span class="slug">Next brief &rarr; &middot; SEP 10 2026</span><span class="pager__title">Anthropic&#x27;s month-later post-mortem, Paul Christiano joins OpenAI&#x27;s safety board, DeepSeek ships a multimodal Flash model</span></a>
+      </nav>
     </div>
   </div>
 

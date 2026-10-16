@@ -1,7 +1,8 @@
 // AI Brief service worker (#11). Makes the archive installable and readable
 // offline, without ever showing yesterday's brief when today's is out:
 // - pages: network first, the cached copy only when the network fails;
-// - CSS, JS, icons: cache first (their URLs carry a content hash);
+// - CSS, JS, icons: cache first (their URLs carry a content hash), and the
+//   fonts under /fonts/, whose files never change (#13);
 // - audio, HEAD requests and other origins: not touched (range requests and
 //   the 404 page's "is it up yet" checks go straight to the network).
 const CACHE = "aibrief-v1";
@@ -28,7 +29,7 @@ self.addEventListener("fetch", (event) => {
 
   if (request.mode === "navigate" || url.pathname.endsWith(".html") || url.pathname === "/") {
     event.respondWith(networkFirst(request));
-  } else if (/^\/(css|js|icons)\//.test(url.pathname)) {
+  } else if (/^\/(css|js|icons|fonts)\//.test(url.pathname)) {
     event.respondWith(cacheFirst(request));
   }
 });

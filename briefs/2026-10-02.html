@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AI Brief — Oct 02 2026</title>
+<title>Claude Code gets a mod system, Palantir and Armada team up on sovereign AI data centers — and Tavus claims the first AI to pass a video Turing test — AI Brief, Oct 02 2026</title>
 <meta name="description" content="Anthropic shipped a plugin-based way to reprogram Claude Code&#x27;s own behavior and UI, Palantir named Armada its first modular-data-center partner for sovereign AI, and a smaller player, Tavus, says its new Griffin model fooled nearly half of testers into thinking it was human on a live video call.">
 <link rel="canonical" href="https://ai.heybrahim.com/briefs/2026-10-02.html">
 <meta property="og:site_name" content="AI Brief">
@@ -13,6 +13,8 @@
 <meta property="og:url" content="https://ai.heybrahim.com/briefs/2026-10-02.html">
 <meta property="og:image" content="https://claude.com/resources/articles/claude-code-mods/opengraph-image/og">
 <meta name="twitter:card" content="summary_large_image">
+<meta property="article:published_time" content="2026-10-02T11:34+02:00">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "NewsArticle", "headline": "Claude Code gets a mod system, Palantir and Armada team up on sovereign AI data centers — and Tavus claims the first AI to pass a video Turing test", "description": "Anthropic shipped a plugin-based way to reprogram Claude Code's own behavior and UI, Palantir named Armada its first modular-data-center partner for sovereign AI, and a smaller player, Tavus, says its new Griffin model fooled nearly half of testers into thinking it was human on a live video call.", "datePublished": "2026-10-02T11:34+02:00", "url": "https://ai.heybrahim.com/briefs/2026-10-02.html", "mainEntityOfPage": "https://ai.heybrahim.com/briefs/2026-10-02.html", "isAccessibleForFree": true, "author": {"@type": "Organization", "name": "AI Brief", "url": "https://ai.heybrahim.com/"}, "publisher": {"@type": "Person", "name": "Brahim Bousnguar", "url": "https://heybrahim.com/"}, "image": ["https://claude.com/resources/articles/claude-code-mods/opengraph-image/og"]}</script>
 <link rel="icon" href="../favicon.ico" sizes="32x32">
 <link rel="icon" href="../icons/mark.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../apple-touch-icon.png">
@@ -23,10 +25,9 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="AI Brief">
 <script>if ("serviceWorker" in navigator) addEventListener("load", function () { navigator.serviceWorker.register("../sw.js"); });</script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="../css/main.css?v=dba005b2">
+<link rel="preload" href="../fonts/archivo-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../fonts/source-serif-4-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../css/main.css?v=d5945257">
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -42,13 +43,19 @@
 <main id="main">
   <div class="band">
     <div class="container">
+      <div class="hero">
+        <div class="hero__media">
       <figure class="cover">
-        <div class="cover__frame"><img src="https://claude.com/resources/articles/claude-code-mods/opengraph-image/og" alt="Customize Claude Code with mods" width="1200" height="630" fetchpriority="high" decoding="async" referrerpolicy="no-referrer"></div>
+        <div class="cover__frame"><img src="https://claude.com/resources/articles/claude-code-mods/opengraph-image/og" alt="Customize Claude Code with mods" width="1200" height="630" fetchpriority="high" decoding="async" referrerpolicy="no-referrer" onerror="this.closest('.cover').hidden=true;var h=this.closest('.hero');if(h)h.classList.add('hero--text')"></div>
         <figcaption class="cover__credit">Picture: <a href="https://claude.com/blog/claude-code-mods">claude.com</a></figcaption>
       </figure>
-      <p class="dateline"><span>AI BRIEF</span><span class="dateline__sep">&middot;</span><span>OCT 02 2026</span><span class="dateline__sep">&middot;</span><span>11:34 CEST</span></p>
-      <h1>Claude Code gets a mod system, Palantir and Armada team up on sovereign AI data centers — and Tavus claims the first AI to pass a video Turing test</h1>
+        </div>
+        <div class="hero__text">
+      <p class="dateline"><span>AI BRIEF</span><span class="dateline__sep">&middot;</span><time datetime="2026-10-02">OCT 02 2026</time><span class="dateline__sep">&middot;</span><time datetime="2026-10-02T11:34+02:00">11:34 CEST</time></p>
+      <h1 class="h1--long">Claude Code gets a mod system, Palantir and Armada team up on sovereign AI data centers — and Tavus claims the first AI to pass a video Turing test</h1>
       <p class="lead">Anthropic shipped a plugin-based way to reprogram Claude Code&#x27;s own behavior and UI, Palantir named Armada its first modular-data-center partner for sovereign AI, and a smaller player, Tavus, says its new Griffin model fooled nearly half of testers into thinking it was human on a live video call.</p>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -60,28 +67,28 @@
         <h3 class="story__title">Anthropic ships &quot;mods,&quot; letting developers rewrite how Claude Code itself behaves and looks</h3>
         <p>Per Anthropic&#x27;s own announcement, mods are small TypeScript functions that can rewrite a prompt, add new UI, replace a built-in feature, or add new functionality entirely — written by hand or by asking Claude Code to write one. They ship inside plugins, installable with one command, and work in both the CLI and desktop app. Four built-in mods exist already (an AGENTS.md loader, a live diff panel, telemetry, and an org security mod). Anthropic flags that mods run with the same machine access as Claude Code itself, and warns to only install ones from trusted sources.</p>
         <p class="story__signal"><strong>Signal:</strong> this lands a week after Claude Code&#x27;s plugin marketplace (Sep 23) and &quot;build plugins for Claude&quot; post (Sep 25) — mods are the next layer down, giving developers hook-level control over the harness itself, not just add-on commands. Anthropic&#x27;s own Boris Cherny framed it as &quot;customizing Claude by just prompting it,&quot; and reaction from Claude Code power users (Lydia Hallie, Thariq) was immediate and enthusiastic.</p>
-        <p class="story__source">Source: https://claude.com/blog/claude-code-mods</p>
+        <p class="story__source">Source: <a href="https://claude.com/blog/claude-code-mods" title="https://claude.com/blog/claude-code-mods">claude.com/blog/claude-code-mods</a></p>
       </article>
       <article class="story">
         <span class="story__num">02</span>
         <h3 class="story__title">Palantir names Armada its first Certified Modular Data Center Partner for sovereign AI</h3>
         <p>Under the agreement, Palantir will validate and integrate its Sovereign AI Operating System — built on AIP, Ontology, Foundry and Apollo — on Armada&#x27;s Galleon modular data centers, with Armada&#x27;s Platform and Sovereign AI Grid providing control and resilience across deployments. Palantir CEO Alex Karp: &quot;Our ontology gives institutions control over their data, their models, and the inputs they use to fine-tune models. Armada gives them control over the infrastructure those models operate from.&quot; Customers get a path to deploy and fine-tune open-weight models while keeping compute, data and hardware inside their own security boundary.</p>
         <p class="story__signal"><strong>Signal:</strong> extends the Palantir Sovereign AI OS Reference Architecture (built with NVIDIA) into a ruggedized, modular hardware form factor, aimed squarely at governments and enterprises that want AI infrastructure they fully control, built on US/allied-made hardware, deployable in months rather than years.</p>
-        <p class="story__source">Source: https://www.marketwatch.com/story/palantir-partners-with-armada-for-sovereign-ai-data-centers-85d69584?mod=markets</p>
+        <p class="story__source">Source: <a href="https://www.marketwatch.com/story/palantir-partners-with-armada-for-sovereign-ai-data-centers-85d69584?mod=markets" title="https://www.marketwatch.com/story/palantir-partners-with-armada-for-sovereign-ai-data-centers-85d69584?mod=markets">marketwatch.com/story/palantir-partners-with-armada-for-sov…</a></p>
       </article>
       <article class="story">
         <span class="story__num">03</span>
         <h3 class="story__title">Tavus says its Griffin model is the first to pass a video Turing test</h3>
         <p>Per Tavus&#x27;s own announcement, Griffin — the company calls it the first &quot;Human Interaction Model&quot; — processes speech, facial expressions, tone and gestures while simultaneously generating video of its own &quot;face,&quot; rather than bolting a chatbot onto a static avatar. In Tavus&#x27;s study, 48% of participants believed Griffin was a real person after a one-minute video call, versus under 3% for previous systems, by Tavus&#x27;s account. A limited preview, Griffin-Lite, is open to select testers; a fuller version is coming once &quot;safety concerns are addressed,&quot; per the-decoder&#x27;s reporting.</p>
         <p class="story__signal"><strong>Signal:</strong> a genuinely new claim from a smaller, Sequoia-backed lab rather than a major player — worth flagging clearly as Tavus&#x27;s own benchmark, not an independently audited one, though the reported NVIDIA-benchmark comparison (Griffin 3.83 vs. human 3.92, previous best AI 2.80) is a specific, sourced number rather than vague hype.</p>
-        <p class="story__source">Source: https://the-decoder.com/nearly-half-of-test-subjects-mistook-tavus-ai-video-avatar-for-a-real-person-on-a-one-minute-call</p>
+        <p class="story__source">Source: <a href="https://the-decoder.com/nearly-half-of-test-subjects-mistook-tavus-ai-video-avatar-for-a-real-person-on-a-one-minute-call" title="https://the-decoder.com/nearly-half-of-test-subjects-mistook-tavus-ai-video-avatar-for-a-real-person-on-a-one-minute-call">the-decoder.com/nearly-half-of-test-subjects-mistook-tavus-…</a></p>
       </article>
       <article class="story">
         <span class="story__num">04</span>
         <h3 class="story__title">Microsoft repositions Copilot as the &quot;OS for work,&quot; ceding consumer AI ground to Meta and OpenAI</h3>
         <p>Per The Verge&#x27;s Tom Warren, Nadella outlined this &quot;OS for work&quot; framing to leaders from key enterprise customers, following Microsoft&#x27;s Sep 25 &quot;new Copilot&quot; launch (Home, Code, Autopilot). The pitch: Copilot as the platform underneath AI-era work, not just features bolted onto Office — notable after a lukewarm response to the $30/month per-user Copilot subscription two years ago.</p>
         <p class="story__signal"><strong>Signal:</strong> strategic framing rather than a product launch — Satya Nadella pitched this directly to enterprise customers at an invite-only event rather than in a public keynote, and The Verge&#x27;s read is that Microsoft is deliberately not trying to compete with consumer-facing agents like Meta&#x27;s Muse or OpenAI&#x27;s dots, leaning instead on its enterprise strength.</p>
-        <p class="story__source">Source: https://www.theverge.com/tech/1003365/microsoft-copilot-os-for-work-notepad</p>
+        <p class="story__source">Source: <a href="https://www.theverge.com/tech/1003365/microsoft-copilot-os-for-work-notepad" title="https://www.theverge.com/tech/1003365/microsoft-copilot-os-for-work-notepad">theverge.com/tech/1003365/microsoft-copilot-os-for-work-not…</a></p>
       </article>
     </div>
   </div>
@@ -106,9 +113,18 @@
         </div>
         <div class="block block--fill">
           <span class="slug">Sources scanned</span>
-          <p class="story__source" style="margin:0">X/Twitter home feed via profile=brahim (Following tab), plus @OpenAI, @AnthropicAI, @GoogleDeepMind and @sama.</p>
+          <p class="story__source" style="margin:0">X/Twitter following feed, plus @OpenAI, @AnthropicAI, @GoogleDeepMind and @sama.</p>
         </div>
       </div>
+    </div>
+  </div>
+
+  <div class="band">
+    <div class="container">
+      <nav class="pager" aria-label="Other briefs">
+        <a class="pager__link" href="../briefs/2026-10-01.html"><span class="slug">&larr; Previous brief &middot; OCT 01 2026</span><span class="pager__title">Google ships Gemini 4 Argon, its answer to GPT-6 Astra — xAI&#x27;s Grok Bot gets a coding upgrade the same day</span></a>
+        <a class="pager__link pager__link--next" href="../briefs/2026-10-05.html"><span class="slug">Next brief &rarr; &middot; OCT 05 2026</span><span class="pager__title">Trump creates a &quot;Super Intelligence Force,&quot; Aleph Alpha ships a sovereign European open-weight model, and Altman calms a Cerebras stock scare</span></a>
+      </nav>
     </div>
   </div>
 

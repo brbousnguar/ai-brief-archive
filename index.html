@@ -23,10 +23,9 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="AI Brief">
 <script>if ("serviceWorker" in navigator) addEventListener("load", function () { navigator.serviceWorker.register("sw.js"); });</script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="css/main.css?v=dba005b2">
+<link rel="preload" href="fonts/archivo-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/source-serif-4-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/main.css?v=d5945257">
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -42,14 +41,20 @@
 <main id="main">
   <div class="band">
     <div class="container">
+      <div class="hero">
+        <div class="hero__media">
       <figure class="cover">
-        <div class="cover__frame"><img src="https://research.meta.ai/articles/muse-spark-open/social/muse-spark-1-2-open-weights-social-v2.webp" alt="Muse Spark Open Weights artwork with blue lines flowing across a pale surface and the caption ‘The most capable US open-weight model to date’." width="1200" height="630" fetchpriority="high" decoding="async" referrerpolicy="no-referrer"></div>
+        <div class="cover__frame"><img src="https://research.meta.ai/articles/muse-spark-open/social/muse-spark-1-2-open-weights-social-v2.webp" alt="Muse Spark Open Weights artwork with blue lines flowing across a pale surface and the caption ‘The most capable US open-weight model to date’." width="1200" height="630" fetchpriority="high" decoding="async" referrerpolicy="no-referrer" onerror="this.closest('.cover').hidden=true;var h=this.closest('.hero');if(h)h.classList.add('hero--text')"></div>
         <figcaption class="cover__credit">Picture: <a href="https://research.meta.ai/blog/muse-spark-open">research.meta.ai</a></figcaption>
       </figure>
-      <p class="dateline"><span>LATEST</span><span class="dateline__sep">&middot;</span><span>OCT 16 2026</span><span class="dateline__sep">&middot;</span><span>07:27 CEST</span></p>
-      <h1>Meta ships an 816B open-weight model built to run on Mac Studio, and OpenAI/Anthropic fund mathematicians after a backlash over AI-generated papers</h1>
+        </div>
+        <div class="hero__text">
+      <p class="dateline"><span>LATEST</span><span class="dateline__sep">&middot;</span><time datetime="2026-10-16">OCT 16 2026</time><span class="dateline__sep">&middot;</span><time datetime="2026-10-16T07:27+02:00">07:27 CEST</time></p>
+      <h1 class="h1--long">Meta ships an 816B open-weight model built to run on Mac Studio, and OpenAI/<wbr>Anthropic fund mathematicians after a backlash over AI-generated papers</h1>
       <p class="lead">Meta and Apple partnered to get Meta&#x27;s biggest open-weight model yet running locally on the new M5 Ultra Mac Studio, while OpenAI and Anthropic each put money into a Simons Foundation fund for mathematicians — a response to community anger after OpenAI flooded the field with AI-generated preprints.</p>
       <p style="display:flex;flex-wrap:wrap;gap:0.75rem"><a class="btn" href="briefs/2026-10-16.html">Read the brief</a> <a class="btn btn--ghost" href="briefs/2026-10-16.html#listen">Listen &middot; 4:10</a></p>
+        </div>
+      </div>
     </div>
   </div>
 

@@ -183,9 +183,18 @@ rendering a page with quietly missing content.
 Static HTML and CSS, no build step. The scripts are `js/listen.js`, the audio
 player, which is only loaded on a page with a recording, and a short inline one
 on `404.html` that waits for a brief still being published. Rendered by a single
-dependency-free Python script. Fonts come from Google Fonts and each brief's main
-picture from its publisher; everything else, the recordings included, is local. Served by GitHub Pages
-under the heybrahim.com custom domain of the `brbousnguar.github.io` user site.
+dependency-free Python script. Each brief's main picture comes from its
+publisher; everything else — the fonts under `fonts/`, the recordings — is
+local, so a reader's browser talks to this host and the publisher's, nothing
+else. Served by GitHub Pages under the heybrahim.com custom domain of the
+`brbousnguar.github.io` user site.
+
+Each brief page carries its headline in `<title>`, `<time>` elements in the
+dateline, `article:published_time` and a NewsArticle JSON-LD block, so a link
+pasted into Slack, a bookmark or a search result says what the brief is. The
+"Sources scanned" line is rewritten on the way out: the agent's browser profile
+(`profile=brahim`) is a config detail, and the page says "X/Twitter following
+feed" instead.
 
 ## Repository layout
 
@@ -193,8 +202,9 @@ under the heybrahim.com custom domain of the `brbousnguar.github.io` user site.
 publish.py          the only thing that writes HTML
 narrate.py          the only thing that writes audio
 css/main.css        the design system — see DESIGN.md
+fonts/              Archivo, Source Serif 4, IBM Plex Mono as latin woff2 subsets
 js/listen.js        the audio player
-sw.js               service worker: pages network-first, CSS/JS/icons cached, audio untouched
+sw.js               service worker: pages network-first, CSS/JS/icons/fonts cached, audio untouched
 site.webmanifest    makes the archive installable (Add to Home Screen)
 tools/make_icons.py draws the mark; writes icons/, apple-touch-icon.png, favicon.ico
 icons/              mark.svg (also inlined in the masthead) + PWA icons, generated

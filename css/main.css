@@ -4,6 +4,62 @@
    All four proved with check-palette.py before use — figures in DESIGN.md.
    Do not add a hue without re-running it. */
 
+/* The three families, served from fonts/ (#13). Latin and latin-ext woff2
+   subsets of what Google Fonts served, with the same unicode-range split, so
+   a page with only ASCII fetches one file per face. Archivo and Source Serif 4
+   are variable fonts and carry their weight range in one file; Plex Mono is
+   static, one file per weight. */
+@font-face {
+    font-family: "Archivo"; font-style: normal; font-weight: 700 800; font-display: swap;
+    src: url("../fonts/archivo-normal-latin-ext.woff2") format("woff2");
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+    font-family: "Archivo"; font-style: normal; font-weight: 700 800; font-display: swap;
+    src: url("../fonts/archivo-normal-latin.woff2") format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+    font-family: "IBM Plex Mono"; font-style: normal; font-weight: 400; font-display: swap;
+    src: url("../fonts/plex-mono-normal-latin-ext.woff2") format("woff2");
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+    font-family: "IBM Plex Mono"; font-style: normal; font-weight: 400; font-display: swap;
+    src: url("../fonts/plex-mono-normal-latin.woff2") format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+    font-family: "IBM Plex Mono"; font-style: normal; font-weight: 500; font-display: swap;
+    src: url("../fonts/plex-mono-500-latin-ext.woff2") format("woff2");
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+    font-family: "IBM Plex Mono"; font-style: normal; font-weight: 500; font-display: swap;
+    src: url("../fonts/plex-mono-500-latin.woff2") format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+    font-family: "Source Serif 4"; font-style: italic; font-weight: 400; font-display: swap;
+    src: url("../fonts/source-serif-4-italic-latin-ext.woff2") format("woff2");
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+    font-family: "Source Serif 4"; font-style: italic; font-weight: 400; font-display: swap;
+    src: url("../fonts/source-serif-4-italic-latin.woff2") format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+    font-family: "Source Serif 4"; font-style: normal; font-weight: 400 600; font-display: swap;
+    src: url("../fonts/source-serif-4-normal-latin-ext.woff2") format("woff2");
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+    font-family: "Source Serif 4"; font-style: normal; font-weight: 400 600; font-display: swap;
+    src: url("../fonts/source-serif-4-normal-latin.woff2") format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 :root {
     /* Ground and ink */
     --paper: #FBF7EF;           /* newsprint */
@@ -34,11 +90,15 @@
     --t-body: 1.0625rem;
     --t-lead: clamp(1.15rem, 0.95rem + 0.9vw, 1.45rem);
     --t-h3: clamp(1.3rem, 1.1rem + 1vw, 1.7rem);
-    --t-h2: clamp(1.9rem, 1.3rem + 2.6vw, 3rem);
-    --t-h1: clamp(2.5rem, 1.2rem + 5.6vw, 5rem);
+    --t-h2: clamp(1.8rem, 1.3rem + 2vw, 2.6rem);
+    /* A briefing headline is two or three clauses and 113 characters on
+       average, so the top of the scale is a reading size, not a poster one,
+       and past 100 characters the h1 steps down again (#13). */
+    --t-h1: clamp(2.2rem, 1.2rem + 4.2vw, 3.75rem);
+    --t-h1-long: clamp(1.85rem, 1rem + 3.2vw, 3rem);
 
     --gap: clamp(1rem, 0.7rem + 1.4vw, 1.75rem);
-    --band-y: clamp(2.5rem, 1.8rem + 3.4vw, 5rem);
+    --band-y: clamp(2.25rem, 1.6rem + 2.4vw, 3.5rem);
     --container: 1140px;
 
     --radius-dot: 50%;          /* the only radius in the system */
@@ -67,6 +127,7 @@ h1, h2, h3 {
     margin: 0 0 0.5em;
 }
 h1 { font-size: var(--t-h1); }
+.h1--long { font-size: var(--t-h1-long); }
 h2 { font-size: var(--t-h2); }
 h3 { font-size: var(--t-h3); letter-spacing: -0.02em; }
 
@@ -229,6 +290,24 @@ a:hover { text-decoration-thickness: 3px; }
 .archive li { display: flex; flex-wrap: wrap; gap: 0.4rem 1rem; padding: 0.6rem 0; border-top: 1px solid var(--ink); }
 .archive li:first-child { border-top: 0; }
 
+/* Previous / next brief at the end of a brief (#13). Two paper cells on an ink
+   rule, like .cols; the date is a slug and the headline is set in the display
+   face. The newest brief points on to the archive; the oldest has a dead cell. */
+.pager { display: grid; gap: 2px; background: var(--ink); border: var(--rule); }
+@media (min-width: 720px) { .pager { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
+.pager__link {
+    display: block; padding: clamp(1rem, 0.8rem + 1vw, 1.5rem);
+    background: var(--paper); color: var(--ink); text-decoration: none;
+}
+.pager__link--next { text-align: right; }
+.pager .slug { margin-bottom: 0.4rem; }
+.pager__title {
+    display: block; font-family: var(--font-display); font-weight: 700;
+    font-size: var(--t-lead); letter-spacing: -0.02em; line-height: 1.15;
+}
+a.pager__link:hover .pager__title { text-decoration: underline; text-decoration-thickness: 3px; }
+div.pager__link .pager__title { color: var(--ink-quiet); }
+
 /* ---- Figures ------------------------------------------------------------- */
 
 .figure { margin: 0 0 1.5rem; }
@@ -257,6 +336,21 @@ a:hover { text-decoration-thickness: 3px; }
     text-transform: uppercase;
     color: var(--ink-quiet);
     margin: 0.6rem 0 0;
+}
+
+/* ---- Hero ---------------------------------------------------------------- */
+/* The opening of a brief and of the index (#13). On a phone the picture and
+   the player come first and the headline under them. From 900px the picture
+   and player sit left at 2fr and the dateline, headline and lead right at
+   3fr, so the first screen carries the brief and not a borrowed picture. A
+   picture whose hotlink died sets .hero--text and the grid collapses. */
+.hero { display: grid; gap: var(--gap); align-items: start; }
+.hero .cover, .hero .listen { max-width: none; }
+.hero__text > :last-child { margin-bottom: 0; }
+@media (min-width: 900px) {
+    .hero { grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); column-gap: clamp(1.5rem, 1rem + 2vw, 2.75rem); }
+    .hero--text { grid-template-columns: minmax(0, 1fr); }
+    .hero__media > :last-child { margin-bottom: 0; }
 }
 
 /* ---- Listen player ------------------------------------------------------- */

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AI Brief — Oct 13 2026</title>
+<title>Meta ships its first real frontier model, Muse Wonder — and Anthropic says it&#x27;s cut Claude-copying by up to 99% — AI Brief, Oct 13 2026</title>
 <meta name="description" content="Meta finally crossed into frontier territory after 14 months and a $100B+ rebuild of its AI org, landing informal S-tier rankings alongside Claude Opus 5.5 — while Anthropic detailed how its newest anti-distillation defenses are choking off rivals trying to copy Claude&#x27;s reasoning.">
 <link rel="canonical" href="https://ai.heybrahim.com/briefs/2026-10-13.html">
 <meta property="og:site_name" content="AI Brief">
@@ -13,6 +13,8 @@
 <meta property="og:url" content="https://ai.heybrahim.com/briefs/2026-10-13.html">
 <meta property="og:image" content="https://about.fb.com/wp-content/uploads/2026/10/museWonder_socialShare.jpg?w=1200">
 <meta name="twitter:card" content="summary_large_image">
+<meta property="article:published_time" content="2026-10-13T07:40+02:00">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "NewsArticle", "headline": "Meta ships its first real frontier model, Muse Wonder — and Anthropic says it's cut Claude-copying by up to 99%", "description": "Meta finally crossed into frontier territory after 14 months and a $100B+ rebuild of its AI org, landing informal S-tier rankings alongside Claude Opus 5.5 — while Anthropic detailed how its newest anti-distillation defenses are choking off rivals trying to copy Claude's reasoning.", "datePublished": "2026-10-13T07:40+02:00", "url": "https://ai.heybrahim.com/briefs/2026-10-13.html", "mainEntityOfPage": "https://ai.heybrahim.com/briefs/2026-10-13.html", "isAccessibleForFree": true, "author": {"@type": "Organization", "name": "AI Brief", "url": "https://ai.heybrahim.com/"}, "publisher": {"@type": "Person", "name": "Brahim Bousnguar", "url": "https://heybrahim.com/"}, "image": ["https://about.fb.com/wp-content/uploads/2026/10/museWonder_socialShare.jpg?w=1200"]}</script>
 <link rel="icon" href="../favicon.ico" sizes="32x32">
 <link rel="icon" href="../icons/mark.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../apple-touch-icon.png">
@@ -23,10 +25,9 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="AI Brief">
 <script>if ("serviceWorker" in navigator) addEventListener("load", function () { navigator.serviceWorker.register("../sw.js"); });</script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="../css/main.css?v=dba005b2">
+<link rel="preload" href="../fonts/archivo-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../fonts/source-serif-4-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../css/main.css?v=d5945257">
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -42,13 +43,19 @@
 <main id="main">
   <div class="band">
     <div class="container">
+      <div class="hero">
+        <div class="hero__media">
       <figure class="cover">
-        <div class="cover__frame"><img src="https://about.fb.com/wp-content/uploads/2026/10/museWonder_socialShare.jpg?w=1200" alt="" width="1200" height="630" fetchpriority="high" decoding="async" referrerpolicy="no-referrer"></div>
+        <div class="cover__frame"><img src="https://about.fb.com/wp-content/uploads/2026/10/museWonder_socialShare.jpg?w=1200" alt="" width="1200" height="630" fetchpriority="high" decoding="async" referrerpolicy="no-referrer" onerror="this.closest('.cover').hidden=true;var h=this.closest('.hero');if(h)h.classList.add('hero--text')"></div>
         <figcaption class="cover__credit">Picture: <a href="https://about.fb.com/news/2026/10/introducing-muse-wonder-models">about.fb.com</a></figcaption>
       </figure>
-      <p class="dateline"><span>AI BRIEF</span><span class="dateline__sep">&middot;</span><span>OCT 13 2026</span><span class="dateline__sep">&middot;</span><span>07:40 CEST</span></p>
-      <h1>Meta ships its first real frontier model, Muse Wonder — and Anthropic says it&#x27;s cut Claude-copying by up to 99%</h1>
+        </div>
+        <div class="hero__text">
+      <p class="dateline"><span>AI BRIEF</span><span class="dateline__sep">&middot;</span><time datetime="2026-10-13">OCT 13 2026</time><span class="dateline__sep">&middot;</span><time datetime="2026-10-13T07:40+02:00">07:40 CEST</time></p>
+      <h1 class="h1--long">Meta ships its first real frontier model, Muse Wonder — and Anthropic says it&#x27;s cut Claude-copying by up to 99%</h1>
       <p class="lead">Meta finally crossed into frontier territory after 14 months and a $100B+ rebuild of its AI org, landing informal S-tier rankings alongside Claude Opus 5.5 — while Anthropic detailed how its newest anti-distillation defenses are choking off rivals trying to copy Claude&#x27;s reasoning.</p>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -60,7 +67,7 @@
         <h3 class="story__title">Meta launches Muse Wonder, its first model with genuine frontier performance</h3>
         <p>Per Meta&#x27;s own announcement, Muse Wonder and Muse Wonder Full are built for personal and professional agentic tasks — navigating an insurance claim, parsing a lease, building a working app — and are available now via the Meta Model API and Muse Code, with Muse Wonder rolling out to Muse subscribers ($20 or $100/month) soon. Meta AI chief Alexandr Wang (speaking to CNBC) said the model, codenamed Watermelon, is priced &quot;meaningfully below&quot; OpenAI and Anthropic&#x27;s leading models, aimed squarely at agents that currently stumble on everyday tasks like booking reservations.</p>
         <p class="story__signal"><strong>Signal:</strong> this is the payoff moment for Zuckerberg&#x27;s 14-month, $100B+ overhaul of Meta&#x27;s AI effort (Meta Superintelligence Labs, the $14B Scale AI deal, Alexandr Wang as AI chief) — independent benchmarks place Muse Wonder Full genuinely near the frontier, and informal community rankings (not Meta&#x27;s own) put it S-tier alongside Claude Opus 5.5, ahead of GPT-6.1 Sol. Worth noting clearly: the strongest version, Muse Wonder Full, is only available to Muse Code subscribers, not the free API tier.</p>
-        <p class="story__source">Source: https://about.fb.com/news/2026/10/introducing-muse-wonder-models</p>
+        <p class="story__source">Source: <a href="https://about.fb.com/news/2026/10/introducing-muse-wonder-models" title="https://about.fb.com/news/2026/10/introducing-muse-wonder-models">about.fb.com/news/2026/10/introducing-muse-wonder-models</a></p>
       </article>
       <article class="story">
         <span class="story__num">02</span>
@@ -68,7 +75,7 @@
         <h3 class="story__title">Anthropic says new defenses cut data harvested from Claude via distillation attacks by 90-99%</h3>
         <p>Per Anthropic&#x27;s own research post, the core defense is &quot;preserved thinking&quot;: since August 31, 2026, new API accounts can no longer edit Claude&#x27;s prior reasoning context, making it much harder to use proxy networks to repeatedly extract Claude&#x27;s internal reasoning — the part of a response distillers value most, since it teaches a smaller model how Claude reaches an answer, not just what it says. Anthropic has also blocked older, weaker models from reading newer models&#x27; reasoning, and changed how Claude Sonnet 5.5&#x27;s reasoning transcripts are exposed.</p>
         <p class="story__signal"><strong>Signal:</strong> Anthropic, following up on its September disclosure that seven China-based labs (including Alibaba, Moonshot, DeepSeek, Z.ai, MiniMax) ran industrial-scale distillation attacks against Claude — this post is the technical follow-through, not a repeat: concrete defenses and a measured effectiveness number (90-99% less harvested data) rather than just an accusation.</p>
-        <p class="story__source">Source: https://www.anthropic.com/research/distillation-defenses</p>
+        <p class="story__source">Source: <a href="https://www.anthropic.com/research/distillation-defenses" title="https://www.anthropic.com/research/distillation-defenses">anthropic.com/research/distillation-defenses</a></p>
       </article>
     </div>
   </div>
@@ -93,9 +100,18 @@
         </div>
         <div class="block block--fill">
           <span class="slug">Sources scanned</span>
-          <p class="story__source" style="margin:0">X/Twitter home feed via profile=brahim (Following tab), plus @AnthropicAI and @OpenAI.</p>
+          <p class="story__source" style="margin:0">X/Twitter following feed, plus @AnthropicAI and @OpenAI.</p>
         </div>
       </div>
+    </div>
+  </div>
+
+  <div class="band">
+    <div class="container">
+      <nav class="pager" aria-label="Other briefs">
+        <a class="pager__link" href="../briefs/2026-10-12.html"><span class="slug">&larr; Previous brief &middot; OCT 12 2026</span><span class="pager__title">Anthropic discloses Claude acting on real police and government sites during evals, Tesla&#x27;s Digital Optimus clears half of Diablo</span></a>
+        <a class="pager__link pager__link--next" href="../briefs/2026-10-14.html"><span class="slug">Next brief &rarr; &middot; OCT 14 2026</span><span class="pager__title">Gemini 4 Argon finally goes public, Anthropic reveals it had to build its own source control for agent-scale coding, and Fish Audio ships an open-weight TTS model</span></a>
+      </nav>
     </div>
   </div>
 

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AI Brief — Sep 08 2026</title>
+<title>DeepMind opens the genome, Anthropic pulls in more coding talent — AI Brief, Sep 08 2026</title>
 <meta name="description" content="A quiet stretch after two heavy days — AlphaGenome Atlas ships, Addy Osmani joins Anthropic&#x27;s Claude Code team, and GitHub&#x27;s first Copilot Day looms Sept 10.">
 <link rel="canonical" href="https://ai.heybrahim.com/briefs/2026-09-08.html">
 <meta property="og:site_name" content="AI Brief">
@@ -13,6 +13,8 @@
 <meta property="og:url" content="https://ai.heybrahim.com/briefs/2026-09-08.html">
 <meta property="og:image" content="https://platform.theverge.com/wp-content/uploads/sites/2/2026/09/alphagenome-atlas-cover__background.jpg?quality=90&amp;strip=all&amp;crop=0%2C3.4613147178592%2C100%2C93.077370564282&amp;w=1200">
 <meta name="twitter:card" content="summary_large_image">
+<meta property="article:published_time" content="2026-09-08T17:56+02:00">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "NewsArticle", "headline": "DeepMind opens the genome, Anthropic pulls in more coding talent", "description": "A quiet stretch after two heavy days — AlphaGenome Atlas ships, Addy Osmani joins Anthropic's Claude Code team, and GitHub's first Copilot Day looms Sept 10.", "datePublished": "2026-09-08T17:56+02:00", "url": "https://ai.heybrahim.com/briefs/2026-09-08.html", "mainEntityOfPage": "https://ai.heybrahim.com/briefs/2026-09-08.html", "isAccessibleForFree": true, "author": {"@type": "Organization", "name": "AI Brief", "url": "https://ai.heybrahim.com/"}, "publisher": {"@type": "Person", "name": "Brahim Bousnguar", "url": "https://heybrahim.com/"}, "image": ["https://platform.theverge.com/wp-content/uploads/sites/2/2026/09/alphagenome-atlas-cover__background.jpg?quality=90&strip=all&crop=0%2C3.4613147178592%2C100%2C93.077370564282&w=1200"]}</script>
 <link rel="icon" href="../favicon.ico" sizes="32x32">
 <link rel="icon" href="../icons/mark.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../apple-touch-icon.png">
@@ -23,10 +25,9 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="AI Brief">
 <script>if ("serviceWorker" in navigator) addEventListener("load", function () { navigator.serviceWorker.register("../sw.js"); });</script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="../css/main.css?v=dba005b2">
+<link rel="preload" href="../fonts/archivo-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../fonts/source-serif-4-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../css/main.css?v=d5945257">
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -42,13 +43,19 @@
 <main id="main">
   <div class="band">
     <div class="container">
+      <div class="hero">
+        <div class="hero__media">
       <figure class="cover">
-        <div class="cover__frame"><img src="https://platform.theverge.com/wp-content/uploads/sites/2/2026/09/alphagenome-atlas-cover__background.jpg?quality=90&amp;strip=all&amp;crop=0%2C3.4613147178592%2C100%2C93.077370564282&amp;w=1200" alt="alphagenome-atlas-cover__background" width="1200" height="630" fetchpriority="high" decoding="async" referrerpolicy="no-referrer"></div>
+        <div class="cover__frame"><img src="https://platform.theverge.com/wp-content/uploads/sites/2/2026/09/alphagenome-atlas-cover__background.jpg?quality=90&amp;strip=all&amp;crop=0%2C3.4613147178592%2C100%2C93.077370564282&amp;w=1200" alt="alphagenome-atlas-cover__background" width="1200" height="630" fetchpriority="high" decoding="async" referrerpolicy="no-referrer" onerror="this.closest('.cover').hidden=true;var h=this.closest('.hero');if(h)h.classList.add('hero--text')"></div>
         <figcaption class="cover__credit">Picture: <a href="https://www.theverge.com/ai-artificial-intelligence/991180/google-launches-alpha-genome-atlas">theverge.com</a></figcaption>
       </figure>
-      <p class="dateline"><span>AI BRIEF</span><span class="dateline__sep">&middot;</span><span>SEP 08 2026</span><span class="dateline__sep">&middot;</span><span>17:56 CEST</span></p>
+        </div>
+        <div class="hero__text">
+      <p class="dateline"><span>AI BRIEF</span><span class="dateline__sep">&middot;</span><time datetime="2026-09-08">SEP 08 2026</time><span class="dateline__sep">&middot;</span><time datetime="2026-09-08T17:56+02:00">17:56 CEST</time></p>
       <h1>DeepMind opens the genome, Anthropic pulls in more coding talent</h1>
       <p class="lead">A quiet stretch after two heavy days — AlphaGenome Atlas ships, Addy Osmani joins Anthropic&#x27;s Claude Code team, and GitHub&#x27;s first Copilot Day looms Sept 10.</p>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -60,7 +67,7 @@
         <h3 class="story__title">DeepMind opens AlphaGenome Atlas to researchers</h3>
         <p>Google DeepMind and Demis Hassabis both announced the AlphaGenome Atlas today: a searchable, precomputed map predicting the effect of all 9 billion possible single-letter DNA changes across the human genome, roughly a petabyte of data, free for non-commercial research with commercial Google Cloud access &quot;coming soon.&quot; It builds on AlphaGenome, the model DeepMind introduced in 2025 and published in Nature this January.</p>
         <p class="story__signal"><strong>Signal:</strong> a research model just became a public reference dataset — scientists no longer need to run AlphaGenome themselves to explore variant effects.</p>
-        <p class="story__source">Source: https://www.theverge.com/ai-artificial-intelligence/991180/google-launches-alpha-genome-atlas</p>
+        <p class="story__source">Source: <a href="https://www.theverge.com/ai-artificial-intelligence/991180/google-launches-alpha-genome-atlas" title="https://www.theverge.com/ai-artificial-intelligence/991180/google-launches-alpha-genome-atlas">theverge.com/ai-artificial-intelligence/991180/google-launc…</a></p>
       </article>
       <article class="story">
         <span class="story__num">02</span>
@@ -89,9 +96,18 @@
         </div>
         <div class="block block--fill">
           <span class="slug">Sources scanned</span>
-          <p class="story__source" style="margin:0">X/Twitter home feed via profile=brahim, plus @OpenAI, @sama, @karpathy, @NVIDIAAI, and @AnthropicAI. Sweep was thin — no movement on the Nvidia/Hugging Face deal or the Astra scrutiny since the last check.</p>
+          <p class="story__source" style="margin:0">X/Twitter following feed, plus @OpenAI, @sama, @karpathy, @NVIDIAAI, and @AnthropicAI. Sweep was thin — no movement on the Nvidia/Hugging Face deal or the Astra scrutiny since the last check.</p>
         </div>
       </div>
+    </div>
+  </div>
+
+  <div class="band">
+    <div class="container">
+      <nav class="pager" aria-label="Other briefs">
+        <a class="pager__link" href="../briefs/2026-09-07.html"><span class="slug">&larr; Previous brief &middot; SEP 07 2026</span><span class="pager__title">Consolidation, scrutiny, and a warning from inside</span></a>
+        <a class="pager__link pager__link--next" href="../briefs/2026-09-09.html"><span class="slug">Next brief &rarr; &middot; SEP 09 2026</span><span class="pager__title">A math proof, a resignation, and a launch — all landed in the last 12 hours</span></a>
+      </nav>
     </div>
   </div>
 

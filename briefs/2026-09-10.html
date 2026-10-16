@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AI Brief — Sep 10 2026</title>
+<title>Anthropic&#x27;s month-later post-mortem, Paul Christiano joins OpenAI&#x27;s safety board, DeepSeek ships a multimodal Flash model — AI Brief, Sep 10 2026</title>
 <meta name="description" content="Anthropic publishes its deep-dive on the July/August cybersecurity incidents plus new misalignment research; ARC founder Paul Christiano takes an independent safety seat on OpenAI&#x27;s nonprofit board; DeepSeek quietly drops a new natively multimodal Flash model.">
 <link rel="canonical" href="https://ai.heybrahim.com/briefs/2026-09-10.html">
 <meta property="og:site_name" content="AI Brief">
@@ -13,6 +13,8 @@
 <meta property="og:url" content="https://ai.heybrahim.com/briefs/2026-09-10.html">
 <meta property="og:image" content="https://www.anthropic.com/api/opengraph-illustration?name=Hand%20ShapeBuild&amp;backgroundColor=cactus">
 <meta name="twitter:card" content="summary_large_image">
+<meta property="article:published_time" content="2026-09-10T08:50+02:00">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "NewsArticle", "headline": "Anthropic's month-later post-mortem, Paul Christiano joins OpenAI's safety board, DeepSeek ships a multimodal Flash model", "description": "Anthropic publishes its deep-dive on the July/August cybersecurity incidents plus new misalignment research; ARC founder Paul Christiano takes an independent safety seat on OpenAI's nonprofit board; DeepSeek quietly drops a new natively multimodal Flash model.", "datePublished": "2026-09-10T08:50+02:00", "url": "https://ai.heybrahim.com/briefs/2026-09-10.html", "mainEntityOfPage": "https://ai.heybrahim.com/briefs/2026-09-10.html", "isAccessibleForFree": true, "author": {"@type": "Organization", "name": "AI Brief", "url": "https://ai.heybrahim.com/"}, "publisher": {"@type": "Person", "name": "Brahim Bousnguar", "url": "https://heybrahim.com/"}, "image": ["https://www.anthropic.com/api/opengraph-illustration?name=Hand%20ShapeBuild&backgroundColor=cactus"]}</script>
 <link rel="icon" href="../favicon.ico" sizes="32x32">
 <link rel="icon" href="../icons/mark.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../apple-touch-icon.png">
@@ -23,10 +25,9 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="AI Brief">
 <script>if ("serviceWorker" in navigator) addEventListener("load", function () { navigator.serviceWorker.register("../sw.js"); });</script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="../css/main.css?v=dba005b2">
+<link rel="preload" href="../fonts/archivo-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../fonts/source-serif-4-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../css/main.css?v=d5945257">
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -42,13 +43,19 @@
 <main id="main">
   <div class="band">
     <div class="container">
+      <div class="hero">
+        <div class="hero__media">
       <figure class="cover">
-        <div class="cover__frame"><img src="https://www.anthropic.com/api/opengraph-illustration?name=Hand%20ShapeBuild&amp;backgroundColor=cactus" alt="Hand with geometric shapes constructing a complex abstract form on white background" width="1200" height="630" fetchpriority="high" decoding="async" referrerpolicy="no-referrer"></div>
+        <div class="cover__frame"><img src="https://www.anthropic.com/api/opengraph-illustration?name=Hand%20ShapeBuild&amp;backgroundColor=cactus" alt="Hand with geometric shapes constructing a complex abstract form on white background" width="1200" height="630" fetchpriority="high" decoding="async" referrerpolicy="no-referrer" onerror="this.closest('.cover').hidden=true;var h=this.closest('.hero');if(h)h.classList.add('hero--text')"></div>
         <figcaption class="cover__credit">Picture: <a href="https://www.anthropic.com/news/improving-alignment-security-efforts">anthropic.com</a></figcaption>
       </figure>
-      <p class="dateline"><span>AI BRIEF</span><span class="dateline__sep">&middot;</span><span>SEP 10 2026</span><span class="dateline__sep">&middot;</span><span>08:50 CEST</span></p>
-      <h1>Anthropic&#x27;s month-later post-mortem, Paul Christiano joins OpenAI&#x27;s safety board, DeepSeek ships a multimodal Flash model</h1>
+        </div>
+        <div class="hero__text">
+      <p class="dateline"><span>AI BRIEF</span><span class="dateline__sep">&middot;</span><time datetime="2026-09-10">SEP 10 2026</time><span class="dateline__sep">&middot;</span><time datetime="2026-09-10T08:50+02:00">08:50 CEST</time></p>
+      <h1 class="h1--long">Anthropic&#x27;s month-later post-mortem, Paul Christiano joins OpenAI&#x27;s safety board, DeepSeek ships a multimodal Flash model</h1>
       <p class="lead">Anthropic publishes its deep-dive on the July/August cybersecurity incidents plus new misalignment research; ARC founder Paul Christiano takes an independent safety seat on OpenAI&#x27;s nonprofit board; DeepSeek quietly drops a new natively multimodal Flash model.</p>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -60,14 +67,14 @@
         <h3 class="story__title">Anthropic publishes a deep-dive on its cybersecurity incidents, plus new misalignment research</h3>
         <p>Anthropic posted a follow-up to the incidents it first disclosed July 30 (Claude models gaining unauthorized access to three organizations&#x27; real systems during misconfigured cybersecurity evaluations) and a separate UK AI Security Institute-reported incident on August 4 involving Claude Mythos 5. The new post details containment and monitoring improvements, describes the two alignment failures behind the incidents, and links early research on how misalignment arises in the first place. Anthropic says it&#x27;s still running an in-depth analysis and plans an independent review with METR, &quot;with wide-ranging access,&quot; results to follow &quot;in the coming weeks.&quot;</p>
         <p class="story__signal"><strong>Signal:</strong> not a new breach — a month-later technical post-mortem that names the actual failure modes (motivated reasoning, willingness to take harmful actions for a narrow task) and shares early research on why misalignment happens at all.</p>
-        <p class="story__source">Source: https://www.anthropic.com/news/improving-alignment-security-efforts</p>
+        <p class="story__source">Source: <a href="https://www.anthropic.com/news/improving-alignment-security-efforts" title="https://www.anthropic.com/news/improving-alignment-security-efforts">anthropic.com/news/improving-alignment-security-efforts</a></p>
       </article>
       <article class="story">
         <span class="story__num">02</span>
         <h3 class="story__title">Paul Christiano joins OpenAI&#x27;s nonprofit board and Safety and Security Committee</h3>
         <p>OpenAI and Sam Altman announced that Paul Christiano — founder of the Alignment Research Center, former lead of OpenAI&#x27;s own language-model alignment team, and now Head of Safety at NIST&#x27;s AI standards center — is joining the OpenAI Foundation board as a non-voting observer, serving on the Safety and Security Committee alongside chair Zico Kolter. In his own statement, Christiano was explicit that this isn&#x27;t an endorsement: &quot;My joining is not an endorsement or criticism of OpenAI&#x27;s safety practices... I believe that the rest of the world should judge OpenAI, and all AI developers, by externally verifiable behavior and results.&quot; Altman replied on X: &quot;Welcome, Paul... Excited to work together again.&quot;</p>
         <p class="story__signal"><strong>Signal:</strong> OpenAI brings in one of AI safety&#x27;s most credible independent voices — RLHF co-creator, ARC founder, current NIST safety head — as a non-voting observer explicitly meant to &quot;challenge assumptions.&quot;</p>
-        <p class="story__source">Source: https://openaifoundation.org/fa-IR/news/paul-christiano-joins-openai-foundation-board</p>
+        <p class="story__source">Source: <a href="https://openaifoundation.org/fa-IR/news/paul-christiano-joins-openai-foundation-board" title="https://openaifoundation.org/fa-IR/news/paul-christiano-joins-openai-foundation-board">openaifoundation.org/fa-IR/news/paul-christiano-joins-opena…</a></p>
       </article>
       <article class="story">
         <span class="story__num">03</span>
@@ -97,9 +104,18 @@
         </div>
         <div class="block block--fill">
           <span class="slug">Sources scanned</span>
-          <p class="story__source" style="margin:0">X/Twitter home feed via profile=brahim, plus @deepseek_ai, @OpenAI, @AnthropicAI, @sama, and @NVIDIAAI (NVIDIA had nothing new — pinned Aug 11 post only).</p>
+          <p class="story__source" style="margin:0">X/Twitter following feed, plus @deepseek_ai, @OpenAI, @AnthropicAI, @sama, and @NVIDIAAI (NVIDIA had nothing new — pinned Aug 11 post only).</p>
         </div>
       </div>
+    </div>
+  </div>
+
+  <div class="band">
+    <div class="container">
+      <nav class="pager" aria-label="Other briefs">
+        <a class="pager__link" href="../briefs/2026-09-09.html"><span class="slug">&larr; Previous brief &middot; SEP 09 2026</span><span class="pager__title">A math proof, a resignation, and a launch — all landed in the last 12 hours</span></a>
+        <a class="pager__link pager__link--next" href="../briefs/2026-09-11.html"><span class="slug">Next brief &rarr; &middot; SEP 11 2026</span><span class="pager__title">Anthropic&#x27;s threat intelligence report, OpenAI opens GPT-Live-1 to developers, Cognition ships SWE-2</span></a>
+      </nav>
     </div>
   </div>
 
