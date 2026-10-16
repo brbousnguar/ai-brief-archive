@@ -110,6 +110,19 @@ heritage site, this ornament is **regular on purpose**: perforation is a machine
 artifact, and evenness is what makes it read as tape rather than decoration. Do
 not randomise it.
 
+### The mark (#11)
+
+The logo is the same tape, cut to a square: a `--paper` strip across `--wire`,
+three `--ink` holes, the last hole larger and `--stamp` red, for the story
+that made the brief. It is chosen over a sheet-of-paper icon (generic) and a
+timeline dot (thin at 16 px) because it stays readable in a browser tab.
+
+`tools/make_icons.py` draws it from rectangles and circles in a 100-unit box,
+so the SVG and every PNG share one geometry. No glyphs, no rounding: iOS
+and Android round the corners themselves. The maskable icon pulls the holes in
+to 72% so Android's circle crop keeps all four. In the masthead it is inlined
+as `.masthead__mark`, 0.9em square, `aria-hidden` (the link text names it).
+
 ## 5. Imagery
 
 Authored inline SVG only, with **one exception: the main picture.** No generated

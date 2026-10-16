@@ -193,7 +193,11 @@ under the heybrahim.com custom domain of the `brbousnguar.github.io` user site.
 publish.py          the only thing that writes HTML
 narrate.py          the only thing that writes audio
 css/main.css        the design system — see DESIGN.md
-js/listen.js        the audio player, the site's only script
+js/listen.js        the audio player
+sw.js               service worker: pages network-first, CSS/JS/icons cached, audio untouched
+site.webmanifest    makes the archive installable (Add to Home Screen)
+tools/make_icons.py draws the mark; writes icons/, apple-touch-icon.png, favicon.ico
+icons/              mark.svg (also inlined in the masthead) + PWA icons, generated
 DESIGN.md           the spec; changes in the same commit as the CSS
 publish-hook.sh     launchd entry point: pull, render, push; then record, push
 tts/                setup.sh + pinned requirements for the voice venv
@@ -211,6 +215,17 @@ a brief, and a same-day re-run that changes the brief adds another. If it ever
 nears GitHub's 1 GB guidance, move `audio/` to release assets or another host.
 
 ## Notes
+
+- **Install it on an iPhone:** open <https://ai.heybrahim.com/> in **Safari** →
+  Share → Add to Home Screen. It opens standalone as "AI Brief". The status bar
+  style is `default` on purpose: `black-translucent` leaves a dead band at the
+  bottom of the screen in standalone mode. iOS reads it at install time, so a
+  change there means deleting and re-adding the icon.
+- **The service worker never shows a stale brief:** pages go to the network
+  first and fall back to the cache only offline. CSS and JS are cached by their
+  `?v=` hash. Audio is left to the browser, since cached range requests break
+  seeking. To change the logo, edit `SHAPES` in `tools/make_icons.py`, run it,
+  then `./publish.py`.
 
 - **The design spec is binding.** `DESIGN.md` lists every component; anything not
   on the list does not exist. Adding a component means adding it to the spec in

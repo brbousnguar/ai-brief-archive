@@ -538,6 +538,32 @@ def _clock(seconds: float) -> str:
     return f"{seconds // 60}:{seconds % 60:02d}"
 
 
+def _mark_svg() -> str:
+    """The logo, inlined in the masthead. tools/make_icons.py draws it (#11)."""
+    path = ROOT / "icons" / "mark.svg"
+    if not path.exists():
+        return ""
+    return path.read_text(encoding="utf-8").strip().replace(
+        "<svg ", '<svg class="masthead__mark" aria-hidden="true" focusable="false" ', 1
+    )
+
+
+def _app_head(up: str) -> str:
+    """Icons, manifest and service worker: the brief installs as an app (#11).
+    Status bar `default`, not `black-translucent`, which leaves a dead band at
+    the bottom of an iPhone in standalone mode."""
+    return f"""<link rel="icon" href="{up}favicon.ico" sizes="32x32">
+<link rel="icon" href="{up}icons/mark.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="{up}apple-touch-icon.png">
+<link rel="manifest" href="{up}site.webmanifest">
+<meta name="theme-color" content="#FBF7EF">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="AI Brief">
+<script>if ("serviceWorker" in navigator) addEventListener("load", function () {{ navigator.serviceWorker.register("{up}sw.js"); }});</script>"""
+
+
 def _asset_version(path: Path) -> str:
     """A cache-buster that changes only when the file does."""
     return hashlib.sha256(path.read_bytes()).hexdigest()[:8] if path.exists() else "0"
@@ -627,7 +653,7 @@ def page(
         # Not a page of its own (the 404): nothing to share or index.
         share = ['<meta name="robots" content="noindex">']
     if audio:
-        # The site's only script. Set html.js before paint so the player card,
+        # The player script. Set html.js before paint so the player card,
         # not the native control, is what renders first; undo it if the
         # script fails to load.
         share.append("<script>document.documentElement.classList.add('js')</script>")
@@ -644,6 +670,7 @@ def page(
 <title>{E(title)}</title>
 <meta name="description" content="{E(description)}">
 {head}
+{_app_head(up)}
 {FONTS}
 <link rel="stylesheet" href="{up}css/main.css?v={_asset_version(ROOT / "css/main.css")}">
 </head>
@@ -652,7 +679,7 @@ def page(
 
 <header class="masthead">
   <div class="container masthead__inner">
-    <p class="masthead__name"><a href="{up}index.html">AI BRIEF</a></p>
+    <p class="masthead__name"><a href="{up}index.html">{_mark_svg()}AI BRIEF</a></p>
     <span class="masthead__tag">Wire archive &middot; brahim bousnguar</span>
   </div>
 </header>
