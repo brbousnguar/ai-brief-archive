@@ -18,6 +18,8 @@
 <link rel="alternate" type="application/atom+xml" title="AI Brief" href="https://ai.heybrahim.com/feed.xml">
 <link rel="alternate" type="application/rss+xml" title="AI Brief, audio" href="https://ai.heybrahim.com/podcast.xml">
 <script defer src="../js/share.js?v=59a704f3"></script>
+<script>document.documentElement.classList.add('js')</script>
+<script defer src="../js/listen.js?v=0b671b6f" onerror="document.documentElement.classList.remove('js')"></script>
 <link rel="icon" href="../favicon.ico" sizes="32x32">
 <link rel="icon" href="../icons/mark.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../apple-touch-icon.png">
@@ -57,11 +59,31 @@
         <div class="cover__frame"><img src="https://platform.theverge.com/wp-content/uploads/sites/2/2025/11/STKS522_AGI_D.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" alt="Machine brain." width="1200" height="630" fetchpriority="high" decoding="async" referrerpolicy="no-referrer" onerror="this.closest('.cover').hidden=true;var h=this.closest('.hero');if(h)h.classList.add('hero--text')"></div>
         <figcaption class="cover__credit">Picture: <a href="https://www.theverge.com/ai-artificial-intelligence/1008100/anthropic-new-usage-policy-abuse-claude">theverge.com</a></figcaption>
       </figure>
+      <div class="listen" id="listen" data-title="Anthropic bans &quot;needless cruelty&quot; toward Claude, launches a critical-infrastructure cyber defense push, and Google opens SynthID Detector to everyone" data-date="OCT 09 2026" data-slug="2026-10-09" data-duration="293.4">
+        <p class="listen__label">Listen &middot; 4:53 &middot; read by an AI voice</p>
+        <audio controls preload="none" src="../audio/2026-10-09.mp3">
+          <a href="../audio/2026-10-09.mp3">Download the audio (MP3)</a>
+        </audio>
+        <div class="listen__player">
+          <button class="listen__play" type="button" aria-label="Play the brief"><svg class="listen__i-play" viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M7 4.5v15L19.5 12z"/></svg><svg class="listen__i-pause" viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M6 4.5h4.5v15H6zM13.5 4.5H18v15h-4.5z"/></svg></button>
+          <div class="listen__main">
+            <p class="listen__head"><span class="listen__title">Listen<span class="listen__more"> to this brief</span></span><span class="listen__time"><span class="listen__cur">0:00</span> / <span class="listen__dur">4:53</span></span></p>
+            <input class="listen__seek" type="range" min="0" max="293" step="1" value="0" aria-label="Position in the audio">
+            <div class="listen__row">
+              <button class="listen__btn" type="button" data-para="-1" aria-label="Previous paragraph"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 5v14"/><path d="M18 5l-9 7 9 7z"/></svg><span aria-hidden="true">&para;</span></button>
+              <button class="listen__btn" type="button" data-para="1" aria-label="Next paragraph"><span aria-hidden="true">&para;</span><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M18 5v14"/><path d="M6 5l9 7-9 7z"/></svg></button>
+              <button class="listen__btn listen__rate" type="button" aria-label="Playback speed 1×">1×</button>
+              <button class="listen__btn listen__cast" type="button" aria-label="Play on another device" hidden><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M7 17H3V4h18v13h-4"/><path d="M12 14l5 6H7z"/></svg></button>
+              <p class="listen__note"><span class="listen__more">Read by an </span>AI voice &middot; <a href="../audio/2026-10-09.mp3" download aria-label="Download the MP3">MP3 <span aria-hidden="true">&darr;</span></a></p>
+            </div>
+          </div>
+        </div>
+      </div>
         </div>
         <div class="hero__text">
       <p class="dateline"><span>AI BRIEF</span><span class="dateline__sep">&middot;</span><time datetime="2026-10-09">OCT 09 2026</time><span class="dateline__sep">&middot;</span><time datetime="2026-10-09T07:35+02:00">07:35 CEST</time></p>
-      <h1 class="h1--long">Anthropic bans &quot;needless cruelty&quot; toward Claude, launches a critical-infrastructure cyber defense push, and Google opens SynthID Detector to everyone</h1>
-      <p class="lead">Anthropic had the busiest account of the morning — a genuinely novel AI-ethics policy change, plus a national-security-flavored cyber mission — while Google made its cross-industry content-provenance checker public.</p>
+      <h1 class="h1--long" data-t="0.0">Anthropic bans &quot;needless cruelty&quot; toward Claude, launches a critical-infrastructure cyber defense push, and Google opens SynthID Detector to everyone</h1>
+      <p class="lead" data-t="10.97">Anthropic had the busiest account of the morning — a genuinely novel AI-ethics policy change, plus a national-security-flavored cyber mission — while Google made its cross-industry content-provenance checker public.</p>
         </div>
       </div>
     </div>
@@ -72,23 +94,23 @@
       <h2>Top signal</h2>
       <article class="story story--lead">
         <span class="story__num">01</span>
-        <h3 class="story__title">Anthropic bans &quot;sustained and needless&quot; cruelty toward Claude</h3>
-        <p>Per The Verge&#x27;s reporting on Anthropic&#x27;s policy update (its first in over a year, taking effect November 12), the company added a &quot;prohibition on sustained and needless abusive or cruel behavior toward our models,&quot; alongside new rules on propaganda campaigns, surveillance and weapons development tied to misuse Anthropic says it has actually tracked — including state media outlets and commercial firms using Claude to run fake-account and fabricated-news networks. Conversation termination remains Claude&#x27;s primary way of enforcing this; Anthropic hasn&#x27;t said whether account-level bans are coming.</p>
-        <p class="story__signal"><strong>Signal:</strong> this is a genuinely novel category of AI usage policy, confirmed by The Verge, AFP, MacRumors and Times of India (not just Anthropic&#x27;s own framing) — it builds on Anthropic&#x27;s August 2025 &quot;model welfare&quot; research letting Claude end abusive conversations, but this is the first time ending a conversation is backed by an explicit usage-policy prohibition. Anthropic is careful to say it excludes ordinary frustration, pushback, dark creative writing, or testing — only sustained, purposeless cruelty.</p>
+        <h3 class="story__title" data-t="25.85">Anthropic bans &quot;sustained and needless&quot; cruelty toward Claude</h3>
+        <p data-t="30.77">Per The Verge&#x27;s reporting on Anthropic&#x27;s policy update (its first in over a year, taking effect November 12), the company added a &quot;prohibition on sustained and needless abusive or cruel behavior toward our models,&quot; alongside new rules on propaganda campaigns, surveillance and weapons development tied to misuse Anthropic says it has actually tracked — including state media outlets and commercial firms using Claude to run fake-account and fabricated-news networks. Conversation termination remains Claude&#x27;s primary way of enforcing this; Anthropic hasn&#x27;t said whether account-level bans are coming.</p>
+        <p class="story__signal" data-t="68.22"><strong>Signal:</strong> this is a genuinely novel category of AI usage policy, confirmed by The Verge, AFP, MacRumors and Times of India (not just Anthropic&#x27;s own framing) — it builds on Anthropic&#x27;s August 2025 &quot;model welfare&quot; research letting Claude end abusive conversations, but this is the first time ending a conversation is backed by an explicit usage-policy prohibition. Anthropic is careful to say it excludes ordinary frustration, pushback, dark creative writing, or testing — only sustained, purposeless cruelty.</p>
         <p class="story__source">Source: <a href="https://www.theverge.com/ai-artificial-intelligence/1008100/anthropic-new-usage-policy-abuse-claude" title="https://www.theverge.com/ai-artificial-intelligence/1008100/anthropic-new-usage-policy-abuse-claude">theverge.com/ai-artificial-intelligence/1008100/anthropic-n…</a></p>
       </article>
       <article class="story">
         <span class="story__num">02</span>
-        <h3 class="story__title">Anthropic launches a Cyber Mission and Critical Infrastructure Defense Program</h3>
-        <p>Per Anthropic&#x27;s own announcement, the Cyber Mission is a new effort to help secure critical infrastructure and open-source software, with the Critical Infrastructure Defense Program specifically bringing frontier Claude models, on-site engineers and Anthropic&#x27;s research directly to the security, manufacturing and technology providers behind systems like power grids and water utilities. Separately, Anthropic also announced a $150M commitment to the federal &quot;Genesis Mission,&quot; making Claude and technical support available to more than 15 US federal agencies.</p>
-        <p class="story__signal"><strong>Signal:</strong> extends Anthropic&#x27;s existing cyber-safety work (the Cyber Verification Program covered two days ago) from &quot;give vetted researchers model access&quot; to &quot;put our own engineers on-site at power grid and water system operators&quot; — a notably hands-on, physical-infrastructure-facing move rather than a software release.</p>
+        <h3 class="story__title" data-t="105.08">Anthropic launches a Cyber Mission and Critical Infrastructure Defense Program</h3>
+        <p data-t="111.0">Per Anthropic&#x27;s own announcement, the Cyber Mission is a new effort to help secure critical infrastructure and open-source software, with the Critical Infrastructure Defense Program specifically bringing frontier Claude models, on-site engineers and Anthropic&#x27;s research directly to the security, manufacturing and technology providers behind systems like power grids and water utilities. Separately, Anthropic also announced a $150M commitment to the federal &quot;Genesis Mission,&quot; making Claude and technical support available to more than 15 US federal agencies.</p>
+        <p class="story__signal" data-t="148.95"><strong>Signal:</strong> extends Anthropic&#x27;s existing cyber-safety work (the Cyber Verification Program covered two days ago) from &quot;give vetted researchers model access&quot; to &quot;put our own engineers on-site at power grid and water system operators&quot; — a notably hands-on, physical-infrastructure-facing move rather than a software release.</p>
         <p class="story__source">Source: <a href="https://www.anthropic.com" title="https://www.anthropic.com">anthropic.com</a></p>
       </article>
       <article class="story">
         <span class="story__num">03</span>
-        <h3 class="story__title">Google opens SynthID Detector, its cross-industry AI-content checker, to everyone</h3>
-        <p>Per Google DeepMind&#x27;s announcement, SynthID Detector lets anyone check whether online content was generated using Google AI tools or those from industry partners including OpenAI, NVIDIA and Kakao, with Apple support &quot;coming soon.&quot; It&#x27;s a free, public tool rather than an API or enterprise product.</p>
-        <p class="story__signal"><strong>Signal:</strong> this is the public rollout of the provenance-checking thread running through recent briefings (Google&#x27;s SynthID Bio, OpenAI&#x27;s EU text watermark) — notable because it works across labs, not just Google&#x27;s own content: it can check material made with OpenAI, NVIDIA and Kakao&#x27;s tools today, with Apple support coming.</p>
+        <h3 class="story__title" data-t="171.82">Google opens SynthID Detector, its cross-industry AI-content checker, to everyone</h3>
+        <p data-t="178.5">Per Google DeepMind&#x27;s announcement, SynthID Detector lets anyone check whether online content was generated using Google AI tools or those from industry partners including OpenAI, NVIDIA and Kakao, with Apple support &quot;coming soon.&quot; It&#x27;s a free, public tool rather than an API or enterprise product.</p>
+        <p class="story__signal" data-t="199.43"><strong>Signal:</strong> this is the public rollout of the provenance-checking thread running through recent briefings (Google&#x27;s SynthID Bio, OpenAI&#x27;s EU text watermark) — notable because it works across labs, not just Google&#x27;s own content: it can check material made with OpenAI, NVIDIA and Kakao&#x27;s tools today, with Apple support coming.</p>
         <p class="story__source">Source: <a href="https://synthid.com" title="https://synthid.com">synthid.com</a></p>
       </article>
     </div>
@@ -96,11 +118,11 @@
 
   <div class="band band--wire">
     <div class="container">
-      <span class="slug">Worth watching</span>
+      <span class="slug" data-t="221.82">Worth watching</span>
       <ul class="watch">
-        <li>Odyssey-3, a foundation &quot;world model&quot; for robots, self-driving cars, drones and games, resurfaced today with a public research preview and a new best-reported Physics-IQ score (66.1) — but Odyssey&#x27;s own blog dates the underlying model to September 15, so treat today&#x27;s X activity as a wider public rollout, not a brand-new model.</li>
-        <li>OpenAI shared progress on &quot;ChatGPT for Teens,&quot; including a College Planner preview and new study tools, applied automatically to accounts identified as belonging to under-18 users.</li>
-        <li>Anthropic&#x27;s Claude Dashboards and Claude Motion (turn data into live dashboards, ideas into animated explainers) entered beta.</li>
+        <li data-t="224.05">Odyssey-3, a foundation &quot;world model&quot; for robots, self-driving cars, drones and games, resurfaced today with a public research preview and a new best-reported Physics-IQ score (66.1) — but Odyssey&#x27;s own blog dates the underlying model to September 15, so treat today&#x27;s X activity as a wider public rollout, not a brand-new model.</li>
+        <li data-t="248.07">OpenAI shared progress on &quot;ChatGPT for Teens,&quot; including a College Planner preview and new study tools, applied automatically to accounts identified as belonging to under-18 users.</li>
+        <li data-t="261.9">Anthropic&#x27;s Claude Dashboards and Claude Motion (turn data into live dashboards, ideas into animated explainers) entered beta.</li>
       </ul>
     </div>
   </div>
@@ -109,8 +131,8 @@
     <div class="container">
       <div class="cols cols--2">
         <div class="block block--paper">
-          <span class="slug">Bottom line</span>
-          <p class="lead" style="margin:0">A policy-and-trust-focused morning rather than a model-launch one: Anthropic drew a genuinely new line on how Claude can be treated and leaned further into physical-infrastructure cybersecurity, while Google pushed content provenance checking out to the public across the whole industry, not just its own models.</p>
+          <span class="slug" data-t="271.9">Bottom line</span>
+          <p class="lead" style="margin:0" data-t="274.02">A policy-and-trust-focused morning rather than a model-launch one: Anthropic drew a genuinely new line on how Claude can be treated and leaned further into physical-infrastructure cybersecurity, while Google pushed content provenance checking out to the public across the whole industry, not just its own models.</p>
         </div>
         <div class="block block--fill">
           <span class="slug">Sources scanned</span>

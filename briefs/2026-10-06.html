@@ -18,6 +18,8 @@
 <link rel="alternate" type="application/atom+xml" title="AI Brief" href="https://ai.heybrahim.com/feed.xml">
 <link rel="alternate" type="application/rss+xml" title="AI Brief, audio" href="https://ai.heybrahim.com/podcast.xml">
 <script defer src="../js/share.js?v=59a704f3"></script>
+<script>document.documentElement.classList.add('js')</script>
+<script defer src="../js/listen.js?v=0b671b6f" onerror="document.documentElement.classList.remove('js')"></script>
 <link rel="icon" href="../favicon.ico" sizes="32x32">
 <link rel="icon" href="../icons/mark.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../apple-touch-icon.png">
@@ -57,11 +59,31 @@
         <div class="cover__frame"><img src="https://cdn.sanity.io/images/sp40emik/production/771cfe201a3d24d7a340c3372e6a1654ec1a6e42-1800x1013.png" alt="" width="1200" height="630" fetchpriority="high" decoding="async" referrerpolicy="no-referrer" onerror="this.closest('.cover').hidden=true;var h=this.closest('.hero');if(h)h.classList.add('hero--text')"></div>
         <figcaption class="cover__credit">Picture: <a href="https://reflection.ai/beam">reflection.ai</a></figcaption>
       </figure>
+      <div class="listen" id="listen" data-title="Reflection AI ships a 501B open-weight model, a 19-year-old&#x27;s $3,499 &quot;personal AI computer&quot; sells out, and OpenAI finally ships text watermarking" data-date="OCT 06 2026" data-slug="2026-10-06" data-duration="290.07">
+        <p class="listen__label">Listen &middot; 4:50 &middot; read by an AI voice</p>
+        <audio controls preload="none" src="../audio/2026-10-06.mp3">
+          <a href="../audio/2026-10-06.mp3">Download the audio (MP3)</a>
+        </audio>
+        <div class="listen__player">
+          <button class="listen__play" type="button" aria-label="Play the brief"><svg class="listen__i-play" viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M7 4.5v15L19.5 12z"/></svg><svg class="listen__i-pause" viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M6 4.5h4.5v15H6zM13.5 4.5H18v15h-4.5z"/></svg></button>
+          <div class="listen__main">
+            <p class="listen__head"><span class="listen__title">Listen<span class="listen__more"> to this brief</span></span><span class="listen__time"><span class="listen__cur">0:00</span> / <span class="listen__dur">4:50</span></span></p>
+            <input class="listen__seek" type="range" min="0" max="290" step="1" value="0" aria-label="Position in the audio">
+            <div class="listen__row">
+              <button class="listen__btn" type="button" data-para="-1" aria-label="Previous paragraph"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 5v14"/><path d="M18 5l-9 7 9 7z"/></svg><span aria-hidden="true">&para;</span></button>
+              <button class="listen__btn" type="button" data-para="1" aria-label="Next paragraph"><span aria-hidden="true">&para;</span><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M18 5v14"/><path d="M6 5l9 7-9 7z"/></svg></button>
+              <button class="listen__btn listen__rate" type="button" aria-label="Playback speed 1×">1×</button>
+              <button class="listen__btn listen__cast" type="button" aria-label="Play on another device" hidden><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M7 17H3V4h18v13h-4"/><path d="M12 14l5 6H7z"/></svg></button>
+              <p class="listen__note"><span class="listen__more">Read by an </span>AI voice &middot; <a href="../audio/2026-10-06.mp3" download aria-label="Download the MP3">MP3 <span aria-hidden="true">&darr;</span></a></p>
+            </div>
+          </div>
+        </div>
+      </div>
         </div>
         <div class="hero__text">
       <p class="dateline"><span>AI BRIEF</span><span class="dateline__sep">&middot;</span><time datetime="2026-10-06">OCT 06 2026</time><span class="dateline__sep">&middot;</span><time datetime="2026-10-06T07:40+02:00">07:40 CEST</time></p>
-      <h1 class="h1--long">Reflection AI ships a 501B open-weight model, a 19-year-old&#x27;s $3,499 &quot;personal AI computer&quot; sells out, and OpenAI finally ships text watermarking</h1>
-      <p class="lead">Another quiet stretch from OpenAI, Anthropic and Google DeepMind&#x27;s own accounts — the actual movement came from a Brooklyn open-weight lab, a teenage hardware founder, and OpenAI complying with an EU rule it had held off on for years.</p>
+      <h1 class="h1--long" data-t="0.0">Reflection AI ships a 501B open-weight model, a 19-year-old&#x27;s $3,499 &quot;personal AI computer&quot; sells out, and OpenAI finally ships text watermarking</h1>
+      <p class="lead" data-t="14.6">Another quiet stretch from OpenAI, Anthropic and Google DeepMind&#x27;s own accounts — the actual movement came from a Brooklyn open-weight lab, a teenage hardware founder, and OpenAI complying with an EU rule it had held off on for years.</p>
         </div>
       </div>
     </div>
@@ -72,23 +94,23 @@
       <h2>Top signal</h2>
       <article class="story story--lead">
         <span class="story__num">01</span>
-        <h3 class="story__title">Reflection AI launches Beam, a 501B open-weight model built for coding and agents</h3>
-        <p>Per Reflection&#x27;s own announcement, Beam is a sparse mixture-of-experts model with 501B total parameters and 23B active per token, trained end-to-end from scratch on 23.8 trillion tokens, with the largest publicly documented RL run the company is aware of (10.5k GB300 GPUs for 4 weeks). Reflection says it advances the &quot;Western open frontier&quot; on coding and agentic tasks, trailing only Chinese open models like Kimi K3 on raw capability. Full weights, technical report and model card are promised later this month under Apache 2.0.</p>
-        <p class="story__signal"><strong>Signal:</strong> a credible new entrant to the open-weight race — Reflection AI was founded by two former Google DeepMind researchers, and Beam&#x27;s pitch is inference efficiency rather than raw scale: competitive with the much larger GLM-5.2 while using 3-4x less inference compute, per Reflection&#x27;s own benchmarks. Weights aren&#x27;t out yet, only a research preview.</p>
+        <h3 class="story__title" data-t="31.38">Reflection AI launches Beam, a 501B open-weight model built for coding and agents</h3>
+        <p data-t="39.0">Per Reflection&#x27;s own announcement, Beam is a sparse mixture-of-experts model with 501B total parameters and 23B active per token, trained end-to-end from scratch on 23.8 trillion tokens, with the largest publicly documented RL run the company is aware of (10.5k GB300 GPUs for 4 weeks). Reflection says it advances the &quot;Western open frontier&quot; on coding and agentic tasks, trailing only Chinese open models like Kimi K3 on raw capability. Full weights, technical report and model card are promised later this month under Apache 2.0.</p>
+        <p class="story__signal" data-t="79.88"><strong>Signal:</strong> a credible new entrant to the open-weight race — Reflection AI was founded by two former Google DeepMind researchers, and Beam&#x27;s pitch is inference efficiency rather than raw scale: competitive with the much larger GLM-5.2 while using 3-4x less inference compute, per Reflection&#x27;s own benchmarks. Weights aren&#x27;t out yet, only a research preview.</p>
         <p class="story__source">Source: <a href="https://reflection.ai/beam" title="https://reflection.ai/beam">reflection.ai/beam</a></p>
       </article>
       <article class="story">
         <span class="story__num">02</span>
-        <h3 class="story__title">A 19-year-old&#x27;s $3,499 &quot;personal AI computer&quot; start-up sells out its first batch</h3>
-        <p>Ghost, a San Francisco startup led by 19-year-old CEO Zain Javaid, came out of stealth with $11M in seed funding (Andreessen Horowitz, Abstract, Audacious Ventures, SV Angel, Nova) and its first product, Core: a screenless, Nvidia-GPU-equipped desktop built to run personal AI agents entirely on local hardware, controlled via a phone app. The first batch sold out within hours at $3,499 each; a second batch is open for registration.</p>
-        <p class="story__signal"><strong>Signal:</strong> a genuine funded launch, not vaporware — a16z-led seed round, named founders, a real ship date (Oct 31) — and notable as a hardware bet that local-only, no-cloud-dependency AI agents are worth a premium price today.</p>
+        <h3 class="story__title" data-t="104.4">A 19-year-old&#x27;s $3,499 &quot;personal AI computer&quot; start-up sells out its first batch</h3>
+        <p data-t="113.17">Ghost, a San Francisco startup led by 19-year-old CEO Zain Javaid, came out of stealth with $11M in seed funding (Andreessen Horowitz, Abstract, Audacious Ventures, SV Angel, Nova) and its first product, Core: a screenless, Nvidia-GPU-equipped desktop built to run personal AI agents entirely on local hardware, controlled via a phone app. The first batch sold out within hours at $3,499 each; a second batch is open for registration.</p>
+        <p class="story__signal" data-t="147.15"><strong>Signal:</strong> a genuine funded launch, not vaporware — a16z-led seed round, named founders, a real ship date (Oct 31) — and notable as a hardware bet that local-only, no-cloud-dependency AI agents are worth a premium price today.</p>
         <p class="story__source">Source: <a href="https://siliconangle.com/2026/10/05/ai-agent-hardware-startup-ghost-led-by-its-19-year-old-founder-raises-11m" title="https://siliconangle.com/2026/10/05/ai-agent-hardware-startup-ghost-led-by-its-19-year-old-founder-raises-11m">siliconangle.com/2026/10/05/ai-agent-hardware-startup-ghost…</a></p>
       </article>
       <article class="story">
         <span class="story__num">03</span>
-        <h3 class="story__title">OpenAI ships text watermarking it had held back for years, citing EU rules</h3>
-        <p>Per OpenAI&#x27;s own post, the watermark embeds an invisible statistical signal in generated text that can only answer &quot;was this likely generated by an OpenAI model&quot; — not a universal AI detector — and OpenAI continues to flag that current text watermarking technology has significant limitations. Image and audio provenance tools remain unchanged and publicly available.</p>
-        <p class="story__signal"><strong>Signal:</strong> a notable reversal — OpenAI had a working text watermark since at least 2022 and chose not to release it over robustness and fairness concerns; today&#x27;s move is compliance with the EU AI Act&#x27;s Article 50 (in force since August), which Anthropic already complied with in August. OpenAI is explicit that the mark is easily defeated by translation or heavy rewriting.</p>
+        <h3 class="story__title" data-t="165.15">OpenAI ships text watermarking it had held back for years, citing EU rules</h3>
+        <p data-t="171.2">Per OpenAI&#x27;s own post, the watermark embeds an invisible statistical signal in generated text that can only answer &quot;was this likely generated by an OpenAI model&quot; — not a universal AI detector — and OpenAI continues to flag that current text watermarking technology has significant limitations. Image and audio provenance tools remain unchanged and publicly available.</p>
+        <p class="story__signal" data-t="197.25"><strong>Signal:</strong> a notable reversal — OpenAI had a working text watermark since at least 2022 and chose not to release it over robustness and fairness concerns; today&#x27;s move is compliance with the EU AI Act&#x27;s Article 50 (in force since August), which Anthropic already complied with in August. OpenAI is explicit that the mark is easily defeated by translation or heavy rewriting.</p>
         <p class="story__source">Source: <a href="https://openai.com/index/eu-text-provenance" title="https://openai.com/index/eu-text-provenance">openai.com/index/eu-text-provenance</a></p>
       </article>
     </div>
@@ -96,11 +118,11 @@
 
   <div class="band band--wire">
     <div class="container">
-      <span class="slug">Worth watching</span>
+      <span class="slug" data-t="223.78">Worth watching</span>
       <ul class="watch">
-        <li>Google Drive and Docs now natively support Markdown files — preview, open in Docs, edit and comment without converting the file first.</li>
-        <li>Cloudflare&#x27;s decision models Clef and Clef-flash (released Oct 1, Jev-API compatible, Apache 2.0) are still generating developer discussion as an efficient alternative to full LLM calls for routing/classification tasks inside agents.</li>
-        <li>The &quot;I gave Claude N hours&quot; genre of marathon creative-build videos (a Windows XP recreation, generative music) kept circulating on X over the weekend — a builder/meme trend, not an official product.</li>
+        <li data-t="226.0">Google Drive and Docs now natively support Markdown files — preview, open in Docs, edit and comment without converting the file first.</li>
+        <li data-t="235.6">Cloudflare&#x27;s decision models Clef and Clef-flash (released Oct 1, Jev-API compatible, Apache 2.0) are still generating developer discussion as an efficient alternative to full LLM calls for routing/classification tasks inside agents.</li>
+        <li data-t="252.72">The &quot;I gave Claude N hours&quot; genre of marathon creative-build videos (a Windows XP recreation, generative music) kept circulating on X over the weekend — a builder/meme trend, not an official product.</li>
       </ul>
     </div>
   </div>
@@ -109,8 +131,8 @@
     <div class="container">
       <div class="cols cols--2">
         <div class="block block--paper">
-          <span class="slug">Bottom line</span>
-          <p class="lead" style="margin:0">For the third briefing in a row, OpenAI, Anthropic and Google DeepMind&#x27;s own feeds stayed quiet — the news kept coming from the edges: a well-pedigreed open-model challenger, a hardware bet on local-only AI, and a regulatory compliance move OpenAI had resisted for years.</p>
+          <span class="slug" data-t="268.57">Bottom line</span>
+          <p class="lead" style="margin:0" data-t="270.7">For the third briefing in a row, OpenAI, Anthropic and Google DeepMind&#x27;s own feeds stayed quiet — the news kept coming from the edges: a well-pedigreed open-model challenger, a hardware bet on local-only AI, and a regulatory compliance move OpenAI had resisted for years.</p>
         </div>
         <div class="block block--fill">
           <span class="slug">Sources scanned</span>

@@ -18,6 +18,8 @@
 <link rel="alternate" type="application/atom+xml" title="AI Brief" href="https://ai.heybrahim.com/feed.xml">
 <link rel="alternate" type="application/rss+xml" title="AI Brief, audio" href="https://ai.heybrahim.com/podcast.xml">
 <script defer src="../js/share.js?v=59a704f3"></script>
+<script>document.documentElement.classList.add('js')</script>
+<script defer src="../js/listen.js?v=0b671b6f" onerror="document.documentElement.classList.remove('js')"></script>
 <link rel="icon" href="../favicon.ico" sizes="32x32">
 <link rel="icon" href="../icons/mark.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../apple-touch-icon.png">
@@ -57,11 +59,31 @@
         <div class="cover__frame"><img src="https://9to5mac.com/wp-content/uploads/sites/6/2026/09/muse-agent.webp?resize=1200,628" alt="" width="1200" height="630" fetchpriority="high" decoding="async" referrerpolicy="no-referrer" onerror="this.closest('.cover').hidden=true;var h=this.closest('.hero');if(h)h.classList.add('hero--text')"></div>
         <figcaption class="cover__credit">Picture: <a href="https://9to5mac.com/2026/09/08/meta-ai-launches-muse-personal-agent-including-a-new-mobile-app-for-iphone">9to5mac.com</a> &middot; story 03</figcaption>
       </figure>
+      <div class="listen" id="listen" data-title="A math proof, a resignation, and a launch — all landed in the last 12 hours" data-date="SEP 09 2026" data-slug="2026-09-09" data-duration="241.23">
+        <p class="listen__label">Listen &middot; 4:01 &middot; read by an AI voice</p>
+        <audio controls preload="none" src="../audio/2026-09-09.mp3">
+          <a href="../audio/2026-09-09.mp3">Download the audio (MP3)</a>
+        </audio>
+        <div class="listen__player">
+          <button class="listen__play" type="button" aria-label="Play the brief"><svg class="listen__i-play" viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M7 4.5v15L19.5 12z"/></svg><svg class="listen__i-pause" viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M6 4.5h4.5v15H6zM13.5 4.5H18v15h-4.5z"/></svg></button>
+          <div class="listen__main">
+            <p class="listen__head"><span class="listen__title">Listen<span class="listen__more"> to this brief</span></span><span class="listen__time"><span class="listen__cur">0:00</span> / <span class="listen__dur">4:01</span></span></p>
+            <input class="listen__seek" type="range" min="0" max="241" step="1" value="0" aria-label="Position in the audio">
+            <div class="listen__row">
+              <button class="listen__btn" type="button" data-para="-1" aria-label="Previous paragraph"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 5v14"/><path d="M18 5l-9 7 9 7z"/></svg><span aria-hidden="true">&para;</span></button>
+              <button class="listen__btn" type="button" data-para="1" aria-label="Next paragraph"><span aria-hidden="true">&para;</span><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M18 5v14"/><path d="M6 5l9 7-9 7z"/></svg></button>
+              <button class="listen__btn listen__rate" type="button" aria-label="Playback speed 1×">1×</button>
+              <button class="listen__btn listen__cast" type="button" aria-label="Play on another device" hidden><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M7 17H3V4h18v13h-4"/><path d="M12 14l5 6H7z"/></svg></button>
+              <p class="listen__note"><span class="listen__more">Read by an </span>AI voice &middot; <a href="../audio/2026-09-09.mp3" download aria-label="Download the MP3">MP3 <span aria-hidden="true">&darr;</span></a></p>
+            </div>
+          </div>
+        </div>
+      </div>
         </div>
         <div class="hero__text">
       <p class="dateline"><span>AI BRIEF</span><span class="dateline__sep">&middot;</span><time datetime="2026-09-09">SEP 09 2026</time><span class="dateline__sep">&middot;</span><time datetime="2026-09-09T07:20+02:00">07:20 CEST</time></p>
-      <h1>A math proof, a resignation, and a launch — all landed in the last 12 hours</h1>
-      <p class="lead">OpenAI claims a solved Millennium Prize problem, clouded by a credit dispute; an Anthropic researcher quits warning the labs are &quot;gambling with our lives&quot;; and Meta ships Muse, its personal AI agent app.</p>
+      <h1 data-t="0.0">A math proof, a resignation, and a launch — all landed in the last 12 hours</h1>
+      <p class="lead" data-t="5.92">OpenAI claims a solved Millennium Prize problem, clouded by a credit dispute; an Anthropic researcher quits warning the labs are &quot;gambling with our lives&quot;; and Meta ships Muse, its personal AI agent app.</p>
         </div>
       </div>
     </div>
@@ -73,23 +95,23 @@
       <article class="story story--lead">
         <span class="story__num">01</span>
         <a class="daycount" href="../stories/openai-navier-stokes.html">new angle</a>
-        <h3 class="story__title">OpenAI says its AI solved the Navier-Stokes Millennium Prize Problem</h3>
-        <p>OpenAI announced its system produced an analytical proof and Lean-verified formalization that a smooth fluid at rest can develop a singularity in finite time, resolving one of the Clay Institute&#x27;s Millennium Prize problems. Per OpenAI&#x27;s own writeup, roughly 10,000 concurrent agents worked the problem starting September 1st, reaching the result about 88 hours later on September 5th, with Lean formalization taking a further 17 hours via GPT-6 Astra; Axios reports the compute cost ran into the millions of dollars. OpenAI says it won&#x27;t claim the $1M prize. The announcement is shadowed by controversy: per Nature and Axios, OpenAI started the push after hearing rumors that mathematicians Levent Alpöge (Harvard) and Tristan Buckmaster (NYU) had solved a version of the problem using Anthropic&#x27;s models; on X, Sam Altman and OpenAI&#x27;s Sebastien Bubeck both posted defending how the release was handled after questions about Alpöge&#x27;s authorship credit.</p>
-        <p class="story__signal"><strong>Signal:</strong> a genuine first — computer-generated proof of a 200-year-old open problem — immediately tangled up in a credit dispute over unpublished outside work.</p>
+        <h3 class="story__title" data-t="21.25">OpenAI says its AI solved the Navier-Stokes Millennium Prize Problem</h3>
+        <p data-t="27.0">OpenAI announced its system produced an analytical proof and Lean-verified formalization that a smooth fluid at rest can develop a singularity in finite time, resolving one of the Clay Institute&#x27;s Millennium Prize problems. Per OpenAI&#x27;s own writeup, roughly 10,000 concurrent agents worked the problem starting September 1st, reaching the result about 88 hours later on September 5th, with Lean formalization taking a further 17 hours via GPT-6 Astra; Axios reports the compute cost ran into the millions of dollars. OpenAI says it won&#x27;t claim the $1M prize. The announcement is shadowed by controversy: per Nature and Axios, OpenAI started the push after hearing rumors that mathematicians Levent Alpöge (Harvard) and Tristan Buckmaster (NYU) had solved a version of the problem using Anthropic&#x27;s models; on X, Sam Altman and OpenAI&#x27;s Sebastien Bubeck both posted defending how the release was handled after questions about Alpöge&#x27;s authorship credit.</p>
+        <p class="story__signal" data-t="93.75"><strong>Signal:</strong> a genuine first — computer-generated proof of a 200-year-old open problem — immediately tangled up in a credit dispute over unpublished outside work.</p>
         <p class="story__source">Source: <a href="https://openai.com/index/navier-stokes-solution" title="https://openai.com/index/navier-stokes-solution">openai.com/index/navier-stokes-solution</a></p>
       </article>
       <article class="story">
         <span class="story__num">02</span>
-        <h3 class="story__title">Anthropic researcher resigns, says labs are &quot;gambling with our lives&quot;</h3>
-        <p>Jacob Coxon posted on X that he resigned from Anthropic, writing &quot;I spent the last three years doing pretraining research at both OpenAI and Anthropic. Neither company is acting responsibly. They are racing straight to self-improving superintelligence and gambling with our lives.&quot; The Wall Street Journal confirmed the resignation, reporting Coxon is leaving the industry entirely over fears the labs are building self-improving systems they won&#x27;t be able to control. It&#x27;s trending on X as one of today&#x27;s top news items.</p>
-        <p class="story__signal"><strong>Signal:</strong> an insider with three years of pretraining work at both OpenAI and Anthropic just said neither company is acting responsibly.</p>
+        <h3 class="story__title" data-t="106.05">Anthropic researcher resigns, says labs are &quot;gambling with our lives&quot;</h3>
+        <p data-t="111.22">Jacob Coxon posted on X that he resigned from Anthropic, writing &quot;I spent the last three years doing pretraining research at both OpenAI and Anthropic. Neither company is acting responsibly. They are racing straight to self-improving superintelligence and gambling with our lives.&quot; The Wall Street Journal confirmed the resignation, reporting Coxon is leaving the industry entirely over fears the labs are building self-improving systems they won&#x27;t be able to control. It&#x27;s trending on X as one of today&#x27;s top news items.</p>
+        <p class="story__signal" data-t="144.28"><strong>Signal:</strong> an insider with three years of pretraining work at both OpenAI and Anthropic just said neither company is acting responsibly.</p>
         <p class="story__source">Source: <a href="https://www.wsj.com/tech/ai/anthropic-researcher-quits-over-out-of-control-ai-fears-707b7628" title="https://www.wsj.com/tech/ai/anthropic-researcher-quits-over-out-of-control-ai-fears-707b7628">wsj.com/tech/ai/anthropic-researcher-quits-over-out-of-cont…</a></p>
       </article>
       <article class="story">
         <span class="story__num">03</span>
-        <h3 class="story__title">Meta launches Muse, a personal AI agent app</h3>
-        <p>Meta and its Muse account posted the launch on X; AP and 9to5Mac confirm it&#x27;s a dedicated app (iOS live now, more platforms coming) plus WhatsApp integration, for users 18+, US-only at launch. It runs on Muse Spark 1.3, the model Meta shipped six days earlier, and Meta is pitching tasks like booking travel, drafting emails, and turning a saved recipe into a grocery list. Free with weekly limits; paid tier unlocks more.</p>
-        <p class="story__signal"><strong>Signal:</strong> Meta&#x27;s consumer answer to agentic AI ships as a standalone app, not just a chatbot feature.</p>
+        <h3 class="story__title" data-t="154.55">Meta launches Muse, a personal AI agent app</h3>
+        <p data-t="158.8">Meta and its Muse account posted the launch on X; AP and 9to5Mac confirm it&#x27;s a dedicated app (iOS live now, more platforms coming) plus WhatsApp integration, for users 18+, US-only at launch. It runs on Muse Spark 1.3, the model Meta shipped six days earlier, and Meta is pitching tasks like booking travel, drafting emails, and turning a saved recipe into a grocery list. Free with weekly limits; paid tier unlocks more.</p>
+        <p class="story__signal" data-t="187.05"><strong>Signal:</strong> Meta&#x27;s consumer answer to agentic AI ships as a standalone app, not just a chatbot feature.</p>
         <p class="story__source">Source: <a href="https://9to5mac.com/2026/09/08/meta-ai-launches-muse-personal-agent-including-a-new-mobile-app-for-iphone" title="https://9to5mac.com/2026/09/08/meta-ai-launches-muse-personal-agent-including-a-new-mobile-app-for-iphone">9to5mac.com/2026/09/08/meta-ai-launches-muse-personal-agent…</a></p>
       </article>
     </div>
@@ -97,10 +119,10 @@
 
   <div class="band band--wire">
     <div class="container">
-      <span class="slug">Worth watching</span>
+      <span class="slug" data-t="195.32">Worth watching</span>
       <ul class="watch">
-        <li>Astra piloted a robot with a paint brush and camera to paint the Golden Gate Bridge in real life, improving its technique over repeated attempts — Sam Altman reposted it saying &quot;i want one!&quot; (continuation of the Astra rollout thread, not new scrutiny).</li>
-        <li>Nous Research&#x27;s Hermes now has first-class support in DHH&#x27;s Omarchy Linux distro.</li>
+        <li data-t="197.55">Astra piloted a robot with a paint brush and camera to paint the Golden Gate Bridge in real life, improving its technique over repeated attempts — Sam Altman reposted it saying &quot;i want one!&quot; (continuation of the Astra rollout thread, not new scrutiny).</li>
+        <li data-t="214.32">Nous Research&#x27;s Hermes now has first-class support in DHH&#x27;s Omarchy Linux distro.</li>
       </ul>
     </div>
   </div>
@@ -109,8 +131,8 @@
     <div class="container">
       <div class="cols cols--2">
         <div class="block block--paper">
-          <span class="slug">Bottom line</span>
-          <p class="lead" style="margin:0">Three genuinely separate threads broke since yesterday: a landmark (if contested) math result from OpenAI, a pointed insider resignation from Anthropic over the superintelligence race, and Meta&#x27;s push into agentic consumer AI with Muse.</p>
+          <span class="slug" data-t="221.93">Bottom line</span>
+          <p class="lead" style="margin:0" data-t="224.05">Three genuinely separate threads broke since yesterday: a landmark (if contested) math result from OpenAI, a pointed insider resignation from Anthropic over the superintelligence race, and Meta&#x27;s push into agentic consumer AI with Muse.</p>
         </div>
         <div class="block block--fill">
           <span class="slug">Sources scanned</span>

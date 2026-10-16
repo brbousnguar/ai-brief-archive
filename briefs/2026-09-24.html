@@ -18,6 +18,8 @@
 <link rel="alternate" type="application/atom+xml" title="AI Brief" href="https://ai.heybrahim.com/feed.xml">
 <link rel="alternate" type="application/rss+xml" title="AI Brief, audio" href="https://ai.heybrahim.com/podcast.xml">
 <script defer src="../js/share.js?v=59a704f3"></script>
+<script>document.documentElement.classList.add('js')</script>
+<script defer src="../js/listen.js?v=0b671b6f" onerror="document.documentElement.classList.remove('js')"></script>
 <link rel="icon" href="../favicon.ico" sizes="32x32">
 <link rel="icon" href="../icons/mark.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../apple-touch-icon.png">
@@ -57,11 +59,31 @@
         <div class="cover__frame"><img src="https://helios-i.mashable.com/imagery/articles/05vWicEAUQgquADyZkHb1OL/hero-image.fill.size_1200x675.v1790208567.jpg" alt="" width="1200" height="630" fetchpriority="high" decoding="async" referrerpolicy="no-referrer" onerror="this.closest('.cover').hidden=true;var h=this.closest('.hero');if(h)h.classList.add('hero--text')"></div>
         <figcaption class="cover__credit">Picture: <a href="https://mashable.com/tech/everything-announced-meta-connect-2026">mashable.com</a></figcaption>
       </figure>
+      <div class="listen" id="listen" data-title="Meta Connect puts Muse at the center of Meta&#x27;s whole AI bet; Anthropic&#x27;s new biolab has Claude find a CRISPR-like enzyme system" data-date="SEP 24 2026" data-slug="2026-09-24" data-duration="306.85">
+        <p class="listen__label">Listen &middot; 5:07 &middot; read by an AI voice</p>
+        <audio controls preload="none" src="../audio/2026-09-24.mp3">
+          <a href="../audio/2026-09-24.mp3">Download the audio (MP3)</a>
+        </audio>
+        <div class="listen__player">
+          <button class="listen__play" type="button" aria-label="Play the brief"><svg class="listen__i-play" viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M7 4.5v15L19.5 12z"/></svg><svg class="listen__i-pause" viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M6 4.5h4.5v15H6zM13.5 4.5H18v15h-4.5z"/></svg></button>
+          <div class="listen__main">
+            <p class="listen__head"><span class="listen__title">Listen<span class="listen__more"> to this brief</span></span><span class="listen__time"><span class="listen__cur">0:00</span> / <span class="listen__dur">5:07</span></span></p>
+            <input class="listen__seek" type="range" min="0" max="306" step="1" value="0" aria-label="Position in the audio">
+            <div class="listen__row">
+              <button class="listen__btn" type="button" data-para="-1" aria-label="Previous paragraph"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 5v14"/><path d="M18 5l-9 7 9 7z"/></svg><span aria-hidden="true">&para;</span></button>
+              <button class="listen__btn" type="button" data-para="1" aria-label="Next paragraph"><span aria-hidden="true">&para;</span><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M18 5v14"/><path d="M6 5l9 7-9 7z"/></svg></button>
+              <button class="listen__btn listen__rate" type="button" aria-label="Playback speed 1×">1×</button>
+              <button class="listen__btn listen__cast" type="button" aria-label="Play on another device" hidden><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M7 17H3V4h18v13h-4"/><path d="M12 14l5 6H7z"/></svg></button>
+              <p class="listen__note"><span class="listen__more">Read by an </span>AI voice &middot; <a href="../audio/2026-09-24.mp3" download aria-label="Download the MP3">MP3 <span aria-hidden="true">&darr;</span></a></p>
+            </div>
+          </div>
+        </div>
+      </div>
         </div>
         <div class="hero__text">
       <p class="dateline"><span>AI BRIEF</span><span class="dateline__sep">&middot;</span><time datetime="2026-09-24">SEP 24 2026</time><span class="dateline__sep">&middot;</span><time datetime="2026-09-24T17:30+02:00">17:30 CEST</time></p>
-      <h1 class="h1--long">Meta Connect puts Muse at the center of Meta&#x27;s whole AI bet; Anthropic&#x27;s new biolab has Claude find a CRISPR-like enzyme system</h1>
-      <p class="lead">Zuckerberg&#x27;s Meta Connect keynote reframed the company&#x27;s glasses and hardware line entirely around Muse; Anthropic&#x27;s new molecular biology lab had roughly 950 Claude agents autonomously flag a previously unknown enzyme system in bacteriophage DNA; and OpenAI and Google DeepMind each shipped narrower, more workmanlike updates the same day.</p>
+      <h1 class="h1--long" data-t="0.0">Meta Connect puts Muse at the center of Meta&#x27;s whole AI bet; Anthropic&#x27;s new biolab has Claude find a CRISPR-like enzyme system</h1>
+      <p class="lead" data-t="9.32">Zuckerberg&#x27;s Meta Connect keynote reframed the company&#x27;s glasses and hardware line entirely around Muse; Anthropic&#x27;s new molecular biology lab had roughly 950 Claude agents autonomously flag a previously unknown enzyme system in bacteriophage DNA; and OpenAI and Google DeepMind each shipped narrower, more workmanlike updates the same day.</p>
         </div>
       </div>
     </div>
@@ -72,30 +94,30 @@
       <h2>Top signal</h2>
       <article class="story story--lead">
         <span class="story__num">01</span>
-        <h3 class="story__title">Meta Connect 2026: Muse becomes the center of Meta&#x27;s entire AI and hardware strategy</h3>
-        <p>Per Mashable&#x27;s keynote recap, Zuckerberg held a live demo talking to his Muse assistant (&quot;Agrippa&quot;) through Meta&#x27;s glasses, introduced Muse Voice for customizing the assistant&#x27;s voice, and had it search his calendar for a &quot;handheld device&quot; the team is building. AI at Meta&#x27;s own account additionally unveiled Muse Realtime Avatar, turning Muse&#x27;s real-time voice into an interactive on-screen avatar. New partnerships with Shopify and Expedia were also announced, with more said to be coming.</p>
-        <p class="story__signal"><strong>Signal:</strong> this isn&#x27;t a new product so much as a repositioning — glasses, avatars and partnerships are now framed as extensions of one assistant, Muse, rather than separate bets. Zuckerberg said he expects Muse to become a &quot;superintelligence&quot; used by billions; that ambition now has to carry the whole keynote&#x27;s weight.</p>
+        <h3 class="story__title" data-t="34.02">Meta Connect 2026: Muse becomes the center of Meta&#x27;s entire AI and hardware strategy</h3>
+        <p data-t="41.9">Per Mashable&#x27;s keynote recap, Zuckerberg held a live demo talking to his Muse assistant (&quot;Agrippa&quot;) through Meta&#x27;s glasses, introduced Muse Voice for customizing the assistant&#x27;s voice, and had it search his calendar for a &quot;handheld device&quot; the team is building. AI at Meta&#x27;s own account additionally unveiled Muse Realtime Avatar, turning Muse&#x27;s real-time voice into an interactive on-screen avatar. New partnerships with Shopify and Expedia were also announced, with more said to be coming.</p>
+        <p class="story__signal" data-t="71.45"><strong>Signal:</strong> this isn&#x27;t a new product so much as a repositioning — glasses, avatars and partnerships are now framed as extensions of one assistant, Muse, rather than separate bets. Zuckerberg said he expects Muse to become a &quot;superintelligence&quot; used by billions; that ambition now has to carry the whole keynote&#x27;s weight.</p>
         <p class="story__source">Source: <a href="https://mashable.com/tech/everything-announced-meta-connect-2026" title="https://mashable.com/tech/everything-announced-meta-connect-2026">mashable.com/tech/everything-announced-meta-connect-2026</a></p>
       </article>
       <article class="story">
         <span class="story__num">02</span>
-        <h3 class="story__title">Anthropic&#x27;s new molecular biology lab: Claude autonomously finds a CRISPR-like enzyme system</h3>
-        <p>Per Anthropic&#x27;s own post and The Verge, this is the first result from Anthropic&#x27;s newly launched wet lab: over 21 hours, nearly 950 Claude agents worked through 210 million tokens of DNA sequence data before one flagged an unusual repeating pattern next to an odd-looking reverse-transcriptase gene. Lab testing confirmed a previously uncharacterized enzyme system in bacteriophage DNA, which Anthropic calls &quot;array-associated reverse transcriptases&quot; (ART) — its repeat structure resembles a CRISPR array, though what the system actually does is not yet known, and the preprint has not been peer-reviewed.</p>
-        <p class="story__signal"><strong>Signal:</strong> this is Anthropic explicitly using an AI-discovery result to make its case for Claude&#x27;s scientific value as the company approaches a public listing — a genuinely novel finding, but also a company blog post doing double duty as investor pitch.</p>
+        <h3 class="story__title" data-t="93.08">Anthropic&#x27;s new molecular biology lab: Claude autonomously finds a CRISPR-like enzyme system</h3>
+        <p data-t="100.35">Per Anthropic&#x27;s own post and The Verge, this is the first result from Anthropic&#x27;s newly launched wet lab: over 21 hours, nearly 950 Claude agents worked through 210 million tokens of DNA sequence data before one flagged an unusual repeating pattern next to an odd-looking reverse-transcriptase gene. Lab testing confirmed a previously uncharacterized enzyme system in bacteriophage DNA, which Anthropic calls &quot;array-associated reverse transcriptases&quot; (ART) — its repeat structure resembles a CRISPR array, though what the system actually does is not yet known, and the preprint has not been peer-reviewed.</p>
+        <p class="story__signal" data-t="142.62"><strong>Signal:</strong> this is Anthropic explicitly using an AI-discovery result to make its case for Claude&#x27;s scientific value as the company approaches a public listing — a genuinely novel finding, but also a company blog post doing double duty as investor pitch.</p>
         <p class="story__source">Source: <a href="https://www.anthropic.com/news/claude-discovers-novel-enzyme-system" title="https://www.anthropic.com/news/claude-discovers-novel-enzyme-system">anthropic.com/news/claude-discovers-novel-enzyme-system</a></p>
       </article>
       <article class="story">
         <span class="story__num">03</span>
-        <h3 class="story__title">OpenAI ships MentalHealthBench and pushes GPT-6 into ChatGPT Voice</h3>
-        <p>OpenAI&#x27;s MentalHealthBench, co-built with more than 80 licensed psychologists and psychiatrists across 22 countries, evaluates model responses across the full range of mental health conversations — not just crisis scenarios — on safety, context-seeking, user agency and guidance quality, and is being released openly. Separately, OpenAI said ChatGPT Voice can now use plugins (email, calendar, Slack) and run on GPT-6 Astra, Sol or Luna inside ChatGPT Work.</p>
-        <p class="story__signal"><strong>Signal:</strong> a safety-benchmark release paired with a straightforward product rollout — useful, but neither changes the frontier-model conversation the way Monday&#x27;s Sol/Luna launch did.</p>
+        <h3 class="story__title" data-t="160.6">OpenAI ships MentalHealthBench and pushes GPT-6 into ChatGPT Voice</h3>
+        <p data-t="167.15">OpenAI&#x27;s MentalHealthBench, co-built with more than 80 licensed psychologists and psychiatrists across 22 countries, evaluates model responses across the full range of mental health conversations — not just crisis scenarios — on safety, context-seeking, user agency and guidance quality, and is being released openly. Separately, OpenAI said ChatGPT Voice can now use plugins (email, calendar, Slack) and run on GPT-6 Astra, Sol or Luna inside ChatGPT Work.</p>
+        <p class="story__signal" data-t="198.07"><strong>Signal:</strong> a safety-benchmark release paired with a straightforward product rollout — useful, but neither changes the frontier-model conversation the way Monday&#x27;s Sol/Luna launch did.</p>
         <p class="story__source">Source: <a href="https://openai.com/index/introducing-mentalhealthbench" title="https://openai.com/index/introducing-mentalhealthbench">openai.com/index/introducing-mentalhealthbench</a></p>
       </article>
       <article class="story">
         <span class="story__num">04</span>
-        <h3 class="story__title">Google DeepMind breaks its two-week quiet streak with two new text-to-speech models</h3>
-        <p>Per Google&#x27;s own blog, Gemini 3.8 Flash TTS and Flash-Lite TTS let developers design custom character voices and direct line-by-line delivery, now live in Google AI Studio, the Gemini API, Gemini Enterprise, Gemini Notebook and Google Vids. Google says Flash TTS ranks #1 overall on Hume AI&#x27;s Voice Design Benchmark.</p>
-        <p class="story__signal"><strong>Signal:</strong> DeepMind&#x27;s first public move since September 17 is a narrower audio-tooling release, not a Gemini capability jump — worth noting mainly because the account had gone quiet for over a week.</p>
+        <h3 class="story__title" data-t="210.93">Google DeepMind breaks its two-week quiet streak with two new text-to-speech models</h3>
+        <p data-t="217.03">Per Google&#x27;s own blog, Gemini 3.8 Flash TTS and Flash-Lite TTS let developers design custom character voices and direct line-by-line delivery, now live in Google AI Studio, the Gemini API, Gemini Enterprise, Gemini Notebook and Google Vids. Google says Flash TTS ranks #1 overall on Hume AI&#x27;s Voice Design Benchmark.</p>
+        <p class="story__signal" data-t="240.85"><strong>Signal:</strong> DeepMind&#x27;s first public move since September 17 is a narrower audio-tooling release, not a Gemini capability jump — worth noting mainly because the account had gone quiet for over a week.</p>
         <p class="story__source">Source: <a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-8-text-to-speech" title="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-8-text-to-speech">blog.google/innovation-and-ai/models-and-research/gemini-mo…</a></p>
       </article>
     </div>
@@ -103,10 +125,10 @@
 
   <div class="band band--wire">
     <div class="container">
-      <span class="slug">Worth watching</span>
+      <span class="slug" data-t="255.35">Worth watching</span>
       <ul class="watch">
-        <li>Anthropic said global health groups including CEPI, WHO AFRO and INRB Kinshasa are using Claude to help respond to an unusual Ebola variant outbreak in the DRC.</li>
-        <li>Meta CAIO Alexandr Wang posted &quot;i am once again asking for you to download muse&quot; — a personal push for adoption, not new product news.</li>
+        <li data-t="257.57">Anthropic said global health groups including CEPI, WHO AFRO and INRB Kinshasa are using Claude to help respond to an unusual Ebola variant outbreak in the DRC.</li>
+        <li data-t="270.6">Meta CAIO Alexandr Wang posted &quot;i am once again asking for you to download muse&quot; — a personal push for adoption, not new product news.</li>
       </ul>
     </div>
   </div>
@@ -115,8 +137,8 @@
     <div class="container">
       <div class="cols cols--2">
         <div class="block block--paper">
-          <span class="slug">Bottom line</span>
-          <p class="lead" style="margin:0">Two very different kinds of &quot;big move&quot; landed within a day of each other: Meta restructured its entire AI narrative around one assistant at a splashy live keynote, while Anthropic quietly let nearly a thousand Claude agents find something genuinely new in raw DNA data. OpenAI and DeepMind shipped real but smaller updates in between.</p>
+          <span class="slug" data-t="282.05">Bottom line</span>
+          <p class="lead" style="margin:0" data-t="284.18">Two very different kinds of &quot;big move&quot; landed within a day of each other: Meta restructured its entire AI narrative around one assistant at a splashy live keynote, while Anthropic quietly let nearly a thousand Claude agents find something genuinely new in raw DNA data. OpenAI and DeepMind shipped real but smaller updates in between.</p>
         </div>
         <div class="block block--fill">
           <span class="slug">Sources scanned</span>

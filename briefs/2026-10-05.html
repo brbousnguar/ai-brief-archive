@@ -18,6 +18,8 @@
 <link rel="alternate" type="application/atom+xml" title="AI Brief" href="https://ai.heybrahim.com/feed.xml">
 <link rel="alternate" type="application/rss+xml" title="AI Brief, audio" href="https://ai.heybrahim.com/podcast.xml">
 <script defer src="../js/share.js?v=59a704f3"></script>
+<script>document.documentElement.classList.add('js')</script>
+<script defer src="../js/listen.js?v=0b671b6f" onerror="document.documentElement.classList.remove('js')"></script>
 <link rel="icon" href="../favicon.ico" sizes="32x32">
 <link rel="icon" href="../icons/mark.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../apple-touch-icon.png">
@@ -57,11 +59,31 @@
         <div class="cover__frame"><img src="https://ichef.bbci.co.uk/news/1024/branded_news/9a97/live/e8568220-c056-11f1-ba75-170165fdb734.jpg" alt="US President Donald Trump listens to a reporters question in the Oval Office at the White House" width="1200" height="630" fetchpriority="high" decoding="async" referrerpolicy="no-referrer" onerror="this.closest('.cover').hidden=true;var h=this.closest('.hero');if(h)h.classList.add('hero--text')"></div>
         <figcaption class="cover__credit">Picture: <a href="https://www.bbc.com/news/articles/cqj6jenp26zyo">bbc.com</a></figcaption>
       </figure>
+      <div class="listen" id="listen" data-title="Trump creates a &quot;Super Intelligence Force,&quot; Aleph Alpha ships a sovereign European open-weight model, and Altman calms a Cerebras stock scare" data-date="OCT 05 2026" data-slug="2026-10-05" data-duration="283.75">
+        <p class="listen__label">Listen &middot; 4:44 &middot; read by an AI voice</p>
+        <audio controls preload="none" src="../audio/2026-10-05.mp3">
+          <a href="../audio/2026-10-05.mp3">Download the audio (MP3)</a>
+        </audio>
+        <div class="listen__player">
+          <button class="listen__play" type="button" aria-label="Play the brief"><svg class="listen__i-play" viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M7 4.5v15L19.5 12z"/></svg><svg class="listen__i-pause" viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M6 4.5h4.5v15H6zM13.5 4.5H18v15h-4.5z"/></svg></button>
+          <div class="listen__main">
+            <p class="listen__head"><span class="listen__title">Listen<span class="listen__more"> to this brief</span></span><span class="listen__time"><span class="listen__cur">0:00</span> / <span class="listen__dur">4:44</span></span></p>
+            <input class="listen__seek" type="range" min="0" max="283" step="1" value="0" aria-label="Position in the audio">
+            <div class="listen__row">
+              <button class="listen__btn" type="button" data-para="-1" aria-label="Previous paragraph"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 5v14"/><path d="M18 5l-9 7 9 7z"/></svg><span aria-hidden="true">&para;</span></button>
+              <button class="listen__btn" type="button" data-para="1" aria-label="Next paragraph"><span aria-hidden="true">&para;</span><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M18 5v14"/><path d="M6 5l9 7-9 7z"/></svg></button>
+              <button class="listen__btn listen__rate" type="button" aria-label="Playback speed 1×">1×</button>
+              <button class="listen__btn listen__cast" type="button" aria-label="Play on another device" hidden><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M7 17H3V4h18v13h-4"/><path d="M12 14l5 6H7z"/></svg></button>
+              <p class="listen__note"><span class="listen__more">Read by an </span>AI voice &middot; <a href="../audio/2026-10-05.mp3" download aria-label="Download the MP3">MP3 <span aria-hidden="true">&darr;</span></a></p>
+            </div>
+          </div>
+        </div>
+      </div>
         </div>
         <div class="hero__text">
       <p class="dateline"><span>AI BRIEF</span><span class="dateline__sep">&middot;</span><time datetime="2026-10-05">OCT 05 2026</time><span class="dateline__sep">&middot;</span><time datetime="2026-10-05T07:20+02:00">07:20 CEST</time></p>
-      <h1 class="h1--long">Trump creates a &quot;Super Intelligence Force,&quot; Aleph Alpha ships a sovereign European open-weight model, and Altman calms a Cerebras stock scare</h1>
-      <p class="lead">The biggest AI moves since Thursday&#x27;s briefing came from outside the big three labs — a new White House AI task force, a German lab&#x27;s 78B open-weight model release, and a market wobble over OpenAI&#x27;s chip-supplier loyalty — while OpenAI, Anthropic and Google DeepMind&#x27;s own accounts stayed quiet.</p>
+      <h1 class="h1--long" data-t="0.0">Trump creates a &quot;Super Intelligence Force,&quot; Aleph Alpha ships a sovereign European open-weight model, and Altman calms a Cerebras stock scare</h1>
+      <p class="lead" data-t="9.82">The biggest AI moves since Thursday&#x27;s briefing came from outside the big three labs — a new White House AI task force, a German lab&#x27;s 78B open-weight model release, and a market wobble over OpenAI&#x27;s chip-supplier loyalty — while OpenAI, Anthropic and Google DeepMind&#x27;s own accounts stayed quiet.</p>
         </div>
       </div>
     </div>
@@ -72,23 +94,23 @@
       <h2>Top signal</h2>
       <article class="story story--lead">
         <span class="story__num">01</span>
-        <h3 class="story__title">Trump creates a &quot;Super Intelligence Force&quot; and orders the government to call AI &quot;Super Intelligence&quot;</h3>
-        <p>Per multiple outlets, Trump announced the task force — the Super Intelligence Force (SIF) — on Truth Social Sunday, naming Director of National Intelligence Jay Clayton to lead it, with FTC Chair Andrew Ferguson and Pentagon R&amp;E Undersecretary Emil Michael also serving. It will report to Trump and White House Chief of Staff Susie Wiles, and is tasked with coordinating the federal government&#x27;s AI engagement with consumers, public interest groups, religious organizations, infrastructure providers and AI companies. The Washington Post notes it comes amid growing public calls for an AI slowdown.</p>
-        <p class="story__signal"><strong>Signal:</strong> a real escalation of the Trump administration&#x27;s AI posture, not a rumor — confirmed by the Washington Post, CBS, ABC, NBC and the BBC, all citing Trump&#x27;s own Truth Social post. It follows last week&#x27;s &quot;White House Accord on Super Intelligence&quot; with tech CEOs and a September 30 executive order renaming AI to &quot;Super Intelligence&quot; in government communications, so this is the implementation step, not a one-off statement.</p>
+        <h3 class="story__title" data-t="31.05">Trump creates a &quot;Super Intelligence Force&quot; and orders the government to call AI &quot;Super Intelligence&quot;</h3>
+        <p data-t="38.2">Per multiple outlets, Trump announced the task force — the Super Intelligence Force (SIF) — on Truth Social Sunday, naming Director of National Intelligence Jay Clayton to lead it, with FTC Chair Andrew Ferguson and Pentagon R&amp;E Undersecretary Emil Michael also serving. It will report to Trump and White House Chief of Staff Susie Wiles, and is tasked with coordinating the federal government&#x27;s AI engagement with consumers, public interest groups, religious organizations, infrastructure providers and AI companies. The Washington Post notes it comes amid growing public calls for an AI slowdown.</p>
+        <p class="story__signal" data-t="78.83"><strong>Signal:</strong> a real escalation of the Trump administration&#x27;s AI posture, not a rumor — confirmed by the Washington Post, CBS, ABC, NBC and the BBC, all citing Trump&#x27;s own Truth Social post. It follows last week&#x27;s &quot;White House Accord on Super Intelligence&quot; with tech CEOs and a September 30 executive order renaming AI to &quot;Super Intelligence&quot; in government communications, so this is the implementation step, not a one-off statement.</p>
         <p class="story__source">Source: <a href="https://www.bbc.com/news/articles/cqj6jenp26zyo" title="https://www.bbc.com/news/articles/cqj6jenp26zyo">bbc.com/news/articles/cqj6jenp26zyo</a></p>
       </article>
       <article class="story">
         <span class="story__num">02</span>
-        <h3 class="story__title">Aleph Alpha releases Kolibri, a 78B sovereign open-weight model built on European infrastructure</h3>
-        <p>Per Aleph Alpha&#x27;s own announcement, released on German Unity Day (October 3), Kolibri is a 78.1B-parameter mixture-of-experts model (3.46B active per token) supporting up to 1M tokens of context, trained from scratch on infrastructure in Germany and Finland on roughly 20T+ tokens. The weights are open on Hugging Face under Apache 2.0, aimed at government and regulated-industry use where running models on fully-controlled, non-US infrastructure matters.</p>
-        <p class="story__signal"><strong>Signal:</strong> a genuine, verifiable open-weight release from a named European lab — not hype — and it continues the sovereign-AI infrastructure thread from Thursday&#x27;s Palantir/Armada story, this time on the model side rather than hardware.</p>
+        <h3 class="story__title" data-t="108.75">Aleph Alpha releases Kolibri, a 78B sovereign open-weight model built on European infrastructure</h3>
+        <p data-t="117.17">Per Aleph Alpha&#x27;s own announcement, released on German Unity Day (October 3), Kolibri is a 78.1B-parameter mixture-of-experts model (3.46B active per token) supporting up to 1M tokens of context, trained from scratch on infrastructure in Germany and Finland on roughly 20T+ tokens. The weights are open on Hugging Face under Apache 2.0, aimed at government and regulated-industry use where running models on fully-controlled, non-US infrastructure matters.</p>
+        <p class="story__signal" data-t="152.07"><strong>Signal:</strong> a genuine, verifiable open-weight release from a named European lab — not hype — and it continues the sovereign-AI infrastructure thread from Thursday&#x27;s Palantir/Armada story, this time on the model side rather than hardware.</p>
         <p class="story__source">Source: <a href="https://aleph-alpha.com/en/blog/kolibri-has-landed-a-sovereign-open-weight-model" title="https://aleph-alpha.com/en/blog/kolibri-has-landed-a-sovereign-open-weight-model">aleph-alpha.com/en/blog/kolibri-has-landed-a-sovereign-open…</a></p>
       </article>
       <article class="story">
         <span class="story__num">03</span>
-        <h3 class="story__title">Sam Altman talks down &quot;speculation&quot; about OpenAI&#x27;s Cerebras partnership after a stock selloff</h3>
-        <p>Per Yahoo Finance&#x27;s reporting on Altman&#x27;s own X post, he wrote: &quot;There is some speculation about our partnership with Cerebras. Cerebras is a close partner, and we have a deep engagement pushing on the frontiers of speed.&quot; The underlying OpenAI-Cerebras deal is a multi-year, 750MW agreement worth over $10B announced in January, rolling out in phases through 2028 — Altman is also a personal investor in Cerebras, which keeps governance questions attached to his reassurance.</p>
-        <p class="story__signal"><strong>Signal:</strong> a market-moving statement directly from Altman, not a leak — Cerebras stock had fallen roughly 20% over the week on reports that OpenAI&#x27;s new Ultrafast-tier model is deploying on Nvidia rather than Cerebras hardware, then jumped about 7% overnight after his post.</p>
+        <h3 class="story__title" data-t="168.62">Sam Altman talks down &quot;speculation&quot; about OpenAI&#x27;s Cerebras partnership after a stock selloff</h3>
+        <p data-t="176.0">Per Yahoo Finance&#x27;s reporting on Altman&#x27;s own X post, he wrote: &quot;There is some speculation about our partnership with Cerebras. Cerebras is a close partner, and we have a deep engagement pushing on the frontiers of speed.&quot; The underlying OpenAI-Cerebras deal is a multi-year, 750MW agreement worth over $10B announced in January, rolling out in phases through 2028 — Altman is also a personal investor in Cerebras, which keeps governance questions attached to his reassurance.</p>
+        <p class="story__signal" data-t="211.07"><strong>Signal:</strong> a market-moving statement directly from Altman, not a leak — Cerebras stock had fallen roughly 20% over the week on reports that OpenAI&#x27;s new Ultrafast-tier model is deploying on Nvidia rather than Cerebras hardware, then jumped about 7% overnight after his post.</p>
         <p class="story__source">Source: <a href="https://finance.yahoo.com/markets/stocks/articles/cerebras-stock-gets-boost-openai-030754605.html" title="https://finance.yahoo.com/markets/stocks/articles/cerebras-stock-gets-boost-openai-030754605.html">finance.yahoo.com/markets/stocks/articles/cerebras-stock-ge…</a></p>
       </article>
     </div>
@@ -96,10 +118,10 @@
 
   <div class="band band--wire">
     <div class="container">
-      <span class="slug">Worth watching</span>
+      <span class="slug" data-t="231.15">Worth watching</span>
       <ul class="watch">
-        <li>NVIDIA highlighted CoreWeave&#x27;s new &quot;RL Rollouts&quot; tooling, aimed at cutting GPU idle time when reloading model weights during reinforcement-learning post-training.</li>
-        <li>A wave of &quot;I gave Claude N hours&quot; marathon creative-build videos (a Windows XP recreation, generative music/art) went viral on X this weekend — a community trend around extended-autonomy coding runs, not an official product.</li>
+        <li data-t="233.38">NVIDIA highlighted CoreWeave&#x27;s new &quot;RL Rollouts&quot; tooling, aimed at cutting GPU idle time when reloading model weights during reinforcement-learning post-training.</li>
+        <li data-t="244.68">A wave of &quot;I gave Claude N hours&quot; marathon creative-build videos (a Windows XP recreation, generative music/art) went viral on X this weekend — a community trend around extended-autonomy coding runs, not an official product.</li>
       </ul>
     </div>
   </div>
@@ -108,8 +130,8 @@
     <div class="container">
       <div class="cols cols--2">
         <div class="block block--paper">
-          <span class="slug">Bottom line</span>
-          <p class="lead" style="margin:0">With OpenAI, Anthropic and Google DeepMind all quiet since Thursday, the real movement over the long weekend came from outside the big three: Washington&#x27;s AI governance apparatus, a European sovereign model release, and a chip-supply market scare that needed Altman&#x27;s own words to settle.</p>
+          <span class="slug" data-t="262.15">Bottom line</span>
+          <p class="lead" style="margin:0" data-t="264.27">With OpenAI, Anthropic and Google DeepMind all quiet since Thursday, the real movement over the long weekend came from outside the big three: Washington&#x27;s AI governance apparatus, a European sovereign model release, and a chip-supply market scare that needed Altman&#x27;s own words to settle.</p>
         </div>
         <div class="block block--fill">
           <span class="slug">Sources scanned</span>

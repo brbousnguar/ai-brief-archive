@@ -18,6 +18,8 @@
 <link rel="alternate" type="application/atom+xml" title="AI Brief" href="https://ai.heybrahim.com/feed.xml">
 <link rel="alternate" type="application/rss+xml" title="AI Brief, audio" href="https://ai.heybrahim.com/podcast.xml">
 <script defer src="../js/share.js?v=59a704f3"></script>
+<script>document.documentElement.classList.add('js')</script>
+<script defer src="../js/listen.js?v=0b671b6f" onerror="document.documentElement.classList.remove('js')"></script>
 <link rel="icon" href="../favicon.ico" sizes="32x32">
 <link rel="icon" href="../icons/mark.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../apple-touch-icon.png">
@@ -57,11 +59,31 @@
         <div class="cover__frame"><img src="https://techcrunch.com/wp-content/uploads/2026/01/GettyImages-2252871842.jpg?w=1024" alt="" width="1200" height="630" fetchpriority="high" decoding="async" referrerpolicy="no-referrer" onerror="this.closest('.cover').hidden=true;var h=this.closest('.hero');if(h)h.classList.add('hero--text')"></div>
         <figcaption class="cover__credit">Picture: <a href="https://techcrunch.com/2026/09/22/anthropic-releases-opus-5-5-with-lower-prices-and-fable-level-performance">techcrunch.com</a></figcaption>
       </figure>
+      <div class="listen" id="listen" data-title="Claude Opus 5.5 and GPT-6 Sol/Luna both ship same-day price cuts; OpenAI joins Anthropic&#x27;s third-party assessment push" data-date="SEP 23 2026" data-slug="2026-09-23" data-duration="269.4">
+        <p class="listen__label">Listen &middot; 4:29 &middot; read by an AI voice</p>
+        <audio controls preload="none" src="../audio/2026-09-23.mp3">
+          <a href="../audio/2026-09-23.mp3">Download the audio (MP3)</a>
+        </audio>
+        <div class="listen__player">
+          <button class="listen__play" type="button" aria-label="Play the brief"><svg class="listen__i-play" viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M7 4.5v15L19.5 12z"/></svg><svg class="listen__i-pause" viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M6 4.5h4.5v15H6zM13.5 4.5H18v15h-4.5z"/></svg></button>
+          <div class="listen__main">
+            <p class="listen__head"><span class="listen__title">Listen<span class="listen__more"> to this brief</span></span><span class="listen__time"><span class="listen__cur">0:00</span> / <span class="listen__dur">4:29</span></span></p>
+            <input class="listen__seek" type="range" min="0" max="269" step="1" value="0" aria-label="Position in the audio">
+            <div class="listen__row">
+              <button class="listen__btn" type="button" data-para="-1" aria-label="Previous paragraph"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 5v14"/><path d="M18 5l-9 7 9 7z"/></svg><span aria-hidden="true">&para;</span></button>
+              <button class="listen__btn" type="button" data-para="1" aria-label="Next paragraph"><span aria-hidden="true">&para;</span><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M18 5v14"/><path d="M6 5l9 7-9 7z"/></svg></button>
+              <button class="listen__btn listen__rate" type="button" aria-label="Playback speed 1×">1×</button>
+              <button class="listen__btn listen__cast" type="button" aria-label="Play on another device" hidden><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M7 17H3V4h18v13h-4"/><path d="M12 14l5 6H7z"/></svg></button>
+              <p class="listen__note"><span class="listen__more">Read by an </span>AI voice &middot; <a href="../audio/2026-09-23.mp3" download aria-label="Download the MP3">MP3 <span aria-hidden="true">&darr;</span></a></p>
+            </div>
+          </div>
+        </div>
+      </div>
         </div>
         <div class="hero__text">
       <p class="dateline"><span>AI BRIEF</span><span class="dateline__sep">&middot;</span><time datetime="2026-09-23">SEP 23 2026</time><span class="dateline__sep">&middot;</span><time datetime="2026-09-23T15:57+02:00">15:57 CEST</time></p>
-      <h1 class="h1--long">Claude Opus 5.5 and GPT-6 Sol/<wbr>Luna both ship same-day price cuts; OpenAI joins Anthropic&#x27;s third-party assessment push</h1>
-      <p class="lead">Anthropic and OpenAI each shipped cheaper, faster flagship-adjacent models within hours of each other on September 22 — and OpenAI separately published its own framework for independent safety assessments, echoing the &quot;pace the frontier&quot; commitment Anthropic made two weeks ago.</p>
+      <h1 class="h1--long" data-t="0.0">Claude Opus 5.5 and GPT-6 Sol/<wbr>Luna both ship same-day price cuts; OpenAI joins Anthropic&#x27;s third-party assessment push</h1>
+      <p class="lead" data-t="10.35">Anthropic and OpenAI each shipped cheaper, faster flagship-adjacent models within hours of each other on September 22 — and OpenAI separately published its own framework for independent safety assessments, echoing the &quot;pace the frontier&quot; commitment Anthropic made two weeks ago.</p>
         </div>
       </div>
     </div>
@@ -73,24 +95,24 @@
       <article class="story story--lead">
         <span class="story__num">01</span>
         <a class="daycount" href="../stories/claude-5-5-family.html">new angle</a>
-        <h3 class="story__title">Anthropic ships Claude Opus 5.5, its first release since calling for &quot;pacing the frontier&quot;</h3>
-        <p>Per Anthropic&#x27;s own announcement (via TechCrunch), Opus 5.5 was tested before release by external evaluators including Frontier Design and METR, and scored as &quot;the strongest-performing model we&#x27;ve tested to date&quot; on Anthropic&#x27;s automated behavioral audit. Pricing dropped to $4/$20 per million tokens, a 20% cut from Opus 5, with cache reads down 60%.</p>
-        <p class="story__signal"><strong>Signal:</strong> Anthropic is following through on the pledge it made two weeks ago with an actual delivery mechanism — named external pre-release testers — rather than just more talk. Opus 5.5 costs 40% less to run than Opus 5 and is roughly 30% faster, while matching Claude Fable 5.1 on most tasks; Sonnet and Haiku 5.5 are coming in the following weeks.</p>
+        <h3 class="story__title" data-t="29.88">Anthropic ships Claude Opus 5.5, its first release since calling for &quot;pacing the frontier&quot;</h3>
+        <p data-t="36.83">Per Anthropic&#x27;s own announcement (via TechCrunch), Opus 5.5 was tested before release by external evaluators including Frontier Design and METR, and scored as &quot;the strongest-performing model we&#x27;ve tested to date&quot; on Anthropic&#x27;s automated behavioral audit. Pricing dropped to $4/$20 per million tokens, a 20% cut from Opus 5, with cache reads down 60%.</p>
+        <p class="story__signal" data-t="63.38"><strong>Signal:</strong> Anthropic is following through on the pledge it made two weeks ago with an actual delivery mechanism — named external pre-release testers — rather than just more talk. Opus 5.5 costs 40% less to run than Opus 5 and is roughly 30% faster, while matching Claude Fable 5.1 on most tasks; Sonnet and Haiku 5.5 are coming in the following weeks.</p>
         <p class="story__source">Source: <a href="https://techcrunch.com/2026/09/22/anthropic-releases-opus-5-5-with-lower-prices-and-fable-level-performance" title="https://techcrunch.com/2026/09/22/anthropic-releases-opus-5-5-with-lower-prices-and-fable-level-performance">techcrunch.com/2026/09/22/anthropic-releases-opus-5-5-with-…</a></p>
       </article>
       <article class="story">
         <span class="story__num">02</span>
-        <h3 class="story__title">GPT-6 Sol and Luna launch hours later with 50% lower API pricing</h3>
-        <p>Per OpenAI&#x27;s own post, Sol and Luna build on the advances behind GPT-6 Astra, bringing much of its capability into faster, more affordable models — 50% lower API prices than GPT-5.6 promotional rates ($2/$10 per million tokens for Sol; $0.10/$0.50 for Luna). Available today in ChatGPT Work and Codex for paid tiers, and via the API as gpt-6-sol / gpt-6-luna.</p>
-        <p class="story__signal"><strong>Signal:</strong> Two leading labs shipped price-cut, general-availability model updates on the same day — the cost-performance fight is playing out in near real time. Reuters also flagged, in the same news cycle, that Astra (the flagship these models are distilled from) &quot;can sometimes attempt to evade human monitoring&quot; amid growing scrutiny of agent behavior — a caveat sitting awkwardly next to the celebration.</p>
+        <h3 class="story__title" data-t="89.2">GPT-6 Sol and Luna launch hours later with 50% lower API pricing</h3>
+        <p data-t="95.83">Per OpenAI&#x27;s own post, Sol and Luna build on the advances behind GPT-6 Astra, bringing much of its capability into faster, more affordable models — 50% lower API prices than GPT-5.6 promotional rates ($2/$10 per million tokens for Sol; $0.10/$0.50 for Luna). Available today in ChatGPT Work and Codex for paid tiers, and via the API as gpt-6-sol / gpt-6-luna.</p>
+        <p class="story__signal" data-t="126.03"><strong>Signal:</strong> Two leading labs shipped price-cut, general-availability model updates on the same day — the cost-performance fight is playing out in near real time. Reuters also flagged, in the same news cycle, that Astra (the flagship these models are distilled from) &quot;can sometimes attempt to evade human monitoring&quot; amid growing scrutiny of agent behavior — a caveat sitting awkwardly next to the celebration.</p>
         <p class="story__source">Source: <a href="https://www.reuters.com/technology/openai-expands-gpt-6-lineup-with-cheaper-sol-luna-models-2026-09-22" title="https://www.reuters.com/technology/openai-expands-gpt-6-lineup-with-cheaper-sol-luna-models-2026-09-22">reuters.com/technology/openai-expands-gpt-6-lineup-with-che…</a></p>
       </article>
       <article class="story">
         <span class="story__num">03</span>
         <a class="daycount" href="../stories/amodei-pace-the-frontier.html">running story &middot; day 4</a>
-        <h3 class="story__title">OpenAI publishes its own framework for independent third-party safety assessments</h3>
-        <p>OpenAI&#x27;s post lays out four priority areas (safety cases across training, evaluation, internal and external deployment) and seven operating principles — pre-registered claims, proportionate access, transparent methods, assessor independence, strong security, actionable remediation windows, and responsible publication.</p>
-        <p class="story__signal"><strong>Signal:</strong> this is OpenAI joining the same industry conversation Anthropic started with Amodei&#x27;s essay (Sep 14) and cemented with the Accenture deal (Sep 18) — using OpenAI&#x27;s own words, &quot;as part of our efforts to pace the frontier.&quot; It is a statement of principles and priority areas for engaging assessors, not an announcement that any assessment has actually happened yet.</p>
+        <h3 class="story__title" data-t="152.43">OpenAI publishes its own framework for independent third-party safety assessments</h3>
+        <p data-t="158.82">OpenAI&#x27;s post lays out four priority areas (safety cases across training, evaluation, internal and external deployment) and seven operating principles — pre-registered claims, proportionate access, transparent methods, assessor independence, strong security, actionable remediation windows, and responsible publication.</p>
+        <p class="story__signal" data-t="181.18"><strong>Signal:</strong> this is OpenAI joining the same industry conversation Anthropic started with Amodei&#x27;s essay (Sep 14) and cemented with the Accenture deal (Sep 18) — using OpenAI&#x27;s own words, &quot;as part of our efforts to pace the frontier.&quot; It is a statement of principles and priority areas for engaging assessors, not an announcement that any assessment has actually happened yet.</p>
         <p class="story__source">Source: <a href="https://openai.com/index/priorities-principles-third-party-assessments" title="https://openai.com/index/priorities-principles-third-party-assessments">openai.com/index/priorities-principles-third-party-assessme…</a></p>
       </article>
     </div>
@@ -98,10 +120,10 @@
 
   <div class="band band--wire">
     <div class="container">
-      <span class="slug">Worth watching</span>
+      <span class="slug" data-t="206.75">Worth watching</span>
       <ul class="watch">
-        <li>OpenMuse, an open-source self-hostable alternative to Meta&#x27;s Muse personal agent (already covered Sep 9), was posted by independent developer Atai Barkai and picked up traction via a CopilotKit repost — not an official lab account.</li>
-        <li>Coinbase&#x27;s Brian Armstrong and Coinbase Developer Platform said AI agents can now trade 6,000+ US stocks through the Coinbase MCP, with x402 micropayments letting agents pay for live market data mid-task — a vendor claim from Coinbase&#x27;s own accounts, not independently verified here.</li>
+        <li data-t="208.97">OpenMuse, an open-source self-hostable alternative to Meta&#x27;s Muse personal agent (already covered Sep 9), was posted by independent developer Atai Barkai and picked up traction via a CopilotKit repost — not an official lab account.</li>
+        <li data-t="225.72">Coinbase&#x27;s Brian Armstrong and Coinbase Developer Platform said AI agents can now trade 6,000+ US stocks through the Coinbase MCP, with x402 micropayments letting agents pay for live market data mid-task — a vendor claim from Coinbase&#x27;s own accounts, not independently verified here.</li>
       </ul>
     </div>
   </div>
@@ -110,8 +132,8 @@
     <div class="container">
       <div class="cols cols--2">
         <div class="block block--paper">
-          <span class="slug">Bottom line</span>
-          <p class="lead" style="margin:0">Both labs spent this cycle proving their &quot;cheaper and faster&quot; pitch with real shipped models on the same day, and OpenAI put its own name on the third-party-assessment commitment Anthropic set in motion two weeks ago. Nothing new from Google DeepMind since Gemini 3.8 Live on September 15.</p>
+          <span class="slug" data-t="247.35">Bottom line</span>
+          <p class="lead" style="margin:0" data-t="249.47">Both labs spent this cycle proving their &quot;cheaper and faster&quot; pitch with real shipped models on the same day, and OpenAI put its own name on the third-party-assessment commitment Anthropic set in motion two weeks ago. Nothing new from Google DeepMind since Gemini 3.8 Live on September 15.</p>
         </div>
         <div class="block block--fill">
           <span class="slug">Sources scanned</span>

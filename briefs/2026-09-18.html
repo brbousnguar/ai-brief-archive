@@ -18,6 +18,8 @@
 <link rel="alternate" type="application/atom+xml" title="AI Brief" href="https://ai.heybrahim.com/feed.xml">
 <link rel="alternate" type="application/rss+xml" title="AI Brief, audio" href="https://ai.heybrahim.com/podcast.xml">
 <script defer src="../js/share.js?v=59a704f3"></script>
+<script>document.documentElement.classList.add('js')</script>
+<script defer src="../js/listen.js?v=0b671b6f" onerror="document.documentElement.classList.remove('js')"></script>
 <link rel="icon" href="../favicon.ico" sizes="32x32">
 <link rel="icon" href="../icons/mark.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../apple-touch-icon.png">
@@ -57,11 +59,31 @@
         <div class="cover__frame"><img src="https://www-cdn.anthropic.com/images/4zrzovbb/website/9cf3a514384821aeb53ff34d878b210715cd5c06-1200x630.jpg" alt="Anthropic logo" width="1200" height="630" fetchpriority="high" decoding="async" referrerpolicy="no-referrer" onerror="this.closest('.cover').hidden=true;var h=this.closest('.hero');if(h)h.classList.add('hero--text')"></div>
         <figcaption class="cover__credit">Picture: <a href="https://www.anthropic.com/institute/measuring-pace-of-ai-development">anthropic.com</a></figcaption>
       </figure>
+      <div class="listen" id="listen" data-title="Anthropic publishes hard numbers on how much AI already builds AI; OpenAI pushes GPT-6 Astra into law firms" data-date="SEP 18 2026" data-slug="2026-09-18" data-duration="254.78">
+        <p class="listen__label">Listen &middot; 4:15 &middot; read by an AI voice</p>
+        <audio controls preload="none" src="../audio/2026-09-18.mp3">
+          <a href="../audio/2026-09-18.mp3">Download the audio (MP3)</a>
+        </audio>
+        <div class="listen__player">
+          <button class="listen__play" type="button" aria-label="Play the brief"><svg class="listen__i-play" viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M7 4.5v15L19.5 12z"/></svg><svg class="listen__i-pause" viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M6 4.5h4.5v15H6zM13.5 4.5H18v15h-4.5z"/></svg></button>
+          <div class="listen__main">
+            <p class="listen__head"><span class="listen__title">Listen<span class="listen__more"> to this brief</span></span><span class="listen__time"><span class="listen__cur">0:00</span> / <span class="listen__dur">4:15</span></span></p>
+            <input class="listen__seek" type="range" min="0" max="254" step="1" value="0" aria-label="Position in the audio">
+            <div class="listen__row">
+              <button class="listen__btn" type="button" data-para="-1" aria-label="Previous paragraph"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 5v14"/><path d="M18 5l-9 7 9 7z"/></svg><span aria-hidden="true">&para;</span></button>
+              <button class="listen__btn" type="button" data-para="1" aria-label="Next paragraph"><span aria-hidden="true">&para;</span><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M18 5v14"/><path d="M6 5l9 7-9 7z"/></svg></button>
+              <button class="listen__btn listen__rate" type="button" aria-label="Playback speed 1×">1×</button>
+              <button class="listen__btn listen__cast" type="button" aria-label="Play on another device" hidden><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M7 17H3V4h18v13h-4"/><path d="M12 14l5 6H7z"/></svg></button>
+              <p class="listen__note"><span class="listen__more">Read by an </span>AI voice &middot; <a href="../audio/2026-09-18.mp3" download aria-label="Download the MP3">MP3 <span aria-hidden="true">&darr;</span></a></p>
+            </div>
+          </div>
+        </div>
+      </div>
         </div>
         <div class="hero__text">
       <p class="dateline"><span>AI BRIEF</span><span class="dateline__sep">&middot;</span><time datetime="2026-09-18">SEP 18 2026</time><span class="dateline__sep">&middot;</span><time datetime="2026-09-18T08:05+02:00">08:05 CEST</time></p>
-      <h1 class="h1--long">Anthropic publishes hard numbers on how much AI already builds AI; OpenAI pushes GPT-6 Astra into law firms</h1>
-      <p class="lead">Anthropic followed through on Dario Amodei&#x27;s &quot;pace the frontier&quot; essay with a concrete measurement framework — Claude already &quot;leads&quot; 26% of Anthropic&#x27;s own AI R&amp;D — while OpenAI launched Astra for Law, a legal configuration of GPT-6 Astra built around a 230-million-URL case law index.</p>
+      <h1 class="h1--long" data-t="0.0">Anthropic publishes hard numbers on how much AI already builds AI; OpenAI pushes GPT-6 Astra into law firms</h1>
+      <p class="lead" data-t="9.4">Anthropic followed through on Dario Amodei&#x27;s &quot;pace the frontier&quot; essay with a concrete measurement framework — Claude already &quot;leads&quot; 26% of Anthropic&#x27;s own AI R&amp;D — while OpenAI launched Astra for Law, a legal configuration of GPT-6 Astra built around a 230-million-URL case law index.</p>
         </div>
       </div>
     </div>
@@ -73,17 +95,17 @@
       <article class="story story--lead">
         <span class="story__num">01</span>
         <a class="daycount" href="../stories/amodei-pace-the-frontier.html">new angle</a>
-        <h3 class="story__title">Anthropic publishes the first hard numbers on AI building AI</h3>
-        <p>Four days after Dario Amodei&#x27;s &quot;We Must Pace the Frontier&quot; essay, Anthropic published a companion piece proposing three concrete metrics any frontier lab could report: how much AI R&amp;D is done by AI, how well autonomous agents are overseen, and how compute is allocated. Per Anthropic&#x27;s own post, its prototype &quot;R&amp;D Automation Index&quot; found that as of August 2026, Claude already &quot;leads&quot; (completes most of the task end-to-end under human supervision) 26% of Anthropic&#x27;s AI R&amp;D work, with over 90% of that work now at or above the &quot;AI collaborates&quot; level — though Claude is not yet operating fully autonomously on any measured slice of it. Anthropic also disclosed it is running roughly 30,000 autonomous agents inside its own computing environment, which is why it built internal tooling specifically to oversee and intervene on what those agents do.</p>
-        <p class="story__signal"><strong>Signal:</strong> this turns Amodei&#x27;s Sep 14 essay from a warning into a measurement anyone can audit — Anthropic is grading its own homework in public and daring other labs to do the same.</p>
+        <h3 class="story__title" data-t="32.02">Anthropic publishes the first hard numbers on AI building AI</h3>
+        <p data-t="37.12">Four days after Dario Amodei&#x27;s &quot;We Must Pace the Frontier&quot; essay, Anthropic published a companion piece proposing three concrete metrics any frontier lab could report: how much AI R&amp;D is done by AI, how well autonomous agents are overseen, and how compute is allocated. Per Anthropic&#x27;s own post, its prototype &quot;R&amp;D Automation Index&quot; found that as of August 2026, Claude already &quot;leads&quot; (completes most of the task end-to-end under human supervision) 26% of Anthropic&#x27;s AI R&amp;D work, with over 90% of that work now at or above the &quot;AI collaborates&quot; level — though Claude is not yet operating fully autonomously on any measured slice of it. Anthropic also disclosed it is running roughly 30,000 autonomous agents inside its own computing environment, which is why it built internal tooling specifically to oversee and intervene on what those agents do.</p>
+        <p class="story__signal" data-t="97.62"><strong>Signal:</strong> this turns Amodei&#x27;s Sep 14 essay from a warning into a measurement anyone can audit — Anthropic is grading its own homework in public and daring other labs to do the same.</p>
         <p class="story__source">Source: <a href="https://www.anthropic.com/institute/measuring-pace-of-ai-development" title="https://www.anthropic.com/institute/measuring-pace-of-ai-development">anthropic.com/institute/measuring-pace-of-ai-development</a></p>
       </article>
       <article class="story">
         <span class="story__num">02</span>
         <a class="daycount" href="../stories/gpt-6-astra.html">new angle</a>
-        <h3 class="story__title">OpenAI pushes GPT-6 Astra into law firms with a 230-million-document search index</h3>
-        <p>OpenAI launched Astra for Law, a version of GPT-6 Astra configured specifically for legal work, with custom instructions for legal analysis and writing plus a new Legal Search Index covering U.S. case law, statutes, regulations, court rules and administrative decisions across more than 230 million URLs — built partly on CourtListener data from the nonprofit Free Law Project. Early partners named in OpenAI&#x27;s announcement include Sullivan &amp; Cromwell, Ropes &amp; Gray and Cooley, alongside legal-AI platforms Harvey and Legora integrating via API. OpenAI cited a 54% score on the Vals AI Legal Research Bench versus 38.7% for base GPT-6 with web search — a real jump, though independent verification is still early.</p>
-        <p class="story__signal"><strong>Signal:</strong> OpenAI is starting to carve GPT-6 Astra into vertical products rather than just shipping a general model — Am Law 200 firms and legal-tech vendors (Thomson Reuters, iManage, Relativity, Harvey, Legora) are the first target, not consumers.</p>
+        <h3 class="story__title" data-t="111.05">OpenAI pushes GPT-6 Astra into law firms with a 230-million-document search index</h3>
+        <p data-t="118.97">OpenAI launched Astra for Law, a version of GPT-6 Astra configured specifically for legal work, with custom instructions for legal analysis and writing plus a new Legal Search Index covering U.S. case law, statutes, regulations, court rules and administrative decisions across more than 230 million URLs — built partly on CourtListener data from the nonprofit Free Law Project. Early partners named in OpenAI&#x27;s announcement include Sullivan &amp; Cromwell, Ropes &amp; Gray and Cooley, alongside legal-AI platforms Harvey and Legora integrating via API. OpenAI cited a 54% score on the Vals AI Legal Research Bench versus 38.7% for base GPT-6 with web search — a real jump, though independent verification is still early.</p>
+        <p class="story__signal" data-t="171.28"><strong>Signal:</strong> OpenAI is starting to carve GPT-6 Astra into vertical products rather than just shipping a general model — Am Law 200 firms and legal-tech vendors (Thomson Reuters, iManage, Relativity, Harvey, Legora) are the first target, not consumers.</p>
         <p class="story__source">Source: <a href="https://www.abajournal.com/news/article/openai-introduces-new-ai-model-for-law-firms" title="https://www.abajournal.com/news/article/openai-introduces-new-ai-model-for-law-firms">abajournal.com/news/article/openai-introduces-new-ai-model-…</a></p>
       </article>
     </div>
@@ -91,10 +113,10 @@
 
   <div class="band band--wire">
     <div class="container">
-      <span class="slug">Worth watching</span>
+      <span class="slug" data-t="190.6">Worth watching</span>
       <ul class="watch">
-        <li>Palantir CEO Alex Karp argued in a video posted to Palantir&#x27;s account that AI model companies calling for regulation are really asking to be nationalized as &quot;the first line of defense&quot; — a notable jab at rivals&#x27; safety-framework announcements this week, but it&#x27;s Karp&#x27;s framing, not a policy proposal.</li>
-        <li>Slack (via Salesforce&#x27;s Dreamforce/#DF26) introduced &quot;Slackforce Surfaces,&quot; on-demand interactive UI that Slackbot generates from a prompt using Salesforce data — an agentic-UI feature, not confirmed to run on Claude.</li>
+        <li data-t="192.82">Palantir CEO Alex Karp argued in a video posted to Palantir&#x27;s account that AI model companies calling for regulation are really asking to be nationalized as &quot;the first line of defense&quot; — a notable jab at rivals&#x27; safety-framework announcements this week, but it&#x27;s Karp&#x27;s framing, not a policy proposal.</li>
+        <li data-t="213.4">Slack (via Salesforce&#x27;s Dreamforce/#DF26) introduced &quot;Slackforce Surfaces,&quot; on-demand interactive UI that Slackbot generates from a prompt using Salesforce data — an agentic-UI feature, not confirmed to run on Claude.</li>
       </ul>
     </div>
   </div>
@@ -103,8 +125,8 @@
     <div class="container">
       <div class="cols cols--2">
         <div class="block block--paper">
-          <span class="slug">Bottom line</span>
-          <p class="lead" style="margin:0">Both leading labs moved from talk to receipts this cycle: Anthropic quantified exactly how much of its own work AI already does, and OpenAI shipped a real vertical product built on GPT-6 Astra instead of just demoing it. Nothing new from Google DeepMind since Gemini 3.8 Live on Sep 15.</p>
+          <span class="slug" data-t="231.25">Bottom line</span>
+          <p class="lead" style="margin:0" data-t="233.38">Both leading labs moved from talk to receipts this cycle: Anthropic quantified exactly how much of its own work AI already does, and OpenAI shipped a real vertical product built on GPT-6 Astra instead of just demoing it. Nothing new from Google DeepMind since Gemini 3.8 Live on Sep 15.</p>
         </div>
         <div class="block block--fill">
           <span class="slug">Sources scanned</span>

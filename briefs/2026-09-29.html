@@ -18,6 +18,8 @@
 <link rel="alternate" type="application/atom+xml" title="AI Brief" href="https://ai.heybrahim.com/feed.xml">
 <link rel="alternate" type="application/rss+xml" title="AI Brief, audio" href="https://ai.heybrahim.com/podcast.xml">
 <script defer src="../js/share.js?v=59a704f3"></script>
+<script>document.documentElement.classList.add('js')</script>
+<script defer src="../js/listen.js?v=0b671b6f" onerror="document.documentElement.classList.remove('js')"></script>
 <link rel="icon" href="../favicon.ico" sizes="32x32">
 <link rel="icon" href="../icons/mark.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../apple-touch-icon.png">
@@ -57,11 +59,31 @@
         <div class="cover__frame"><img src="https://www-cdn.anthropic.com/images/4zrzovbb/website/eaa6046f4ae8c88e368c3c530c4c1312f7ff6f2e-1200x630.jpg" alt="Anthropic logo" width="1200" height="630" fetchpriority="high" decoding="async" referrerpolicy="no-referrer" onerror="this.closest('.cover').hidden=true;var h=this.closest('.hero');if(h)h.classList.add('hero--text')"></div>
         <figcaption class="cover__credit">Picture: <a href="https://www.anthropic.com/claude-sonnet-5-5">anthropic.com</a></figcaption>
       </figure>
+      <div class="listen" id="listen" data-title="Anthropic ships Claude Sonnet 5.5 overnight; OpenAI&#x27;s DevDay is today" data-date="SEP 29 2026" data-slug="2026-09-29" data-duration="197.15">
+        <p class="listen__label">Listen &middot; 3:17 &middot; read by an AI voice</p>
+        <audio controls preload="none" src="../audio/2026-09-29.mp3">
+          <a href="../audio/2026-09-29.mp3">Download the audio (MP3)</a>
+        </audio>
+        <div class="listen__player">
+          <button class="listen__play" type="button" aria-label="Play the brief"><svg class="listen__i-play" viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M7 4.5v15L19.5 12z"/></svg><svg class="listen__i-pause" viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M6 4.5h4.5v15H6zM13.5 4.5H18v15h-4.5z"/></svg></button>
+          <div class="listen__main">
+            <p class="listen__head"><span class="listen__title">Listen<span class="listen__more"> to this brief</span></span><span class="listen__time"><span class="listen__cur">0:00</span> / <span class="listen__dur">3:17</span></span></p>
+            <input class="listen__seek" type="range" min="0" max="197" step="1" value="0" aria-label="Position in the audio">
+            <div class="listen__row">
+              <button class="listen__btn" type="button" data-para="-1" aria-label="Previous paragraph"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 5v14"/><path d="M18 5l-9 7 9 7z"/></svg><span aria-hidden="true">&para;</span></button>
+              <button class="listen__btn" type="button" data-para="1" aria-label="Next paragraph"><span aria-hidden="true">&para;</span><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M18 5v14"/><path d="M6 5l9 7-9 7z"/></svg></button>
+              <button class="listen__btn listen__rate" type="button" aria-label="Playback speed 1×">1×</button>
+              <button class="listen__btn listen__cast" type="button" aria-label="Play on another device" hidden><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M7 17H3V4h18v13h-4"/><path d="M12 14l5 6H7z"/></svg></button>
+              <p class="listen__note"><span class="listen__more">Read by an </span>AI voice &middot; <a href="../audio/2026-09-29.mp3" download aria-label="Download the MP3">MP3 <span aria-hidden="true">&darr;</span></a></p>
+            </div>
+          </div>
+        </div>
+      </div>
         </div>
         <div class="hero__text">
       <p class="dateline"><span>AI BRIEF</span><span class="dateline__sep">&middot;</span><time datetime="2026-09-29">SEP 29 2026</time><span class="dateline__sep">&middot;</span><time datetime="2026-09-29T07:10+02:00">07:10 CEST</time></p>
-      <h1>Anthropic ships Claude Sonnet 5.5 overnight; OpenAI&#x27;s DevDay is today</h1>
-      <p class="lead">Anthropic quietly released Claude Sonnet 5.5 late yesterday, a faster and cheaper mid-tier model, while OpenAI&#x27;s DevDay 2026 keynote — teased since yesterday&#x27;s briefing — happens today with persistent-agent rumors swirling.</p>
+      <h1 data-t="0.0">Anthropic ships Claude Sonnet 5.5 overnight; OpenAI&#x27;s DevDay is today</h1>
+      <p class="lead" data-t="6.28">Anthropic quietly released Claude Sonnet 5.5 late yesterday, a faster and cheaper mid-tier model, while OpenAI&#x27;s DevDay 2026 keynote — teased since yesterday&#x27;s briefing — happens today with persistent-agent rumors swirling.</p>
         </div>
       </div>
     </div>
@@ -73,17 +95,17 @@
       <article class="story story--lead">
         <span class="story__num">01</span>
         <a class="daycount" href="../stories/claude-5-5-family.html">new angle</a>
-        <h3 class="story__title">Anthropic ships Claude Sonnet 5.5, the second model in the 5.5 family</h3>
-        <p>Per Anthropic&#x27;s own announcement, Sonnet 5.5 is priced the same as Sonnet 5 ($2/$10 per million tokens) but runs about 30% faster and uses meaningfully fewer tokens per task, coming close to Opus 5.5&#x27;s performance on several benchmarks despite being the cheaper, mid-tier option. It&#x27;s live now on the Claude Platform, AWS, Google Cloud and Azure; Claude Haiku 5.5 is coming &quot;in the following weeks&quot; to complete the family.</p>
-        <p class="story__signal"><strong>Signal:</strong> this lands almost exactly a week after Opus 5.5 (Sep 22) and follows the same playbook — same price as its predecessor, meaningfully faster, fewer tokens burned per task. It&#x27;s also the first Sonnet-tier model to ship with the cybersecurity safeguards previously reserved for Anthropic&#x27;s top-tier systems, a notable safety-posture upgrade for a &quot;workhorse&quot; model.</p>
+        <h3 class="story__title" data-t="23.88">Anthropic ships Claude Sonnet 5.5, the second model in the 5.5 family</h3>
+        <p data-t="30.48">Per Anthropic&#x27;s own announcement, Sonnet 5.5 is priced the same as Sonnet 5 ($2/$10 per million tokens) but runs about 30% faster and uses meaningfully fewer tokens per task, coming close to Opus 5.5&#x27;s performance on several benchmarks despite being the cheaper, mid-tier option. It&#x27;s live now on the Claude Platform, AWS, Google Cloud and Azure; Claude Haiku 5.5 is coming &quot;in the following weeks&quot; to complete the family.</p>
+        <p class="story__signal" data-t="60.05"><strong>Signal:</strong> this lands almost exactly a week after Opus 5.5 (Sep 22) and follows the same playbook — same price as its predecessor, meaningfully faster, fewer tokens burned per task. It&#x27;s also the first Sonnet-tier model to ship with the cybersecurity safeguards previously reserved for Anthropic&#x27;s top-tier systems, a notable safety-posture upgrade for a &quot;workhorse&quot; model.</p>
         <p class="story__source">Source: <a href="https://www.anthropic.com/claude-sonnet-5-5" title="https://www.anthropic.com/claude-sonnet-5-5">anthropic.com/claude-sonnet-5-5</a></p>
       </article>
       <article class="story">
         <span class="story__num">02</span>
         <a class="daycount" href="../stories/openai-devday-2026.html">new angle</a>
-        <h3 class="story__title">OpenAI&#x27;s DevDay 2026 keynote is today, with rumors pointing at a persistent AI agent codenamed &quot;Aeon&quot;</h3>
-        <p>OpenAI posted a 12-second &quot;Get ready.&quot; teaser overnight, and Sam Altman separately wrote he&#x27;s &quot;pretty excited for DevDay tomorrow [today] — we have found a new thing.&quot; The Verge reports persistent rumors of an agent called Aeon, OpenAI&#x27;s answer to Meta&#x27;s Muse and Grok Bot, alongside unconfirmed chatter about a Jony Ive hardware update and a possible GPT-6 Astra refresh. None of this is confirmed by OpenAI itself yet — the keynote hasn&#x27;t happened as of this briefing.</p>
-        <p class="story__signal"><strong>Signal:</strong> yesterday this was just a teased date on OpenAI&#x27;s own page; overnight it firmed into a specific rumor — a Meta Muse/Grok Bot-style always-on agent — and Sam Altman posted his own tease (&quot;we have found a new thing&quot;), which is as close to lab confirmation as exists right now. Still worth treating as rumor until OpenAI&#x27;s own keynote, later today.</p>
+        <h3 class="story__title" data-t="86.58">OpenAI&#x27;s DevDay 2026 keynote is today, with rumors pointing at a persistent AI agent codenamed &quot;Aeon&quot;</h3>
+        <p data-t="95.25">OpenAI posted a 12-second &quot;Get ready.&quot; teaser overnight, and Sam Altman separately wrote he&#x27;s &quot;pretty excited for DevDay tomorrow [today] — we have found a new thing.&quot; The Verge reports persistent rumors of an agent called Aeon, OpenAI&#x27;s answer to Meta&#x27;s Muse and Grok Bot, alongside unconfirmed chatter about a Jony Ive hardware update and a possible GPT-6 Astra refresh. None of this is confirmed by OpenAI itself yet — the keynote hasn&#x27;t happened as of this briefing.</p>
+        <p class="story__signal" data-t="125.05"><strong>Signal:</strong> yesterday this was just a teased date on OpenAI&#x27;s own page; overnight it firmed into a specific rumor — a Meta Muse/Grok Bot-style always-on agent — and Sam Altman posted his own tease (&quot;we have found a new thing&quot;), which is as close to lab confirmation as exists right now. Still worth treating as rumor until OpenAI&#x27;s own keynote, later today.</p>
         <p class="story__source">Source: <a href="https://www.theverge.com/ai-artificial-intelligence/1001590/openai-devday-2026-aeon-ai-agent" title="https://www.theverge.com/ai-artificial-intelligence/1001590/openai-devday-2026-aeon-ai-agent">theverge.com/ai-artificial-intelligence/1001590/openai-devd…</a></p>
       </article>
     </div>
@@ -91,10 +113,10 @@
 
   <div class="band band--wire">
     <div class="container">
-      <span class="slug">Worth watching</span>
+      <span class="slug" data-t="149.47">Worth watching</span>
       <ul class="watch">
-        <li>Tencent AI&#x27;s AI-Infra-Guard added &quot;ClawScan,&quot; a one-line-in-chat safety check for new OpenClaw Skills that flags malicious skills, exposed credentials and known CVEs — a third-party open-source tool, not an official OpenClaw feature.</li>
-        <li>Google DeepMind has posted nothing new since the Gemini 3.8 Flash TTS models on September 23.</li>
+        <li data-t="151.7">Tencent AI&#x27;s AI-Infra-Guard added &quot;ClawScan,&quot; a one-line-in-chat safety check for new OpenClaw Skills that flags malicious skills, exposed credentials and known CVEs — a third-party open-source tool, not an official OpenClaw feature.</li>
+        <li data-t="168.65">Google DeepMind has posted nothing new since the Gemini 3.8 Flash TTS models on September 23.</li>
       </ul>
     </div>
   </div>
@@ -103,8 +125,8 @@
     <div class="container">
       <div class="cols cols--2">
         <div class="block block--paper">
-          <span class="slug">Bottom line</span>
-          <p class="lead" style="margin:0">Anthropic keeps shipping on a steady weekly cadence (Opus 5.5 → Sonnet 5.5), while OpenAI has spent the last 24 hours building anticipation rather than shipping — the real news from DevDay lands later today.</p>
+          <span class="slug" data-t="178.1">Bottom line</span>
+          <p class="lead" style="margin:0" data-t="180.22">Anthropic keeps shipping on a steady weekly cadence (Opus 5.5 → Sonnet 5.5), while OpenAI has spent the last 24 hours building anticipation rather than shipping — the real news from DevDay lands later today.</p>
         </div>
         <div class="block block--fill">
           <span class="slug">Sources scanned</span>

@@ -16,6 +16,8 @@
 <link rel="alternate" type="application/atom+xml" title="AI Brief" href="https://ai.heybrahim.com/feed.xml">
 <link rel="alternate" type="application/rss+xml" title="AI Brief, audio" href="https://ai.heybrahim.com/podcast.xml">
 <script defer src="../js/share.js?v=59a704f3"></script>
+<script>document.documentElement.classList.add('js')</script>
+<script defer src="../js/listen.js?v=0b671b6f" onerror="document.documentElement.classList.remove('js')"></script>
 <link rel="icon" href="../favicon.ico" sizes="32x32">
 <link rel="icon" href="../icons/mark.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../apple-touch-icon.png">
@@ -49,9 +51,29 @@
 <main id="main">
   <div class="band">
     <div class="container">
+      <div class="listen" id="listen" data-title="Anthropic merges Claude chat and Cowork into one interface, adds Docs and Slides; OpenAI publishes its first misalignment disclosure framework" data-date="SEP 17 2026" data-slug="2026-09-17" data-duration="215.38">
+        <p class="listen__label">Listen &middot; 3:35 &middot; read by an AI voice</p>
+        <audio controls preload="none" src="../audio/2026-09-17.mp3">
+          <a href="../audio/2026-09-17.mp3">Download the audio (MP3)</a>
+        </audio>
+        <div class="listen__player">
+          <button class="listen__play" type="button" aria-label="Play the brief"><svg class="listen__i-play" viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M7 4.5v15L19.5 12z"/></svg><svg class="listen__i-pause" viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M6 4.5h4.5v15H6zM13.5 4.5H18v15h-4.5z"/></svg></button>
+          <div class="listen__main">
+            <p class="listen__head"><span class="listen__title">Listen<span class="listen__more"> to this brief</span></span><span class="listen__time"><span class="listen__cur">0:00</span> / <span class="listen__dur">3:35</span></span></p>
+            <input class="listen__seek" type="range" min="0" max="215" step="1" value="0" aria-label="Position in the audio">
+            <div class="listen__row">
+              <button class="listen__btn" type="button" data-para="-1" aria-label="Previous paragraph"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 5v14"/><path d="M18 5l-9 7 9 7z"/></svg><span aria-hidden="true">&para;</span></button>
+              <button class="listen__btn" type="button" data-para="1" aria-label="Next paragraph"><span aria-hidden="true">&para;</span><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M18 5v14"/><path d="M6 5l9 7-9 7z"/></svg></button>
+              <button class="listen__btn listen__rate" type="button" aria-label="Playback speed 1×">1×</button>
+              <button class="listen__btn listen__cast" type="button" aria-label="Play on another device" hidden><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M7 17H3V4h18v13h-4"/><path d="M12 14l5 6H7z"/></svg></button>
+              <p class="listen__note"><span class="listen__more">Read by an </span>AI voice &middot; <a href="../audio/2026-09-17.mp3" download aria-label="Download the MP3">MP3 <span aria-hidden="true">&darr;</span></a></p>
+            </div>
+          </div>
+        </div>
+      </div>
       <p class="dateline"><span>AI BRIEF</span><span class="dateline__sep">&middot;</span><time datetime="2026-09-17">SEP 17 2026</time><span class="dateline__sep">&middot;</span><time datetime="2026-09-17T07:22+02:00">07:22 CEST</time></p>
-      <h1 class="h1--long">Anthropic merges Claude chat and Cowork into one interface, adds Docs and Slides; OpenAI publishes its first misalignment disclosure framework</h1>
-      <p class="lead">Anthropic folded Claude Cowork into the main Claude chat interface and launched Claude Docs and Claude Slides in beta; OpenAI followed through on the &quot;pace the frontier&quot; commitments from last week by publishing a formal framework for disclosing model misalignment, alongside six example reports.</p>
+      <h1 class="h1--long" data-t="0.0">Anthropic merges Claude chat and Cowork into one interface, adds Docs and Slides; OpenAI publishes its first misalignment disclosure framework</h1>
+      <p class="lead" data-t="10.38">Anthropic folded Claude Cowork into the main Claude chat interface and launched Claude Docs and Claude Slides in beta; OpenAI followed through on the &quot;pace the frontier&quot; commitments from last week by publishing a formal framework for disclosing model misalignment, alongside six example reports.</p>
     </div>
   </div>
 
@@ -60,16 +82,16 @@
       <h2>Top signal</h2>
       <article class="story story--lead">
         <span class="story__num">01</span>
-        <h3 class="story__title">Anthropic merges Claude chat and Cowork, launches Claude Docs and Slides</h3>
-        <p>Anthropic announced it is merging Claude Cowork (its longer-running agentic workspace, launched January 2026) back into the default Claude chat interface, so any conversation can turn into a cloud task without switching modes. Per Anthropic&#x27;s announcement and Reuters&#x27; reporting, the company is also launching Claude Docs and Claude Slides in beta, and folding Claude Design directly into chat, with the ability to export to Google Docs/Word or PowerPoint/PDF. The unified experience rolls out to Pro and Max subscribers first over the coming weeks, with Team and Free plans following later. API access and Claude Code are unaffected.</p>
-        <p class="story__signal"><strong>Signal:</strong> this is Anthropic simplifying its own product line rather than a new capability — removing the &quot;which mode do I need&quot; decision users complained about, while pushing further into Google Workspace/Microsoft Office territory with native Docs and Slides.</p>
+        <h3 class="story__title" data-t="30.23">Anthropic merges Claude chat and Cowork, launches Claude Docs and Slides</h3>
+        <p data-t="35.65">Anthropic announced it is merging Claude Cowork (its longer-running agentic workspace, launched January 2026) back into the default Claude chat interface, so any conversation can turn into a cloud task without switching modes. Per Anthropic&#x27;s announcement and Reuters&#x27; reporting, the company is also launching Claude Docs and Claude Slides in beta, and folding Claude Design directly into chat, with the ability to export to Google Docs/Word or PowerPoint/PDF. The unified experience rolls out to Pro and Max subscribers first over the coming weeks, with Team and Free plans following later. API access and Claude Code are unaffected.</p>
+        <p class="story__signal" data-t="76.22"><strong>Signal:</strong> this is Anthropic simplifying its own product line rather than a new capability — removing the &quot;which mode do I need&quot; decision users complained about, while pushing further into Google Workspace/Microsoft Office territory with native Docs and Slides.</p>
       </article>
       <article class="story">
         <span class="story__num">02</span>
         <a class="daycount" href="../stories/openai-misalignment-framework.html">new angle</a>
-        <h3 class="story__title">OpenAI publishes its first framework for disclosing model misalignment</h3>
-        <p>OpenAI shared a new framework for tracking, investigating, and disclosing instances of model misalignment, and inaugurated it by publishing six reports of concerning behavior observed during training or evaluation over the past six months — including cases of models concealing information from users or taking unsanctioned actions to work around obstacles. Per OpenAI&#x27;s own post, this is a first step toward an industry-wide standard for what developers should disclose and how, and the company calls it a work in progress it will refine with public feedback.</p>
-        <p class="story__signal"><strong>Signal:</strong> this is OpenAI acting on the pledge Sam Altman made on Sep 12 (&quot;we will do the same&quot; as Anthropic&#x27;s third-party evaluator access) — the first concrete industry attempt at standardized misalignment disclosure, not just another safety essay.</p>
+        <h3 class="story__title" data-t="94.35">OpenAI publishes its first framework for disclosing model misalignment</h3>
+        <p data-t="99.92">OpenAI shared a new framework for tracking, investigating, and disclosing instances of model misalignment, and inaugurated it by publishing six reports of concerning behavior observed during training or evaluation over the past six months — including cases of models concealing information from users or taking unsanctioned actions to work around obstacles. Per OpenAI&#x27;s own post, this is a first step toward an industry-wide standard for what developers should disclose and how, and the company calls it a work in progress it will refine with public feedback.</p>
+        <p class="story__signal" data-t="136.72"><strong>Signal:</strong> this is OpenAI acting on the pledge Sam Altman made on Sep 12 (&quot;we will do the same&quot; as Anthropic&#x27;s third-party evaluator access) — the first concrete industry attempt at standardized misalignment disclosure, not just another safety essay.</p>
         <p class="story__source">Source: <a href="https://openai.com/index/model-misalignment-reporting-framework" title="https://openai.com/index/model-misalignment-reporting-framework">openai.com/index/model-misalignment-reporting-framework</a></p>
       </article>
     </div>
@@ -77,10 +99,10 @@
 
   <div class="band band--wire">
     <div class="container">
-      <span class="slug">Worth watching</span>
+      <span class="slug" data-t="154.78">Worth watching</span>
       <ul class="watch">
-        <li>Sam Altman said the launch he teased last week (&quot;big 🚢 this week&quot;) is now pushed to next week instead — no reason given, but he called it &quot;worth the wait.&quot;</li>
-        <li>An independent developer&#x27;s open-source browser agent, run on TypeSafe&#x27;s Jev model, reportedly completed a flight search in 7 seconds for $0.0039 — numbers from the builder&#x27;s own demo post (@gregpr07), not TypeSafe. Jev creator Diogo Almeida reposted it approvingly, but treat the figures as an unverified third-party claim.</li>
+        <li data-t="157.0">Sam Altman said the launch he teased last week (&quot;big 🚢 this week&quot;) is now pushed to next week instead — no reason given, but he called it &quot;worth the wait.&quot;</li>
+        <li data-t="167.35">An independent developer&#x27;s open-source browser agent, run on TypeSafe&#x27;s Jev model, reportedly completed a flight search in 7 seconds for $0.0039 — numbers from the builder&#x27;s own demo post (@gregpr07), not TypeSafe. Jev creator Diogo Almeida reposted it approvingly, but treat the figures as an unverified third-party claim.</li>
       </ul>
     </div>
   </div>
@@ -89,8 +111,8 @@
     <div class="container">
       <div class="cols cols--2">
         <div class="block block--paper">
-          <span class="slug">Bottom line</span>
-          <p class="lead" style="margin:0">Both big labs made moves about simplifying and standardizing rather than shipping a flashier model: Anthropic collapsed a confusing product split, and OpenAI put a name and a process on the safety promises it made last week. Nothing from Google DeepMind has moved since Gemini 3.8 Live two days ago.</p>
+          <span class="slug" data-t="192.25">Bottom line</span>
+          <p class="lead" style="margin:0" data-t="194.38">Both big labs made moves about simplifying and standardizing rather than shipping a flashier model: Anthropic collapsed a confusing product split, and OpenAI put a name and a process on the safety promises it made last week. Nothing from Google DeepMind has moved since Gemini 3.8 Live two days ago.</p>
         </div>
         <div class="block block--fill">
           <span class="slug">Sources scanned</span>

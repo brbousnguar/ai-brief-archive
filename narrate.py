@@ -37,7 +37,7 @@ from pathlib import Path
 
 import publish
 
-NARRATE_FROM = Date(2026, 10, 14)
+NARRATE_FROM = Date(2026, 9, 5)
 
 MODEL = "mlx-community/Kokoro-82M-bf16"
 VOICE = "af_heart"
