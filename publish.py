@@ -779,7 +779,7 @@ def consent_banner(up: str) -> str:
 
 
 def counting_note() -> str:
-    """What is counted, for the About page (#21), from the same two constants."""
+    """What is counted, for the About page (#21), from the same two constants. Plays and shares since #27."""
     said = []
     if CF_BEACON_TOKEN:
         said.append(
@@ -790,7 +790,8 @@ def counting_note() -> str:
         said.append(
             ("Google Analytics counts them too, but" if CF_BEACON_TOKEN else "Google Analytics counts visits, but")
             + " only if you accept: it then sets its own cookies on this site for 13 months, "
-            "with its advertising features off."
+            "with its advertising features off. With that yes it also notes when a recording "
+            "starts or plays to the end, and when a brief is shared and by which button."
         )
     if not said:
         return "Nothing counts the visits."
@@ -1052,7 +1053,8 @@ def share_row(brief: Brief, text: str) -> str:
     script. js/share.js shows the three buttons that need an API: the phone's
     own share sheet, copy link, and copy as text. The text sits in a <template>
     on the page so the clipboard write happens inside the tap; Safari refuses
-    one that waits on a fetch first.
+    one that waits on a fetch first. Each way out carries a data-method, the
+    method js/share.js reports in GA4's share event (#27).
     """
     url = f"{SITE_URL}briefs/{brief.slug}.html"
     q = lambda s: quote(s, safe="")
@@ -1062,16 +1064,16 @@ def share_row(brief: Brief, text: str) -> str:
     x = f"https://x.com/intent/post?text={q(brief.title)}&url={q(url)}"
     ext = ' target="_blank" rel="noopener"'
     return "\n".join([
-        f'      <div class="share" data-url="{E(url)}" data-title="{E(brief.title)}">',
+        f'      <div class="share" data-url="{E(url)}" data-title="{E(brief.title)}" data-slug="{E(brief.slug)}">',
         '        <span class="slug">Share this brief</span>',
         '        <div class="share__row">',
         '          <button class="share__btn" type="button" data-share hidden>Share&hellip;</button>',
         '          <button class="share__btn" type="button" data-copy="link" hidden>Copy link</button>',
         '          <button class="share__btn" type="button" data-copy="text" hidden>Copy as text</button>',
-        f'          <a class="share__btn" href="{E(mail)}">Email</a>',
-        f'          <a class="share__btn" href="{E(linkedin)}"{ext}>LinkedIn</a>',
-        f'          <a class="share__btn" href="{E(x)}"{ext}>X</a>',
-        f'          <a class="share__btn" href="{E(brief.slug)}.txt">Plain text</a>',
+        f'          <a class="share__btn" href="{E(mail)}" data-method="email">Email</a>',
+        f'          <a class="share__btn" href="{E(linkedin)}"{ext} data-method="linkedin">LinkedIn</a>',
+        f'          <a class="share__btn" href="{E(x)}"{ext} data-method="x">X</a>',
+        f'          <a class="share__btn" href="{E(brief.slug)}.txt" data-method="plain_text">Plain text</a>',
         "        </div>",
         '        <p class="share__status" role="status" aria-live="polite"></p>',
         "      </div>",
