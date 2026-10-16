@@ -178,6 +178,8 @@ a:hover { text-decoration-thickness: 3px; }
     margin: 0;
 }
 .masthead__name a { color: var(--ink); text-decoration: none; }
+/* The mark (#11): square, hard-edged like everything else, sat on the cap height. */
+.masthead__mark { display: inline-block; width: 0.9em; height: 0.9em; margin-right: 0.3em; vertical-align: -0.08em; }
 .masthead__tag { font-family: var(--font-mono); font-size: var(--t-xs); letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-quiet); }
 
 /* ---- Story blocks -------------------------------------------------------- */
