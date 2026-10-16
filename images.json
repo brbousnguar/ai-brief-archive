@@ -183,5 +183,12 @@
     "page": "https://www.startup.eu/blog/post/mistral-acquires-new-material",
     "rank": 1,
     "story": "Mistral AI acquires New Material, a design studio, to launch a Solutions Design unit"
+  },
+  "2026-10-16": {
+    "alt": "Muse Spark Open Weights artwork with blue lines flowing across a pale surface and the caption \u2018The most capable US open-weight model to date\u2019.",
+    "image": "https://research.meta.ai/articles/muse-spark-open/social/muse-spark-1-2-open-weights-social-v2.webp",
+    "page": "https://research.meta.ai/blog/muse-spark-open",
+    "rank": 1,
+    "story": "Meta releases Muse Spark Open, an 816B open-weight model, and partners with Apple to run it on Mac Studio"
   }
 }
