@@ -1,0 +1,2 @@
+### Added
+- The audio player follows the brief paragraph by paragraph: the block being read is marked and kept on screen until you scroll away, a tap on a paragraph while playing reads from there, the 15 s / 30 s buttons become previous / next paragraph (also from earbuds and the lock screen), Space pauses and R repeats the paragraph. `narrate.py` stores where each spoken paragraph starts, known exactly since it reads one at a time, and `publish.py` writes those times on the page's blocks. The three briefs recorded before this were re-recorded once to get them (#7)

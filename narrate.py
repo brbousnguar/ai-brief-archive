@@ -13,7 +13,11 @@ It needs its own venv, built by tts/setup.sh, so run it with that interpreter:
 The words come from publish.speech(), so the page and the recording can never
 disagree about what a brief says. Writes audio/<date>.mp3 and
 audio/manifest.json. Each manifest entry carries the hash of the text it read;
-publish.py shows a player only while that hash still matches the brief.
+publish.py shows a player only while that hash still matches the brief. It also
+carries "marks" (#7): the second each spoken paragraph starts, known exactly
+because the voice reads one paragraph at a time. publish.py puts them on the
+page's blocks, and the player follows the brief paragraph by paragraph. A
+recording without marks (made before #7) counts as out of date and is re-recorded.
 
 Briefs before NARRATE_FROM stay text-only.
 """
@@ -53,22 +57,32 @@ def say(brief: publish.Brief) -> str:
     return "\n\n".join("\n".join(section) for section in publish.speech(brief))
 
 
-def record(model, brief: publish.Brief, wav: Path) -> float:
-    """Read the brief into a 16-bit mono WAV, paragraph by paragraph. Returns seconds."""
+def record(model, brief: publish.Brief, wav: Path) -> tuple[float, list[float]]:
+    """Read the brief into a 16-bit mono WAV, paragraph by paragraph.
+
+    Returns the seconds and the marks: where each spoken paragraph starts, in
+    the order of publish.speech() (#7)."""
     import numpy as np
 
     rate = 24_000
-    pieces = []
+    pieces, marks, samples = [], [], 0
+
+    def add(piece):
+        nonlocal samples
+        pieces.append(piece)
+        samples += len(piece)
+
     for s, section in enumerate(publish.speech(brief)):
         if s:
-            pieces.append(np.zeros(int(SECTION_GAP * rate), dtype=np.float32))
+            add(np.zeros(int(SECTION_GAP * rate), dtype=np.float32))
         for p, paragraph in enumerate(section):
             if p:
-                pieces.append(np.zeros(int(PARAGRAPH_GAP * rate), dtype=np.float32))
+                add(np.zeros(int(PARAGRAPH_GAP * rate), dtype=np.float32))
+            marks.append(round(samples / rate, 2))
             for result in model.generate(text=paragraph, voice=VOICE, speed=SPEED, lang_code=LANG):
                 rate = result.sample_rate
-                pieces.append(np.asarray(result.audio, dtype=np.float32).reshape(-1))
-    pieces.append(np.zeros(int(0.6 * rate), dtype=np.float32))
+                add(np.asarray(result.audio, dtype=np.float32).reshape(-1))
+    add(np.zeros(int(0.6 * rate), dtype=np.float32))
 
     audio = np.concatenate(pieces)
     pcm = (np.clip(audio, -1.0, 1.0) * 32767).astype("<i2")
@@ -77,7 +91,7 @@ def record(model, brief: publish.Brief, wav: Path) -> float:
         out.setsampwidth(2)
         out.setframerate(rate)
         out.writeframes(pcm.tobytes())
-    return len(audio) / rate
+    return len(audio) / rate, marks
 
 
 def encode(wav: Path, mp3: Path, brief: publish.Brief) -> None:
@@ -143,6 +157,7 @@ def main() -> int:
             entry.get("sha") == publish.speech_sha(brief)
             and entry.get("voice") == voice
             and entry.get("file")
+            and entry.get("marks")
             and (folder / entry["file"]).exists()
         )
         if args.force or not current:
@@ -162,7 +177,7 @@ def main() -> int:
         try:
             with tempfile.TemporaryDirectory() as tmp:
                 wav, part = Path(tmp) / "speech.wav", Path(tmp) / "speech.mp3"
-                record(model, brief, wav)
+                _, marks = record(model, brief, wav)
                 encode(wav, part, brief)
                 os.replace(part, mp3)
         except Exception as exc:  # one bad brief must not stop the rest
@@ -175,6 +190,7 @@ def main() -> int:
             "voice": voice,
             "seconds": duration(mp3),
             "bytes": mp3.stat().st_size,
+            "marks": marks,
         }
         manifest_path.write_text(json.dumps(manifest, indent=2, sort_keys=True) + "\n", encoding="utf-8")
         entry = manifest[brief.slug]

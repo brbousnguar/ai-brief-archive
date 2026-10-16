@@ -465,24 +465,47 @@ def _sentence(text: str) -> str:
     return text if text[-1:] in ".?!" else text + "."
 
 
-def speech(brief: Brief) -> list[list[str]]:
-    """What the audio version says: sections of paragraphs, in page order.
+def _speech_plan(brief: Brief) -> list[list[tuple[tuple, str]]]:
+    """Sections of (block key, spoken text), in page order.
 
     Headline and lead, each story with its signal, worth watching, bottom line.
     Leaves out what only works on screen: story numbers, day counters, source
-    URLs and the sources-scanned note.
+    URLs and the sources-scanned note. The key names the page block that says
+    the text, so a recording's paragraph times land on the right blocks (#7).
     """
-    sections = [[_sentence(brief.title), brief.lead]]
-    for item in brief.items:
-        story = [_sentence(item.title), *item.body]
+    sections = [[(("title",), _sentence(brief.title)), (("lead",), brief.lead)]]
+    for n, item in enumerate(brief.items):
+        story = [(("item", n, "title"), _sentence(item.title))]
+        story += [(("item", n, "body", j), para) for j, para in enumerate(item.body)]
         if item.signal:
-            story.append("Signal: " + _sentence(item.signal))
+            story.append((("item", n, "signal"), "Signal: " + _sentence(item.signal)))
         sections.append(story)
     if brief.watching:
-        sections.append(["Worth watching.", *brief.watching])
+        sections.append([(("watch", "head"), "Worth watching.")]
+                        + [(("watch", k), w) for k, w in enumerate(brief.watching)])
     if brief.bottom_line:
-        sections.append(["Bottom line.", brief.bottom_line])
-    return [[t for t in map(_spoken, section) if t] for section in sections]
+        sections.append([(("bottom", "head"), "Bottom line."), (("bottom", "text"), brief.bottom_line)])
+    spoken = [[(key, _spoken(text)) for key, text in section] for section in sections]
+    return [[(key, text) for key, text in section if text] for section in spoken]
+
+
+def speech(brief: Brief) -> list[list[str]]:
+    """What the audio version says: sections of paragraphs, in page order."""
+    return [[text for _, text in section] for section in _speech_plan(brief)]
+
+
+def block_times(brief: Brief, audio: dict | None) -> dict[tuple, float]:
+    """The second each page block starts in the recording, by block key (#7).
+
+    The recorder reads one spoken paragraph at a time and notes where each
+    starts, in the order of speech(); the keys come in the same order, so the
+    two zip. Empty when the recording has no marks or they don't line up.
+    """
+    marks = (audio or {}).get("marks") or []
+    keys = [key for section in _speech_plan(brief) for key, _ in section]
+    if len(marks) != len(keys):
+        return {}
+    return dict(zip(keys, marks))
 
 
 def speech_sha(brief: Brief) -> str:
@@ -525,20 +548,29 @@ LISTEN_ICONS = {
     "back": '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M3 12a9 9 0 1 0 2.64-6.36"/><path d="M3 3v6h6"/></svg>',
     "forward": '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg>',
     "cast": '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M7 17H3V4h18v13h-4"/><path d="M12 14l5 6H7z"/></svg>',
+    "prev": '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 5v14"/><path d="M18 5l-9 7 9 7z"/></svg>',
+    "next": '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M18 5v14"/><path d="M6 5l9 7-9 7z"/></svg>',
 }
 
 
-def listen_player(brief: Brief, audio: dict) -> str:
+def listen_player(brief: Brief, audio: dict, paragraphs: int = 0) -> str:
     """The brief's audio player.
 
     The native <audio controls> is the no-script fallback. js/listen.js turns
     on the .listen__player card and drives that same element, which is what
-    keeps lock-screen controls and background play working on a phone. html.js
+    keeps lock-screen controls and background play working on a phone. With
+    paragraph times on the page (#7) the skips become previous / next paragraph. html.js
     is set in the head, so nothing shifts when the script arrives.
     """
     src = f"../{AUDIO_DIR}/{audio['file']}"
     length, seconds = _clock(audio["seconds"]), audio["seconds"]
     i = LISTEN_ICONS
+    if paragraphs >= 3:
+        steps = (f'<button class="listen__btn" type="button" data-para="-1" aria-label="Previous paragraph">{i["prev"]}<span aria-hidden="true">&para;</span></button>\n'
+                 f'              <button class="listen__btn" type="button" data-para="1" aria-label="Next paragraph"><span aria-hidden="true">&para;</span>{i["next"]}</button>')
+    else:
+        steps = (f'<button class="listen__btn" type="button" data-skip="-15" aria-label="Back 15 seconds">{i["back"]}<span>15</span></button>\n'
+                 f'              <button class="listen__btn" type="button" data-skip="30" aria-label="Forward 30 seconds"><span>30</span>{i["forward"]}</button>')
     return f"""      <div class="listen" id="listen" data-title="{E(brief.title)}" data-date="{E(brief.stamp)}" data-slug="{E(brief.slug)}" data-duration="{seconds}">
         <p class="listen__label">Listen &middot; {length} &middot; read by an AI voice</p>
         <audio controls preload="none" src="{E(src)}">
@@ -550,8 +582,7 @@ def listen_player(brief: Brief, audio: dict) -> str:
             <p class="listen__head"><span class="listen__title">Listen<span class="listen__more"> to this brief</span></span><span class="listen__time"><span class="listen__cur">0:00</span> / <span class="listen__dur">{length}</span></span></p>
             <input class="listen__seek" type="range" min="0" max="{int(seconds)}" step="1" value="0" aria-label="Position in the audio">
             <div class="listen__row">
-              <button class="listen__btn" type="button" data-skip="-15" aria-label="Back 15 seconds">{i["back"]}<span>15</span></button>
-              <button class="listen__btn" type="button" data-skip="30" aria-label="Forward 30 seconds"><span>30</span>{i["forward"]}</button>
+              {steps}
               <button class="listen__btn listen__rate" type="button" aria-label="Playback speed 1×">1×</button>
               <button class="listen__btn listen__cast" type="button" aria-label="Play on another device" hidden>{i["cast"]}</button>
               <p class="listen__note"><span class="listen__more">Read by an </span>AI voice &middot; <a href="{E(src)}" download aria-label="Download the MP3">MP3 <span aria-hidden="true">&darr;</span></a></p>
@@ -714,17 +745,24 @@ def render_brief(
         dateline.append(f"<span>{E(brief.time.upper())}</span>")
     bar = '<span class="dateline__sep">&middot;</span>'.join(dateline)
 
+    # Paragraph times (#7): the block being read is marked and the player steps
+    # by paragraph. Each spoken paragraph knows its block, so this is a lookup.
+    times = block_times(brief, audio)
+
+    def at(*key) -> str:
+        return f' data-t="{times[key]}"' if key in times else ""
+
     out = ['  <div class="band">\n    <div class="container">']
     if cover:
         out.append(cover_figure(cover))
     if audio:
         # Under the picture, above a headline that runs to six lines on a
         # phone: play is on the first screen.
-        out.append(listen_player(brief, audio))
+        out.append(listen_player(brief, audio, paragraphs=len(times)))
     out.append(f'      <p class="dateline">{bar}</p>')
-    out.append(f"      <h1>{E(brief.title)}</h1>")
+    out.append(f"      <h1{at('title')}>{E(brief.title)}</h1>")
     if brief.lead:
-        out.append(f'      <p class="lead">{E(brief.lead)}</p>')
+        out.append(f'      <p class="lead"{at("lead")}>{E(brief.lead)}</p>')
     out.append("    </div>\n  </div>\n")
 
     out.append('  <div class="band">\n    <div class="container">\n      <h2>Top signal</h2>')
@@ -739,12 +777,13 @@ def render_brief(
             out.append(
                 f'        <a class="daycount" href="../stories/{E(story.slug)}.html">{tag}</a>'
             )
-        out.append(f'        <h3 class="story__title">{E(item.title)}</h3>')
-        for para in item.body:
-            out.append(f"        <p>{E(para)}</p>")
+        n = rank - 1
+        out.append(f'        <h3 class="story__title"{at("item", n, "title")}>{E(item.title)}</h3>')
+        for j, para in enumerate(item.body):
+            out.append(f'        <p{at("item", n, "body", j)}>{E(para)}</p>')
         if item.signal:
             out.append(
-                f'        <p class="story__signal"><strong>Signal:</strong> {E(item.signal)}</p>'
+                f'        <p class="story__signal"{at("item", n, "signal")}><strong>Signal:</strong> {E(item.signal)}</p>'
             )
         if item.source:
             out.append(f'        <p class="story__source">Source: {E(item.source)}</p>')
@@ -753,16 +792,16 @@ def render_brief(
 
     if brief.watching:
         out.append('  <div class="band band--wire">\n    <div class="container">')
-        out.append('      <span class="slug">Worth watching</span>\n      <ul class="watch">')
-        out.extend(f"        <li>{E(w)}</li>" for w in brief.watching)
+        out.append(f'      <span class="slug"{at("watch", "head")}>Worth watching</span>\n      <ul class="watch">')
+        out.extend(f'        <li{at("watch", k)}>{E(w)}</li>' for k, w in enumerate(brief.watching))
         out.append("      </ul>\n    </div>\n  </div>\n")
 
     if brief.bottom_line or brief.sources:
         out.append('  <div class="band band--sunk">\n    <div class="container">')
         out.append('      <div class="cols cols--2">')
         out.append('        <div class="block block--paper">')
-        out.append('          <span class="slug">Bottom line</span>')
-        out.append(f'          <p class="lead" style="margin:0">{E(brief.bottom_line)}</p>')
+        out.append(f'          <span class="slug"{at("bottom", "head")}>Bottom line</span>')
+        out.append(f'          <p class="lead" style="margin:0"{at("bottom", "text")}>{E(brief.bottom_line)}</p>')
         out.append("        </div>")
         out.append('        <div class="block block--fill">')
         out.append('          <span class="slug">Sources scanned</span>')

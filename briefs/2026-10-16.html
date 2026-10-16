@@ -14,11 +14,11 @@
 <meta property="og:image" content="https://research.meta.ai/articles/muse-spark-open/social/muse-spark-1-2-open-weights-social-v2.webp">
 <meta name="twitter:card" content="summary_large_image">
 <script>document.documentElement.classList.add('js')</script>
-<script defer src="../js/listen.js?v=4969bded" onerror="document.documentElement.classList.remove('js')"></script>
+<script defer src="../js/listen.js?v=0b671b6f" onerror="document.documentElement.classList.remove('js')"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="../css/main.css?v=a45c9c32">
+<link rel="stylesheet" href="../css/main.css?v=68c5ff15">
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -49,8 +49,8 @@
             <p class="listen__head"><span class="listen__title">Listen<span class="listen__more"> to this brief</span></span><span class="listen__time"><span class="listen__cur">0:00</span> / <span class="listen__dur">4:10</span></span></p>
             <input class="listen__seek" type="range" min="0" max="249" step="1" value="0" aria-label="Position in the audio">
             <div class="listen__row">
-              <button class="listen__btn" type="button" data-skip="-15" aria-label="Back 15 seconds"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M3 12a9 9 0 1 0 2.64-6.36"/><path d="M3 3v6h6"/></svg><span>15</span></button>
-              <button class="listen__btn" type="button" data-skip="30" aria-label="Forward 30 seconds"><span>30</span><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg></button>
+              <button class="listen__btn" type="button" data-para="-1" aria-label="Previous paragraph"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 5v14"/><path d="M18 5l-9 7 9 7z"/></svg><span aria-hidden="true">&para;</span></button>
+              <button class="listen__btn" type="button" data-para="1" aria-label="Next paragraph"><span aria-hidden="true">&para;</span><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M18 5v14"/><path d="M6 5l9 7-9 7z"/></svg></button>
               <button class="listen__btn listen__rate" type="button" aria-label="Playback speed 1×">1×</button>
               <button class="listen__btn listen__cast" type="button" aria-label="Play on another device" hidden><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M7 17H3V4h18v13h-4"/><path d="M12 14l5 6H7z"/></svg></button>
               <p class="listen__note"><span class="listen__more">Read by an </span>AI voice &middot; <a href="../audio/2026-10-16.mp3" download aria-label="Download the MP3">MP3 <span aria-hidden="true">&darr;</span></a></p>
@@ -59,8 +59,8 @@
         </div>
       </div>
       <p class="dateline"><span>AI BRIEF</span><span class="dateline__sep">&middot;</span><span>OCT 16 2026</span><span class="dateline__sep">&middot;</span><span>07:27 CEST</span></p>
-      <h1>Meta ships an 816B open-weight model built to run on Mac Studio, and OpenAI/Anthropic fund mathematicians after a backlash over AI-generated papers</h1>
-      <p class="lead">Meta and Apple partnered to get Meta&#x27;s biggest open-weight model yet running locally on the new M5 Ultra Mac Studio, while OpenAI and Anthropic each put money into a Simons Foundation fund for mathematicians — a response to community anger after OpenAI flooded the field with AI-generated preprints.</p>
+      <h1 data-t="0.0">Meta ships an 816B open-weight model built to run on Mac Studio, and OpenAI/Anthropic fund mathematicians after a backlash over AI-generated papers</h1>
+      <p class="lead" data-t="13.0">Meta and Apple partnered to get Meta&#x27;s biggest open-weight model yet running locally on the new M5 Ultra Mac Studio, while OpenAI and Anthropic each put money into a Simons Foundation fund for mathematicians — a response to community anger after OpenAI flooded the field with AI-generated preprints.</p>
     </div>
   </div>
 
@@ -69,16 +69,16 @@
       <h2>Top signal</h2>
       <article class="story story--lead">
         <span class="story__num">01</span>
-        <h3 class="story__title">Meta releases Muse Spark Open, an 816B open-weight model, and partners with Apple to run it on Mac Studio</h3>
-        <p>Per Meta&#x27;s own announcement, Muse Spark Open is a mixture-of-experts model excelling at long-horizon tasks, complex software engineering and multi-step reasoning, available today via API platforms (Baseten, Fireworks AI, Groq, Modal, Nebius, OpenRouter, Together AI) and as downloadable weights (Hugging Face, Amazon SageMaker AI, Google Cloud Model Garden, Microsoft Foundry). It ships three days after Meta&#x27;s closed, frontier-class Muse Wonder — suggesting Meta is running a fast release cadence to cover both the proprietary and open-weight ends of the market at once. NVIDIA noted the model was trained on its GB300 NVL72 systems.</p>
-        <p class="story__signal"><strong>Signal:</strong> Meta calls it &quot;the most capable US open-weight model to date&quot; — 816B total parameters (42B active), a 1M-token context window, natively multimodal, and trained specifically for agentic coding. The real hook is the Apple tie-in: it&#x27;s the first model in its class built to run locally on two M5 Ultra Mac Studios via MLX, with Apple CEO John Ternus publicly congratulating the team — a notable thaw between two companies that have clashed for years.</p>
+        <h3 class="story__title" data-t="34.58">Meta releases Muse Spark Open, an 816B open-weight model, and partners with Apple to run it on Mac Studio</h3>
+        <p data-t="43.85">Per Meta&#x27;s own announcement, Muse Spark Open is a mixture-of-experts model excelling at long-horizon tasks, complex software engineering and multi-step reasoning, available today via API platforms (Baseten, Fireworks AI, Groq, Modal, Nebius, OpenRouter, Together AI) and as downloadable weights (Hugging Face, Amazon SageMaker AI, Google Cloud Model Garden, Microsoft Foundry). It ships three days after Meta&#x27;s closed, frontier-class Muse Wonder — suggesting Meta is running a fast release cadence to cover both the proprietary and open-weight ends of the market at once. NVIDIA noted the model was trained on its GB300 NVL72 systems.</p>
+        <p class="story__signal" data-t="88.45"><strong>Signal:</strong> Meta calls it &quot;the most capable US open-weight model to date&quot; — 816B total parameters (42B active), a 1M-token context window, natively multimodal, and trained specifically for agentic coding. The real hook is the Apple tie-in: it&#x27;s the first model in its class built to run locally on two M5 Ultra Mac Studios via MLX, with Apple CEO John Ternus publicly congratulating the team — a notable thaw between two companies that have clashed for years.</p>
         <p class="story__source">Source: https://research.meta.ai/blog/muse-spark-open</p>
       </article>
       <article class="story">
         <span class="story__num">02</span>
-        <h3 class="story__title">OpenAI and Anthropic fund a $15M Simons Foundation effort to help mathematicians navigate AI-generated research</h3>
-        <p>Per the Simons Foundation&#x27;s own release, the $15M combined funding (from the foundation, Anthropic and OpenAI) will go toward an open call for proposals supporting workshops and initiatives that help researchers evaluate AI-assisted results, learn new tools, and shape collective standards for AI use in math — with both AI labs also providing compute and tools to Simons-supported researchers, extending beyond math into basic science generally.</p>
-        <p class="story__signal"><strong>Signal:</strong> this reads as a direct, fairly quick response to backlash — OpenAI reportedly released 722 AI-generated math manuscripts to the research community just over a week ago, upsetting mathematicians, and OpenAI&#x27;s $5M contribution here (with Anthropic adding the rest alongside the foundation) looks aimed squarely at repairing that relationship rather than being a purely philanthropic move.</p>
+        <h3 class="story__title" data-t="124.45">OpenAI and Anthropic fund a $15M Simons Foundation effort to help mathematicians navigate AI-generated research</h3>
+        <p data-t="134.72">Per the Simons Foundation&#x27;s own release, the $15M combined funding (from the foundation, Anthropic and OpenAI) will go toward an open call for proposals supporting workshops and initiatives that help researchers evaluate AI-assisted results, learn new tools, and shape collective standards for AI use in math — with both AI labs also providing compute and tools to Simons-supported researchers, extending beyond math into basic science generally.</p>
+        <p class="story__signal" data-t="164.32"><strong>Signal:</strong> this reads as a direct, fairly quick response to backlash — OpenAI reportedly released 722 AI-generated math manuscripts to the research community just over a week ago, upsetting mathematicians, and OpenAI&#x27;s $5M contribution here (with Anthropic adding the rest alongside the foundation) looks aimed squarely at repairing that relationship rather than being a purely philanthropic move.</p>
         <p class="story__source">Source: https://www.eurekalert.org/news-releases/1147808</p>
       </article>
     </div>
@@ -86,10 +86,10 @@
 
   <div class="band band--wire">
     <div class="container">
-      <span class="slug">Worth watching</span>
+      <span class="slug" data-t="192.62">Worth watching</span>
       <ul class="watch">
-        <li>A widely-shared video (via anabology, amplifying a thread from ex-OpenAI interpretability researcher Nick Cammarata) argues mechanistic interpretability may be &quot;the most important scientific problem in the world right now&quot; with claimed good news on progress — a researcher&#x27;s personal take, not a lab announcement, and no specifics were verifiable from primary sources.</li>
-        <li>Alexandr Wang called Muse Spark Open &quot;the best US open-source model&quot; — notable as Meta&#x27;s own AI chief&#x27;s framing, but it&#x27;s marketing language, not an independent benchmark claim.</li>
+        <li data-t="194.85">A widely-shared video (via anabology, amplifying a thread from ex-OpenAI interpretability researcher Nick Cammarata) argues mechanistic interpretability may be &quot;the most important scientific problem in the world right now&quot; with claimed good news on progress — a researcher&#x27;s personal take, not a lab announcement, and no specifics were verifiable from primary sources.</li>
+        <li data-t="219.18">Alexandr Wang called Muse Spark Open &quot;the best US open-source model&quot; — notable as Meta&#x27;s own AI chief&#x27;s framing, but it&#x27;s marketing language, not an independent benchmark claim.</li>
       </ul>
     </div>
   </div>
@@ -98,8 +98,8 @@
     <div class="container">
       <div class="cols cols--2">
         <div class="block block--paper">
-          <span class="slug">Bottom line</span>
-          <p class="lead" style="margin:0">A genuine two-story morning: Meta pairing an open-weight flagship with real Apple hardware integration, and the first visible AI-industry money move in response to the mathematics community&#x27;s anger over AI-flooded preprints.</p>
+          <span class="slug" data-t="232.53">Bottom line</span>
+          <p class="lead" style="margin:0" data-t="234.65">A genuine two-story morning: Meta pairing an open-weight flagship with real Apple hardware integration, and the first visible AI-industry money move in response to the mathematics community&#x27;s anger over AI-flooded preprints.</p>
         </div>
         <div class="block block--fill">
           <span class="slug">Sources scanned</span>
