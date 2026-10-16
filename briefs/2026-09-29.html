@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AI Brief — Sep 29 2026</title>
+<title>Anthropic ships Claude Sonnet 5.5 overnight; OpenAI&#x27;s DevDay is today — AI Brief, Sep 29 2026</title>
 <meta name="description" content="Anthropic quietly released Claude Sonnet 5.5 late yesterday, a faster and cheaper mid-tier model, while OpenAI&#x27;s DevDay 2026 keynote — teased since yesterday&#x27;s briefing — happens today with persistent-agent rumors swirling.">
 <link rel="canonical" href="https://ai.heybrahim.com/briefs/2026-09-29.html">
 <meta property="og:site_name" content="AI Brief">
@@ -13,6 +13,8 @@
 <meta property="og:url" content="https://ai.heybrahim.com/briefs/2026-09-29.html">
 <meta property="og:image" content="https://www-cdn.anthropic.com/images/4zrzovbb/website/eaa6046f4ae8c88e368c3c530c4c1312f7ff6f2e-1200x630.jpg">
 <meta name="twitter:card" content="summary_large_image">
+<meta property="article:published_time" content="2026-09-29T07:10+02:00">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "NewsArticle", "headline": "Anthropic ships Claude Sonnet 5.5 overnight; OpenAI's DevDay is today", "description": "Anthropic quietly released Claude Sonnet 5.5 late yesterday, a faster and cheaper mid-tier model, while OpenAI's DevDay 2026 keynote — teased since yesterday's briefing — happens today with persistent-agent rumors swirling.", "datePublished": "2026-09-29T07:10+02:00", "url": "https://ai.heybrahim.com/briefs/2026-09-29.html", "mainEntityOfPage": "https://ai.heybrahim.com/briefs/2026-09-29.html", "isAccessibleForFree": true, "author": {"@type": "Organization", "name": "AI Brief", "url": "https://ai.heybrahim.com/"}, "publisher": {"@type": "Person", "name": "Brahim Bousnguar", "url": "https://heybrahim.com/"}, "image": ["https://www-cdn.anthropic.com/images/4zrzovbb/website/eaa6046f4ae8c88e368c3c530c4c1312f7ff6f2e-1200x630.jpg"]}</script>
 <link rel="icon" href="../favicon.ico" sizes="32x32">
 <link rel="icon" href="../icons/mark.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../apple-touch-icon.png">
@@ -23,10 +25,9 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="AI Brief">
 <script>if ("serviceWorker" in navigator) addEventListener("load", function () { navigator.serviceWorker.register("../sw.js"); });</script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="../css/main.css?v=dba005b2">
+<link rel="preload" href="../fonts/archivo-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../fonts/source-serif-4-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../css/main.css?v=d5945257">
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -42,13 +43,19 @@
 <main id="main">
   <div class="band">
     <div class="container">
+      <div class="hero">
+        <div class="hero__media">
       <figure class="cover">
-        <div class="cover__frame"><img src="https://www-cdn.anthropic.com/images/4zrzovbb/website/eaa6046f4ae8c88e368c3c530c4c1312f7ff6f2e-1200x630.jpg" alt="Anthropic logo" width="1200" height="630" fetchpriority="high" decoding="async" referrerpolicy="no-referrer"></div>
+        <div class="cover__frame"><img src="https://www-cdn.anthropic.com/images/4zrzovbb/website/eaa6046f4ae8c88e368c3c530c4c1312f7ff6f2e-1200x630.jpg" alt="Anthropic logo" width="1200" height="630" fetchpriority="high" decoding="async" referrerpolicy="no-referrer" onerror="this.closest('.cover').hidden=true;var h=this.closest('.hero');if(h)h.classList.add('hero--text')"></div>
         <figcaption class="cover__credit">Picture: <a href="https://www.anthropic.com/claude-sonnet-5-5">anthropic.com</a></figcaption>
       </figure>
-      <p class="dateline"><span>AI BRIEF</span><span class="dateline__sep">&middot;</span><span>SEP 29 2026</span><span class="dateline__sep">&middot;</span><span>07:10 CEST</span></p>
+        </div>
+        <div class="hero__text">
+      <p class="dateline"><span>AI BRIEF</span><span class="dateline__sep">&middot;</span><time datetime="2026-09-29">SEP 29 2026</time><span class="dateline__sep">&middot;</span><time datetime="2026-09-29T07:10+02:00">07:10 CEST</time></p>
       <h1>Anthropic ships Claude Sonnet 5.5 overnight; OpenAI&#x27;s DevDay is today</h1>
       <p class="lead">Anthropic quietly released Claude Sonnet 5.5 late yesterday, a faster and cheaper mid-tier model, while OpenAI&#x27;s DevDay 2026 keynote — teased since yesterday&#x27;s briefing — happens today with persistent-agent rumors swirling.</p>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -61,7 +68,7 @@
         <h3 class="story__title">Anthropic ships Claude Sonnet 5.5, the second model in the 5.5 family</h3>
         <p>Per Anthropic&#x27;s own announcement, Sonnet 5.5 is priced the same as Sonnet 5 ($2/$10 per million tokens) but runs about 30% faster and uses meaningfully fewer tokens per task, coming close to Opus 5.5&#x27;s performance on several benchmarks despite being the cheaper, mid-tier option. It&#x27;s live now on the Claude Platform, AWS, Google Cloud and Azure; Claude Haiku 5.5 is coming &quot;in the following weeks&quot; to complete the family.</p>
         <p class="story__signal"><strong>Signal:</strong> this lands almost exactly a week after Opus 5.5 (Sep 22) and follows the same playbook — same price as its predecessor, meaningfully faster, fewer tokens burned per task. It&#x27;s also the first Sonnet-tier model to ship with the cybersecurity safeguards previously reserved for Anthropic&#x27;s top-tier systems, a notable safety-posture upgrade for a &quot;workhorse&quot; model.</p>
-        <p class="story__source">Source: https://www.anthropic.com/claude-sonnet-5-5</p>
+        <p class="story__source">Source: <a href="https://www.anthropic.com/claude-sonnet-5-5" title="https://www.anthropic.com/claude-sonnet-5-5">anthropic.com/claude-sonnet-5-5</a></p>
       </article>
       <article class="story">
         <span class="story__num">02</span>
@@ -69,7 +76,7 @@
         <h3 class="story__title">OpenAI&#x27;s DevDay 2026 keynote is today, with rumors pointing at a persistent AI agent codenamed &quot;Aeon&quot;</h3>
         <p>OpenAI posted a 12-second &quot;Get ready.&quot; teaser overnight, and Sam Altman separately wrote he&#x27;s &quot;pretty excited for DevDay tomorrow [today] — we have found a new thing.&quot; The Verge reports persistent rumors of an agent called Aeon, OpenAI&#x27;s answer to Meta&#x27;s Muse and Grok Bot, alongside unconfirmed chatter about a Jony Ive hardware update and a possible GPT-6 Astra refresh. None of this is confirmed by OpenAI itself yet — the keynote hasn&#x27;t happened as of this briefing.</p>
         <p class="story__signal"><strong>Signal:</strong> yesterday this was just a teased date on OpenAI&#x27;s own page; overnight it firmed into a specific rumor — a Meta Muse/Grok Bot-style always-on agent — and Sam Altman posted his own tease (&quot;we have found a new thing&quot;), which is as close to lab confirmation as exists right now. Still worth treating as rumor until OpenAI&#x27;s own keynote, later today.</p>
-        <p class="story__source">Source: https://www.theverge.com/ai-artificial-intelligence/1001590/openai-devday-2026-aeon-ai-agent</p>
+        <p class="story__source">Source: <a href="https://www.theverge.com/ai-artificial-intelligence/1001590/openai-devday-2026-aeon-ai-agent" title="https://www.theverge.com/ai-artificial-intelligence/1001590/openai-devday-2026-aeon-ai-agent">theverge.com/ai-artificial-intelligence/1001590/openai-devd…</a></p>
       </article>
     </div>
   </div>
@@ -93,9 +100,18 @@
         </div>
         <div class="block block--fill">
           <span class="slug">Sources scanned</span>
-          <p class="story__source" style="margin:0">X/Twitter home feed via profile=brahim (Following tab), plus @OpenAI, @AnthropicAI, @GoogleDeepMind and @sama.</p>
+          <p class="story__source" style="margin:0">X/Twitter following feed, plus @OpenAI, @AnthropicAI, @GoogleDeepMind and @sama.</p>
         </div>
       </div>
+    </div>
+  </div>
+
+  <div class="band">
+    <div class="container">
+      <nav class="pager" aria-label="Other briefs">
+        <a class="pager__link" href="../briefs/2026-09-28.html"><span class="slug">&larr; Previous brief &middot; SEP 28 2026</span><span class="pager__title">A quiet 14 hours — nothing new from the labs, but OpenAI DevDay is tomorrow</span></a>
+        <a class="pager__link pager__link--next" href="../briefs/2026-09-30.html"><span class="slug">Next brief &rarr; &middot; SEP 30 2026</span><span class="pager__title">OpenAI&#x27;s DevDay reveal is &quot;dots,&quot; an always-on agent — but the bigger story is the Astra model it scrapped the day before</span></a>
+      </nav>
     </div>
   </div>
 

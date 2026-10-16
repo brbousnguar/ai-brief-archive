@@ -83,13 +83,19 @@ DEFAULT_SOURCE = Path.home() / "Server/agents/openclaw/victor/briefs"
 SITE_URL = "https://ai.heybrahim.com/"
 HOME_URL = "https://heybrahim.com/"
 
-FONTS = (
-    '<link rel="preconnect" href="https://fonts.googleapis.com">\n'
-    '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n'
-    '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?'
-    "family=Archivo:wght@700;800&family=Source+Serif+4:ital,wght@0,400;0,600;1,400"
-    '&family=IBM+Plex+Mono:wght@400;500&display=swap">'
-)
+# The three families are served from fonts/ (latin and latin-ext woff2 subsets,
+# declared in css/main.css), not from Google Fonts (#13): no third-party
+# roundtrip, the installed app renders in its own faces offline, and no reader
+# IP leaves the site for a font. The two faces the first screen is set in are
+# preloaded; the rest arrive with the stylesheet.
+PRELOAD_FONTS = ("archivo-normal-latin.woff2", "source-serif-4-normal-latin.woff2")
+
+
+def _fonts(up: str) -> str:
+    return "\n".join(
+        f'<link rel="preload" href="{up}fonts/{name}" as="font" type="font/woff2" crossorigin>'
+        for name in PRELOAD_FONTS
+    )
 
 ITEM_KEYS = {"story", "signal", "source", "angle"}
 
@@ -625,6 +631,76 @@ def listen_player(brief: Brief, audio: dict, paragraphs: int = 0) -> str:
 E = html.escape
 
 
+def H(text: str) -> str:
+    """Heading text. A "/" gets a break opportunity after it: at display size
+    on a phone "OpenAI/Anthropic" otherwise breaks in the middle of a word (#13)."""
+    return E(text).replace("/", "/<wbr>")
+
+
+def h1_class(title: str) -> str:
+    """Headlines run long (113 characters on average); past 100 the h1 takes a
+    smaller size so it stays a headline and not a wall (#13)."""
+    return ' class="h1--long"' if len(title) > 100 else ""
+
+
+def source_link(url: str) -> str:
+    """A source as a link, labelled with its host and path, cut at 60
+    characters. The full URL stays on the link and in its title (#13)."""
+    label = re.sub(r"^https?://(www\.)?", "", url).rstrip("/")
+    if len(label) > 60:
+        label = label[:59] + "…"
+    return f'<a href="{E(url)}" title="{E(url)}">{E(label)}</a>'
+
+
+# The agent's browser profile is a config detail, not a source (#13).
+_PROFILE_FEED = re.compile(r"X/Twitter home feed via profile=\w+(?:\s*\(Following tab\))?")
+
+
+def public_sources(text: str) -> str:
+    return _PROFILE_FEED.sub("X/Twitter following feed", text)
+
+
+_ZONES = {"CEST": "+02:00", "CET": "+01:00", "UTC": "+00:00", "GMT": "+00:00"}
+
+
+def published_at(brief: Brief) -> str:
+    """ISO 8601 for <time> and the structured data: date and time with the
+    offset when the time is `HH:MM ZONE` and the zone is known, else the date."""
+    m = re.fullmatch(r"(\d{1,2}):(\d{2})\s+([A-Z]+)", brief.time.strip())
+    if m and m.group(3) in _ZONES:
+        return f"{brief.slug}T{int(m.group(1)):02d}:{m.group(2)}{_ZONES[m.group(3)]}"
+    return brief.slug
+
+
+def dateline(label: str, brief: Brief) -> str:
+    """The mono bar: label, date, time. Dates are <time> so machines read them too."""
+    parts = [f"<span>{E(label)}</span>", f'<time datetime="{brief.slug}">{E(brief.stamp)}</time>']
+    if brief.time:
+        parts.append(f'<time datetime="{E(published_at(brief))}">{E(brief.time.upper())}</time>')
+    sep = '<span class="dateline__sep">&middot;</span>'
+    return f'<p class="dateline">{sep.join(parts)}</p>'
+
+
+def article_jsonld(brief: Brief, cover: Cover | None) -> dict:
+    """NewsArticle structured data, for search and unfurls (#13)."""
+    url = f"{SITE_URL}briefs/{brief.slug}.html"
+    data = {
+        "@context": "https://schema.org",
+        "@type": "NewsArticle",
+        "headline": brief.title,
+        "description": brief.lead or brief.title,
+        "datePublished": published_at(brief),
+        "url": url,
+        "mainEntityOfPage": url,
+        "isAccessibleForFree": True,
+        "author": {"@type": "Organization", "name": "AI Brief", "url": SITE_URL},
+        "publisher": {"@type": "Person", "name": "Brahim Bousnguar", "url": HOME_URL},
+    }
+    if cover:
+        data["image"] = [cover.image]
+    return data
+
+
 def page(
     title: str,
     description: str,
@@ -635,6 +711,8 @@ def page(
     share_title: str | None = None,
     audio: bool = False,
     up: str | None = None,
+    published: str | None = None,
+    jsonld: dict | None = None,
 ) -> str:
     up = "../" * depth if up is None else up
     url = SITE_URL + (path or "")
@@ -649,6 +727,12 @@ def page(
     if cover:
         share.append(f'<meta property="og:image" content="{E(cover.image)}">')
         share.append('<meta name="twitter:card" content="summary_large_image">')
+    if published:
+        share.append(f'<meta property="article:published_time" content="{E(published)}">')
+    if jsonld:
+        # "<" is escaped so no value can close the script element.
+        blob = json.dumps(jsonld, ensure_ascii=False).replace("<", "\\u003c")
+        share.append(f'<script type="application/ld+json">{blob}</script>')
     if path is None:
         # Not a page of its own (the 404): nothing to share or index.
         share = ['<meta name="robots" content="noindex">']
@@ -671,7 +755,7 @@ def page(
 <meta name="description" content="{E(description)}">
 {head}
 {_app_head(up)}
-{FONTS}
+{_fonts(up)}
 <link rel="stylesheet" href="{up}css/main.css?v={_asset_version(ROOT / "css/main.css")}">
 </head>
 <body>
@@ -752,28 +836,71 @@ def cover_figure(cover: Cover) -> str:
 
     It opens the page, above the headline, so it is never lazy-loaded. The fixed frame ratio reserves
     the space before the image arrives, and `object-fit: cover` crops whatever
-    shape the publisher chose into it.
+    shape the publisher chose into it. Publishers rotate CDN paths, so a picture
+    whose hotlink has died hides itself and its hero goes single-column (#13).
     """
     which = "" if cover.rank == 1 else f" &middot; story {cover.rank:02d}"
+    gone = ("this.closest('.cover').hidden=true;"
+            "var h=this.closest('.hero');if(h)h.classList.add('hero--text')")
     return (
         '      <figure class="cover">\n'
         '        <div class="cover__frame">'
         f'<img src="{E(cover.image)}" alt="{E(cover.alt)}" width="1200" height="630" '
-        'fetchpriority="high" decoding="async" referrerpolicy="no-referrer"></div>\n'
+        f'fetchpriority="high" decoding="async" referrerpolicy="no-referrer" onerror="{gone}"></div>\n'
         f'        <figcaption class="cover__credit">Picture: '
         f'<a href="{E(cover.page)}">{E(cover.credit)}</a>{which}</figcaption>\n'
         "      </figure>"
     )
 
 
-def render_brief(
-    brief: Brief, stories: dict[str, Story], cover: Cover | None, audio: dict | None
-) -> str:
-    dateline = [f"<span>AI BRIEF</span>", f"<span>{E(brief.stamp)}</span>"]
-    if brief.time:
-        dateline.append(f"<span>{E(brief.time.upper())}</span>")
-    bar = '<span class="dateline__sep">&middot;</span>'.join(dateline)
+def hero(media: list[str], text: list[str]) -> list[str]:
+    """The opening of a brief or the index (#13).
 
+    On a phone the picture and player come first and the headline under them,
+    as before. From 900px the picture (and player) sit left and the dateline,
+    headline and lead right, so the first screen carries the brief instead of
+    a borrowed picture. Without a picture there is no grid: the player, if any,
+    sits above the dateline.
+    """
+    if not any(m.strip().startswith("<figure") for m in media):
+        return media + text
+    return (['      <div class="hero">\n        <div class="hero__media">'] + media
+            + ['        </div>\n        <div class="hero__text">'] + text
+            + ["        </div>\n      </div>"])
+
+
+def pager(older: Brief | None, newer: Brief | None) -> str:
+    """Previous / next brief at the end of each brief (#13)."""
+    def cell(brief: Brief | None, label: str, extra: str = "") -> str:
+        if brief:
+            return (f'        <a class="pager__link{extra}" href="../briefs/{E(brief.slug)}.html">'
+                    f'<span class="slug">{label} &middot; {E(brief.stamp)}</span>'
+                    f'<span class="pager__title">{H(brief.title)}</span></a>')
+        if label.startswith("Next"):
+            # The latest brief: the way on is the archive.
+            return (f'        <a class="pager__link{extra}" href="../index.html">'
+                    '<span class="slug">All briefs &rarr;</span>'
+                    '<span class="pager__title">This is the latest brief</span></a>')
+        return (f'        <div class="pager__link{extra}"><span class="slug">Start of the archive</span>'
+                '<span class="pager__title">This is the first brief</span></div>')
+
+    return "\n".join([
+        '  <div class="band">\n    <div class="container">',
+        '      <nav class="pager" aria-label="Other briefs">',
+        cell(older, "&larr; Previous brief"),
+        cell(newer, "Next brief &rarr;", " pager__link--next"),
+        "      </nav>\n    </div>\n  </div>\n",
+    ])
+
+
+def render_brief(
+    brief: Brief,
+    stories: dict[str, Story],
+    cover: Cover | None,
+    audio: dict | None,
+    older: Brief | None = None,
+    newer: Brief | None = None,
+) -> str:
     # Paragraph times (#7): the block being read is marked and the player steps
     # by paragraph. Each spoken paragraph knows its block, so this is a lookup.
     times = block_times(brief, audio)
@@ -781,17 +908,21 @@ def render_brief(
     def at(*key) -> str:
         return f' data-t="{times[key]}"' if key in times else ""
 
-    out = ['  <div class="band">\n    <div class="container">']
+    media = []
     if cover:
-        out.append(cover_figure(cover))
+        media.append(cover_figure(cover))
     if audio:
         # Under the picture, above a headline that runs to six lines on a
         # phone: play is on the first screen.
-        out.append(listen_player(brief, audio, paragraphs=len(times)))
-    out.append(f'      <p class="dateline">{bar}</p>')
-    out.append(f"      <h1{at('title')}>{E(brief.title)}</h1>")
+        media.append(listen_player(brief, audio, paragraphs=len(times)))
+    text = [
+        "      " + dateline("AI BRIEF", brief),
+        f"      <h1{h1_class(brief.title)}{at('title')}>{H(brief.title)}</h1>",
+    ]
     if brief.lead:
-        out.append(f'      <p class="lead"{at("lead")}>{E(brief.lead)}</p>')
+        text.append(f'      <p class="lead"{at("lead")}>{E(brief.lead)}</p>')
+    out = ['  <div class="band">\n    <div class="container">']
+    out += hero(media, text)
     out.append("    </div>\n  </div>\n")
 
     out.append('  <div class="band">\n    <div class="container">\n      <h2>Top signal</h2>')
@@ -807,7 +938,7 @@ def render_brief(
                 f'        <a class="daycount" href="../stories/{E(story.slug)}.html">{tag}</a>'
             )
         n = rank - 1
-        out.append(f'        <h3 class="story__title"{at("item", n, "title")}>{E(item.title)}</h3>')
+        out.append(f'        <h3 class="story__title"{at("item", n, "title")}>{H(item.title)}</h3>')
         for j, para in enumerate(item.body):
             out.append(f'        <p{at("item", n, "body", j)}>{E(para)}</p>')
         if item.signal:
@@ -815,7 +946,7 @@ def render_brief(
                 f'        <p class="story__signal"{at("item", n, "signal")}><strong>Signal:</strong> {E(item.signal)}</p>'
             )
         if item.source:
-            out.append(f'        <p class="story__source">Source: {E(item.source)}</p>')
+            out.append(f'        <p class="story__source">Source: {source_link(item.source)}</p>')
         out.append("      </article>")
     out.append("    </div>\n  </div>\n")
 
@@ -835,10 +966,11 @@ def render_brief(
         out.append('        <div class="block block--fill">')
         out.append('          <span class="slug">Sources scanned</span>')
         out.append(
-            f'          <p class="story__source" style="margin:0">{E(brief.sources)}</p>'
+            f'          <p class="story__source" style="margin:0">{E(public_sources(brief.sources))}</p>'
         )
         out.append("        </div>\n      </div>\n    </div>\n  </div>\n")
 
+    out.append(pager(older, newer))
     return "\n".join(out)
 
 
@@ -847,7 +979,7 @@ def render_story(story: Story) -> str:
         '  <div class="band">\n    <div class="container">',
         f'      <p class="dateline"><span>RUNNING STORY</span>'
         f'<span class="dateline__sep">&middot;</span><span>DAY {story.days}</span></p>',
-        f"      <h1>{E(story.title)}</h1>",
+        f"      <h1{h1_class(story.title)}>{H(story.title)}</h1>",
         "    </div>\n  </div>\n",
         '  <div class="band band--sunk">\n    <div class="container">',
         '      <figure class="figure">',
@@ -863,11 +995,11 @@ def render_story(story: Story) -> str:
         out.append(
             f'        <span class="story__num">{E(app.brief.stamp)}</span>'
         )
-        out.append(f'        <h3 class="story__title">{E(app.item.title)}</h3>')
+        out.append(f'        <h3 class="story__title">{H(app.item.title)}</h3>')
         for para in app.item.body:
             out.append(f"        <p>{E(para)}</p>")
         if app.item.source:
-            out.append(f'        <p class="story__source">Source: {E(app.item.source)}</p>')
+            out.append(f'        <p class="story__source">Source: {source_link(app.item.source)}</p>')
         out.append(
             f'        <p class="story__source">'
             f'<a href="../briefs/{E(app.brief.slug)}.html">Full brief, '
@@ -882,16 +1014,9 @@ def render_index(
     briefs: list[Brief], stories: dict[str, Story], cover: Cover | None, audio: dict | None
 ) -> str:
     latest = briefs[0]
-    dateline = [f"<span>LATEST</span>", f"<span>{E(latest.stamp)}</span>"]
-    if latest.time:
-        dateline.append(f"<span>{E(latest.time.upper())}</span>")
-    bar = '<span class="dateline__sep">&middot;</span>'.join(dateline)
-
-    out = [
-        '  <div class="band">\n    <div class="container">',
-        *([cover_figure(cover)] if cover else []),
-        f'      <p class="dateline">{bar}</p>',
-        f"      <h1>{E(latest.title)}</h1>",
+    text = [
+        "      " + dateline("LATEST", latest),
+        f"      <h1{h1_class(latest.title)}>{H(latest.title)}</h1>",
         f'      <p class="lead">{E(latest.lead)}</p>',
         '      <p style="display:flex;flex-wrap:wrap;gap:0.75rem">'
         f'<a class="btn" href="briefs/{E(latest.slug)}.html">Read the brief</a>'
@@ -902,6 +1027,10 @@ def render_index(
             else ""
         )
         + "</p>",
+    ]
+    out = [
+        '  <div class="band">\n    <div class="container">',
+        *hero([cover_figure(cover)] if cover else [], text),
         "    </div>\n  </div>\n",
         '  <div class="band band--ink">\n    <div class="container">',
         '      <span class="slug">What this is</span>',
@@ -1059,17 +1188,24 @@ def main() -> int:
     cache_path.write_text(json.dumps(cache, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     recordings = load_audio(args.out, briefs)
 
-    for brief in briefs:
+    # briefs is newest first: the brief after this one is the newer one.
+    for i, brief in enumerate(briefs):
+        newer = briefs[i - 1] if i > 0 else None
+        older = briefs[i + 1] if i + 1 < len(briefs) else None
         (args.out / "briefs" / f"{brief.slug}.html").write_text(
             page(
-                f"AI Brief — {brief.stamp.title()}",
+                f"{brief.title} — AI Brief, {brief.stamp.title()}",
                 brief.lead or brief.title,
                 1,
-                render_brief(brief, stories, covers[brief.slug], recordings.get(brief.slug)),
+                render_brief(
+                    brief, stories, covers[brief.slug], recordings.get(brief.slug), older, newer
+                ),
                 f"briefs/{brief.slug}.html",
                 cover=covers[brief.slug],
                 share_title=brief.title,
                 audio=brief.slug in recordings,
+                published=published_at(brief),
+                jsonld=article_jsonld(brief, covers[brief.slug]),
             ),
             encoding="utf-8",
         )
@@ -1079,7 +1215,7 @@ def main() -> int:
             continue
         (args.out / "stories" / f"{story.slug}.html").write_text(
             page(
-                f"{story.title} — running story",
+                f"{story.title} — AI Brief running story",
                 f"How the {story.title} story developed across {story.days} briefings.",
                 1,
                 render_story(story),

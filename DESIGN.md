@@ -85,6 +85,18 @@ carries the wire furniture. Do not use it decoratively.
 Every family has a real fallback stack. Avoid Inter and Space Grotesk — together
 they are the most recognisable machine-generated pairing.
 
+The files are served from `fonts/` (#13), not Google Fonts: latin and latin-ext
+woff2 subsets with the same `unicode-range` split Google uses, declared at the
+top of `main.css`. Archivo and Source Serif 4 are variable and carry their
+weight range in one file; Plex Mono is static, one file per weight. The two
+faces the first screen is set in are preloaded. The service worker caches them,
+so the installed app reads in its own faces offline, and no reader's IP goes to
+Google for a font.
+
+**Source links.** `Source:` on a story is a link, labelled with the host and
+path (cut at 60 characters) and carrying the full URL. It was plain text until
+#13, on a site whose promise is that every source link is kept.
+
 ## 4. Form language
 
 1. **Flat.** No shadows, gradients, blurs or glass. A block is one solid colour.
@@ -131,9 +143,29 @@ imagery, ever.
 ### The main picture (`.cover`)
 
 Each brief, and the index's latest brief, opens with one photograph: the share
-image of one of the brief's own stories (see README). It sits **above the
-dateline**, because briefing headlines run to six or seven lines and push
-anything placed under them off the first screen.
+image of one of the brief's own stories (see README). On a phone it sits
+**above the dateline**, because briefing headlines run to six or seven lines
+and push anything placed under them off the first screen. From 900px it sits
+**beside** the headline instead (`.hero`, below): at container width the frame
+is 600px tall and the first screen of a brief was a borrowed picture and
+nothing else (#13).
+
+### The hero (#13)
+
+`.hero` is the opening of a brief and of the index: `.hero__media` (the
+picture, then the player when there is one) and `.hero__text` (dateline,
+headline, lead, and the index's buttons). It is a plain stack on a phone and a
+`2fr / 3fr` grid from 900px, unequal like every other grid here. A brief with
+no picture gets no grid; its player sits above the dateline as before. A
+picture whose hotlink has died hides itself and sets `.hero--text`, which
+collapses the grid, so a dead CDN path never leaves a broken-image icon at the
+top of an old brief.
+
+The headline scale went with it: `--t-h1` tops out at 3.75rem, not 5rem, and
+an h1 over 100 characters takes `.h1--long` (3rem). Headlines average 113
+characters, and at poster size that was six lines on a desktop and ten on a
+phone. Every "/" in a heading is followed by a `<wbr>`, because
+"OpenAI/Anthropic" otherwise breaks inside a word at display size.
 
 - **Borrowed, not ours.** Hotlinked from the publisher, never rehosted, and
   always credited — `.cover__credit` names the source domain and links to the
@@ -277,7 +309,9 @@ Anything not on this list does not exist. Adding a component means adding it her
 `.block` (+ `--wire` `--embargo` `--stamp` `--fill` `--paper`) · `.story` (+
 `--lead`, `.story__num` `.story__title` `.story__signal` `.story__source`) ·
 `.daycount` (also as a link to a story page) · `.watch` · `.archive` · `.figure` (+ `.figure__frame` `.caption`) ·
-`.cover` (+ `.cover__frame` `.cover__credit`) · `.listen` (+ `.listen__label`
+`.cover` (+ `.cover__frame` `.cover__credit`) · `.hero` (+ `.hero__media`
+`.hero__text` `--text`) · `.h1--long` · `.pager` (+ `.pager__link` `--next`
+`.pager__title`) · `.listen` (+ `.listen__label`
 `.listen__player` `.listen__play` `.listen__main` `.listen__head` `.listen__title`
 `.listen__time` `.listen__seek` `.listen__row` `.listen__btn` `.listen__rate`
 `.listen__note`) · `.dock` (+ `.dock__bar` `.dock__row` `.dock__play`

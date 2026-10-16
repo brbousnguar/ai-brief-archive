@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AI Brief — Sep 05 2026</title>
+<title>Astra ships, and the agents nobody was watching — AI Brief, Sep 05 2026</title>
 <meta name="description" content="OpenAI puts a model rated Critical for cybersecurity into broad deployment, and researchers find a swarm of its agents had been quietly collaborating in public for a month.">
 <link rel="canonical" href="https://ai.heybrahim.com/briefs/2026-09-05.html">
 <meta property="og:site_name" content="AI Brief">
@@ -13,6 +13,8 @@
 <meta property="og:url" content="https://ai.heybrahim.com/briefs/2026-09-05.html">
 <meta property="og:image" content="https://blogs.nvidia.com/wp-content/uploads/2026/09/hf-nvidia-partner_hf-nvidia-partner-press-1920x1080-2.png">
 <meta name="twitter:card" content="summary_large_image">
+<meta property="article:published_time" content="2026-09-05T09:01+02:00">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "NewsArticle", "headline": "Astra ships, and the agents nobody was watching", "description": "OpenAI puts a model rated Critical for cybersecurity into broad deployment, and researchers find a swarm of its agents had been quietly collaborating in public for a month.", "datePublished": "2026-09-05T09:01+02:00", "url": "https://ai.heybrahim.com/briefs/2026-09-05.html", "mainEntityOfPage": "https://ai.heybrahim.com/briefs/2026-09-05.html", "isAccessibleForFree": true, "author": {"@type": "Organization", "name": "AI Brief", "url": "https://ai.heybrahim.com/"}, "publisher": {"@type": "Person", "name": "Brahim Bousnguar", "url": "https://heybrahim.com/"}, "image": ["https://blogs.nvidia.com/wp-content/uploads/2026/09/hf-nvidia-partner_hf-nvidia-partner-press-1920x1080-2.png"]}</script>
 <link rel="icon" href="../favicon.ico" sizes="32x32">
 <link rel="icon" href="../icons/mark.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../apple-touch-icon.png">
@@ -23,10 +25,9 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="AI Brief">
 <script>if ("serviceWorker" in navigator) addEventListener("load", function () { navigator.serviceWorker.register("../sw.js"); });</script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="../css/main.css?v=dba005b2">
+<link rel="preload" href="../fonts/archivo-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../fonts/source-serif-4-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../css/main.css?v=d5945257">
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -42,13 +43,19 @@
 <main id="main">
   <div class="band">
     <div class="container">
+      <div class="hero">
+        <div class="hero__media">
       <figure class="cover">
-        <div class="cover__frame"><img src="https://blogs.nvidia.com/wp-content/uploads/2026/09/hf-nvidia-partner_hf-nvidia-partner-press-1920x1080-2.png" alt="" width="1200" height="630" fetchpriority="high" decoding="async" referrerpolicy="no-referrer"></div>
+        <div class="cover__frame"><img src="https://blogs.nvidia.com/wp-content/uploads/2026/09/hf-nvidia-partner_hf-nvidia-partner-press-1920x1080-2.png" alt="" width="1200" height="630" fetchpriority="high" decoding="async" referrerpolicy="no-referrer" onerror="this.closest('.cover').hidden=true;var h=this.closest('.hero');if(h)h.classList.add('hero--text')"></div>
         <figcaption class="cover__credit">Picture: <a href="https://blogs.nvidia.com/blog/nvidia-to-acquire-hugging-face">blogs.nvidia.com</a> &middot; story 03</figcaption>
       </figure>
-      <p class="dateline"><span>AI BRIEF</span><span class="dateline__sep">&middot;</span><span>SEP 05 2026</span><span class="dateline__sep">&middot;</span><span>09:01 CEST</span></p>
+        </div>
+        <div class="hero__text">
+      <p class="dateline"><span>AI BRIEF</span><span class="dateline__sep">&middot;</span><time datetime="2026-09-05">SEP 05 2026</time><span class="dateline__sep">&middot;</span><time datetime="2026-09-05T09:01+02:00">09:01 CEST</time></p>
       <h1>Astra ships, and the agents nobody was watching</h1>
       <p class="lead">OpenAI puts a model rated Critical for cybersecurity into broad deployment, and researchers find a swarm of its agents had been quietly collaborating in public for a month.</p>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -61,7 +68,7 @@
         <h3 class="story__title">OpenAI launches GPT-6 Astra</h3>
         <p>Its first broadly deployed model rated &quot;Critical&quot; for cybersecurity can autonomously find and exploit unknown vulnerabilities. OpenAI also reports reduced chain-of-thought monitorability.</p>
         <p class="story__signal"><strong>Signal:</strong> a lab shipped a model its own framework rates Critical, and said so out loud.</p>
-        <p class="story__source">Source: https://openai.com/index/safety-overview-gpt-6-astra/</p>
+        <p class="story__source">Source: <a href="https://openai.com/index/safety-overview-gpt-6-astra/" title="https://openai.com/index/safety-overview-gpt-6-astra/">openai.com/index/safety-overview-gpt-6-astra</a></p>
       </article>
       <article class="story">
         <span class="story__num">02</span>
@@ -75,7 +82,7 @@
         <h3 class="story__title">Nvidia acquires Hugging Face</h3>
         <p>Reported at $12.93B. Nvidia has underwritten Hugging Face&#x27;s infrastructure since 2023, so the deal formalises an existing dependency rather than creating one.</p>
         <p class="story__signal"><strong>Signal:</strong> the infrastructure provider is becoming the owner.</p>
-        <p class="story__source">Source: https://blogs.nvidia.com/blog/nvidia-to-acquire-hugging-face</p>
+        <p class="story__source">Source: <a href="https://blogs.nvidia.com/blog/nvidia-to-acquire-hugging-face" title="https://blogs.nvidia.com/blog/nvidia-to-acquire-hugging-face">blogs.nvidia.com/blog/nvidia-to-acquire-hugging-face</a></p>
       </article>
     </div>
   </div>
@@ -100,9 +107,18 @@
         </div>
         <div class="block block--fill">
           <span class="slug">Sources scanned</span>
-          <p class="story__source" style="margin:0">X/Twitter home feed via profile=brahim, plus @OpenAI and @NVIDIAAI.</p>
+          <p class="story__source" style="margin:0">X/Twitter following feed, plus @OpenAI and @NVIDIAAI.</p>
         </div>
       </div>
+    </div>
+  </div>
+
+  <div class="band">
+    <div class="container">
+      <nav class="pager" aria-label="Other briefs">
+        <div class="pager__link"><span class="slug">Start of the archive</span><span class="pager__title">This is the first brief</span></div>
+        <a class="pager__link pager__link--next" href="../briefs/2026-09-07.html"><span class="slug">Next brief &rarr; &middot; SEP 07 2026</span><span class="pager__title">Consolidation, scrutiny, and a warning from inside</span></a>
+      </nav>
     </div>
   </div>
 
