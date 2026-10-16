@@ -11,6 +11,11 @@
 //
 // Cloudflare Web Analytics is a separate, cookieless beacon and is not
 // affected.
+//
+// window.gaEvent(name, params) is how the player and the share row count
+// plays and shares (#27): it sends only while the answer is yes, and drops
+// the event otherwise, so nothing waits to be sent after a later Accept. It
+// returns whether it sent.
 (function () {
   var KEY = "ai-brief-consent";
   var MAX_AGE = 182 * 24 * 60 * 60 * 1000;   // about six months
@@ -24,6 +29,7 @@
   var opener = document.querySelector("[data-consent-open]");
   var returnTo = null;  // focus goes back to the footer button only if it opened the banner
   var loaded = false;
+  var granted = false;  // the answer on this page right now, not just what was stored
 
   function read() {
     try {
@@ -42,6 +48,7 @@
   function gtag() { window.dataLayer.push(arguments); }
 
   function load() {
+    granted = true;
     window["ga-disable-" + id] = false;
     if (loaded) {
       gtag("consent", "update", { analytics_storage: "granted" });
@@ -70,6 +77,7 @@
   }
 
   function stop() {
+    granted = false;
     window["ga-disable-" + id] = true;
     if (loaded) gtag("consent", "update", { analytics_storage: "denied" });
     // Every Google Analytics cookie, host-only and on each parent domain:
@@ -114,6 +122,12 @@
     if (returnTo) returnTo.focus();
     returnTo = null;
   }
+
+  window.gaEvent = function (name, params) {
+    if (!loaded || !granted) return false;
+    gtag("event", name, params || {});
+    return true;
+  };
 
   Array.prototype.forEach.call(box.querySelectorAll("[data-consent]"), function (button) {
     button.addEventListener("click", function () { answer(button.getAttribute("data-consent")); });

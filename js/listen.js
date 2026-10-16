@@ -12,7 +12,11 @@
    kept on screen until the reader scrolls away, a tap on a block while playing
    jumps there, the card's buttons, earbuds and the lock screen step by
    paragraph, Space pauses and R repeats the paragraph. Without those times the
-   card keeps its 15 s / 30 s skips. */
+   card keeps its 15 s / 30 s skips.
+   Counting (#27): the first play on a page and the end of the recording each
+   send one Google Analytics event, through js/consent.js, which drops them
+   unless the reader accepted. Every control drives the same <audio>, so the
+   card, the dock, the lock screen and read-along taps count once together. */
 (function () {
   var root = document.querySelector('.listen');
   var ui = root && root.querySelector('.listen__player');
@@ -37,6 +41,7 @@
   var dismissed = false;
   var cardVisible = true;
   var savedAt = 0;
+  var counted = {};        // the GA events already sent on this page (#27)
 
   // The blocks the voice reads, in time order (#7).
   var paras = Array.prototype.slice.call(document.querySelectorAll('[data-t]')).map(function (el) {
@@ -147,6 +152,15 @@
     if (!show && dock.contains(document.activeElement)) play.focus({ preventScroll: true });
     dock.hidden = !show;
     document.documentElement.classList.toggle('has-dock', show);
+  }
+
+  // ── Counting (#27) ──────────────────────────────────────────────────────
+  function count(name) {   // once per page, the first time it can be sent
+    if (counted[name] || !window.gaEvent) return;
+    var params = { content_type: 'brief', item_id: root.dataset.slug };
+    var s = isFinite(audio.duration) && audio.duration > 0 ? audio.duration : total;
+    if (s > 0) params.audio_duration = Math.round(s);
+    counted[name] = window.gaEvent(name, params);
   }
 
   // ── Rendering ───────────────────────────────────────────────────────────
@@ -274,6 +288,7 @@
     if (pending !== null) { audio.currentTime = pending; pending = null; }
   });
   audio.addEventListener('play', function () {
+    count('audio_play');
     started = true;
     if (!root.classList.contains('is-error')) title.innerHTML = titleHTML;
     playing(true);
@@ -293,6 +308,7 @@
     }
   });
   audio.addEventListener('ended', function () {
+    count('audio_complete');
     store(key, null);
     playing(false);
     placeDock();

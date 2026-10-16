@@ -376,7 +376,9 @@ Anything not on this list does not exist. Adding a component means adding it her
 `.skip-link` · `.site-footer` (+ `.site-footer__cookies`)
 
 Script hooks, not components: `.listen__cur` `.listen__dur` `.listen__more`
-`.listen__cast` `.listen__i-play` `.listen__i-pause` `.dock__dur`. State
+`.listen__cast` `.listen__i-play` `.listen__i-pause` `.dock__dur`, and on the share
+row `data-slug` and each link's `data-method`, which name the GA4 `share` event's
+`item_id` and `method` (#27). State
 classes: `html.js`, `html.has-dock`, `html.has-consent`, and `.is-playing` `.is-loading` `.is-error`
 on the player.
 

@@ -149,6 +149,22 @@ later from the footer's Cookies button, turns the tag off and deletes the
 `localStorage` entry (`ai-brief-consent`); where storage is blocked the reader
 is asked on each page. Cloudflare's beacon is cookieless and is not gated.
 
+Since #27 plays and shares are counted too, as GA4 events and only after
+Accept. `js/consent.js` exposes `window.gaEvent(name, params)`, which sends
+while the answer is yes and drops the event otherwise; nothing is queued for a
+later yes. Every event has `content_type: "brief"` and `item_id` set to the
+brief's date:
+
+| Event | When | Extra params |
+|---|---|---|
+| `audio_play` | the first play on a page, from any control (card, dock, lock screen, read-along tap) | `audio_duration` (seconds) |
+| `audio_complete` | the recording plays to the end, once per page | `audio_duration` |
+| `share` (GA4 recommended) | the share sheet completes, a copy succeeds, or a share link is clicked | `method`: `web_share` `copy_link` `copy_text` `email` `linkedin` `x` `plain_text` |
+
+`method` fills GA's built-in Method dimension. To break reports down by
+`item_id` or `audio_duration`, register them in GA as event-scoped custom
+definitions first (GA does not backfill).
+
 ## Why the agent does not publish
 
 Victor writes markdown; **only `publish.py` writes HTML**, and only a person or a
@@ -271,7 +287,7 @@ css/main.css        the design system — see DESIGN.md
 fonts/              Archivo, Source Serif 4, IBM Plex Mono as latin woff2 subsets
 js/listen.js        the audio player
 js/share.js         the share row's buttons (share sheet, copy link, copy as text)
-js/consent.js       the cookie question; loads Google Analytics only after Accept
+js/consent.js       the cookie question; loads Google Analytics only after Accept; gaEvent() for plays and shares
 sw.js               service worker: pages network-first, CSS/JS/icons/fonts cached, audio untouched
 site.webmanifest    makes the archive installable (Add to Home Screen)
 tools/make_icons.py draws the mark; writes icons/, apple-touch-icon.png, favicon.ico
