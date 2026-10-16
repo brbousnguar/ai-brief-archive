@@ -7,6 +7,7 @@
 - Every brief: https://ai.heybrahim.com/briefs/YYYY-MM-DD.html, with the same text as plain text at https://ai.heybrahim.com/briefs/YYYY-MM-DD.txt
 - Archive, newest first: https://ai.heybrahim.com/
 - Running stories: https://ai.heybrahim.com/stories/index.html
+- Source domains, by story count: https://ai.heybrahim.com/sources.html
 - About, and how a brief is made: https://ai.heybrahim.com/about.html
 
 ## Follow

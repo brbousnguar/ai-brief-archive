@@ -818,7 +818,7 @@ def page(
 
 <footer class="site-footer">
   <div class="container">
-    <p style="margin:0"><a href="{up}index.html">&larr; All briefs</a> &middot; <a href="{up}stories/index.html">Stories</a> &middot; <a href="{up}about.html">About</a> &middot; <a href="{up}{FEED_PATH}">Feed</a> &middot; <a href="{up}{PODCAST_PATH}">Podcast</a> &middot; <a href="{HOME_URL}">heybrahim.com</a></p>
+    <p style="margin:0"><a href="{up}index.html">&larr; All briefs</a> &middot; <a href="{up}stories/index.html">Stories</a> &middot; <a href="{up}sources.html">Sources</a> &middot; <a href="{up}about.html">About</a> &middot; <a href="{up}{FEED_PATH}">Feed</a> &middot; <a href="{up}{PODCAST_PATH}">Podcast</a> &middot; <a href="{HOME_URL}">heybrahim.com</a></p>
   </div>
 </footer>
 </body>
@@ -998,6 +998,107 @@ def share_row(brief: Brief, text: str) -> str:
     ])
 
 
+_WORDS = re.compile(r"\S+")
+
+
+def reading_minutes(brief: Brief) -> int:
+    """Minutes to read the brief at 230 words a minute, rounded up (#19)."""
+    text = [brief.title, brief.lead, brief.bottom_line, *brief.watching]
+    for item in brief.items:
+        text += [item.title, item.signal or "", *item.body]
+    words = sum(len(_WORDS.findall(t)) for t in text)
+    return max(1, -(-words // 230))
+
+
+def facts(brief: Brief, stories: dict[str, Story], audio: dict | None) -> str:
+    """The facts line under a brief's lead (#19): what it holds, how long it takes."""
+    n = len(brief.items)
+    running = sum(1 for i in brief.items if (s := stories.get(i.story or "")) and s.is_running)
+    sources = sum(1 for i in brief.items if i.source)
+    parts = [f"{n} stor{'y' if n == 1 else 'ies'}"]
+    if running:
+        parts.append(f"{running} running")
+    parts.append(f"{sources} source{'' if sources == 1 else 's'}")
+    parts.append(f"{reading_minutes(brief)} min read")
+    if audio:
+        parts.append(f"listen {_clock(audio['seconds'])}")
+    return '      <p class="facts">' + " &middot; ".join(parts) + "</p>"
+
+
+def source_domains(briefs: list[Brief]) -> dict[str, list[tuple[Brief, Item]]]:
+    """Source domain -> the (brief, item) pairs that cited it, newest first (#19)."""
+    found: dict[str, list[tuple[Brief, Item]]] = {}
+    for brief in briefs:
+        for item in brief.items:
+            if item.source:
+                host = urlparse(item.source).netloc.lower().removeprefix("www.")
+                found.setdefault(host, []).append((brief, item))
+    return found
+
+
+def _length(seconds: float) -> str:
+    minutes = round(seconds / 60)
+    return f"{minutes // 60} h {minutes % 60:02d} min" if minutes >= 60 else f"{minutes} min"
+
+
+def tally(briefs: list[Brief], stories: dict[str, Story], recordings: dict[str, dict]) -> list[str]:
+    """The index tally (#19): five unequal blocks, one number each."""
+    first = briefs[-1]
+    items = sum(len(b.items) for b in briefs)
+    running = sum(1 for s in stories.values() if s.is_running)
+    domains = len(source_domains(briefs))
+    seconds = sum(a["seconds"] for a in recordings.values())
+
+    def cell(number: str, label: str, klass: str = "block", href: str | None = None) -> str:
+        inner = f'<span class="tally__n">{number}</span><span class="slug">{label}</span>'
+        if href:
+            return f'        <a class="{klass}" href="{E(href)}">{inner}</a>'
+        return f'        <div class="{klass}">{inner}</div>'
+
+    return [
+        '  <div class="band band--sunk">\n    <div class="container">',
+        "      <h2>The archive in numbers</h2>",
+        '      <div class="cols cols--tally">',
+        cell(str(len(briefs)), f"briefs since {E(first.stamp)}, most weekday mornings", "block block--wire"),
+        cell(str(items), f"stories, {items / len(briefs):.1f} a brief"),
+        cell(str(running), "running stories, tracked across days", href="stories/index.html"),
+        cell(str(domains), "source domains, every link kept", href="sources.html"),
+        cell(_length(seconds), f"of audio, {len(recordings)} recording{'' if len(recordings) == 1 else 's'}", "block block--fill"),
+        "      </div>\n    </div>\n  </div>\n",
+    ]
+
+
+def render_sources(briefs: list[Brief]) -> str:
+    """sources.html (#19): every domain the stories link to, by story count."""
+    domains = source_domains(briefs)
+    links = sum(len(v) for v in domains.values())
+    rows = sorted(domains.items(), key=lambda kv: (-len(kv[1]), -kv[1][0][0].date.toordinal(), kv[0]))
+    out = [
+        '  <div class="band">\n    <div class="container">',
+        '      <p class="dateline"><span>SOURCES</span><span class="dateline__sep">&middot;</span>'
+        f"<span>{len(domains)} DOMAINS</span><span class=\"dateline__sep\">&middot;</span><span>{links} LINKS</span></p>",
+        "      <h1>Where the stories come from</h1>",
+        '      <p class="lead" style="max-width:62ch">Every story in a brief links to the post or page '
+        "it came from. This is every domain those links point to, by how many stories cited it. "
+        "The agent reads the X/Twitter following feed, so a link to x.com is the post it quoted.</p>",
+        "    </div>\n  </div>\n",
+        '  <div class="band band--sunk">\n    <div class="container">',
+        '      <table class="table">',
+        '        <thead><tr><th>Source</th><th class="num">Stories</th><th class="num">Briefs</th><th>Last seen</th></tr></thead>',
+        "        <tbody>",
+    ]
+    for host, cited in rows:
+        latest = cited[0][0]
+        briefs_n = len({b.slug for b, _ in cited})
+        out.append(
+            f'          <tr><td><a href="https://{E(host)}/">{E(host)}</a></td>'
+            f'<td class="num">{len(cited)}</td><td class="num">{briefs_n}</td>'
+            f'<td><a href="briefs/{E(latest.slug)}.html">{E(latest.stamp.title())}</a></td></tr>'
+        )
+    out.append("        </tbody>\n      </table>\n    </div>\n  </div>\n")
+    return "\n".join(out)
+
+
 def archive_list(briefs: list[Brief], recordings: dict[str, dict]) -> list[str]:
     """Every brief, grouped by week (#15): the day in mono, the headline in the
     reading face, and what the brief holds (stories, listening time)."""
@@ -1104,6 +1205,7 @@ def render_about(briefs: list[Brief]) -> str:
         '      <p style="max-width:62ch">Not a news organisation, and not reporting of its own. Every '
         "claim traces to a public post or page, linked under the story, because a language model can "
         "misread a post, miss a correction or weigh a story wrong; the link is there to check. "
+        'The <a href="sources.html">sources page</a> counts every domain those links point to. '
         "Nothing here is advice.</p>",
         '      <p style="max-width:62ch;margin:0">The picture on a brief is the share image of one of '
         "its own stories, loaded from the publisher and credited under it. Nothing is rehosted or "
@@ -1263,6 +1365,7 @@ def render_llms(briefs: list[Brief]) -> str:
 - Every brief: {SITE_URL}briefs/YYYY-MM-DD.html, with the same text as plain text at {SITE_URL}briefs/YYYY-MM-DD.txt
 - Archive, newest first: {SITE_URL}
 - Running stories: {SITE_URL}stories/index.html
+- Source domains, by story count: {SITE_URL}sources.html
 - About, and how a brief is made: {SITE_URL}about.html
 
 ## Follow
@@ -1303,6 +1406,7 @@ def render_brief(
     ]
     if brief.lead:
         text.append(f'      <p class="lead"{at("lead")}>{E(brief.lead)}</p>')
+    text.append(facts(brief, stories, audio))
     out = ['  <div class="band">\n    <div class="container">']
     out += hero(media, text)
     out.append("    </div>\n  </div>\n")
@@ -1359,6 +1463,21 @@ def render_brief(
     return "\n".join(out)
 
 
+def story_span(story: Story) -> str:
+    """How long a story has run and how much of it was new (#19)."""
+    first, last = story.appearances[0].brief.date, story.latest.brief.date
+    span = (last - first).days
+    new = sum(1 for a in story.appearances if a.item.is_new_angle)
+    when = f"{first.strftime('%b %d')} to {last.strftime('%b %d')}"
+    fresh = (
+        "No entry carried a new angle: each restated what had already been reported."
+        if new == 0
+        else f"{new} {'entry' if new == 1 else 'entries'} carried a new angle, marked with a diamond; "
+        "the rest restated what had already been reported."
+    )
+    return f"Appeared in {story.days} briefings over {span} day{'' if span == 1 else 's'}, {E(when)}. {fresh}"
+
+
 def render_story(story: Story) -> str:
     out = [
         '  <div class="band">\n    <div class="container">',
@@ -1369,9 +1488,7 @@ def render_story(story: Story) -> str:
         '  <div class="band band--sunk">\n    <div class="container">',
         '      <figure class="figure">',
         f'        <div class="figure__frame">{timeline_svg(story)}</div>',
-        f'        <figcaption class="caption">Appeared in {story.days} briefings. '
-        "Only entries marked with a diamond carried something that had not already been "
-        "reported.</figcaption>",
+        f'        <figcaption class="caption">{story_span(story)}</figcaption>',
         "      </figure>\n    </div>\n  </div>\n",
         '  <div class="band">\n    <div class="container">\n      <h2>What changed, and when</h2>',
     ]
@@ -1428,6 +1545,7 @@ def render_index(
         'mornings from public feeds, and published as written. <a href="about.html">How it is made</a> '
         '&middot; <a href="about.html#follow">Follow by feed or podcast</a></p>',
         "    </div>\n  </div>\n",
+        *tally(briefs, stories, recordings),
     ]
 
     running = sorted(
@@ -1529,7 +1647,8 @@ def render_missing() -> str:
 
 def render_sitemap(briefs: list[Brief], stories: dict[str, Story]) -> str:
     """sitemap.xml. The archive is a host of its own, so it lists its own pages."""
-    entries = [(SITE_URL, briefs[0].slug), (f"{SITE_URL}about.html", None)]
+    entries = [(SITE_URL, briefs[0].slug), (f"{SITE_URL}about.html", None),
+               (f"{SITE_URL}sources.html", briefs[0].slug)]
     entries += [(f"{SITE_URL}briefs/{b.slug}.html", b.slug) for b in briefs]
     entries += [(f"{SITE_URL}stories/index.html", briefs[0].slug)]
     entries += [(f"{SITE_URL}stories/{s.slug}.html", None) for s in stories.values() if s.is_running]
@@ -1638,6 +1757,18 @@ def main() -> int:
         encoding="utf-8",
     )
 
+    (args.out / "sources.html").write_text(
+        page(
+            "Sources — AI Brief",
+            "Every domain the brief's stories link to, by how many stories cited it.",
+            0,
+            render_sources(briefs),
+            "sources.html",
+            latest=latest,
+        ),
+        encoding="utf-8",
+    )
+
     (args.out / "about.html").write_text(
         page(
             "About — AI Brief",
@@ -1691,7 +1822,7 @@ def main() -> int:
 
     pictured = sum(1 for c in covers.values() if c)
     print(f"wrote {len(briefs)} brief page(s) and .txt, {running} story page(s), "
-          f"index.html, stories/index.html, about.html, {FEED_PATH}, {PODCAST_PATH}, llms.txt")
+          f"index.html, stories/index.html, sources.html, about.html, {FEED_PATH}, {PODCAST_PATH}, llms.txt")
     print(f"pictures on {pictured} of {len(briefs)} brief(s)")
     print(f"audio on {len(recordings)} of {len(briefs)} brief(s)")
     return 0
