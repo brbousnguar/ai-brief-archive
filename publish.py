@@ -582,7 +582,9 @@ def _mark_svg() -> str:
 def _app_head(up: str) -> str:
     """Icons, manifest and service worker: the brief installs as an app (#11).
     Status bar `default`, not `black-translucent`, which leaves a dead band at
-    the bottom of an iPhone in standalone mode."""
+    the bottom of an iPhone in standalone mode. js/pull-refresh.js gives the
+    installed app the pull-to-refresh a home-screen app lacks (#29); in a
+    browser tab it does nothing."""
     return f"""<link rel="icon" href="{up}favicon.ico" sizes="32x32">
 <link rel="icon" href="{up}icons/mark.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="{up}apple-touch-icon.png">
@@ -592,7 +594,8 @@ def _app_head(up: str) -> str:
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="AI Brief">
-<script>if ("serviceWorker" in navigator) addEventListener("load", function () {{ navigator.serviceWorker.register("{up}sw.js"); }});</script>"""
+<script>if ("serviceWorker" in navigator) addEventListener("load", function () {{ navigator.serviceWorker.register("{up}sw.js"); }});</script>
+<script defer src="{up}js/pull-refresh.js?v={_asset_version(ROOT / "js/pull-refresh.js")}"></script>"""
 
 
 def _asset_version(path: Path) -> str:
