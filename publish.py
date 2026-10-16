@@ -124,7 +124,8 @@ REPO_URL = "https://github.com/brbousnguar/ai-brief-archive"
 # cookieless beacon heybrahim.com carries (its token is public by design; this
 # is the heybrahim.com site's token, so the archive shows up there under its
 # own host, and a site of its own is a one-constant swap). Google Analytics 4
-# loads only once GA4_ID holds a measurement ID ("G-…"); empty means no tag.
+# loads only once GA4_ID holds a measurement ID ("G-…"); empty means no tag,
+# no banner. Since #25 it also waits for the reader's yes (js/consent.js).
 CF_BEACON_TOKEN = "5fa2715383d04f25bb5d45fdb806263f"
 GA4_ID = "G-RH3C4X94FV"  # GA4 account "heybrahim", property "AI Brief", stream "AI Brief web" (#23)
 
@@ -741,8 +742,9 @@ def _nav(up: str, current: str | None, latest: str | None) -> str:
     return '<nav class="masthead__nav" aria-label="Site">' + "\n      ".join(links) + "</nav>"
 
 
-def analytics_tags() -> list[str]:
-    """The visit counters (#21): the Cloudflare beacon, and the GA4 tag once it has an ID."""
+def analytics_tags(up: str) -> list[str]:
+    """The visit counters (#21): the Cloudflare beacon, and the consent script
+    that loads GA4 only after the reader accepts (#25)."""
     tags = []
     if CF_BEACON_TOKEN:
         tags.append(
@@ -750,24 +752,55 @@ def analytics_tags() -> list[str]:
             f"data-cf-beacon='{{\"token\": \"{CF_BEACON_TOKEN}\"}}'></script>"
         )
     if GA4_ID:
-        tags.append(f'<script async src="https://www.googletagmanager.com/gtag/js?id={GA4_ID}"></script>')
         tags.append(
-            "<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}"
-            f"gtag('js',new Date());gtag('config','{GA4_ID}');</script>"
+            f'<script defer src="{up}js/consent.js?v={_asset_version(ROOT / "js/consent.js")}" '
+            f'data-ga="{E(GA4_ID)}"></script>'
         )
     return tags
 
 
+def consent_banner(up: str) -> str:
+    """The cookie question (#25), hidden until js/consent.js finds no answer.
+    Not modal: it sits along the bottom and the page reads under it. Refuse and
+    Accept are the same button, same size, side by side."""
+    if not GA4_ID:
+        return ""
+    return f"""
+<div class="consent" role="region" aria-label="Cookies" hidden>
+  <div class="container consent__row">
+    <p class="consent__text"><span class="slug">Cookies</span> May Google Analytics set cookies to count your visit and how pages are read? Cloudflare counts page views without a cookie either way. <a href="{up}about.html#counting">What is counted</a></p>
+    <div class="consent__choices">
+      <button class="consent__btn" type="button" data-consent="denied">Refuse</button>
+      <button class="consent__btn" type="button" data-consent="granted">Accept</button>
+    </div>
+    <p class="consent__now" hidden></p>
+  </div>
+</div>"""
+
+
 def counting_note() -> str:
-    """One sentence for the About page on what is counted (#21)."""
-    counters = []
+    """What is counted, for the About page (#21), from the same two constants."""
+    said = []
     if CF_BEACON_TOKEN:
-        counters.append("Cloudflare Web Analytics, which counts page views, referrers and rough country without a cookie")
+        said.append(
+            "Visits are counted by Cloudflare Web Analytics, which counts page views, referrers "
+            "and rough country without a cookie."
+        )
     if GA4_ID:
-        counters.append("Google Analytics, which sets its own cookies")
-    if not counters:
+        said.append(
+            ("Google Analytics counts them too, but" if CF_BEACON_TOKEN else "Google Analytics counts visits, but")
+            + " only if you accept: it then sets its own cookies on this site for 13 months, "
+            "with its advertising features off."
+        )
+    if not said:
         return "Nothing counts the visits."
-    return "Visits are counted by " + ", and by ".join(counters) + ". Nothing else is collected."
+    said.append("Nothing else is collected.")
+    if GA4_ID:
+        said.append(
+            "Your answer stays in your browser for six months. Cookies, at the foot of every page, "
+            "changes it, and refusing deletes the Google cookies."
+        )
+    return " ".join(said)
 
 
 def page(
@@ -811,7 +844,7 @@ def page(
     # The feeds, on every page, so a reader's feed button finds them (#15).
     tags.append(f'<link rel="alternate" type="application/atom+xml" title="AI Brief" href="{SITE_URL}{FEED_PATH}">')
     tags.append(f'<link rel="alternate" type="application/rss+xml" title="AI Brief, audio" href="{SITE_URL}{PODCAST_PATH}">')
-    tags += analytics_tags()
+    tags += analytics_tags(up)
     if share:
         # The share row's buttons (#15). Deferred: the row works as links without it.
         tags.append(f'<script defer src="{up}js/share.js?v={_asset_version(ROOT / "js/share.js")}"></script>')
@@ -856,12 +889,22 @@ def page(
 
 <footer class="site-footer">
   <div class="container">
-    <p style="margin:0"><a href="{up}index.html">&larr; All briefs</a> &middot; <a href="{up}stories/index.html">Stories</a> &middot; <a href="{up}sources.html">Sources</a> &middot; <a href="{up}about.html">About</a> &middot; <a href="{up}{FEED_PATH}">Feed</a> &middot; <a href="{up}{PODCAST_PATH}">Podcast</a> &middot; <a href="{HOME_URL}">heybrahim.com</a></p>
+    <p style="margin:0"><a href="{up}index.html">&larr; All briefs</a> &middot; <a href="{up}stories/index.html">Stories</a> &middot; <a href="{up}sources.html">Sources</a> &middot; <a href="{up}about.html">About</a> &middot; <a href="{up}{FEED_PATH}">Feed</a> &middot; <a href="{up}{PODCAST_PATH}">Podcast</a> &middot; <a href="{HOME_URL}">heybrahim.com</a>{_cookies_link()}</p>
   </div>
-</footer>
+</footer>{consent_banner(up)}
 </body>
 </html>
 """
+
+
+def _cookies_link() -> str:
+    """The footer's way back to the cookie question (#25), shown by js/consent.js."""
+    if not GA4_ID:
+        return ""
+    return (
+        ' <span data-consent-wrap hidden>&middot; '
+        '<button class="site-footer__cookies" type="button" data-consent-open>Cookies</button></span>'
+    )
 
 
 def timeline_svg(story: Story) -> str:
@@ -1277,7 +1320,7 @@ def render_about(briefs: list[Brief]) -> str:
         f'      <p style="max-width:62ch;margin:0">Made by <a href="{HOME_URL}">Brahim Bousnguar</a>, '
         "who built Victor and this archive. The code that renders it is public on "
         f'<a href="{REPO_URL}">GitHub</a>. Corrections and requests go through heybrahim.com.</p>',
-        f'      <p style="max-width:62ch;margin:1rem 0 0">{counting_note()}</p>',
+        f'      <p id="counting" style="max-width:62ch;margin:1rem 0 0">{counting_note()}</p>',
         "    </div>\n  </div>\n",
     ])
 

@@ -158,6 +158,21 @@ LinkedIn, X and the plain-text file are links and need nothing. The status
 line (`.share__status`) keeps its height so a "Link copied" does not move the
 pager.
 
+### The cookie question (#25)
+
+Google Analytics waits for a yes, so a first visit asks. The banner
+(`.consent`) borrows the dock's frame: full width on the bottom edge, paper,
+one ink rule on top, and above the dock when both show. It holds a `.slug`
+("Cookies"), one sentence with a link to what is counted, and Refuse and
+Accept as two `.consent__btn`, which are the share row's buttons: same size,
+same weight, side by side, Refuse first. Nothing about either button leans:
+no fill, no colour, no "recommended". On a phone the two buttons share the
+width under the sentence. It is not modal and never takes focus on load; the
+body pads by its measured height so the footer is never under it. A footer
+button (`.site-footer__cookies`, set like the footer's links) reopens it, with
+the current answer in a quiet mono line (`.consent__now`), so withdrawing is
+as easy as agreeing.
+
 ### Counting (#19)
 
 Numbers are wire furniture, so they are mono and quiet, except on the index
@@ -355,12 +370,14 @@ Anything not on this list does not exist. Adding a component means adding it her
 `.listen__player` `.listen__play` `.listen__main` `.listen__head` `.listen__title`
 `.listen__time` `.listen__seek` `.listen__row` `.listen__btn` `.listen__rate`
 `.listen__note`) · `.dock` (+ `.dock__bar` `.dock__row` `.dock__play`
-`.dock__title` `.dock__time` `.dock__close`) · `.lead` · `.kicker` · `.btn` (+
-`--ghost`, used for the index's "Listen" link) · `.skip-link` · `.site-footer`
+`.dock__title` `.dock__time` `.dock__close`) · `.consent` (+ `.consent__row`
+`.consent__text` `.consent__choices` `.consent__btn` `.consent__now`) · `.lead` ·
+`.kicker` · `.btn` (+ `--ghost`, used for the index's "Listen" link) ·
+`.skip-link` · `.site-footer` (+ `.site-footer__cookies`)
 
 Script hooks, not components: `.listen__cur` `.listen__dur` `.listen__more`
 `.listen__cast` `.listen__i-play` `.listen__i-pause` `.dock__dur`. State
-classes: `html.js`, `html.has-dock`, and `.is-playing` `.is-loading` `.is-error`
+classes: `html.js`, `html.has-dock`, `html.has-consent`, and `.is-playing` `.is-loading` `.is-error`
 on the player.
 
 ## 10. Verification

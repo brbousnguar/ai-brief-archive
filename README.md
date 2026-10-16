@@ -135,8 +135,19 @@ heybrahim.com site's token (public by design), so the archive shows up in that
 dashboard under its own host; giving it a site of its own in Cloudflare is a
 one-constant swap. `GA4_ID` holds the Google Analytics 4 measurement ID, set since #23
 (account "heybrahim", property "AI Brief", web stream "AI Brief web" on
-b.bousnguar@gmail.com); emptied, no Google script loads. The About page says what is counted, from
+b.bousnguar@gmail.com); emptied, no Google script loads and no banner shows. The About page says what is counted, from
 the same two constants.
+
+Since #25 Google Analytics waits for the reader's yes. Every page carries a
+hidden banner and `js/consent.js`, which shows it when there is no answer or
+the answer is more than six months old (the CNIL's guidance). Until Accept,
+nothing is requested from Google (its "basic" consent mode). Accept loads gtag
+with ads storage, ad user data and ad personalisation denied, Google signals
+off, and host-only `_ga` cookies that last 13 months. Refuse, or withdrawing
+later from the footer's Cookies button, turns the tag off and deletes the
+`_ga` cookies on this host and its parent domains. The answer is a
+`localStorage` entry (`ai-brief-consent`); where storage is blocked the reader
+is asked on each page. Cloudflare's beacon is cookieless and is not gated.
 
 ## Why the agent does not publish
 
@@ -234,9 +245,10 @@ rendering a page with quietly missing content.
 
 Static HTML and CSS, no build step. The scripts are `js/listen.js`, the audio
 player, only loaded on a page with a recording, `js/share.js`, the share row's
-buttons, on brief pages, and a short inline one on `404.html` that waits for a
-brief still being published, plus the Cloudflare Web Analytics beacon on every
-page (#21; the Google Analytics tag joins it once `GA4_ID` is set). Rendered by a single
+buttons, on brief pages, `js/consent.js`, the cookie question on every page,
+and a short inline one on `404.html` that waits for a brief still being
+published, plus the Cloudflare Web Analytics beacon on every page (#21). Google
+Analytics loads only after a reader accepts (#25). Rendered by a single
 dependency-free Python script. Each brief's main picture comes from its
 publisher; everything else — the fonts under `fonts/`, the recordings — is
 local, so a reader's browser talks to this host and the publisher's, nothing
@@ -259,6 +271,7 @@ css/main.css        the design system — see DESIGN.md
 fonts/              Archivo, Source Serif 4, IBM Plex Mono as latin woff2 subsets
 js/listen.js        the audio player
 js/share.js         the share row's buttons (share sheet, copy link, copy as text)
+js/consent.js       the cookie question; loads Google Analytics only after Accept
 sw.js               service worker: pages network-first, CSS/JS/icons/fonts cached, audio untouched
 site.webmanifest    makes the archive installable (Add to Home Screen)
 tools/make_icons.py draws the mark; writes icons/, apple-touch-icon.png, favicon.ico
