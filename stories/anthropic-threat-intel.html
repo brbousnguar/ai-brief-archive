@@ -14,8 +14,7 @@
 <link rel="alternate" type="application/atom+xml" title="AI Brief" href="https://ai.heybrahim.com/feed.xml">
 <link rel="alternate" type="application/rss+xml" title="AI Brief, audio" href="https://ai.heybrahim.com/podcast.xml">
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "5fa2715383d04f25bb5d45fdb806263f"}'></script>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-RH3C4X94FV"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-RH3C4X94FV');</script>
+<script defer src="../js/consent.js?v=a47f2eee" data-ga="G-RH3C4X94FV"></script>
 <link rel="icon" href="../favicon.ico" sizes="32x32">
 <link rel="icon" href="../icons/mark.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../apple-touch-icon.png">
@@ -28,7 +27,7 @@
 <script>if ("serviceWorker" in navigator) addEventListener("load", function () { navigator.serviceWorker.register("../sw.js"); });</script>
 <link rel="preload" href="../fonts/archivo-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../fonts/source-serif-4-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="../css/main.css?v=555c303b">
+<link rel="stylesheet" href="../css/main.css?v=66f04548">
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -106,8 +105,18 @@ mention, and a diamond marks an entry that carried a genuinely new angle.</desc>
 
 <footer class="site-footer">
   <div class="container">
-    <p style="margin:0"><a href="../index.html">&larr; All briefs</a> &middot; <a href="../stories/index.html">Stories</a> &middot; <a href="../sources.html">Sources</a> &middot; <a href="../about.html">About</a> &middot; <a href="../feed.xml">Feed</a> &middot; <a href="../podcast.xml">Podcast</a> &middot; <a href="https://heybrahim.com/">heybrahim.com</a></p>
+    <p style="margin:0"><a href="../index.html">&larr; All briefs</a> &middot; <a href="../stories/index.html">Stories</a> &middot; <a href="../sources.html">Sources</a> &middot; <a href="../about.html">About</a> &middot; <a href="../feed.xml">Feed</a> &middot; <a href="../podcast.xml">Podcast</a> &middot; <a href="https://heybrahim.com/">heybrahim.com</a> <span data-consent-wrap hidden>&middot; <button class="site-footer__cookies" type="button" data-consent-open>Cookies</button></span></p>
   </div>
 </footer>
+<div class="consent" role="region" aria-label="Cookies" hidden>
+  <div class="container consent__row">
+    <p class="consent__text"><span class="slug">Cookies</span> May Google Analytics set cookies to count your visit and how pages are read? Cloudflare counts page views without a cookie either way. <a href="../about.html#counting">What is counted</a></p>
+    <div class="consent__choices">
+      <button class="consent__btn" type="button" data-consent="denied">Refuse</button>
+      <button class="consent__btn" type="button" data-consent="granted">Accept</button>
+    </div>
+    <p class="consent__now" hidden></p>
+  </div>
+</div>
 </body>
 </html>

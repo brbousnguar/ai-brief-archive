@@ -366,13 +366,13 @@ a:hover { text-decoration-thickness: 3px; }
    hidden until it runs; the status line keeps its height so nothing jumps. */
 .share { margin: 0 0 var(--gap); }
 .share__row { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-.share__btn {
+.share__btn, .consent__btn {
     display: inline-flex; align-items: center; min-height: 44px; padding: 0 0.9rem;
     border: 2px solid var(--ink); border-radius: 0; background: var(--paper); color: var(--ink);
     font-family: var(--font-mono); font-size: var(--t-xs); font-weight: 500; letter-spacing: 0.1em;
     text-transform: uppercase; text-decoration: none; cursor: pointer;
 }
-.share__btn:hover { background: var(--ink); color: var(--paper); }
+.share__btn:hover, .consent__btn:hover { background: var(--ink); color: var(--paper); }
 .share__btn[hidden] { display: none; }
 .share__status {
     min-height: 1.5em; margin: 0.5rem 0 0;
@@ -570,6 +570,31 @@ div.pager__link .pager__title { color: var(--ink-quiet); }
 .dock__close:hover { background: var(--ink); color: var(--paper); }
 .has-dock body { padding-bottom: calc(68px + env(safe-area-inset-bottom, 0px)); }
 
+/* The cookie question (#25): the dock's frame (paper, one ink rule, fixed to
+   the bottom) carrying one sentence and two equal buttons, the share row's.
+   Not modal. Above the dock when both show; the body pads by its measured
+   height (--consent-h, set by js/consent.js) so the footer is never under it. */
+.consent {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 70;
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    background: var(--paper); border-top: var(--rule);
+}
+.consent[hidden] { display: none; }
+.has-dock .consent { bottom: calc(66px + env(safe-area-inset-bottom, 0px)); padding-bottom: 0; }
+.consent__row { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 1.5rem; padding-block: 0.9rem; }
+.consent__text { flex: 1 1 34ch; margin: 0; font-size: var(--t-sm); line-height: 1.5; }
+.consent__text .slug { margin: 0 0 0.25rem; }
+.consent__choices { display: flex; gap: 0.6rem; }
+.consent__btn { justify-content: center; min-width: 7.5rem; }
+.consent__now { flex: 1 1 100%; margin: 0; font-family: var(--font-mono); font-size: var(--t-xs); color: var(--ink-quiet); }
+.consent__now[hidden] { display: none; }
+@media (max-width: 480px) {
+    .consent__choices { flex: 1 1 100%; }
+    .consent__btn { flex: 1 1 0; min-width: 0; }
+}
+.has-consent body { padding-bottom: var(--consent-h, 0px); }
+.has-consent.has-dock body { padding-bottom: calc(68px + var(--consent-h, 0px) + env(safe-area-inset-bottom, 0px)); }
+
 @media (max-width: 480px) {
     .js .listen__player { grid-template-columns: 64px minmax(0, 1fr); }
     .listen__main { padding: 0.75rem 0.75rem 0.5rem 0.85rem; }
@@ -615,6 +640,12 @@ a:focus-visible, button:focus-visible {
 .band--stamp a:focus-visible, .band--ink a:focus-visible { outline-color: var(--paper); }
 
 .site-footer { border-top: var(--rule); padding-block: 2rem; font-size: var(--t-sm); }
+/* A button that looks like the footer's links: it opens the cookie question (#25). */
+.site-footer__cookies {
+    padding: 0; border: 0; background: none; font: inherit; color: var(--wire);
+    text-decoration: underline; cursor: pointer;
+}
+.site-footer__cookies:hover { text-decoration-thickness: 3px; }
 
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
