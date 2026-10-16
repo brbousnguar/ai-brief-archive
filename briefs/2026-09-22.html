@@ -18,6 +18,8 @@
 <link rel="alternate" type="application/atom+xml" title="AI Brief" href="https://ai.heybrahim.com/feed.xml">
 <link rel="alternate" type="application/rss+xml" title="AI Brief, audio" href="https://ai.heybrahim.com/podcast.xml">
 <script defer src="../js/share.js?v=59a704f3"></script>
+<script>document.documentElement.classList.add('js')</script>
+<script defer src="../js/listen.js?v=0b671b6f" onerror="document.documentElement.classList.remove('js')"></script>
 <link rel="icon" href="../favicon.ico" sizes="32x32">
 <link rel="icon" href="../icons/mark.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../apple-touch-icon.png">
@@ -57,11 +59,31 @@
         <div class="cover__frame"><img src="https://techcrunch.com/wp-content/uploads/2026/09/51013975207_8dcac5cf72_k.jpg?resize=1200,900" alt="" width="1200" height="630" fetchpriority="high" decoding="async" referrerpolicy="no-referrer" onerror="this.closest('.cover').hidden=true;var h=this.closest('.hero');if(h)h.classList.add('hero--text')"></div>
         <figcaption class="cover__credit">Picture: <a href="https://techcrunch.com/2026/09/21/openai-forms-math-advisory-group-as-its-ai-resolves-more-than-100-open-problems">techcrunch.com</a></figcaption>
       </figure>
+      <div class="listen" id="listen" data-title="OpenAI forms a math advisory group after the Fields Medalists&#x27; backlash; Anthropic and Accenture each put $1B behind independent AI evaluation" data-date="SEP 22 2026" data-slug="2026-09-22" data-duration="331.45">
+        <p class="listen__label">Listen &middot; 5:31 &middot; read by an AI voice</p>
+        <audio controls preload="none" src="../audio/2026-09-22.mp3">
+          <a href="../audio/2026-09-22.mp3">Download the audio (MP3)</a>
+        </audio>
+        <div class="listen__player">
+          <button class="listen__play" type="button" aria-label="Play the brief"><svg class="listen__i-play" viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M7 4.5v15L19.5 12z"/></svg><svg class="listen__i-pause" viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M6 4.5h4.5v15H6zM13.5 4.5H18v15h-4.5z"/></svg></button>
+          <div class="listen__main">
+            <p class="listen__head"><span class="listen__title">Listen<span class="listen__more"> to this brief</span></span><span class="listen__time"><span class="listen__cur">0:00</span> / <span class="listen__dur">5:31</span></span></p>
+            <input class="listen__seek" type="range" min="0" max="331" step="1" value="0" aria-label="Position in the audio">
+            <div class="listen__row">
+              <button class="listen__btn" type="button" data-para="-1" aria-label="Previous paragraph"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 5v14"/><path d="M18 5l-9 7 9 7z"/></svg><span aria-hidden="true">&para;</span></button>
+              <button class="listen__btn" type="button" data-para="1" aria-label="Next paragraph"><span aria-hidden="true">&para;</span><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M18 5v14"/><path d="M6 5l9 7-9 7z"/></svg></button>
+              <button class="listen__btn listen__rate" type="button" aria-label="Playback speed 1×">1×</button>
+              <button class="listen__btn listen__cast" type="button" aria-label="Play on another device" hidden><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M7 17H3V4h18v13h-4"/><path d="M12 14l5 6H7z"/></svg></button>
+              <p class="listen__note"><span class="listen__more">Read by an </span>AI voice &middot; <a href="../audio/2026-09-22.mp3" download aria-label="Download the MP3">MP3 <span aria-hidden="true">&darr;</span></a></p>
+            </div>
+          </div>
+        </div>
+      </div>
         </div>
         <div class="hero__text">
       <p class="dateline"><span>AI BRIEF</span><span class="dateline__sep">&middot;</span><time datetime="2026-09-22">SEP 22 2026</time><span class="dateline__sep">&middot;</span><time datetime="2026-09-22T13:41+02:00">13:41 CEST</time></p>
-      <h1 class="h1--long">OpenAI forms a math advisory group after the Fields Medalists&#x27; backlash; Anthropic and Accenture each put $1B behind independent AI evaluation</h1>
-      <p class="lead">OpenAI answered last week&#x27;s open letter from 25 Fields Medal winners by standing up an independent mathematics advisory board hosted at Princeton&#x27;s IAS; Anthropic and Accenture separately committed $1 billion each over five years to build out embedded, independent evaluation of frontier models; and JetBrains widened Air from an agentic IDE into a full governance system for engineering orgs.</p>
+      <h1 class="h1--long" data-t="0.0">OpenAI forms a math advisory group after the Fields Medalists&#x27; backlash; Anthropic and Accenture each put $1B behind independent AI evaluation</h1>
+      <p class="lead" data-t="12.18">OpenAI answered last week&#x27;s open letter from 25 Fields Medal winners by standing up an independent mathematics advisory board hosted at Princeton&#x27;s IAS; Anthropic and Accenture separately committed $1 billion each over five years to build out embedded, independent evaluation of frontier models; and JetBrains widened Air from an agentic IDE into a full governance system for engineering orgs.</p>
         </div>
       </div>
     </div>
@@ -73,23 +95,23 @@
       <article class="story story--lead">
         <span class="story__num">01</span>
         <a class="daycount" href="../stories/openai-navier-stokes.html">new angle</a>
-        <h3 class="story__title">OpenAI forms an independent math advisory group after Fields Medalists&#x27; backlash</h3>
-        <p>Earlier this month, 25 Fields Medal-winning mathematicians signed an open letter accusing frontier AI labs of racing to one-up each other on famous open problems in ways that undercut the mathematical community&#x27;s own work — a dispute that traces back to OpenAI&#x27;s contested Navier-Stokes claim. OpenAI has now announced the Advisory Group on Mathematics and Artificial Intelligence, hosted at Princeton&#x27;s Institute for Advanced Study, with nine initial members including Timothy Gowers, Martin Hairer and Edward Witten (only one, Camillo De Lellis, also signed the original letter). Per OpenAI&#x27;s own post and the IAS&#x27;s statement, the group advises on assessing the significance of new results, coordinating how they&#x27;re disclosed, and upholding academic standards — explicitly not on the pace of OpenAI&#x27;s internal research. Per TechCrunch, OpenAI says a model whose training began August 28 has since resolved more than 100 long-standing open problems across most areas of mathematics, which is the number the mathematicians are reacting to.</p>
-        <p class="story__signal"><strong>Signal:</strong> OpenAI is engaging the critics directly rather than dismissing them — but the group can advise on how results get reviewed and released, not on how fast OpenAI&#x27;s internal math research moves, which was the actual complaint.</p>
+        <h3 class="story__title" data-t="40.85">OpenAI forms an independent math advisory group after Fields Medalists&#x27; backlash</h3>
+        <p data-t="47.35">Earlier this month, 25 Fields Medal-winning mathematicians signed an open letter accusing frontier AI labs of racing to one-up each other on famous open problems in ways that undercut the mathematical community&#x27;s own work — a dispute that traces back to OpenAI&#x27;s contested Navier-Stokes claim. OpenAI has now announced the Advisory Group on Mathematics and Artificial Intelligence, hosted at Princeton&#x27;s Institute for Advanced Study, with nine initial members including Timothy Gowers, Martin Hairer and Edward Witten (only one, Camillo De Lellis, also signed the original letter). Per OpenAI&#x27;s own post and the IAS&#x27;s statement, the group advises on assessing the significance of new results, coordinating how they&#x27;re disclosed, and upholding academic standards — explicitly not on the pace of OpenAI&#x27;s internal research. Per TechCrunch, OpenAI says a model whose training began August 28 has since resolved more than 100 long-standing open problems across most areas of mathematics, which is the number the mathematicians are reacting to.</p>
+        <p class="story__signal" data-t="116.42"><strong>Signal:</strong> OpenAI is engaging the critics directly rather than dismissing them — but the group can advise on how results get reviewed and released, not on how fast OpenAI&#x27;s internal math research moves, which was the actual complaint.</p>
         <p class="story__source">Source: <a href="https://techcrunch.com/2026/09/21/openai-forms-math-advisory-group-as-its-ai-resolves-more-than-100-open-problems" title="https://techcrunch.com/2026/09/21/openai-forms-math-advisory-group-as-its-ai-resolves-more-than-100-open-problems">techcrunch.com/2026/09/21/openai-forms-math-advisory-group-…</a></p>
       </article>
       <article class="story">
         <span class="story__num">02</span>
-        <h3 class="story__title">Anthropic and Accenture each commit $1B to independent frontier AI evaluation</h3>
-        <p>Anthropic and Accenture announced on September 18 that each expects to invest at least $1 billion over five years to build capacity for independent evaluation of Anthropic&#x27;s frontier models. Per Anthropic&#x27;s own announcement and Reuters, the work will be led by Faculty, Accenture&#x27;s specialist AI unit, covering red-teaming, alignment assessments and safeguard testing, with &quot;embedded evaluators&quot; given access inside Anthropic comparable to an employee&#x27;s — observing training, following deployment decisions, and reporting incidents directly. The arrangement is non-exclusive; Anthropic says it&#x27;s also in talks with METR and other nonprofit evaluators to pilot the same model.</p>
-        <p class="story__signal"><strong>Signal:</strong> this is a real bilateral deal following through on Amodei&#x27;s &quot;embed evaluators&quot; pledge, but Anthropic is bankrolling half of the entity meant to check it — a community note on Anthropic&#x27;s own post flagged that Accenture already runs a commercial Claude deployment (training ~30,000 of its staff on it), a real conflict-of-interest wrinkle worth watching as the arrangement plays out.</p>
+        <h3 class="story__title" data-t="132.62">Anthropic and Accenture each commit $1B to independent frontier AI evaluation</h3>
+        <p data-t="140.25">Anthropic and Accenture announced on September 18 that each expects to invest at least $1 billion over five years to build capacity for independent evaluation of Anthropic&#x27;s frontier models. Per Anthropic&#x27;s own announcement and Reuters, the work will be led by Faculty, Accenture&#x27;s specialist AI unit, covering red-teaming, alignment assessments and safeguard testing, with &quot;embedded evaluators&quot; given access inside Anthropic comparable to an employee&#x27;s — observing training, following deployment decisions, and reporting incidents directly. The arrangement is non-exclusive; Anthropic says it&#x27;s also in talks with METR and other nonprofit evaluators to pilot the same model.</p>
+        <p class="story__signal" data-t="184.15"><strong>Signal:</strong> this is a real bilateral deal following through on Amodei&#x27;s &quot;embed evaluators&quot; pledge, but Anthropic is bankrolling half of the entity meant to check it — a community note on Anthropic&#x27;s own post flagged that Accenture already runs a commercial Claude deployment (training ~30,000 of its staff on it), a real conflict-of-interest wrinkle worth watching as the arrangement plays out.</p>
         <p class="story__source">Source: <a href="https://www.reuters.com/business/anthropic-accenture-invest-2-billion-ai-model-evaluation-safety-concerns-rise-2026-09-18" title="https://www.reuters.com/business/anthropic-accenture-invest-2-billion-ai-model-evaluation-safety-concerns-rise-2026-09-18">reuters.com/business/anthropic-accenture-invest-2-billion-a…</a></p>
       </article>
       <article class="story">
         <span class="story__num">03</span>
-        <h3 class="story__title">JetBrains expands Air from an agentic IDE into a full org-wide governance system</h3>
-        <p>JetBrains published &quot;JetBrains Air: Building a System of Products for Agentic Software Development&quot; today, expanding Air beyond the agentic development environment it launched in public preview in March into a broader, multi-surface system spanning individual developers, teams and organizations. The new piece is Air Governance, which extends cost and access visibility across whichever provider a developer picks — Codex, Claude Agent, Gemini CLI, Junie, or a bring-your-own-key setup — so orgs keep control without locking developers into one agent.</p>
-        <p class="story__signal"><strong>Signal:</strong> JetBrains is moving up a level — from a single tool for running AI coding agents (Air&#x27;s March 2026 preview) to a governance layer engineering orgs can put over whichever agent or model their developers already use, aimed at IT leads worried about ungoverned agent spend, not just individual coders.</p>
+        <h3 class="story__title" data-t="209.5">JetBrains expands Air from an agentic IDE into a full org-wide governance system</h3>
+        <p data-t="216.05">JetBrains published &quot;JetBrains Air: Building a System of Products for Agentic Software Development&quot; today, expanding Air beyond the agentic development environment it launched in public preview in March into a broader, multi-surface system spanning individual developers, teams and organizations. The new piece is Air Governance, which extends cost and access visibility across whichever provider a developer picks — Codex, Claude Agent, Gemini CLI, Junie, or a bring-your-own-key setup — so orgs keep control without locking developers into one agent.</p>
+        <p class="story__signal" data-t="253.6"><strong>Signal:</strong> JetBrains is moving up a level — from a single tool for running AI coding agents (Air&#x27;s March 2026 preview) to a governance layer engineering orgs can put over whichever agent or model their developers already use, aimed at IT leads worried about ungoverned agent spend, not just individual coders.</p>
         <p class="story__source">Source: <a href="https://blog.jetbrains.com/blog/2026/09/22/introducing-jetbrains-air" title="https://blog.jetbrains.com/blog/2026/09/22/introducing-jetbrains-air">blog.jetbrains.com/blog/2026/09/22/introducing-jetbrains-air</a></p>
       </article>
     </div>
@@ -97,10 +119,10 @@
 
   <div class="band band--wire">
     <div class="container">
-      <span class="slug">Worth watching</span>
+      <span class="slug" data-t="275.93">Worth watching</span>
       <ul class="watch">
-        <li>Mistral&#x27;s @mistralvibe account said GLM 5.3 (Zhipu&#x27;s model), hosted on Mistral infrastructure, is now the default model in Vibe Code&#x27;s web app, with a 1M-token context window.</li>
-        <li>The Verge reported the claim window for Apple&#x27;s $250 million Siri AI lawsuit settlement is now open for iPhone owners, with a December 21, 2026 deadline to file.</li>
+        <li data-t="278.15">Mistral&#x27;s @mistralvibe account said GLM 5.3 (Zhipu&#x27;s model), hosted on Mistral infrastructure, is now the default model in Vibe Code&#x27;s web app, with a 1M-token context window.</li>
+        <li data-t="292.62">The Verge reported the claim window for Apple&#x27;s $250 million Siri AI lawsuit settlement is now open for iPhone owners, with a December 21, 2026 deadline to file.</li>
       </ul>
     </div>
   </div>
@@ -109,8 +131,8 @@
     <div class="container">
       <div class="cols cols--2">
         <div class="block block--paper">
-          <span class="slug">Bottom line</span>
-          <p class="lead" style="margin:0">Both labs spent this stretch managing the fallout from moving too fast rather than shipping something new: OpenAI brought in outside mathematicians after getting called out for its math claims, and Anthropic paid to put outside eyes on its own models. Nothing has moved on Google DeepMind&#x27;s or Sam Altman&#x27;s own accounts since September 17.</p>
+          <span class="slug" data-t="307.07">Bottom line</span>
+          <p class="lead" style="margin:0" data-t="309.2">Both labs spent this stretch managing the fallout from moving too fast rather than shipping something new: OpenAI brought in outside mathematicians after getting called out for its math claims, and Anthropic paid to put outside eyes on its own models. Nothing has moved on Google DeepMind&#x27;s or Sam Altman&#x27;s own accounts since September 17.</p>
         </div>
         <div class="block block--fill">
           <span class="slug">Sources scanned</span>

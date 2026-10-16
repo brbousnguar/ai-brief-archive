@@ -18,6 +18,8 @@
 <link rel="alternate" type="application/atom+xml" title="AI Brief" href="https://ai.heybrahim.com/feed.xml">
 <link rel="alternate" type="application/rss+xml" title="AI Brief, audio" href="https://ai.heybrahim.com/podcast.xml">
 <script defer src="../js/share.js?v=59a704f3"></script>
+<script>document.documentElement.classList.add('js')</script>
+<script defer src="../js/listen.js?v=0b671b6f" onerror="document.documentElement.classList.remove('js')"></script>
 <link rel="icon" href="../favicon.ico" sizes="32x32">
 <link rel="icon" href="../icons/mark.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../apple-touch-icon.png">
@@ -57,11 +59,31 @@
         <div class="cover__frame"><img src="https://www.unite.ai/wp-content/uploads/2026/10/openai-brings-gpt-6-with-intelligent-ui-to-all-chatgpt-tiers.jpg" alt="" width="1200" height="630" fetchpriority="high" decoding="async" referrerpolicy="no-referrer" onerror="this.closest('.cover').hidden=true;var h=this.closest('.hero');if(h)h.classList.add('hero--text')"></div>
         <figcaption class="cover__credit">Picture: <a href="https://www.unite.ai/openai-brings-gpt-6-with-intelligent-ui-to-all-chatgpt-tiers">unite.ai</a></figcaption>
       </figure>
+      <div class="listen" id="listen" data-title="OpenAI rolls out GPT-6&#x27;s &quot;Intelligent UI&quot; to everyone, Anthropic completes the Claude 5.5 family with Haiku, and Microsoft bets on &quot;Hybrid Intelligence&quot; for Windows" data-date="OCT 08 2026" data-slug="2026-10-08" data-duration="303.9">
+        <p class="listen__label">Listen &middot; 5:04 &middot; read by an AI voice</p>
+        <audio controls preload="none" src="../audio/2026-10-08.mp3">
+          <a href="../audio/2026-10-08.mp3">Download the audio (MP3)</a>
+        </audio>
+        <div class="listen__player">
+          <button class="listen__play" type="button" aria-label="Play the brief"><svg class="listen__i-play" viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M7 4.5v15L19.5 12z"/></svg><svg class="listen__i-pause" viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M6 4.5h4.5v15H6zM13.5 4.5H18v15h-4.5z"/></svg></button>
+          <div class="listen__main">
+            <p class="listen__head"><span class="listen__title">Listen<span class="listen__more"> to this brief</span></span><span class="listen__time"><span class="listen__cur">0:00</span> / <span class="listen__dur">5:04</span></span></p>
+            <input class="listen__seek" type="range" min="0" max="303" step="1" value="0" aria-label="Position in the audio">
+            <div class="listen__row">
+              <button class="listen__btn" type="button" data-para="-1" aria-label="Previous paragraph"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 5v14"/><path d="M18 5l-9 7 9 7z"/></svg><span aria-hidden="true">&para;</span></button>
+              <button class="listen__btn" type="button" data-para="1" aria-label="Next paragraph"><span aria-hidden="true">&para;</span><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M18 5v14"/><path d="M6 5l9 7-9 7z"/></svg></button>
+              <button class="listen__btn listen__rate" type="button" aria-label="Playback speed 1×">1×</button>
+              <button class="listen__btn listen__cast" type="button" aria-label="Play on another device" hidden><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M7 17H3V4h18v13h-4"/><path d="M12 14l5 6H7z"/></svg></button>
+              <p class="listen__note"><span class="listen__more">Read by an </span>AI voice &middot; <a href="../audio/2026-10-08.mp3" download aria-label="Download the MP3">MP3 <span aria-hidden="true">&darr;</span></a></p>
+            </div>
+          </div>
+        </div>
+      </div>
         </div>
         <div class="hero__text">
       <p class="dateline"><span>AI BRIEF</span><span class="dateline__sep">&middot;</span><time datetime="2026-10-08">OCT 08 2026</time><span class="dateline__sep">&middot;</span><time datetime="2026-10-08T07:10+02:00">07:10 CEST</time></p>
-      <h1 class="h1--long">OpenAI rolls out GPT-6&#x27;s &quot;Intelligent UI&quot; to everyone, Anthropic completes the Claude 5.5 family with Haiku, and Microsoft bets on &quot;Hybrid Intelligence&quot; for Windows</h1>
-      <p class="lead">Three real product moves in one day — ChatGPT answers start rendering as interactive interfaces instead of text, Claude&#x27;s cheapest model yet lands at the same price as OpenAI&#x27;s, and Microsoft pushes local AI models onto Windows PCs directly.</p>
+      <h1 class="h1--long" data-t="0.0">OpenAI rolls out GPT-6&#x27;s &quot;Intelligent UI&quot; to everyone, Anthropic completes the Claude 5.5 family with Haiku, and Microsoft bets on &quot;Hybrid Intelligence&quot; for Windows</h1>
+      <p class="lead" data-t="13.43">Three real product moves in one day — ChatGPT answers start rendering as interactive interfaces instead of text, Claude&#x27;s cheapest model yet lands at the same price as OpenAI&#x27;s, and Microsoft pushes local AI models onto Windows PCs directly.</p>
         </div>
       </div>
     </div>
@@ -72,24 +94,24 @@
       <h2>Top signal</h2>
       <article class="story story--lead">
         <span class="story__num">01</span>
-        <h3 class="story__title">OpenAI rolls out GPT-6 with &quot;Intelligent UI&quot; to everyone in ChatGPT</h3>
-        <p>Per OpenAI&#x27;s announcement and Unite.AI&#x27;s reporting, Intelligent UI lets ChatGPT answer with fully interactive interfaces — visual, clickable tools — rather than plain text, for everyday questions and complex topics alike. The rollout started October 7 for Plus, Pro, Business and Enterprise users (Enterprise depends on admin settings) and reaches Free and Go tiers October 8. It&#x27;s powered by GPT-6 Sol for paid tiers and GPT-6 Luna for Free/Go.</p>
-        <p class="story__signal"><strong>Signal:</strong> OpenAI itself calls this &quot;a significant shift in how people interact with ChatGPT,&quot; and the reach is real — this goes to all 1.2B+ weekly ChatGPT users, not a narrow beta. It&#x27;s also a notable UX bet: instead of just better text answers, OpenAI is making interactivity the differentiator against competitors.</p>
+        <h3 class="story__title" data-t="32.38">OpenAI rolls out GPT-6 with &quot;Intelligent UI&quot; to everyone in ChatGPT</h3>
+        <p data-t="38.98">Per OpenAI&#x27;s announcement and Unite.AI&#x27;s reporting, Intelligent UI lets ChatGPT answer with fully interactive interfaces — visual, clickable tools — rather than plain text, for everyday questions and complex topics alike. The rollout started October 7 for Plus, Pro, Business and Enterprise users (Enterprise depends on admin settings) and reaches Free and Go tiers October 8. It&#x27;s powered by GPT-6 Sol for paid tiers and GPT-6 Luna for Free/Go.</p>
+        <p class="story__signal" data-t="69.35"><strong>Signal:</strong> OpenAI itself calls this &quot;a significant shift in how people interact with ChatGPT,&quot; and the reach is real — this goes to all 1.2B+ weekly ChatGPT users, not a narrow beta. It&#x27;s also a notable UX bet: instead of just better text answers, OpenAI is making interactivity the differentiator against competitors.</p>
         <p class="story__source">Source: <a href="https://www.unite.ai/openai-brings-gpt-6-with-intelligent-ui-to-all-chatgpt-tiers" title="https://www.unite.ai/openai-brings-gpt-6-with-intelligent-ui-to-all-chatgpt-tiers">unite.ai/openai-brings-gpt-6-with-intelligent-ui-to-all-cha…</a></p>
       </article>
       <article class="story">
         <span class="story__num">02</span>
         <a class="daycount" href="../stories/claude-5-5-family.html">running story &middot; day 3</a>
-        <h3 class="story__title">Anthropic completes the Claude 5.5 family with Haiku 5.5</h3>
-        <p>Per Anthropic&#x27;s own announcement, Haiku 5.5 is &quot;the cheapest, fastest, and most capable small model&quot; it has released, priced at $0.10 per million input tokens and $0.50 per million output under 100K tokens. Anthropic also halved cache-read pricing on Sonnet 5.5, cutting typical agentic-work costs by about 20%. Haiku 5.5 is live now on Claude&#x27;s platform, AWS, Google Cloud and Azure.</p>
-        <p class="story__signal"><strong>Signal:</strong> this closes the loop Anthropic opened on Sep 29 when it said Haiku 5.5 was coming &quot;in the following weeks&quot; — worth noting the &quot;75% cheaper&quot; headline is an average, not universal: standard-length prompts are roughly 10x cheaper on input / 5x on output than Haiku 4.5, but prompts over 100,000 tokens actually cost more than before. Independent testing (not Anthropic&#x27;s own) found the new Haiku beats GPT-6 Luna, which is priced identically, on a set of head-to-head benchmarks.</p>
+        <h3 class="story__title" data-t="94.1">Anthropic completes the Claude 5.5 family with Haiku 5.5</h3>
+        <p data-t="100.08">Per Anthropic&#x27;s own announcement, Haiku 5.5 is &quot;the cheapest, fastest, and most capable small model&quot; it has released, priced at $0.10 per million input tokens and $0.50 per million output under 100K tokens. Anthropic also halved cache-read pricing on Sonnet 5.5, cutting typical agentic-work costs by about 20%. Haiku 5.5 is live now on Claude&#x27;s platform, AWS, Google Cloud and Azure.</p>
+        <p class="story__signal" data-t="128.32"><strong>Signal:</strong> this closes the loop Anthropic opened on Sep 29 when it said Haiku 5.5 was coming &quot;in the following weeks&quot; — worth noting the &quot;75% cheaper&quot; headline is an average, not universal: standard-length prompts are roughly 10x cheaper on input / 5x on output than Haiku 4.5, but prompts over 100,000 tokens actually cost more than before. Independent testing (not Anthropic&#x27;s own) found the new Haiku beats GPT-6 Luna, which is priced identically, on a set of head-to-head benchmarks.</p>
         <p class="story__source">Source: <a href="https://sg.finance.yahoo.com/news/anthropic-expands-ai-model-suite-202855087.html" title="https://sg.finance.yahoo.com/news/anthropic-expands-ai-model-suite-202855087.html">sg.finance.yahoo.com/news/anthropic-expands-ai-model-suite-…</a></p>
       </article>
       <article class="story">
         <span class="story__num">03</span>
-        <h3 class="story__title">Microsoft pushes &quot;Hybrid Intelligence&quot; onto Windows: local models, agent sandboxes, and a PC-optimized coding model</h3>
-        <p>Per Satya Nadella&#x27;s announcement and TestingCatalog&#x27;s reporting, Microsoft unveiled &quot;MAI-Code-1.1 Flash,&quot; a 137B-parameter coding model with a 256K context window optimized to run locally on PCs, with GitHub Copilot now able to hand off work to it instead of the cloud to cut cost. Microsoft also introduced &quot;MXC&quot; execution containers — policy-driven sandboxes that enforce file and network access limits for AI agents acting on a user&#x27;s PC — plus new Copilot experiences built around that hybrid local/cloud routing, announced at an event in San Francisco.</p>
-        <p class="story__signal"><strong>Signal:</strong> a concrete follow-through on Microsoft&#x27;s enterprise-focused &quot;Copilot as OS for work&quot; repositioning from last week — this time aimed specifically at Windows PCs and local compute rather than the cloud, with Jensen Huang appearing alongside Nadella, tying it to the broader on-device-AI hardware push alongside Apple and Google&#x27;s recent local-model moves.</p>
+        <h3 class="story__title" data-t="164.88">Microsoft pushes &quot;Hybrid Intelligence&quot; onto Windows: local models, agent sandboxes, and a PC-optimized coding model</h3>
+        <p data-t="174.05">Per Satya Nadella&#x27;s announcement and TestingCatalog&#x27;s reporting, Microsoft unveiled &quot;MAI-Code-1.1 Flash,&quot; a 137B-parameter coding model with a 256K context window optimized to run locally on PCs, with GitHub Copilot now able to hand off work to it instead of the cloud to cut cost. Microsoft also introduced &quot;MXC&quot; execution containers — policy-driven sandboxes that enforce file and network access limits for AI agents acting on a user&#x27;s PC — plus new Copilot experiences built around that hybrid local/cloud routing, announced at an event in San Francisco.</p>
+        <p class="story__signal" data-t="217.82"><strong>Signal:</strong> a concrete follow-through on Microsoft&#x27;s enterprise-focused &quot;Copilot as OS for work&quot; repositioning from last week — this time aimed specifically at Windows PCs and local compute rather than the cloud, with Jensen Huang appearing alongside Nadella, tying it to the broader on-device-AI hardware push alongside Apple and Google&#x27;s recent local-model moves.</p>
         <p class="story__source">Source: <a href="https://www.testingcatalog.com/microsoft-brings-hybrid-ai-and-agent-controls-to-windows" title="https://www.testingcatalog.com/microsoft-brings-hybrid-ai-and-agent-controls-to-windows">testingcatalog.com/microsoft-brings-hybrid-ai-and-agent-con…</a></p>
       </article>
     </div>
@@ -97,11 +119,11 @@
 
   <div class="band band--wire">
     <div class="container">
-      <span class="slug">Worth watching</span>
+      <span class="slug" data-t="242.78">Worth watching</span>
       <ul class="watch">
-        <li>Claude&#x27;s Python and TypeScript SDKs now ship built-in computer-use and browser-use toolsets — the API tells you what Claude wants to click or type, so developers no longer write their own action loop by hand.</li>
-        <li>Grok Bot gained direct X search and monitoring tools, trending on X today — no primary source confirmed yet beyond the trending topic itself.</li>
-        <li>Decision models (the Jev/Clef category covered in recent briefings) continue trending as a developer topic for fast, cheap agent routing choices.</li>
+        <li data-t="245.0">Claude&#x27;s Python and TypeScript SDKs now ship built-in computer-use and browser-use toolsets — the API tells you what Claude wants to click or type, so developers no longer write their own action loop by hand.</li>
+        <li data-t="259.5">Grok Bot gained direct X search and monitoring tools, trending on X today — no primary source confirmed yet beyond the trending topic itself.</li>
+        <li data-t="269.77">Decision models (the Jev/Clef category covered in recent briefings) continue trending as a developer topic for fast, cheap agent routing choices.</li>
       </ul>
     </div>
   </div>
@@ -110,8 +132,8 @@
     <div class="container">
       <div class="cols cols--2">
         <div class="block block--paper">
-          <span class="slug">Bottom line</span>
-          <p class="lead" style="margin:0">A genuinely busy news day across all three major labs plus Microsoft: OpenAI betting on interactive UI as ChatGPT&#x27;s next differentiator, Anthropic rounding out a model family it&#x27;s been shipping weekly, and Microsoft doubling down on local AI as the way to make Windows itself agent-native.</p>
+          <span class="slug" data-t="280.95">Bottom line</span>
+          <p class="lead" style="margin:0" data-t="283.07">A genuinely busy news day across all three major labs plus Microsoft: OpenAI betting on interactive UI as ChatGPT&#x27;s next differentiator, Anthropic rounding out a model family it&#x27;s been shipping weekly, and Microsoft doubling down on local AI as the way to make Windows itself agent-native.</p>
         </div>
         <div class="block block--fill">
           <span class="slug">Sources scanned</span>

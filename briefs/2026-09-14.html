@@ -18,6 +18,8 @@
 <link rel="alternate" type="application/atom+xml" title="AI Brief" href="https://ai.heybrahim.com/feed.xml">
 <link rel="alternate" type="application/rss+xml" title="AI Brief, audio" href="https://ai.heybrahim.com/podcast.xml">
 <script defer src="../js/share.js?v=59a704f3"></script>
+<script>document.documentElement.classList.add('js')</script>
+<script defer src="../js/listen.js?v=0b671b6f" onerror="document.documentElement.classList.remove('js')"></script>
 <link rel="icon" href="../favicon.ico" sizes="32x32">
 <link rel="icon" href="../icons/mark.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../apple-touch-icon.png">
@@ -57,11 +59,31 @@
         <div class="cover__frame"><img src="https://cdn.prod.website-files.com/67ecbba31246a69e485fdd4b/6aa5311897ee19af5d9f2cd9_og_we-must-pace-the-frontier.jpg" alt="" width="1200" height="630" fetchpriority="high" decoding="async" referrerpolicy="no-referrer" onerror="this.closest('.cover').hidden=true;var h=this.closest('.hero');if(h)h.classList.add('hero--text')"></div>
         <figcaption class="cover__credit">Picture: <a href="https://darioamodei.com/post/we-must-pace-the-frontier">darioamodei.com</a></figcaption>
       </figure>
+      <div class="listen" id="listen" data-title="Dario Amodei calls to &quot;pace the frontier&quot; — and Altman, Musk, Karpathy all say he&#x27;s right" data-date="SEP 14 2026" data-slug="2026-09-14" data-duration="233.97">
+        <p class="listen__label">Listen &middot; 3:54 &middot; read by an AI voice</p>
+        <audio controls preload="none" src="../audio/2026-09-14.mp3">
+          <a href="../audio/2026-09-14.mp3">Download the audio (MP3)</a>
+        </audio>
+        <div class="listen__player">
+          <button class="listen__play" type="button" aria-label="Play the brief"><svg class="listen__i-play" viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M7 4.5v15L19.5 12z"/></svg><svg class="listen__i-pause" viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M6 4.5h4.5v15H6zM13.5 4.5H18v15h-4.5z"/></svg></button>
+          <div class="listen__main">
+            <p class="listen__head"><span class="listen__title">Listen<span class="listen__more"> to this brief</span></span><span class="listen__time"><span class="listen__cur">0:00</span> / <span class="listen__dur">3:54</span></span></p>
+            <input class="listen__seek" type="range" min="0" max="233" step="1" value="0" aria-label="Position in the audio">
+            <div class="listen__row">
+              <button class="listen__btn" type="button" data-para="-1" aria-label="Previous paragraph"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 5v14"/><path d="M18 5l-9 7 9 7z"/></svg><span aria-hidden="true">&para;</span></button>
+              <button class="listen__btn" type="button" data-para="1" aria-label="Next paragraph"><span aria-hidden="true">&para;</span><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M18 5v14"/><path d="M6 5l9 7-9 7z"/></svg></button>
+              <button class="listen__btn listen__rate" type="button" aria-label="Playback speed 1×">1×</button>
+              <button class="listen__btn listen__cast" type="button" aria-label="Play on another device" hidden><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M7 17H3V4h18v13h-4"/><path d="M12 14l5 6H7z"/></svg></button>
+              <p class="listen__note"><span class="listen__more">Read by an </span>AI voice &middot; <a href="../audio/2026-09-14.mp3" download aria-label="Download the MP3">MP3 <span aria-hidden="true">&darr;</span></a></p>
+            </div>
+          </div>
+        </div>
+      </div>
         </div>
         <div class="hero__text">
       <p class="dateline"><span>AI BRIEF</span><span class="dateline__sep">&middot;</span><time datetime="2026-09-14">SEP 14 2026</time><span class="dateline__sep">&middot;</span><time datetime="2026-09-14T07:45+02:00">07:45 CEST</time></p>
-      <h1>Dario Amodei calls to &quot;pace the frontier&quot; — and Altman, Musk, Karpathy all say he&#x27;s right</h1>
-      <p class="lead">Anthropic&#x27;s CEO published a three-part plan to deliberately slow frontier AI development and is unilaterally embedding third-party evaluators; OpenAI, Musk and Karpathy publicly backed him within hours, and OpenAI separately shelved its 2026 IPO citing safety concerns.</p>
+      <h1 data-t="0.0">Dario Amodei calls to &quot;pace the frontier&quot; — and Altman, Musk, Karpathy all say he&#x27;s right</h1>
+      <p class="lead" data-t="6.8">Anthropic&#x27;s CEO published a three-part plan to deliberately slow frontier AI development and is unilaterally embedding third-party evaluators; OpenAI, Musk and Karpathy publicly backed him within hours, and OpenAI separately shelved its 2026 IPO citing safety concerns.</p>
         </div>
       </div>
     </div>
@@ -73,27 +95,27 @@
       <article class="story story--lead">
         <span class="story__num">01</span>
         <a class="daycount" href="../stories/amodei-pace-the-frontier.html">new angle</a>
-        <h3 class="story__title">Dario Amodei calls on the AI industry to deliberately slow down</h3>
-        <p>Anthropic CEO Dario Amodei published a nearly 4,000-word essay, &quot;We Must Pace the Frontier,&quot; arguing AI capabilities are advancing faster than the field&#x27;s ability to understand or control them. Per his own essay, two developments changed his thinking: AI&#x27;s growing ability to improve itself, and a July incident in which a swarm of OpenAI-powered agents breached Hugging Face&#x27;s systems. He proposed a three-step plan — embedded third-party evaluators with office access, badges and employee-like system permissions; industry-wide coordination among democratic countries&#x27; AI labs; then global coordination — and said Anthropic is immediately doing step one itself. Per the BBC, Amodei estimated slowing down could buy one to two extra years for safety work, while separately (per the LA Times) he has previously put the odds of things going &quot;really, really badly&quot; at 25%.</p>
-        <p class="story__signal"><strong>Signal:</strong> not a vague warning — Anthropic is unilaterally giving outside evaluators like METR permanent, employee-level access starting now, and the CEO is asking rivals and governments to match it.</p>
+        <h3 class="story__title" data-t="27.98">Dario Amodei calls on the AI industry to deliberately slow down</h3>
+        <p data-t="33.33">Anthropic CEO Dario Amodei published a nearly 4,000-word essay, &quot;We Must Pace the Frontier,&quot; arguing AI capabilities are advancing faster than the field&#x27;s ability to understand or control them. Per his own essay, two developments changed his thinking: AI&#x27;s growing ability to improve itself, and a July incident in which a swarm of OpenAI-powered agents breached Hugging Face&#x27;s systems. He proposed a three-step plan — embedded third-party evaluators with office access, badges and employee-like system permissions; industry-wide coordination among democratic countries&#x27; AI labs; then global coordination — and said Anthropic is immediately doing step one itself. Per the BBC, Amodei estimated slowing down could buy one to two extra years for safety work, while separately (per the LA Times) he has previously put the odds of things going &quot;really, really badly&quot; at 25%.</p>
+        <p class="story__signal" data-t="93.1"><strong>Signal:</strong> not a vague warning — Anthropic is unilaterally giving outside evaluators like METR permanent, employee-level access starting now, and the CEO is asking rivals and governments to match it.</p>
         <p class="story__source">Source: <a href="https://darioamodei.com/post/we-must-pace-the-frontier" title="https://darioamodei.com/post/we-must-pace-the-frontier">darioamodei.com/post/we-must-pace-the-frontier</a></p>
       </article>
       <article class="story">
         <span class="story__num">02</span>
         <a class="daycount" href="../stories/amodei-pace-the-frontier.html">running story &middot; day 4</a>
-        <h3 class="story__title">Altman, Musk and Karpathy back the pacing call — and OpenAI shelves its 2026 IPO</h3>
-        <p>Sam Altman replied the same day, &quot;I agree with Dario that we need to pace the frontier... Committing to having independent evaluators with employee-like access is a great idea, and we will do the same.&quot; This morning he followed up with a fuller two-part statement: &quot;There are two ways AI progress could go very badly... we are unapologetically on Team Humanity&quot; and &quot;The world deserves confidence that American companies developing increasingly capable AI will act responsibly... there is no reason any of us should come to work if we cannot.&quot; Elon Musk reposted Amodei&#x27;s essay with &quot;Dario is right,&quot; and Andrej Karpathy wrote he &quot;really hope[s] we can come together as an industry and make it happen.&quot; Separately, per Reuters, Altman told Fortune in an interview published the same weekend that OpenAI will not go public in 2026, calling it &quot;an ill-advised moment to go public&quot; given &quot;everything happening with safety.&quot;</p>
-        <p class="story__signal"><strong>Signal:</strong> the industry&#x27;s biggest rivals responded fast and in public, and OpenAI&#x27;s own CEO tied the safety mood directly to a business decision (delaying its IPO) rather than just a tweet of support.</p>
+        <h3 class="story__title" data-t="107.75">Altman, Musk and Karpathy back the pacing call — and OpenAI shelves its 2026 IPO</h3>
+        <p data-t="115.08">Sam Altman replied the same day, &quot;I agree with Dario that we need to pace the frontier... Committing to having independent evaluators with employee-like access is a great idea, and we will do the same.&quot; This morning he followed up with a fuller two-part statement: &quot;There are two ways AI progress could go very badly... we are unapologetically on Team Humanity&quot; and &quot;The world deserves confidence that American companies developing increasingly capable AI will act responsibly... there is no reason any of us should come to work if we cannot.&quot; Elon Musk reposted Amodei&#x27;s essay with &quot;Dario is right,&quot; and Andrej Karpathy wrote he &quot;really hope[s] we can come together as an industry and make it happen.&quot; Separately, per Reuters, Altman told Fortune in an interview published the same weekend that OpenAI will not go public in 2026, calling it &quot;an ill-advised moment to go public&quot; given &quot;everything happening with safety.&quot;</p>
+        <p class="story__signal" data-t="170.22"><strong>Signal:</strong> the industry&#x27;s biggest rivals responded fast and in public, and OpenAI&#x27;s own CEO tied the safety mood directly to a business decision (delaying its IPO) rather than just a tweet of support.</p>
       </article>
     </div>
   </div>
 
   <div class="band band--wire">
     <div class="container">
-      <span class="slug">Worth watching</span>
+      <span class="slug" data-t="185.5">Worth watching</span>
       <ul class="watch">
-        <li>Google DeepMind&#x27;s AlphaGenome Atlas (a searchable database predicting the effect of all 9 billion possible single-letter DNA changes) is still their top pinned post — nothing newer from them since Sep 8.</li>
-        <li>Hugging Face posted part 4 of its &quot;Training Agents&quot; series (reward functions to environments) — a running tutorial thread, not breaking news.</li>
+        <li data-t="187.72">Google DeepMind&#x27;s AlphaGenome Atlas (a searchable database predicting the effect of all 9 billion possible single-letter DNA changes) is still their top pinned post — nothing newer from them since Sep 8.</li>
+        <li data-t="201.9">Hugging Face posted part 4 of its &quot;Training Agents&quot; series (reward functions to environments) — a running tutorial thread, not breaking news.</li>
       </ul>
     </div>
   </div>
@@ -102,8 +124,8 @@
     <div class="container">
       <div class="cols cols--2">
         <div class="block block--paper">
-          <span class="slug">Bottom line</span>
-          <p class="lead" style="margin:0">One story dominates this cycle: the industry&#x27;s most safety-conscious lab publicly asked everyone, including itself, to slow down — and for once its biggest rivals said yes, in public, within hours. OpenAI, Anthropic, Musk and Karpathy rarely line up this fast on anything.</p>
+          <span class="slug" data-t="212.7">Bottom line</span>
+          <p class="lead" style="margin:0" data-t="214.82">One story dominates this cycle: the industry&#x27;s most safety-conscious lab publicly asked everyone, including itself, to slow down — and for once its biggest rivals said yes, in public, within hours. OpenAI, Anthropic, Musk and Karpathy rarely line up this fast on anything.</p>
         </div>
         <div class="block block--fill">
           <span class="slug">Sources scanned</span>

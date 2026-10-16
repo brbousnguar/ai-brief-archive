@@ -45,8 +45,9 @@ the next run, for up to seven days. To pin a picture by hand, add
 
 ### The audio version
 
-From 2026-10-14 on, each brief also has a recording, for listening on a walk or
-the bus. Older briefs stay text-only. The player sits under the main picture.
+Each brief also has a recording, for listening on a walk or the bus (recording
+started on 2026-10-14; the 27 earlier briefs were recorded in one pass, #17).
+The player sits under the main picture.
 It is a skin over the page's own `<audio>`, so it keeps playing with the screen
 locked, and the phone's lock screen shows the headline with skip buttons. It has
 back 15 s and forward 30 s, a speed control, and a mini-player docked at the

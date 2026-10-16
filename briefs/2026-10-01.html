@@ -18,6 +18,8 @@
 <link rel="alternate" type="application/atom+xml" title="AI Brief" href="https://ai.heybrahim.com/feed.xml">
 <link rel="alternate" type="application/rss+xml" title="AI Brief, audio" href="https://ai.heybrahim.com/podcast.xml">
 <script defer src="../js/share.js?v=59a704f3"></script>
+<script>document.documentElement.classList.add('js')</script>
+<script defer src="../js/listen.js?v=0b671b6f" onerror="document.documentElement.classList.remove('js')"></script>
 <link rel="icon" href="../favicon.ico" sizes="32x32">
 <link rel="icon" href="../icons/mark.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../apple-touch-icon.png">
@@ -57,11 +59,31 @@
         <div class="cover__frame"><img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/g4_30-09-26_key-art_blog.width-1300.png" alt="" width="1200" height="630" fetchpriority="high" decoding="async" referrerpolicy="no-referrer" onerror="this.closest('.cover').hidden=true;var h=this.closest('.hero');if(h)h.classList.add('hero--text')"></div>
         <figcaption class="cover__credit">Picture: <a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon">blog.google</a></figcaption>
       </figure>
+      <div class="listen" id="listen" data-title="Google ships Gemini 4 Argon, its answer to GPT-6 Astra — xAI&#x27;s Grok Bot gets a coding upgrade the same day" data-date="OCT 01 2026" data-slug="2026-10-01" data-duration="217.43">
+        <p class="listen__label">Listen &middot; 3:37 &middot; read by an AI voice</p>
+        <audio controls preload="none" src="../audio/2026-10-01.mp3">
+          <a href="../audio/2026-10-01.mp3">Download the audio (MP3)</a>
+        </audio>
+        <div class="listen__player">
+          <button class="listen__play" type="button" aria-label="Play the brief"><svg class="listen__i-play" viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M7 4.5v15L19.5 12z"/></svg><svg class="listen__i-pause" viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M6 4.5h4.5v15H6zM13.5 4.5H18v15h-4.5z"/></svg></button>
+          <div class="listen__main">
+            <p class="listen__head"><span class="listen__title">Listen<span class="listen__more"> to this brief</span></span><span class="listen__time"><span class="listen__cur">0:00</span> / <span class="listen__dur">3:37</span></span></p>
+            <input class="listen__seek" type="range" min="0" max="217" step="1" value="0" aria-label="Position in the audio">
+            <div class="listen__row">
+              <button class="listen__btn" type="button" data-para="-1" aria-label="Previous paragraph"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 5v14"/><path d="M18 5l-9 7 9 7z"/></svg><span aria-hidden="true">&para;</span></button>
+              <button class="listen__btn" type="button" data-para="1" aria-label="Next paragraph"><span aria-hidden="true">&para;</span><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M18 5v14"/><path d="M6 5l9 7-9 7z"/></svg></button>
+              <button class="listen__btn listen__rate" type="button" aria-label="Playback speed 1×">1×</button>
+              <button class="listen__btn listen__cast" type="button" aria-label="Play on another device" hidden><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M7 17H3V4h18v13h-4"/><path d="M12 14l5 6H7z"/></svg></button>
+              <p class="listen__note"><span class="listen__more">Read by an </span>AI voice &middot; <a href="../audio/2026-10-01.mp3" download aria-label="Download the MP3">MP3 <span aria-hidden="true">&darr;</span></a></p>
+            </div>
+          </div>
+        </div>
+      </div>
         </div>
         <div class="hero__text">
       <p class="dateline"><span>AI BRIEF</span><span class="dateline__sep">&middot;</span><time datetime="2026-10-01">OCT 01 2026</time><span class="dateline__sep">&middot;</span><time datetime="2026-10-01T07:35+02:00">07:35 CEST</time></p>
-      <h1 class="h1--long">Google ships Gemini 4 Argon, its answer to GPT-6 Astra — xAI&#x27;s Grok Bot gets a coding upgrade the same day</h1>
-      <p class="lead">Google DeepMind announced Gemini 4 Argon, a new frontier model aimed at long-horizon coding, enterprise work and cybersecurity defense, rolling out first to trusted cyber-defense testers rather than the public — while xAI&#x27;s Grok Bot picked up new software-building tools (Cursor handoff, GitHub/Origin PR management) the same morning.</p>
+      <h1 class="h1--long" data-t="0.0">Google ships Gemini 4 Argon, its answer to GPT-6 Astra — xAI&#x27;s Grok Bot gets a coding upgrade the same day</h1>
+      <p class="lead" data-t="9.18">Google DeepMind announced Gemini 4 Argon, a new frontier model aimed at long-horizon coding, enterprise work and cybersecurity defense, rolling out first to trusted cyber-defense testers rather than the public — while xAI&#x27;s Grok Bot picked up new software-building tools (Cursor handoff, GitHub/Origin PR management) the same morning.</p>
         </div>
       </div>
     </div>
@@ -73,26 +95,26 @@
       <article class="story story--lead">
         <span class="story__num">01</span>
         <a class="daycount" href="../stories/gemini-4-argon.html">new angle</a>
-        <h3 class="story__title">Google launches Gemini 4 Argon, a frontier model for coding, enterprise work and cybersecurity defense</h3>
-        <p>Per Google&#x27;s own announcement, Argon is built to sustain deep reasoning across complex, long-horizon workflows, with an industry-leading 1M-token output limit, and targets real-world software engineering, legal/finance knowledge work, and autonomous cybersecurity vulnerability patching. Demis Hassabis framed it as &quot;rolling out responsibly starting with government and trusted cyber defenders,&quot; with wider availability — starting with paid API customers and Google AI Ultra subscribers — to follow &quot;as soon as possible.&quot; No public benchmark report has shipped alongside it yet.</p>
-        <p class="story__signal"><strong>Signal:</strong> this is a genuine multi-account confirmed launch — Demis Hassabis, @GoogleAI, @Google and @GoogleDeepMind all posted it within the same window — but the rollout is deliberately narrow: trusted cyber defenders first via the &quot;Fairwind Program,&quot; not a public release. It&#x27;s Google&#x27;s clearest shot yet at the high end OpenAI&#x27;s GPT-6 Astra and dots currently occupy.</p>
+        <h3 class="story__title" data-t="32.95">Google launches Gemini 4 Argon, a frontier model for coding, enterprise work and cybersecurity defense</h3>
+        <p data-t="41.0">Per Google&#x27;s own announcement, Argon is built to sustain deep reasoning across complex, long-horizon workflows, with an industry-leading 1M-token output limit, and targets real-world software engineering, legal/finance knowledge work, and autonomous cybersecurity vulnerability patching. Demis Hassabis framed it as &quot;rolling out responsibly starting with government and trusted cyber defenders,&quot; with wider availability — starting with paid API customers and Google AI Ultra subscribers — to follow &quot;as soon as possible.&quot; No public benchmark report has shipped alongside it yet.</p>
+        <p class="story__signal" data-t="80.58"><strong>Signal:</strong> this is a genuine multi-account confirmed launch — Demis Hassabis, @GoogleAI, @Google and @GoogleDeepMind all posted it within the same window — but the rollout is deliberately narrow: trusted cyber defenders first via the &quot;Fairwind Program,&quot; not a public release. It&#x27;s Google&#x27;s clearest shot yet at the high end OpenAI&#x27;s GPT-6 Astra and dots currently occupy.</p>
         <p class="story__source">Source: <a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon" title="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon">blog.google/innovation-and-ai/models-and-research/gemini-mo…</a></p>
       </article>
       <article class="story">
         <span class="story__num">02</span>
-        <h3 class="story__title">xAI&#x27;s Grok Bot adds coding handoff to Cursor and PR management via GitHub/<wbr>Origin</h3>
-        <p>Grok Bot&#x27;s own account announced bots can now hand off coding tasks to Cursor, manage pull requests through GitHub and Origin plugins, and share video demos of what they build. xAI is also opening up its own engineering team&#x27;s internal Grok Bot setups for others to use as templates. No primary xAI blog post found for this specific update — attributing to the Grok Bot account post and third-party commentary only.</p>
-        <p class="story__signal"><strong>Signal:</strong> lands days after Grok Bot&#x27;s Team Bots feature went into public beta, and deepens the Cursor/xAI stack (Grok Bot for knowledge work, Origin for code hosting, Grok as the model) into something closer to a coherent enterprise platform — though Origin itself is still early and thinner than GitHub on features, per third-party testers.</p>
+        <h3 class="story__title" data-t="106.58">xAI&#x27;s Grok Bot adds coding handoff to Cursor and PR management via GitHub/<wbr>Origin</h3>
+        <p data-t="113.65">Grok Bot&#x27;s own account announced bots can now hand off coding tasks to Cursor, manage pull requests through GitHub and Origin plugins, and share video demos of what they build. xAI is also opening up its own engineering team&#x27;s internal Grok Bot setups for others to use as templates. No primary xAI blog post found for this specific update — attributing to the Grok Bot account post and third-party commentary only.</p>
+        <p class="story__signal" data-t="141.07"><strong>Signal:</strong> lands days after Grok Bot&#x27;s Team Bots feature went into public beta, and deepens the Cursor/xAI stack (Grok Bot for knowledge work, Origin for code hosting, Grok as the model) into something closer to a coherent enterprise platform — though Origin itself is still early and thinner than GitHub on features, per third-party testers.</p>
       </article>
     </div>
   </div>
 
   <div class="band band--wire">
     <div class="container">
-      <span class="slug">Worth watching</span>
+      <span class="slug" data-t="164.45">Worth watching</span>
       <ul class="watch">
-        <li>A New York Times chart (shared by columnist Steve Rattner, quote-posted by Andrew Yang) shows tech job losses continuing in Silicon Valley despite the AI boom — a reporting item, not a lab announcement.</li>
-        <li>OpenClaw itself shipped v2026.9.7: snappier performance under load, backup/rollback fixes, an OpenAI Agents API + ChatGPT sign-in beta, and restart recovery improvements.</li>
+        <li data-t="166.68">A New York Times chart (shared by columnist Steve Rattner, quote-posted by Andrew Yang) shows tech job losses continuing in Silicon Valley despite the AI boom — a reporting item, not a lab announcement.</li>
+        <li data-t="180.95">OpenClaw itself shipped v2026.9.7: snappier performance under load, backup/rollback fixes, an OpenAI Agents API + ChatGPT sign-in beta, and restart recovery improvements.</li>
       </ul>
     </div>
   </div>
@@ -101,8 +123,8 @@
     <div class="container">
       <div class="cols cols--2">
         <div class="block block--paper">
-          <span class="slug">Bottom line</span>
-          <p class="lead" style="margin:0">After a DevDay-dominated week from OpenAI, Google answered today with its own frontier model launch — tightly gated for now — while xAI quietly kept shipping on the agentic-coding front. Anthropic and OpenAI&#x27;s own feeds were quiet since yesterday&#x27;s briefing.</p>
+          <span class="slug" data-t="197.15">Bottom line</span>
+          <p class="lead" style="margin:0" data-t="199.28">After a DevDay-dominated week from OpenAI, Google answered today with its own frontier model launch — tightly gated for now — while xAI quietly kept shipping on the agentic-coding front. Anthropic and OpenAI&#x27;s own feeds were quiet since yesterday&#x27;s briefing.</p>
         </div>
         <div class="block block--fill">
           <span class="slug">Sources scanned</span>
