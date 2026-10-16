@@ -126,7 +126,7 @@ REPO_URL = "https://github.com/brbousnguar/ai-brief-archive"
 # own host, and a site of its own is a one-constant swap). Google Analytics 4
 # loads only once GA4_ID holds a measurement ID ("G-…"); empty means no tag.
 CF_BEACON_TOKEN = "5fa2715383d04f25bb5d45fdb806263f"
-GA4_ID = ""
+GA4_ID = "G-RH3C4X94FV"  # GA4 account "heybrahim", property "AI Brief", stream "AI Brief web" (#23)
 
 # The masthead nav (#15): the same five links on every page. "Latest" is the
 # newest brief itself, one tap from anywhere; Follow is the About page's feed
