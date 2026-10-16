@@ -76,9 +76,11 @@ from urllib.parse import urljoin, urlparse
 ROOT = Path(__file__).resolve().parent
 DEFAULT_SOURCE = Path.home() / "Server/agents/openclaw/victor/briefs"
 
-# The archive is served from heybrahim.com. brbousnguar.github.io/ai-brief-archive/
-# still works, but only as a 301 to this address, so never link to it.
-SITE_URL = "https://heybrahim.com/ai-brief-archive/"
+# The archive is its own site at ai.heybrahim.com (the CNAME file). The old
+# heybrahim.com/ai-brief-archive/ links are forwarded here by the main site's
+# 404.html, and brbousnguar.github.io/ai-brief-archive/ 301s here, so never link
+# to either.
+SITE_URL = "https://ai.heybrahim.com/"
 HOME_URL = "https://heybrahim.com/"
 
 FONTS = (
@@ -979,6 +981,23 @@ def render_missing() -> str:
 # ---------------------------------------------------------------- driver
 
 
+def render_sitemap(briefs: list[Brief], stories: dict[str, Story]) -> str:
+    """sitemap.xml. The archive is a host of its own, so it lists its own pages."""
+    entries = [(SITE_URL, briefs[0].slug)]
+    entries += [(f"{SITE_URL}briefs/{b.slug}.html", b.slug) for b in briefs]
+    entries += [(f"{SITE_URL}stories/{s.slug}.html", None) for s in stories.values() if s.is_running]
+    rows = [
+        f"  <url><loc>{E(loc)}</loc>" + (f"<lastmod>{day}</lastmod>" if day else "") + "</url>"
+        for loc, day in entries
+    ]
+    return (
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+        + "\n".join(rows)
+        + "\n</urlset>\n"
+    )
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("--source", type=Path, default=DEFAULT_SOURCE)
@@ -1066,6 +1085,11 @@ def main() -> int:
             up=urlparse(SITE_URL).path,
         ),
         encoding="utf-8",
+    )
+
+    (args.out / "sitemap.xml").write_text(render_sitemap(briefs, stories), encoding="utf-8")
+    (args.out / "robots.txt").write_text(
+        f"User-agent: *\nAllow: /\n\nSitemap: {SITE_URL}sitemap.xml\n", encoding="utf-8"
     )
 
     pictured = sum(1 for c in covers.values() if c)
