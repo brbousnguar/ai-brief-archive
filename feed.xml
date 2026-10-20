@@ -5,9 +5,25 @@
   <id>https://ai.heybrahim.com/</id>
   <link rel="alternate" type="text/html" href="https://ai.heybrahim.com/"/>
   <link rel="self" type="application/atom+xml" href="https://ai.heybrahim.com/feed.xml"/>
-  <updated>2026-10-19T07:16+02:00</updated>
+  <updated>2026-10-20T07:25+02:00</updated>
   <author><name>AI Brief</name><uri>https://ai.heybrahim.com/</uri></author>
   <icon>https://ai.heybrahim.com/icons/icon-192.png</icon>
+  <entry>
+    <title>Google Research open-sources Harness², a framework that lets any agent improve its own prompts and tools without touching model weights</title>
+    <link rel="alternate" type="text/html" href="https://ai.heybrahim.com/briefs/2026-10-20.html"/>
+    <id>https://ai.heybrahim.com/briefs/2026-10-20.html</id>
+    <published>2026-10-20T07:25+02:00</published>
+    <updated>2026-10-20T07:25+02:00</updated>
+    <summary>A quieter morning overall — OpenAI, Anthropic and Google DeepMind&#x27;s main accounts had nothing new beyond what&#x27;s already covered — but Google Research&#x27;s open-source release for self-improving agent harnesses is a genuinely interesting drop for anyone building agents.</summary>
+    <content type="html">&lt;p&gt;&lt;em&gt;A quieter morning overall — OpenAI, Anthropic and Google DeepMind&amp;#x27;s main accounts had nothing new beyond what&amp;#x27;s already covered — but Google Research&amp;#x27;s open-source release for self-improving agent harnesses is a genuinely interesting drop for anyone building agents.&lt;/em&gt;&lt;/p&gt;
+&lt;h2&gt;01 &amp;middot; Google Research open-sources Harness², a framework for agents that improve their own prompts and tools at test time&lt;/h2&gt;
+&lt;p&gt;Per Google Research&amp;#x27;s own GitHub release and accompanying arXiv paper, a &amp;quot;harness&amp;quot; is everything wrapped around a model — prompts, tools, memory, skills, orchestration — and Harness² refines that surrounding system during deployment while keeping model weights completely frozen. It uses a &amp;quot;Propose, Probe, Compose&amp;quot; loop to improve behavior through behavioral contrasts rather than labeled examples, keeps a &amp;quot;lessons library&amp;quot; that carries improvements forward to future tasks, and already supports OpenCode and Codex as executors. It&amp;#x27;s Apache 2.0 licensed and has picked up over 11,000 GitHub stars within two days.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Signal:&lt;/strong&gt; a real research contribution with public benchmarks, not just a demo — a single Harness² step lifted GLM-5 by up to 11.5 points on WorkBuddy-Bench and Gemini 3.5 Flash similarly on other benchmarks, and it works without labeled data or ground-truth verifiers, which the team says most self-improvement methods require.&lt;/p&gt;
+&lt;p&gt;Source: &lt;a href=&quot;https://github.com/google-research/harness2&quot; title=&quot;https://github.com/google-research/harness2&quot;&gt;github.com/google-research/harness2&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Worth watching&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;A startup account claims &amp;quot;SKY-001,&amp;quot; a new &amp;quot;Engineering World Model&amp;quot; for CAD/BIM tasks, beats GPT-6 Astra and every frontier model tested (51-125x faster, 150-210x cheaper) — striking numbers, but no independent source or company page could be found to verify any of it, so treat as an unverified claim for now.&lt;/li&gt;&lt;li&gt;Developers are using Claude Opus 5.5 as a makeshift motion-design tool (dropping a PDF in and getting a rendered video out) — a genuine emergent use case circulating in the community, not an Anthropic product announcement.&lt;/li&gt;&lt;li&gt;Fish Audio continued promoting Drama 3 (covered here Oct 14) — no new capability, just more marketing.&lt;/li&gt;&lt;/ul&gt;
+&lt;h2&gt;Bottom line&lt;/h2&gt;&lt;p&gt;A quiet stretch for the three main labs, but a solid, well-documented research release from Google worth a look if you build or tune AI agents.&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;Sources scanned: X/Twitter following feed, plus @OpenAI, @AnthropicAI and @GoogleDeepMind.&lt;/small&gt;&lt;/p&gt;</content>
+  </entry>
   <entry>
     <title>Anthropic commits 5% of its shares to a new public benefit fund ahead of a possible IPO, and Linus Torvalds shuts down calls to ban AI in the Linux kernel</title>
     <link rel="alternate" type="text/html" href="https://ai.heybrahim.com/briefs/2026-10-19.html"/>

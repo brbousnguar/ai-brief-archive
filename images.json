@@ -197,5 +197,12 @@
     "page": "https://www.pcgamer.com/software/linux/linux-kernel-drops-ai-contribution-disclosure-rule-as-linus-torvalds-says-banning-the-tech-would-be-utterly-stupid",
     "rank": 2,
     "story": "Linus Torvalds rejects calls to ban AI-assisted code from the Linux kernel, and the \"Assisted-by\" disclosure tag gets dropped"
+  },
+  "2026-10-20": {
+    "alt": "Contribute to google-research/harness2 development by creating an account on GitHub.",
+    "image": "https://opengraph.githubassets.com/87c5dec5c2e2c30810738eb0a0f0cdab8102d77473ea55d8b4d143350d4fafc2/google-research/harness2",
+    "page": "https://github.com/google-research/harness2",
+    "rank": 1,
+    "story": "Google Research open-sources Harness\u00b2, a framework for agents that improve their own prompts and tools at test time"
   }
 }

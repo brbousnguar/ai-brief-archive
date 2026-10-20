@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Google Research open-sources Harness², a framework that lets any agent improve its own prompts and tools without touching model weights — AI Brief, Oct 20 2026</title>
+<meta name="description" content="A quieter morning overall — OpenAI, Anthropic and Google DeepMind&#x27;s main accounts had nothing new beyond what&#x27;s already covered — but Google Research&#x27;s open-source release for self-improving agent harnesses is a genuinely interesting drop for anyone building agents.">
+<link rel="canonical" href="https://ai.heybrahim.com/briefs/2026-10-20.html">
+<meta property="og:site_name" content="AI Brief">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Google Research open-sources Harness², a framework that lets any agent improve its own prompts and tools without touching model weights">
+<meta property="og:description" content="A quieter morning overall — OpenAI, Anthropic and Google DeepMind&#x27;s main accounts had nothing new beyond what&#x27;s already covered — but Google Research&#x27;s open-source release for self-improving agent harnesses is a genuinely interesting drop for anyone building agents.">
+<meta property="og:url" content="https://ai.heybrahim.com/briefs/2026-10-20.html">
+<meta property="og:image" content="https://opengraph.githubassets.com/87c5dec5c2e2c30810738eb0a0f0cdab8102d77473ea55d8b4d143350d4fafc2/google-research/harness2">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="article:published_time" content="2026-10-20T07:25+02:00">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "NewsArticle", "headline": "Google Research open-sources Harness², a framework that lets any agent improve its own prompts and tools without touching model weights", "description": "A quieter morning overall — OpenAI, Anthropic and Google DeepMind's main accounts had nothing new beyond what's already covered — but Google Research's open-source release for self-improving agent harnesses is a genuinely interesting drop for anyone building agents.", "datePublished": "2026-10-20T07:25+02:00", "url": "https://ai.heybrahim.com/briefs/2026-10-20.html", "mainEntityOfPage": "https://ai.heybrahim.com/briefs/2026-10-20.html", "isAccessibleForFree": true, "author": {"@type": "Organization", "name": "AI Brief", "url": "https://ai.heybrahim.com/"}, "publisher": {"@type": "Person", "name": "Brahim Bousnguar", "url": "https://heybrahim.com/"}, "image": ["https://opengraph.githubassets.com/87c5dec5c2e2c30810738eb0a0f0cdab8102d77473ea55d8b4d143350d4fafc2/google-research/harness2"]}</script>
+<link rel="alternate" type="application/atom+xml" title="AI Brief" href="https://ai.heybrahim.com/feed.xml">
+<link rel="alternate" type="application/rss+xml" title="AI Brief, audio" href="https://ai.heybrahim.com/podcast.xml">
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "5fa2715383d04f25bb5d45fdb806263f"}'></script>
+<script defer src="../js/consent.js?v=d3824c97" data-ga="G-RH3C4X94FV"></script>
+<script defer src="../js/share.js?v=dbb1cc28"></script>
+<link rel="icon" href="../favicon.ico" sizes="32x32">
+<link rel="icon" href="../icons/mark.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="manifest" href="../site.webmanifest">
+<meta name="theme-color" content="#FBF7EF">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="AI Brief">
+<script>if ("serviceWorker" in navigator) addEventListener("load", function () { navigator.serviceWorker.register("../sw.js"); });</script>
+<link rel="preload" href="../fonts/archivo-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../fonts/source-serif-4-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../css/main.css?v=66f04548">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="container masthead__inner">
+    <p class="masthead__name"><a href="../index.html"><svg class="masthead__mark" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#1B5E7A"/><rect x="0" y="34" width="100" height="32" fill="#FBF7EF"/><circle cx="20" cy="50" r="6" fill="#14120E"/><circle cx="40" cy="50" r="6" fill="#14120E"/><circle cx="60" cy="50" r="6" fill="#14120E"/><circle cx="81" cy="50" r="10" fill="#C81E1E"/></svg>AI BRIEF</a></p>
+    <span class="masthead__tag">Wire archive &middot; brahim bousnguar</span>
+    <nav class="masthead__nav" aria-label="Site"><a href="../briefs/2026-10-20.html" aria-current="page">Latest</a>
+      <a href="../stories/index.html">Stories</a>
+      <a href="../index.html#archive">Archive</a>
+      <a href="../about.html">About</a>
+      <a href="../about.html#follow">Follow</a></nav>
+  </div>
+</header>
+<hr class="tape">
+
+<main id="main">
+  <div class="band">
+    <div class="container">
+      <div class="hero">
+        <div class="hero__media">
+      <figure class="cover">
+        <div class="cover__frame"><img src="https://opengraph.githubassets.com/87c5dec5c2e2c30810738eb0a0f0cdab8102d77473ea55d8b4d143350d4fafc2/google-research/harness2" alt="Contribute to google-research/harness2 development by creating an account on GitHub." width="1200" height="630" fetchpriority="high" decoding="async" referrerpolicy="no-referrer" onerror="this.closest('.cover').hidden=true;var h=this.closest('.hero');if(h)h.classList.add('hero--text')"></div>
+        <figcaption class="cover__credit">Picture: <a href="https://github.com/google-research/harness2">github.com</a></figcaption>
+      </figure>
+        </div>
+        <div class="hero__text">
+      <p class="dateline"><span>AI BRIEF</span><span class="dateline__sep">&middot;</span><time datetime="2026-10-20">OCT 20 2026</time><span class="dateline__sep">&middot;</span><time datetime="2026-10-20T07:25+02:00">07:25 CEST</time></p>
+      <h1 class="h1--long">Google Research open-sources Harness², a framework that lets any agent improve its own prompts and tools without touching model weights</h1>
+      <p class="lead">A quieter morning overall — OpenAI, Anthropic and Google DeepMind&#x27;s main accounts had nothing new beyond what&#x27;s already covered — but Google Research&#x27;s open-source release for self-improving agent harnesses is a genuinely interesting drop for anyone building agents.</p>
+      <p class="facts">1 story &middot; 1 source &middot; 2 min read</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="band">
+    <div class="container">
+      <h2>Top signal</h2>
+      <article class="story story--lead">
+        <span class="story__num">01</span>
+        <h3 class="story__title">Google Research open-sources Harness², a framework for agents that improve their own prompts and tools at test time</h3>
+        <p>Per Google Research&#x27;s own GitHub release and accompanying arXiv paper, a &quot;harness&quot; is everything wrapped around a model — prompts, tools, memory, skills, orchestration — and Harness² refines that surrounding system during deployment while keeping model weights completely frozen. It uses a &quot;Propose, Probe, Compose&quot; loop to improve behavior through behavioral contrasts rather than labeled examples, keeps a &quot;lessons library&quot; that carries improvements forward to future tasks, and already supports OpenCode and Codex as executors. It&#x27;s Apache 2.0 licensed and has picked up over 11,000 GitHub stars within two days.</p>
+        <p class="story__signal"><strong>Signal:</strong> a real research contribution with public benchmarks, not just a demo — a single Harness² step lifted GLM-5 by up to 11.5 points on WorkBuddy-Bench and Gemini 3.5 Flash similarly on other benchmarks, and it works without labeled data or ground-truth verifiers, which the team says most self-improvement methods require.</p>
+        <p class="story__source">Source: <a href="https://github.com/google-research/harness2" title="https://github.com/google-research/harness2">github.com/google-research/harness2</a></p>
+      </article>
+    </div>
+  </div>
+
+  <div class="band band--wire">
+    <div class="container">
+      <span class="slug">Worth watching</span>
+      <ul class="watch">
+        <li>A startup account claims &quot;SKY-001,&quot; a new &quot;Engineering World Model&quot; for CAD/BIM tasks, beats GPT-6 Astra and every frontier model tested (51-125x faster, 150-210x cheaper) — striking numbers, but no independent source or company page could be found to verify any of it, so treat as an unverified claim for now.</li>
+        <li>Developers are using Claude Opus 5.5 as a makeshift motion-design tool (dropping a PDF in and getting a rendered video out) — a genuine emergent use case circulating in the community, not an Anthropic product announcement.</li>
+        <li>Fish Audio continued promoting Drama 3 (covered here Oct 14) — no new capability, just more marketing.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="band band--sunk">
+    <div class="container">
+      <div class="cols cols--2">
+        <div class="block block--paper">
+          <span class="slug">Bottom line</span>
+          <p class="lead" style="margin:0">A quiet stretch for the three main labs, but a solid, well-documented research release from Google worth a look if you build or tune AI agents.</p>
+        </div>
+        <div class="block block--fill">
+          <span class="slug">Sources scanned</span>
+          <p class="story__source" style="margin:0">X/Twitter following feed, plus @OpenAI, @AnthropicAI and @GoogleDeepMind.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="band">
+    <div class="container">
+      <div class="share" data-url="https://ai.heybrahim.com/briefs/2026-10-20.html" data-title="Google Research open-sources Harness², a framework that lets any agent improve its own prompts and tools without touching model weights" data-slug="2026-10-20">
+        <span class="slug">Share this brief</span>
+        <div class="share__row">
+          <button class="share__btn" type="button" data-share hidden>Share&hellip;</button>
+          <button class="share__btn" type="button" data-copy="link" hidden>Copy link</button>
+          <button class="share__btn" type="button" data-copy="text" hidden>Copy as text</button>
+          <a class="share__btn" href="mailto:?subject=AI%20Brief%3A%20Google%20Research%20open-sources%20Harness%C2%B2%2C%20a%20framework%20that%20lets%20any%20agent%20improve%20its%20own%20prompts%20and%20tools%20without%20touching%20model%20weights&amp;body=Google%20Research%20open-sources%20Harness%C2%B2%2C%20a%20framework%20that%20lets%20any%20agent%20improve%20its%20own%20prompts%20and%20tools%20without%20touching%20model%20weights%0A%0AA%20quieter%20morning%20overall%20%E2%80%94%20OpenAI%2C%20Anthropic%20and%20Google%20DeepMind%27s%20main%20accounts%20had%20nothing%20new%20beyond%20what%27s%20already%20covered%20%E2%80%94%20but%20Google%20Research%27s%20open-source%20release%20for%20self-improving%20agent%20harnesses%20is%20a%20genuinely%20interesting%20drop%20for%20anyone%20building%20agents.%0A%0Ahttps%3A%2F%2Fai.heybrahim.com%2Fbriefs%2F2026-10-20.html" data-method="email">Email</a>
+          <a class="share__btn" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fai.heybrahim.com%2Fbriefs%2F2026-10-20.html" target="_blank" rel="noopener" data-method="linkedin">LinkedIn</a>
+          <a class="share__btn" href="https://x.com/intent/post?text=Google%20Research%20open-sources%20Harness%C2%B2%2C%20a%20framework%20that%20lets%20any%20agent%20improve%20its%20own%20prompts%20and%20tools%20without%20touching%20model%20weights&amp;url=https%3A%2F%2Fai.heybrahim.com%2Fbriefs%2F2026-10-20.html" target="_blank" rel="noopener" data-method="x">X</a>
+          <a class="share__btn" href="2026-10-20.txt" data-method="plain_text">Plain text</a>
+        </div>
+        <p class="share__status" role="status" aria-live="polite"></p>
+      </div>
+      <template id="brief-text">AI BRIEF · OCT 20 2026 · 07:25 CEST
+https://ai.heybrahim.com/briefs/2026-10-20.html
+
+Google Research open-sources Harness², a framework that lets any agent improve its own prompts and tools without touching model weights
+
+A quieter morning overall — OpenAI, Anthropic and Google DeepMind&#x27;s main accounts had nothing new beyond what&#x27;s already covered — but Google Research&#x27;s open-source release for self-improving agent harnesses is a genuinely interesting drop for anyone building agents.
+
+01 · Google Research open-sources Harness², a framework for agents that improve their own prompts and tools at test time
+Per Google Research&#x27;s own GitHub release and accompanying arXiv paper, a &quot;harness&quot; is everything wrapped around a model — prompts, tools, memory, skills, orchestration — and Harness² refines that surrounding system during deployment while keeping model weights completely frozen. It uses a &quot;Propose, Probe, Compose&quot; loop to improve behavior through behavioral contrasts rather than labeled examples, keeps a &quot;lessons library&quot; that carries improvements forward to future tasks, and already supports OpenCode and Codex as executors. It&#x27;s Apache 2.0 licensed and has picked up over 11,000 GitHub stars within two days.
+Signal: a real research contribution with public benchmarks, not just a demo — a single Harness² step lifted GLM-5 by up to 11.5 points on WorkBuddy-Bench and Gemini 3.5 Flash similarly on other benchmarks, and it works without labeled data or ground-truth verifiers, which the team says most self-improvement methods require.
+Source: https://github.com/google-research/harness2
+
+WORTH WATCHING
+- A startup account claims &quot;SKY-001,&quot; a new &quot;Engineering World Model&quot; for CAD/BIM tasks, beats GPT-6 Astra and every frontier model tested (51-125x faster, 150-210x cheaper) — striking numbers, but no independent source or company page could be found to verify any of it, so treat as an unverified claim for now.
+- Developers are using Claude Opus 5.5 as a makeshift motion-design tool (dropping a PDF in and getting a rendered video out) — a genuine emergent use case circulating in the community, not an Anthropic product announcement.
+- Fish Audio continued promoting Drama 3 (covered here Oct 14) — no new capability, just more marketing.
+
+BOTTOM LINE
+A quiet stretch for the three main labs, but a solid, well-documented research release from Google worth a look if you build or tune AI agents.
+
+Sources scanned: X/Twitter following feed, plus @OpenAI, @AnthropicAI and @GoogleDeepMind.
+
+Written by an agent from public feeds. Every brief and source: https://ai.heybrahim.com/
+</template>
+      <nav class="pager" aria-label="Other briefs">
+        <a class="pager__link" href="../briefs/2026-10-19.html"><span class="slug">&larr; Previous brief &middot; OCT 19 2026</span><span class="pager__title">Anthropic commits 5% of its shares to a new public benefit fund ahead of a possible IPO, and Linus Torvalds shuts down calls to ban AI in the Linux kernel</span></a>
+        <a class="pager__link pager__link--next" href="../index.html"><span class="slug">All briefs &rarr;</span><span class="pager__title">This is the latest brief</span></a>
+      </nav>
+    </div>
+  </div>
+
+  <p class="end-mark">-30-</p>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p style="margin:0"><a href="../index.html">&larr; All briefs</a> &middot; <a href="../stories/index.html">Stories</a> &middot; <a href="../sources.html">Sources</a> &middot; <a href="../about.html">About</a> &middot; <a href="../feed.xml">Feed</a> &middot; <a href="../podcast.xml">Podcast</a> &middot; <a href="https://heybrahim.com/">heybrahim.com</a> <span data-consent-wrap hidden>&middot; <button class="site-footer__cookies" type="button" data-consent-open>Cookies</button></span></p>
+  </div>
+</footer>
+<div class="consent" role="region" aria-label="Cookies" hidden>
+  <div class="container consent__row">
+    <p class="consent__text"><span class="slug">Cookies</span> May Google Analytics set cookies to count your visit and how pages are read? Cloudflare counts page views without a cookie either way. <a href="../about.html#counting">What is counted</a></p>
+    <div class="consent__choices">
+      <button class="consent__btn" type="button" data-consent="denied">Refuse</button>
+      <button class="consent__btn" type="button" data-consent="granted">Accept</button>
+    </div>
+    <p class="consent__now" hidden></p>
+  </div>
+</div>
+</body>
+</html>
