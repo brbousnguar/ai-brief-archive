@@ -14,6 +14,16 @@
     <itunes:type>episodic</itunes:type>
     <lastBuildDate>Tue, 20 Oct 2026 07:25:00 +0200</lastBuildDate>
     <item>
+      <title>Google Research open-sources Harness², a framework that lets any agent improve its own prompts and tools without touching model weights</title>
+      <link>https://ai.heybrahim.com/briefs/2026-10-20.html</link>
+      <guid>https://ai.heybrahim.com/briefs/2026-10-20.html</guid>
+      <pubDate>Tue, 20 Oct 2026 07:25:00 +0200</pubDate>
+      <description>A quieter morning overall — OpenAI, Anthropic and Google DeepMind&#x27;s main accounts had nothing new beyond what&#x27;s already covered — but Google Research&#x27;s open-source release for self-improving agent harnesses is a genuinely interesting drop for anyone building agents.</description>
+      <enclosure url="https://ai.heybrahim.com/audio/2026-10-20.mp3" length="835318" type="audio/mpeg"/>
+      <itunes:duration>167</itunes:duration>
+      <itunes:episodeType>full</itunes:episodeType>
+    </item>
+    <item>
       <title>Anthropic commits 5% of its shares to a new public benefit fund ahead of a possible IPO, and Linus Torvalds shuts down calls to ban AI in the Linux kernel</title>
       <link>https://ai.heybrahim.com/briefs/2026-10-19.html</link>
       <guid>https://ai.heybrahim.com/briefs/2026-10-19.html</guid>

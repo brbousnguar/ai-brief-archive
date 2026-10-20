@@ -20,6 +20,8 @@
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "5fa2715383d04f25bb5d45fdb806263f"}'></script>
 <script defer src="../js/consent.js?v=d3824c97" data-ga="G-RH3C4X94FV"></script>
 <script defer src="../js/share.js?v=dbb1cc28"></script>
+<script>document.documentElement.classList.add('js')</script>
+<script defer src="../js/listen.js?v=5acf47fc" onerror="document.documentElement.classList.remove('js')"></script>
 <link rel="icon" href="../favicon.ico" sizes="32x32">
 <link rel="icon" href="../icons/mark.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../apple-touch-icon.png">
@@ -59,12 +61,32 @@
         <div class="cover__frame"><img src="https://opengraph.githubassets.com/87c5dec5c2e2c30810738eb0a0f0cdab8102d77473ea55d8b4d143350d4fafc2/google-research/harness2" alt="Contribute to google-research/harness2 development by creating an account on GitHub." width="1200" height="630" fetchpriority="high" decoding="async" referrerpolicy="no-referrer" onerror="this.closest('.cover').hidden=true;var h=this.closest('.hero');if(h)h.classList.add('hero--text')"></div>
         <figcaption class="cover__credit">Picture: <a href="https://github.com/google-research/harness2">github.com</a></figcaption>
       </figure>
+      <div class="listen" id="listen" data-title="Google Research open-sources Harness², a framework that lets any agent improve its own prompts and tools without touching model weights" data-date="OCT 20 2026" data-slug="2026-10-20" data-duration="166.88">
+        <p class="listen__label">Listen &middot; 2:47 &middot; read by an AI voice</p>
+        <audio controls preload="none" src="../audio/2026-10-20.mp3">
+          <a href="../audio/2026-10-20.mp3">Download the audio (MP3)</a>
+        </audio>
+        <div class="listen__player">
+          <button class="listen__play" type="button" aria-label="Play the brief"><svg class="listen__i-play" viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M7 4.5v15L19.5 12z"/></svg><svg class="listen__i-pause" viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M6 4.5h4.5v15H6zM13.5 4.5H18v15h-4.5z"/></svg></button>
+          <div class="listen__main">
+            <p class="listen__head"><span class="listen__title">Listen<span class="listen__more"> to this brief</span></span><span class="listen__time"><span class="listen__cur">0:00</span> / <span class="listen__dur">2:47</span></span></p>
+            <input class="listen__seek" type="range" min="0" max="166" step="1" value="0" aria-label="Position in the audio">
+            <div class="listen__row">
+              <button class="listen__btn" type="button" data-para="-1" aria-label="Previous paragraph"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 5v14"/><path d="M18 5l-9 7 9 7z"/></svg><span aria-hidden="true">&para;</span></button>
+              <button class="listen__btn" type="button" data-para="1" aria-label="Next paragraph"><span aria-hidden="true">&para;</span><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M18 5v14"/><path d="M6 5l9 7-9 7z"/></svg></button>
+              <button class="listen__btn listen__rate" type="button" aria-label="Playback speed 1×">1×</button>
+              <button class="listen__btn listen__cast" type="button" aria-label="Play on another device" hidden><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M7 17H3V4h18v13h-4"/><path d="M12 14l5 6H7z"/></svg></button>
+              <p class="listen__note"><span class="listen__more">Read by an </span>AI voice &middot; <a href="../audio/2026-10-20.mp3" download aria-label="Download the MP3">MP3 <span aria-hidden="true">&darr;</span></a></p>
+            </div>
+          </div>
+        </div>
+      </div>
         </div>
         <div class="hero__text">
       <p class="dateline"><span>AI BRIEF</span><span class="dateline__sep">&middot;</span><time datetime="2026-10-20">OCT 20 2026</time><span class="dateline__sep">&middot;</span><time datetime="2026-10-20T07:25+02:00">07:25 CEST</time></p>
-      <h1 class="h1--long">Google Research open-sources Harness², a framework that lets any agent improve its own prompts and tools without touching model weights</h1>
-      <p class="lead">A quieter morning overall — OpenAI, Anthropic and Google DeepMind&#x27;s main accounts had nothing new beyond what&#x27;s already covered — but Google Research&#x27;s open-source release for self-improving agent harnesses is a genuinely interesting drop for anyone building agents.</p>
-      <p class="facts">1 story &middot; 1 source &middot; 2 min read</p>
+      <h1 class="h1--long" data-t="0.0">Google Research open-sources Harness², a framework that lets any agent improve its own prompts and tools without touching model weights</h1>
+      <p class="lead" data-t="9.68">A quieter morning overall — OpenAI, Anthropic and Google DeepMind&#x27;s main accounts had nothing new beyond what&#x27;s already covered — but Google Research&#x27;s open-source release for self-improving agent harnesses is a genuinely interesting drop for anyone building agents.</p>
+      <p class="facts">1 story &middot; 1 source &middot; 2 min read &middot; listen 2:47</p>
         </div>
       </div>
     </div>
@@ -75,9 +97,9 @@
       <h2>Top signal</h2>
       <article class="story story--lead">
         <span class="story__num">01</span>
-        <h3 class="story__title">Google Research open-sources Harness², a framework for agents that improve their own prompts and tools at test time</h3>
-        <p>Per Google Research&#x27;s own GitHub release and accompanying arXiv paper, a &quot;harness&quot; is everything wrapped around a model — prompts, tools, memory, skills, orchestration — and Harness² refines that surrounding system during deployment while keeping model weights completely frozen. It uses a &quot;Propose, Probe, Compose&quot; loop to improve behavior through behavioral contrasts rather than labeled examples, keeps a &quot;lessons library&quot; that carries improvements forward to future tasks, and already supports OpenCode and Codex as executors. It&#x27;s Apache 2.0 licensed and has picked up over 11,000 GitHub stars within two days.</p>
-        <p class="story__signal"><strong>Signal:</strong> a real research contribution with public benchmarks, not just a demo — a single Harness² step lifted GLM-5 by up to 11.5 points on WorkBuddy-Bench and Gemini 3.5 Flash similarly on other benchmarks, and it works without labeled data or ground-truth verifiers, which the team says most self-improvement methods require.</p>
+        <h3 class="story__title" data-t="28.2">Google Research open-sources Harness², a framework for agents that improve their own prompts and tools at test time</h3>
+        <p data-t="36.45">Per Google Research&#x27;s own GitHub release and accompanying arXiv paper, a &quot;harness&quot; is everything wrapped around a model — prompts, tools, memory, skills, orchestration — and Harness² refines that surrounding system during deployment while keeping model weights completely frozen. It uses a &quot;Propose, Probe, Compose&quot; loop to improve behavior through behavioral contrasts rather than labeled examples, keeps a &quot;lessons library&quot; that carries improvements forward to future tasks, and already supports OpenCode and Codex as executors. It&#x27;s Apache 2.0 licensed and has picked up over 11,000 GitHub stars within two days.</p>
+        <p class="story__signal" data-t="77.7"><strong>Signal:</strong> a real research contribution with public benchmarks, not just a demo — a single Harness² step lifted GLM-5 by up to 11.5 points on WorkBuddy-Bench and Gemini 3.5 Flash similarly on other benchmarks, and it works without labeled data or ground-truth verifiers, which the team says most self-improvement methods require.</p>
         <p class="story__source">Source: <a href="https://github.com/google-research/harness2" title="https://github.com/google-research/harness2">github.com/google-research/harness2</a></p>
       </article>
     </div>
@@ -85,11 +107,11 @@
 
   <div class="band band--wire">
     <div class="container">
-      <span class="slug">Worth watching</span>
+      <span class="slug" data-t="101.8">Worth watching</span>
       <ul class="watch">
-        <li>A startup account claims &quot;SKY-001,&quot; a new &quot;Engineering World Model&quot; for CAD/BIM tasks, beats GPT-6 Astra and every frontier model tested (51-125x faster, 150-210x cheaper) — striking numbers, but no independent source or company page could be found to verify any of it, so treat as an unverified claim for now.</li>
-        <li>Developers are using Claude Opus 5.5 as a makeshift motion-design tool (dropping a PDF in and getting a rendered video out) — a genuine emergent use case circulating in the community, not an Anthropic product announcement.</li>
-        <li>Fish Audio continued promoting Drama 3 (covered here Oct 14) — no new capability, just more marketing.</li>
+        <li data-t="104.03">A startup account claims &quot;SKY-001,&quot; a new &quot;Engineering World Model&quot; for CAD/BIM tasks, beats GPT-6 Astra and every frontier model tested (51-125x faster, 150-210x cheaper) — striking numbers, but no independent source or company page could be found to verify any of it, so treat as an unverified claim for now.</li>
+        <li data-t="129.55">Developers are using Claude Opus 5.5 as a makeshift motion-design tool (dropping a PDF in and getting a rendered video out) — a genuine emergent use case circulating in the community, not an Anthropic product announcement.</li>
+        <li data-t="146.03">Fish Audio continued promoting Drama 3 (covered here Oct 14) — no new capability, just more marketing.</li>
       </ul>
     </div>
   </div>
@@ -98,8 +120,8 @@
     <div class="container">
       <div class="cols cols--2">
         <div class="block block--paper">
-          <span class="slug">Bottom line</span>
-          <p class="lead" style="margin:0">A quiet stretch for the three main labs, but a solid, well-documented research release from Google worth a look if you build or tune AI agents.</p>
+          <span class="slug" data-t="154.68">Bottom line</span>
+          <p class="lead" style="margin:0" data-t="156.8">A quiet stretch for the three main labs, but a solid, well-documented research release from Google worth a look if you build or tune AI agents.</p>
         </div>
         <div class="block block--fill">
           <span class="slug">Sources scanned</span>
