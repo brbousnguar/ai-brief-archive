@@ -288,6 +288,7 @@ fonts/              Archivo, Source Serif 4, IBM Plex Mono as latin woff2 subset
 js/listen.js        the audio player
 js/share.js         the share row's buttons (share sheet, copy link, copy as text)
 js/consent.js       the cookie question; loads Google Analytics only after Accept; gaEvent() for plays and shares
+js/pull-refresh.js  pull to refresh in the installed app; does nothing in a browser tab
 sw.js               service worker: pages network-first, CSS/JS/icons/fonts cached, audio untouched
 site.webmanifest    makes the archive installable (Add to Home Screen)
 tools/make_icons.py draws the mark; writes icons/, apple-touch-icon.png, favicon.ico
@@ -319,7 +320,9 @@ nears GitHub's 1 GB guidance, move `audio/` to release assets or another host.
   Share → Add to Home Screen. It opens standalone as "AI Brief". The status bar
   style is `default` on purpose: `black-translucent` leaves a dead band at the
   bottom of the screen in standalone mode. iOS reads it at install time, so a
-  change there means deleting and re-adding the icon.
+  change there means deleting and re-adding the icon. Installed, it has no
+  reload button: at the top of a page, pull down and let go to reload
+  (`js/pull-refresh.js`, #29).
 - **The service worker never shows a stale brief:** pages go to the network
   first and fall back to the cache only offline. CSS and JS are cached by their
   `?v=` hash. Audio is left to the browser, since cached range requests break
