@@ -12,7 +12,7 @@
     <itunes:category text="Technology"/>
     <itunes:category text="News"><itunes:category text="Tech News"/></itunes:category>
     <itunes:type>episodic</itunes:type>
-    <lastBuildDate>Tue, 20 Oct 2026 07:25:00 +0200</lastBuildDate>
+    <lastBuildDate>Wed, 21 Oct 2026 07:36:00 +0200</lastBuildDate>
     <item>
       <title>Google Research open-sources Harness², a framework that lets any agent improve its own prompts and tools without touching model weights</title>
       <link>https://ai.heybrahim.com/briefs/2026-10-20.html</link>

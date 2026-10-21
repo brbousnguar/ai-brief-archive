@@ -204,5 +204,12 @@
     "page": "https://github.com/google-research/harness2",
     "rank": 1,
     "story": "Google Research open-sources Harness\u00b2, a framework for agents that improve their own prompts and tools at test time"
+  },
+  "2026-10-21": {
+    "alt": "",
+    "image": "https://cdn-thumbnails.huggingface.co/social-thumbnails/models/gradium/phonon-31m-en.png",
+    "page": "https://huggingface.co/gradium/phonon-31m-en",
+    "rank": 2,
+    "story": "Gradium open-sources Phonon, a sub-50M-parameter on-device text-to-speech model"
   }
 }

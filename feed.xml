@@ -5,9 +5,29 @@
   <id>https://ai.heybrahim.com/</id>
   <link rel="alternate" type="text/html" href="https://ai.heybrahim.com/"/>
   <link rel="self" type="application/atom+xml" href="https://ai.heybrahim.com/feed.xml"/>
-  <updated>2026-10-20T07:25+02:00</updated>
+  <updated>2026-10-21T07:36+02:00</updated>
   <author><name>AI Brief</name><uri>https://ai.heybrahim.com/</uri></author>
   <icon>https://ai.heybrahim.com/icons/icon-192.png</icon>
+  <entry>
+    <title>Claude designs protein binders against scorpion venom, and a French startup open-sources a tiny on-device voice model</title>
+    <link rel="alternate" type="text/html" href="https://ai.heybrahim.com/briefs/2026-10-21.html"/>
+    <id>https://ai.heybrahim.com/briefs/2026-10-21.html</id>
+    <published>2026-10-21T07:36+02:00</published>
+    <updated>2026-10-21T07:36+02:00</updated>
+    <summary>Anthropic let Claude generate over 300,000 candidate proteins to fight scorpion venom and published all the lab results openly, while Gradium open-sourced Phonon, a sub-50M-parameter text-to-speech model that tops other open TTS models on quality in every language tested.</summary>
+    <content type="html">&lt;p&gt;&lt;em&gt;Anthropic let Claude generate over 300,000 candidate proteins to fight scorpion venom and published all the lab results openly, while Gradium open-sourced Phonon, a sub-50M-parameter text-to-speech model that tops other open TTS models on quality in every language tested.&lt;/em&gt;&lt;/p&gt;
+&lt;h2&gt;01 &amp;middot; Claude designs protein binders against scorpion neurotoxins; Anthropic publishes every result, including the failures&lt;/h2&gt;
+&lt;p&gt;Per Anthropic&amp;#x27;s own announcement, working with research firm Citrini, Claude generated over 300,000 candidate protein designs targeting five scorpion neurotoxins in 64 hours; 211 were sent to contract labs Adaptyv Bio and Twist Bioscience for testing, and 17 met Anthropic&amp;#x27;s criteria for binding. Scorpion stings affect roughly 1.2 million people a year and antivenoms are often costly or scarce; Anthropic says this is, to its knowledge, the first de novo-designed binder against scorpion neurotoxins, inspired by earlier work that protected mice from snake neurotoxins. Getting from a lab binder to an actual treatment would still require testing in living cells, then in mice, among many further steps.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Signal:&lt;/strong&gt; notable for the transparency as much as the science — Anthropic is releasing all 211 lab-tested designs and their data openly (not just the 17 that worked), and is explicit that this is not an antivenom yet, which is a more careful framing than some of the AI-for-science claims that have drawn criticism recently.&lt;/p&gt;
+&lt;p&gt;Source: &lt;a href=&quot;https://www.anthropic.com/news/claude-designed-protein-binders-against-scorpion-neurotoxins&quot; title=&quot;https://www.anthropic.com/news/claude-designed-protein-binders-against-scorpion-neurotoxins&quot;&gt;anthropic.com/news/claude-designed-protein-binders-against-…&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;02 &amp;middot; Gradium open-sources Phonon, a sub-50M-parameter on-device text-to-speech model&lt;/h2&gt;
+&lt;p&gt;Per Gradium&amp;#x27;s own Hugging Face model card, Phonon builds on Kyutai&amp;#x27;s Pocket TTS and Mimi codec, streams audio while still generating, and ships with a catalog of roughly 100 voices plus instant voice cloning through Gradium&amp;#x27;s studio. Gradium is a young company (founded in September by ex-Kyutai/Google DeepMind researcher Neil Zeghidour, backed by a $70M seed including NVIDIA and Eric Schmidt), making this a notable open-source move from a well-capitalized but very new voice-AI player.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Signal:&lt;/strong&gt; a real open-weight release rather than an API teaser — Phonon-31M is Apache 2.0, small enough to run in a browser tab or on a phone, and Gradium&amp;#x27;s own benchmarks (Elo-rated blind listening tests) put it first among open TTS models on every language tested, not just English.&lt;/p&gt;
+&lt;p&gt;Source: &lt;a href=&quot;https://huggingface.co/gradium/phonon-31m-en&quot; title=&quot;https://huggingface.co/gradium/phonon-31m-en&quot;&gt;huggingface.co/gradium/phonon-31m-en&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Worth watching&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;Security researchers disclosed that eMudhra&amp;#x27;s intermediate CA private keys were trivially guessable (numbers like 4 and 56), leading to 8 compromised TLS certificates and an industry-wide alert — not an AI story itself, but AI researchers like Sarah Guo are citing it as a reason the field is increasingly anxious about internet infrastructure resilience against agentic cyberattacks.&lt;/li&gt;&lt;li&gt;Smaller open-weight model activity continued (a 122B model called Ornith 1.5 got a community quantization ladder for running on 64GB Macs) — niche, incremental, not from a major lab.&lt;/li&gt;&lt;/ul&gt;
+&lt;h2&gt;Bottom line&lt;/h2&gt;&lt;p&gt;A science-forward morning from Anthropic paired with a genuinely open release from a small but well-funded voice-AI startup — no major moves from OpenAI or Google DeepMind since the last check.&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;Sources scanned: X/Twitter following feed, plus @OpenAI, @AnthropicAI and @GoogleDeepMind.&lt;/small&gt;&lt;/p&gt;</content>
+  </entry>
   <entry>
     <title>Google Research open-sources Harness², a framework that lets any agent improve its own prompts and tools without touching model weights</title>
     <link rel="alternate" type="text/html" href="https://ai.heybrahim.com/briefs/2026-10-20.html"/>
