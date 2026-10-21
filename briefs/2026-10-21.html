@@ -20,6 +20,8 @@
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "5fa2715383d04f25bb5d45fdb806263f"}'></script>
 <script defer src="../js/consent.js?v=d3824c97" data-ga="G-RH3C4X94FV"></script>
 <script defer src="../js/share.js?v=dbb1cc28"></script>
+<script>document.documentElement.classList.add('js')</script>
+<script defer src="../js/listen.js?v=5acf47fc" onerror="document.documentElement.classList.remove('js')"></script>
 <link rel="icon" href="../favicon.ico" sizes="32x32">
 <link rel="icon" href="../icons/mark.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../apple-touch-icon.png">
@@ -60,12 +62,32 @@
         <div class="cover__frame"><img src="https://cdn-thumbnails.huggingface.co/social-thumbnails/models/gradium/phonon-31m-en.png" alt="" width="1200" height="630" fetchpriority="high" decoding="async" referrerpolicy="no-referrer" onerror="this.closest('.cover').hidden=true;var h=this.closest('.hero');if(h)h.classList.add('hero--text')"></div>
         <figcaption class="cover__credit">Picture: <a href="https://huggingface.co/gradium/phonon-31m-en">huggingface.co</a> &middot; story 02</figcaption>
       </figure>
+      <div class="listen" id="listen" data-title="Claude designs protein binders against scorpion venom, and a French startup open-sources a tiny on-device voice model" data-date="OCT 21 2026" data-slug="2026-10-21" data-duration="236.2">
+        <p class="listen__label">Listen &middot; 3:56 &middot; read by an AI voice</p>
+        <audio controls preload="none" src="../audio/2026-10-21.mp3">
+          <a href="../audio/2026-10-21.mp3">Download the audio (MP3)</a>
+        </audio>
+        <div class="listen__player">
+          <button class="listen__play" type="button" aria-label="Play the brief"><svg class="listen__i-play" viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M7 4.5v15L19.5 12z"/></svg><svg class="listen__i-pause" viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M6 4.5h4.5v15H6zM13.5 4.5H18v15h-4.5z"/></svg></button>
+          <div class="listen__main">
+            <p class="listen__head"><span class="listen__title">Listen<span class="listen__more"> to this brief</span></span><span class="listen__time"><span class="listen__cur">0:00</span> / <span class="listen__dur">3:56</span></span></p>
+            <input class="listen__seek" type="range" min="0" max="236" step="1" value="0" aria-label="Position in the audio">
+            <div class="listen__row">
+              <button class="listen__btn" type="button" data-para="-1" aria-label="Previous paragraph"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 5v14"/><path d="M18 5l-9 7 9 7z"/></svg><span aria-hidden="true">&para;</span></button>
+              <button class="listen__btn" type="button" data-para="1" aria-label="Next paragraph"><span aria-hidden="true">&para;</span><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M18 5v14"/><path d="M6 5l9 7-9 7z"/></svg></button>
+              <button class="listen__btn listen__rate" type="button" aria-label="Playback speed 1×">1×</button>
+              <button class="listen__btn listen__cast" type="button" aria-label="Play on another device" hidden><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M7 17H3V4h18v13h-4"/><path d="M12 14l5 6H7z"/></svg></button>
+              <p class="listen__note"><span class="listen__more">Read by an </span>AI voice &middot; <a href="../audio/2026-10-21.mp3" download aria-label="Download the MP3">MP3 <span aria-hidden="true">&darr;</span></a></p>
+            </div>
+          </div>
+        </div>
+      </div>
         </div>
         <div class="hero__text">
       <p class="dateline"><span>AI BRIEF</span><span class="dateline__sep">&middot;</span><time datetime="2026-10-21">OCT 21 2026</time><span class="dateline__sep">&middot;</span><time datetime="2026-10-21T07:36+02:00">07:36 CEST</time></p>
-      <h1 class="h1--long">Claude designs protein binders against scorpion venom, and a French startup open-sources a tiny on-device voice model</h1>
-      <p class="lead">Anthropic let Claude generate over 300,000 candidate proteins to fight scorpion venom and published all the lab results openly, while Gradium open-sourced Phonon, a sub-50M-parameter text-to-speech model that tops other open TTS models on quality in every language tested.</p>
-      <p class="facts">2 stories &middot; 2 sources &middot; 3 min read</p>
+      <h1 class="h1--long" data-t="0.0">Claude designs protein binders against scorpion venom, and a French startup open-sources a tiny on-device voice model</h1>
+      <p class="lead" data-t="8.7">Anthropic let Claude generate over 300,000 candidate proteins to fight scorpion venom and published all the lab results openly, while Gradium open-sourced Phonon, a sub-50M-parameter text-to-speech model that tops other open TTS models on quality in every language tested.</p>
+      <p class="facts">2 stories &middot; 2 sources &middot; 3 min read &middot; listen 3:56</p>
         </div>
       </div>
     </div>
@@ -76,16 +98,16 @@
       <h2>Top signal</h2>
       <article class="story story--lead">
         <span class="story__num">01</span>
-        <h3 class="story__title">Claude designs protein binders against scorpion neurotoxins; Anthropic publishes every result, including the failures</h3>
-        <p>Per Anthropic&#x27;s own announcement, working with research firm Citrini, Claude generated over 300,000 candidate protein designs targeting five scorpion neurotoxins in 64 hours; 211 were sent to contract labs Adaptyv Bio and Twist Bioscience for testing, and 17 met Anthropic&#x27;s criteria for binding. Scorpion stings affect roughly 1.2 million people a year and antivenoms are often costly or scarce; Anthropic says this is, to its knowledge, the first de novo-designed binder against scorpion neurotoxins, inspired by earlier work that protected mice from snake neurotoxins. Getting from a lab binder to an actual treatment would still require testing in living cells, then in mice, among many further steps.</p>
-        <p class="story__signal"><strong>Signal:</strong> notable for the transparency as much as the science — Anthropic is releasing all 211 lab-tested designs and their data openly (not just the 17 that worked), and is explicit that this is not an antivenom yet, which is a more careful framing than some of the AI-for-science claims that have drawn criticism recently.</p>
+        <h3 class="story__title" data-t="29.9">Claude designs protein binders against scorpion neurotoxins; Anthropic publishes every result, including the failures</h3>
+        <p data-t="38.6">Per Anthropic&#x27;s own announcement, working with research firm Citrini, Claude generated over 300,000 candidate protein designs targeting five scorpion neurotoxins in 64 hours; 211 were sent to contract labs Adaptyv Bio and Twist Bioscience for testing, and 17 met Anthropic&#x27;s criteria for binding. Scorpion stings affect roughly 1.2 million people a year and antivenoms are often costly or scarce; Anthropic says this is, to its knowledge, the first de novo-designed binder against scorpion neurotoxins, inspired by earlier work that protected mice from snake neurotoxins. Getting from a lab binder to an actual treatment would still require testing in living cells, then in mice, among many further steps.</p>
+        <p class="story__signal" data-t="87.53"><strong>Signal:</strong> notable for the transparency as much as the science — Anthropic is releasing all 211 lab-tested designs and their data openly (not just the 17 that worked), and is explicit that this is not an antivenom yet, which is a more careful framing than some of the AI-for-science claims that have drawn criticism recently.</p>
         <p class="story__source">Source: <a href="https://www.anthropic.com/news/claude-designed-protein-binders-against-scorpion-neurotoxins" title="https://www.anthropic.com/news/claude-designed-protein-binders-against-scorpion-neurotoxins">anthropic.com/news/claude-designed-protein-binders-against-…</a></p>
       </article>
       <article class="story">
         <span class="story__num">02</span>
-        <h3 class="story__title">Gradium open-sources Phonon, a sub-50M-parameter on-device text-to-speech model</h3>
-        <p>Per Gradium&#x27;s own Hugging Face model card, Phonon builds on Kyutai&#x27;s Pocket TTS and Mimi codec, streams audio while still generating, and ships with a catalog of roughly 100 voices plus instant voice cloning through Gradium&#x27;s studio. Gradium is a young company (founded in September by ex-Kyutai/Google DeepMind researcher Neil Zeghidour, backed by a $70M seed including NVIDIA and Eric Schmidt), making this a notable open-source move from a well-capitalized but very new voice-AI player.</p>
-        <p class="story__signal"><strong>Signal:</strong> a real open-weight release rather than an API teaser — Phonon-31M is Apache 2.0, small enough to run in a browser tab or on a phone, and Gradium&#x27;s own benchmarks (Elo-rated blind listening tests) put it first among open TTS models on every language tested, not just English.</p>
+        <h3 class="story__title" data-t="110.47">Gradium open-sources Phonon, a sub-50M-parameter on-device text-to-speech model</h3>
+        <p data-t="117.35">Per Gradium&#x27;s own Hugging Face model card, Phonon builds on Kyutai&#x27;s Pocket TTS and Mimi codec, streams audio while still generating, and ships with a catalog of roughly 100 voices plus instant voice cloning through Gradium&#x27;s studio. Gradium is a young company (founded in September by ex-Kyutai/Google DeepMind researcher Neil Zeghidour, backed by a $70M seed including NVIDIA and Eric Schmidt), making this a notable open-source move from a well-capitalized but very new voice-AI player.</p>
+        <p class="story__signal" data-t="152.5"><strong>Signal:</strong> a real open-weight release rather than an API teaser — Phonon-31M is Apache 2.0, small enough to run in a browser tab or on a phone, and Gradium&#x27;s own benchmarks (Elo-rated blind listening tests) put it first among open TTS models on every language tested, not just English.</p>
         <p class="story__source">Source: <a href="https://huggingface.co/gradium/phonon-31m-en" title="https://huggingface.co/gradium/phonon-31m-en">huggingface.co/gradium/phonon-31m-en</a></p>
       </article>
     </div>
@@ -93,10 +115,10 @@
 
   <div class="band band--wire">
     <div class="container">
-      <span class="slug">Worth watching</span>
+      <span class="slug" data-t="174.32">Worth watching</span>
       <ul class="watch">
-        <li>Security researchers disclosed that eMudhra&#x27;s intermediate CA private keys were trivially guessable (numbers like 4 and 56), leading to 8 compromised TLS certificates and an industry-wide alert — not an AI story itself, but AI researchers like Sarah Guo are citing it as a reason the field is increasingly anxious about internet infrastructure resilience against agentic cyberattacks.</li>
-        <li>Smaller open-weight model activity continued (a 122B model called Ornith 1.5 got a community quantization ladder for running on 64GB Macs) — niche, incremental, not from a major lab.</li>
+        <li data-t="176.55">Security researchers disclosed that eMudhra&#x27;s intermediate CA private keys were trivially guessable (numbers like 4 and 56), leading to 8 compromised TLS certificates and an industry-wide alert — not an AI story itself, but AI researchers like Sarah Guo are citing it as a reason the field is increasingly anxious about internet infrastructure resilience against agentic cyberattacks.</li>
+        <li data-t="203.6">Smaller open-weight model activity continued (a 122B model called Ornith 1.5 got a community quantization ladder for running on 64GB Macs) — niche, incremental, not from a major lab.</li>
       </ul>
     </div>
   </div>
@@ -105,8 +127,8 @@
     <div class="container">
       <div class="cols cols--2">
         <div class="block block--paper">
-          <span class="slug">Bottom line</span>
-          <p class="lead" style="margin:0">A science-forward morning from Anthropic paired with a genuinely open release from a small but well-funded voice-AI startup — no major moves from OpenAI or Google DeepMind since the last check.</p>
+          <span class="slug" data-t="220.32">Bottom line</span>
+          <p class="lead" style="margin:0" data-t="222.45">A science-forward morning from Anthropic paired with a genuinely open release from a small but well-funded voice-AI startup — no major moves from OpenAI or Google DeepMind since the last check.</p>
         </div>
         <div class="block block--fill">
           <span class="slug">Sources scanned</span>

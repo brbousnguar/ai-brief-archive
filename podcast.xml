@@ -14,6 +14,16 @@
     <itunes:type>episodic</itunes:type>
     <lastBuildDate>Wed, 21 Oct 2026 07:36:00 +0200</lastBuildDate>
     <item>
+      <title>Claude designs protein binders against scorpion venom, and a French startup open-sources a tiny on-device voice model</title>
+      <link>https://ai.heybrahim.com/briefs/2026-10-21.html</link>
+      <guid>https://ai.heybrahim.com/briefs/2026-10-21.html</guid>
+      <pubDate>Wed, 21 Oct 2026 07:36:00 +0200</pubDate>
+      <description>Anthropic let Claude generate over 300,000 candidate proteins to fight scorpion venom and published all the lab results openly, while Gradium open-sourced Phonon, a sub-50M-parameter text-to-speech model that tops other open TTS models on quality in every language tested.</description>
+      <enclosure url="https://ai.heybrahim.com/audio/2026-10-21.mp3" length="1181722" type="audio/mpeg"/>
+      <itunes:duration>236</itunes:duration>
+      <itunes:episodeType>full</itunes:episodeType>
+    </item>
+    <item>
       <title>Google Research open-sources Harness², a framework that lets any agent improve its own prompts and tools without touching model weights</title>
       <link>https://ai.heybrahim.com/briefs/2026-10-20.html</link>
       <guid>https://ai.heybrahim.com/briefs/2026-10-20.html</guid>
