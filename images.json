@@ -211,5 +211,12 @@
     "page": "https://huggingface.co/gradium/phonon-31m-en",
     "rank": 2,
     "story": "Gradium open-sources Phonon, a sub-50M-parameter on-device text-to-speech model"
+  },
+  "2026-10-26": {
+    "alt": "",
+    "image": "https://sg-imgs.dealroom.co/c48485fe45ee23fae6c43445164959b0.jpeg?ar=3:1&fit=crop&crop=faces,center&auto=compress&cs=origin",
+    "page": "https://dealroom.co/news/165645-claude-code-engineer-thariq-shihipar-leaves-anthropic-after-more-than-a",
+    "rank": 1,
+    "story": "Two key Claude Code engineers, Thariq Shihipar and Anthony Morris, leave Anthropic within a day of each other"
   }
 }
