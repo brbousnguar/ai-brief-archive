@@ -218,5 +218,12 @@
     "page": "https://dealroom.co/news/165645-claude-code-engineer-thariq-shihipar-leaves-anthropic-after-more-than-a",
     "rank": 1,
     "story": "Two key Claude Code engineers, Thariq Shihipar and Anthony Morris, leave Anthropic within a day of each other"
+  },
+  "2026-10-28": {
+    "alt": "",
+    "image": "https://us1.discourse-cdn.com/openai1/original/4X/7/2/a/72a94b5bdadcd030edc11dac9a005ec0ab8271d7.gif",
+    "page": "https://community.openai.com/t/gpt-6-1-terra-delivering-fast-and-capable-computer-use-at-a-lower-price/1409900",
+    "rank": 1,
+    "story": "OpenAI launches GPT-6.1 Terra, a cheaper, faster model built for computer use"
   }
 }
