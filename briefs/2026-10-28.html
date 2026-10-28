@@ -20,6 +20,8 @@
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "5fa2715383d04f25bb5d45fdb806263f"}'></script>
 <script defer src="../js/consent.js?v=d3824c97" data-ga="G-RH3C4X94FV"></script>
 <script defer src="../js/share.js?v=dbb1cc28"></script>
+<script>document.documentElement.classList.add('js')</script>
+<script defer src="../js/listen.js?v=5acf47fc" onerror="document.documentElement.classList.remove('js')"></script>
 <link rel="icon" href="../favicon.ico" sizes="32x32">
 <link rel="icon" href="../icons/mark.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../apple-touch-icon.png">
@@ -60,12 +62,32 @@
         <div class="cover__frame"><img src="https://us1.discourse-cdn.com/openai1/original/4X/7/2/a/72a94b5bdadcd030edc11dac9a005ec0ab8271d7.gif" alt="" width="1200" height="630" fetchpriority="high" decoding="async" referrerpolicy="no-referrer" onerror="this.closest('.cover').hidden=true;var h=this.closest('.hero');if(h)h.classList.add('hero--text')"></div>
         <figcaption class="cover__credit">Picture: <a href="https://community.openai.com/t/gpt-6-1-terra-delivering-fast-and-capable-computer-use-at-a-lower-price/1409900">community.openai.com</a></figcaption>
       </figure>
+      <div class="listen" id="listen" data-title="All three major labs shipped something this week — OpenAI&#x27;s cheaper computer-use model, Google&#x27;s audio-native world model, and Anthropic&#x27;s proactive agent app" data-date="OCT 28 2026" data-slug="2026-10-28" data-duration="269.82">
+        <p class="listen__label">Listen &middot; 4:30 &middot; read by an AI voice</p>
+        <audio controls preload="none" src="../audio/2026-10-28.mp3">
+          <a href="../audio/2026-10-28.mp3">Download the audio (MP3)</a>
+        </audio>
+        <div class="listen__player">
+          <button class="listen__play" type="button" aria-label="Play the brief"><svg class="listen__i-play" viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M7 4.5v15L19.5 12z"/></svg><svg class="listen__i-pause" viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M6 4.5h4.5v15H6zM13.5 4.5H18v15h-4.5z"/></svg></button>
+          <div class="listen__main">
+            <p class="listen__head"><span class="listen__title">Listen<span class="listen__more"> to this brief</span></span><span class="listen__time"><span class="listen__cur">0:00</span> / <span class="listen__dur">4:30</span></span></p>
+            <input class="listen__seek" type="range" min="0" max="269" step="1" value="0" aria-label="Position in the audio">
+            <div class="listen__row">
+              <button class="listen__btn" type="button" data-para="-1" aria-label="Previous paragraph"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 5v14"/><path d="M18 5l-9 7 9 7z"/></svg><span aria-hidden="true">&para;</span></button>
+              <button class="listen__btn" type="button" data-para="1" aria-label="Next paragraph"><span aria-hidden="true">&para;</span><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M18 5v14"/><path d="M6 5l9 7-9 7z"/></svg></button>
+              <button class="listen__btn listen__rate" type="button" aria-label="Playback speed 1×">1×</button>
+              <button class="listen__btn listen__cast" type="button" aria-label="Play on another device" hidden><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M7 17H3V4h18v13h-4"/><path d="M12 14l5 6H7z"/></svg></button>
+              <p class="listen__note"><span class="listen__more">Read by an </span>AI voice &middot; <a href="../audio/2026-10-28.mp3" download aria-label="Download the MP3">MP3 <span aria-hidden="true">&darr;</span></a></p>
+            </div>
+          </div>
+        </div>
+      </div>
         </div>
         <div class="hero__text">
       <p class="dateline"><span>AI BRIEF</span><span class="dateline__sep">&middot;</span><time datetime="2026-10-28">OCT 28 2026</time><span class="dateline__sep">&middot;</span><time datetime="2026-10-28T07:21+01:00">07:21 CET</time></p>
-      <h1 class="h1--long">All three major labs shipped something this week — OpenAI&#x27;s cheaper computer-use model, Google&#x27;s audio-native world model, and Anthropic&#x27;s proactive agent app</h1>
-      <p class="lead">A genuinely busy few days across the board: OpenAI launched GPT-6.1 Terra for cheap, fast computer-use tasks, Google DeepMind unveiled Genie 4 with native generated audio, and Anthropic opened a research preview of Claude Duet, a proactive agent that works without being prompted.</p>
-      <p class="facts">3 stories &middot; 3 sources &middot; 3 min read</p>
+      <h1 class="h1--long" data-t="0.0">All three major labs shipped something this week — OpenAI&#x27;s cheaper computer-use model, Google&#x27;s audio-native world model, and Anthropic&#x27;s proactive agent app</h1>
+      <p class="lead" data-t="10.65">A genuinely busy few days across the board: OpenAI launched GPT-6.1 Terra for cheap, fast computer-use tasks, Google DeepMind unveiled Genie 4 with native generated audio, and Anthropic opened a research preview of Claude Duet, a proactive agent that works without being prompted.</p>
+      <p class="facts">3 stories &middot; 3 sources &middot; 3 min read &middot; listen 4:30</p>
         </div>
       </div>
     </div>
@@ -76,23 +98,23 @@
       <h2>Top signal</h2>
       <article class="story story--lead">
         <span class="story__num">01</span>
-        <h3 class="story__title">OpenAI launches GPT-6.1 Terra, a cheaper, faster model built for computer use</h3>
-        <p>Per OpenAI&#x27;s own announcement, GPT-6.1 Terra understands what&#x27;s on screen, takes action across apps, and writes more naturally, positioned as the workhorse model for &quot;the whole workday&quot; rather than a frontier-pushing release. It&#x27;s priced at $1 per million input tokens and $5 per million output tokens — half of GPT-6.1 Sol&#x27;s rate — and is rolling out now to Plus, Pro, Enterprise and Edu users in ChatGPT Work and Codex, plus the API as `gpt-6.1-terra`. Sam Altman called it the start of &quot;this new era of computer use.&quot;</p>
-        <p class="story__signal"><strong>Signal:</strong> this is squarely a cost-and-speed play, not a new capability ceiling — OpenAI&#x27;s own numbers show Terra matching GPT-6 Astra&#x27;s quality at one-tenth the price per token while finishing tasks over 3x faster, with a real coding jump (50.3% on Terminal-Bench 4.0, up from 21.5% for the prior Terra generation).</p>
+        <h3 class="story__title" data-t="31.57">OpenAI launches GPT-6.1 Terra, a cheaper, faster model built for computer use</h3>
+        <p data-t="38.62">Per OpenAI&#x27;s own announcement, GPT-6.1 Terra understands what&#x27;s on screen, takes action across apps, and writes more naturally, positioned as the workhorse model for &quot;the whole workday&quot; rather than a frontier-pushing release. It&#x27;s priced at $1 per million input tokens and $5 per million output tokens — half of GPT-6.1 Sol&#x27;s rate — and is rolling out now to Plus, Pro, Enterprise and Edu users in ChatGPT Work and Codex, plus the API as `gpt-6.1-terra`. Sam Altman called it the start of &quot;this new era of computer use.&quot;</p>
+        <p class="story__signal" data-t="76.47"><strong>Signal:</strong> this is squarely a cost-and-speed play, not a new capability ceiling — OpenAI&#x27;s own numbers show Terra matching GPT-6 Astra&#x27;s quality at one-tenth the price per token while finishing tasks over 3x faster, with a real coding jump (50.3% on Terminal-Bench 4.0, up from 21.5% for the prior Terra generation).</p>
         <p class="story__source">Source: <a href="https://community.openai.com/t/gpt-6-1-terra-delivering-fast-and-capable-computer-use-at-a-lower-price/1409900" title="https://community.openai.com/t/gpt-6-1-terra-delivering-fast-and-capable-computer-use-at-a-lower-price/1409900">community.openai.com/t/gpt-6-1-terra-delivering-fast-and-ca…</a></p>
       </article>
       <article class="story">
         <span class="story__num">02</span>
-        <h3 class="story__title">Google DeepMind unveils Genie 4, its first world model with native generated audio</h3>
-        <p>Per Google DeepMind&#x27;s own announcement, Genie 4 lets you describe a world, move through it in real time, and steer it with natural-language prompts — changing weather, moving the camera, introducing characters — while it generates interactive dialogue and ambient audio on the fly. It&#x27;s rolling out to a limited group of trusted testers first, with access coming to Google AI Ultra subscribers in Project Genie and early-access partners in the Gemini API and AI Studio; all generated audio and video carries a SynthID watermark.</p>
-        <p class="story__signal"><strong>Signal:</strong> the headline change from Genie 3 (announced August 2025) is sound — ambient noise, music, and characters who speak and react — rather than a stated jump in resolution or duration; DeepMind&#x27;s own announcement notably omits the kind of hard numbers (frame rate, consistency duration) that accompanied Genie 3&#x27;s launch.</p>
+        <h3 class="story__title" data-t="101.05">Google DeepMind unveils Genie 4, its first world model with native generated audio</h3>
+        <p data-t="108.0">Per Google DeepMind&#x27;s own announcement, Genie 4 lets you describe a world, move through it in real time, and steer it with natural-language prompts — changing weather, moving the camera, introducing characters — while it generates interactive dialogue and ambient audio on the fly. It&#x27;s rolling out to a limited group of trusted testers first, with access coming to Google AI Ultra subscribers in Project Genie and early-access partners in the Gemini API and AI Studio; all generated audio and video carries a SynthID watermark.</p>
+        <p class="story__signal" data-t="143.88"><strong>Signal:</strong> the headline change from Genie 3 (announced August 2025) is sound — ambient noise, music, and characters who speak and react — rather than a stated jump in resolution or duration; DeepMind&#x27;s own announcement notably omits the kind of hard numbers (frame rate, consistency duration) that accompanied Genie 3&#x27;s launch.</p>
         <p class="story__source">Source: <a href="https://blog.google/innovation-and-ai/models-and-research/google-deepmind/introducing-genie-4" title="https://blog.google/innovation-and-ai/models-and-research/google-deepmind/introducing-genie-4">blog.google/innovation-and-ai/models-and-research/google-de…</a></p>
       </article>
       <article class="story">
         <span class="story__num">03</span>
-        <h3 class="story__title">Anthropic opens a research preview of Claude Duet, a proactive agent app that works without being asked</h3>
-        <p>Per Anthropic&#x27;s own announcement (confirmed by multiple outlets), Claude Duet opened October 21 as a waitlisted research preview for Pro and Max subscribers in the US only (not yet on Team or Enterprise), available via standalone iOS/Android apps and claude.ai, with no separate price — its usage counts against the subscriber&#x27;s existing plan limits. It supports over 6,000 integrations (Gmail, Slack, QuickBooks, Shopify among them) and can be asked to prepare research briefs, financial models, slide decks, and prototypes in the background.</p>
-        <p class="story__signal"><strong>Signal:</strong> a real behavioral shift from chat-and-wait to always-on — Duet runs on its own cloud computer on Claude Opus 5.5, sends a morning brief from connected apps, keeps working after you close the app, and explicitly asks for approval before sending messages, making payments, signing documents, or deleting anything.</p>
+        <h3 class="story__title" data-t="167.57">Anthropic opens a research preview of Claude Duet, a proactive agent app that works without being asked</h3>
+        <p data-t="175.0">Per Anthropic&#x27;s own announcement (confirmed by multiple outlets), Claude Duet opened October 21 as a waitlisted research preview for Pro and Max subscribers in the US only (not yet on Team or Enterprise), available via standalone iOS/Android apps and claude.ai, with no separate price — its usage counts against the subscriber&#x27;s existing plan limits. It supports over 6,000 integrations (Gmail, Slack, QuickBooks, Shopify among them) and can be asked to prepare research briefs, financial models, slide decks, and prototypes in the background.</p>
+        <p class="story__signal" data-t="212.32"><strong>Signal:</strong> a real behavioral shift from chat-and-wait to always-on — Duet runs on its own cloud computer on Claude Opus 5.5, sends a morning brief from connected apps, keeps working after you close the app, and explicitly asks for approval before sending messages, making payments, signing documents, or deleting anything.</p>
         <p class="story__source">Source: <a href="https://www.anthropic.com/news/claude-duet" title="https://www.anthropic.com/news/claude-duet">anthropic.com/news/claude-duet</a></p>
       </article>
     </div>
@@ -100,9 +122,9 @@
 
   <div class="band band--wire">
     <div class="container">
-      <span class="slug">Worth watching</span>
+      <span class="slug" data-t="234.65">Worth watching</span>
       <ul class="watch">
-        <li>An open-source alternative, OpenDuet, appeared within days of Claude Duet&#x27;s launch, pitching itself as self-hostable and compatible with &quot;any agent harness&quot; — a community response to Anthropic&#x27;s proactive-agent framing rather than a lab release.</li>
+        <li data-t="236.88">An open-source alternative, OpenDuet, appeared within days of Claude Duet&#x27;s launch, pitching itself as self-hostable and compatible with &quot;any agent harness&quot; — a community response to Anthropic&#x27;s proactive-agent framing rather than a lab release.</li>
       </ul>
     </div>
   </div>
@@ -111,8 +133,8 @@
     <div class="container">
       <div class="cols cols--2">
         <div class="block block--paper">
-          <span class="slug">Bottom line</span>
-          <p class="lead" style="margin:0">A rare week where OpenAI, Google DeepMind and Anthropic each shipped something distinct and real: a cheaper workhorse model, a louder (literally) world simulator, and a new always-on agent paradigm.</p>
+          <span class="slug" data-t="253.88">Bottom line</span>
+          <p class="lead" style="margin:0" data-t="256.0">A rare week where OpenAI, Google DeepMind and Anthropic each shipped something distinct and real: a cheaper workhorse model, a louder (literally) world simulator, and a new always-on agent paradigm.</p>
         </div>
         <div class="block block--fill">
           <span class="slug">Sources scanned</span>
