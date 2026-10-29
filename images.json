@@ -225,5 +225,12 @@
     "page": "https://community.openai.com/t/gpt-6-1-terra-delivering-fast-and-capable-computer-use-at-a-lower-price/1409900",
     "rank": 1,
     "story": "OpenAI launches GPT-6.1 Terra, a cheaper, faster model built for computer use"
+  },
+  "2026-10-29": {
+    "alt": "",
+    "image": "https://storage.googleapis.com/gweb-uniblog-publish-prod/images/gemini_carbon_102726_social_share.width-1300.png",
+    "page": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon",
+    "rank": 1,
+    "story": "Google DeepMind ships Gemini 4 Carbon, its second frontier model in two weeks"
   }
 }
