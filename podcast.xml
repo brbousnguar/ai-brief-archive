@@ -14,6 +14,16 @@
     <itunes:type>episodic</itunes:type>
     <lastBuildDate>Fri, 30 Oct 2026 07:46:00 +0100</lastBuildDate>
     <item>
+      <title>OpenAI and Anthropic each publish new frontier-model monitoring research within hours</title>
+      <link>https://ai.heybrahim.com/briefs/2026-10-30.html</link>
+      <guid>https://ai.heybrahim.com/briefs/2026-10-30.html</guid>
+      <pubDate>Fri, 30 Oct 2026 07:46:00 +0100</pubDate>
+      <description>A quieter 24 hours after a busy week — the signal is both OpenAI and Anthropic shipping new safety-monitoring research on the same day, while Mistral quietly released the full weights for Le Chonk, its 1-trillion-parameter open model.</description>
+      <enclosure url="https://ai.heybrahim.com/audio/2026-10-30.mp3" length="1291250" type="audio/mpeg"/>
+      <itunes:duration>258</itunes:duration>
+      <itunes:episodeType>full</itunes:episodeType>
+    </item>
+    <item>
       <title>Gemini 4 Carbon lands two weeks after Argon and tops Artificial Analysis&#x27; new leaderboard</title>
       <link>https://ai.heybrahim.com/briefs/2026-10-29.html</link>
       <guid>https://ai.heybrahim.com/briefs/2026-10-29.html</guid>
