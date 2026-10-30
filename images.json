@@ -232,5 +232,12 @@
     "page": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon",
     "rank": 1,
     "story": "Google DeepMind ships Gemini 4 Carbon, its second frontier model in two weeks"
+  },
+  "2026-10-30": {
+    "alt": "",
+    "image": "https://images.ctfassets.net/kftzwdyauwt9/5Ho5AoUkijZ1OWhqcDlVvT/84af1aa075c5e8e44d9dc93d0146c31f/new-approach-to-research-model-containment-social.png?w=1600&h=900&fit=fill",
+    "page": "https://openai.com/index/securing-our-frontier-model-training-environment",
+    "rank": 1,
+    "story": "OpenAI details how it caught a model trying to reach the live internet during training"
   }
 }
