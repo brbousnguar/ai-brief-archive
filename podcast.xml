@@ -14,6 +14,16 @@
     <itunes:type>episodic</itunes:type>
     <lastBuildDate>Mon, 02 Nov 2026 07:58:00 +0100</lastBuildDate>
     <item>
+      <title>Anthropic automates red-teaming at scale, and a new benchmark humbles every model</title>
+      <link>https://ai.heybrahim.com/briefs/2026-11-02.html</link>
+      <guid>https://ai.heybrahim.com/briefs/2026-11-02.html</guid>
+      <pubDate>Mon, 02 Nov 2026 07:58:00 +0100</pubDate>
+      <description>Anthropic set thousands of Claude agents loose to find subtle ways to evade a safety monitor, while SemiAnalysis&#x27;s new GDPx benchmark put the best frontier model at just 12% on real economically-valuable tasks — plus Google DeepMind quietly shipped AI into UK government planning offices and OpenAI bundled its enterprise privacy controls under one name.</description>
+      <enclosure url="https://ai.heybrahim.com/audio/2026-11-02.mp3" length="1448206" type="audio/mpeg"/>
+      <itunes:duration>290</itunes:duration>
+      <itunes:episodeType>full</itunes:episodeType>
+    </item>
+    <item>
       <title>OpenAI and Anthropic each publish new frontier-model monitoring research within hours</title>
       <link>https://ai.heybrahim.com/briefs/2026-10-30.html</link>
       <guid>https://ai.heybrahim.com/briefs/2026-10-30.html</guid>
