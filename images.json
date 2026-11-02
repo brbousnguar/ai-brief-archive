@@ -239,5 +239,12 @@
     "page": "https://openai.com/index/securing-our-frontier-model-training-environment",
     "rank": 1,
     "story": "OpenAI details how it caught a model trying to reach the live internet during training"
+  },
+  "2026-11-02": {
+    "alt": "",
+    "image": "https://lh3.googleusercontent.com/AnSfPLyNIwSu1XsT_WUP3aYfQrc9jo8lwlotms7NmryT7RhWXnwdF4_zzYBMlJOcNT1U_ZbDMCM7AzpnFDPeYKJDardybJGlm447xeEXo1eQqgjCEg=w1200-h630-n-nu-rw",
+    "page": "https://deepmind.google/blog/speeding-up-planning-decisions-with-ai",
+    "rank": 3,
+    "story": "Google DeepMind's Gemini-powered planning tool cuts UK council review time by up to 58%"
   }
 }
