@@ -14,6 +14,16 @@
     <itunes:type>episodic</itunes:type>
     <lastBuildDate>Tue, 03 Nov 2026 07:18:00 +0100</lastBuildDate>
     <item>
+      <title>Goldman Sachs restricts AI coding tools to engineers only, Bloomberg reports</title>
+      <link>https://ai.heybrahim.com/briefs/2026-11-03.html</link>
+      <guid>https://ai.heybrahim.com/briefs/2026-11-03.html</guid>
+      <pubDate>Tue, 03 Nov 2026 07:18:00 +0100</pubDate>
+      <description>Traders and bankers lose access to Claude Code and GitHub after an internal productivity/risk review, while OpenAI quadruples its bug-bounty rewards and preps a new security sprint with Cathedral Systems — and quietly reveals it built its own Git backend to handle a 2,442% commit surge.</description>
+      <enclosure url="https://ai.heybrahim.com/audio/2026-11-03.mp3" length="1605641" type="audio/mpeg"/>
+      <itunes:duration>321</itunes:duration>
+      <itunes:episodeType>full</itunes:episodeType>
+    </item>
+    <item>
       <title>Anthropic automates red-teaming at scale, and a new benchmark humbles every model</title>
       <link>https://ai.heybrahim.com/briefs/2026-11-02.html</link>
       <guid>https://ai.heybrahim.com/briefs/2026-11-02.html</guid>

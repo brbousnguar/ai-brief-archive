@@ -20,6 +20,8 @@
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "5fa2715383d04f25bb5d45fdb806263f"}'></script>
 <script defer src="../js/consent.js?v=d3824c97" data-ga="G-RH3C4X94FV"></script>
 <script defer src="../js/share.js?v=dbb1cc28"></script>
+<script>document.documentElement.classList.add('js')</script>
+<script defer src="../js/listen.js?v=5acf47fc" onerror="document.documentElement.classList.remove('js')"></script>
 <link rel="icon" href="../favicon.ico" sizes="32x32">
 <link rel="icon" href="../icons/mark.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../apple-touch-icon.png">
@@ -60,12 +62,32 @@
         <div class="cover__frame"><img src="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/i3pLhBaud7.I/v0/1200x800.jpg" alt="" width="1200" height="630" fetchpriority="high" decoding="async" referrerpolicy="no-referrer" onerror="this.closest('.cover').hidden=true;var h=this.closest('.hero');if(h)h.classList.add('hero--text')"></div>
         <figcaption class="cover__credit">Picture: <a href="https://www.bloomberg.com/news/articles/2026-11-02/goldman-restricts-traders-and-bankers-from-using-some-ai-tools">bloomberg.com</a></figcaption>
       </figure>
+      <div class="listen" id="listen" data-title="Goldman Sachs restricts AI coding tools to engineers only, Bloomberg reports" data-date="NOV 03 2026" data-slug="2026-11-03" data-duration="321.0">
+        <p class="listen__label">Listen &middot; 5:21 &middot; read by an AI voice</p>
+        <audio controls preload="none" src="../audio/2026-11-03.mp3">
+          <a href="../audio/2026-11-03.mp3">Download the audio (MP3)</a>
+        </audio>
+        <div class="listen__player">
+          <button class="listen__play" type="button" aria-label="Play the brief"><svg class="listen__i-play" viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M7 4.5v15L19.5 12z"/></svg><svg class="listen__i-pause" viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M6 4.5h4.5v15H6zM13.5 4.5H18v15h-4.5z"/></svg></button>
+          <div class="listen__main">
+            <p class="listen__head"><span class="listen__title">Listen<span class="listen__more"> to this brief</span></span><span class="listen__time"><span class="listen__cur">0:00</span> / <span class="listen__dur">5:21</span></span></p>
+            <input class="listen__seek" type="range" min="0" max="321" step="1" value="0" aria-label="Position in the audio">
+            <div class="listen__row">
+              <button class="listen__btn" type="button" data-para="-1" aria-label="Previous paragraph"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 5v14"/><path d="M18 5l-9 7 9 7z"/></svg><span aria-hidden="true">&para;</span></button>
+              <button class="listen__btn" type="button" data-para="1" aria-label="Next paragraph"><span aria-hidden="true">&para;</span><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M18 5v14"/><path d="M6 5l9 7-9 7z"/></svg></button>
+              <button class="listen__btn listen__rate" type="button" aria-label="Playback speed 1×">1×</button>
+              <button class="listen__btn listen__cast" type="button" aria-label="Play on another device" hidden><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M7 17H3V4h18v13h-4"/><path d="M12 14l5 6H7z"/></svg></button>
+              <p class="listen__note"><span class="listen__more">Read by an </span>AI voice &middot; <a href="../audio/2026-11-03.mp3" download aria-label="Download the MP3">MP3 <span aria-hidden="true">&darr;</span></a></p>
+            </div>
+          </div>
+        </div>
+      </div>
         </div>
         <div class="hero__text">
       <p class="dateline"><span>AI BRIEF</span><span class="dateline__sep">&middot;</span><time datetime="2026-11-03">NOV 03 2026</time><span class="dateline__sep">&middot;</span><time datetime="2026-11-03T07:18+01:00">07:18 CET</time></p>
-      <h1>Goldman Sachs restricts AI coding tools to engineers only, Bloomberg reports</h1>
-      <p class="lead">Traders and bankers lose access to Claude Code and GitHub after an internal productivity/risk review, while OpenAI quadruples its bug-bounty rewards and preps a new security sprint with Cathedral Systems — and quietly reveals it built its own Git backend to handle a 2,442% commit surge.</p>
-      <p class="facts">3 stories &middot; 3 sources &middot; 3 min read</p>
+      <h1 data-t="0.0">Goldman Sachs restricts AI coding tools to engineers only, Bloomberg reports</h1>
+      <p class="lead" data-t="6.15">Traders and bankers lose access to Claude Code and GitHub after an internal productivity/risk review, while OpenAI quadruples its bug-bounty rewards and preps a new security sprint with Cathedral Systems — and quietly reveals it built its own Git backend to handle a 2,442% commit surge.</p>
+      <p class="facts">3 stories &middot; 3 sources &middot; 3 min read &middot; listen 5:21</p>
         </div>
       </div>
     </div>
@@ -76,23 +98,23 @@
       <h2>Top signal</h2>
       <article class="story story--lead">
         <span class="story__num">01</span>
-        <h3 class="story__title">Goldman Sachs restricts AI coding tools to engineers only</h3>
-        <p>Per Bloomberg&#x27;s exclusive report, which reviewed internal guidance updated in October, Goldman Sachs now limits advanced AI coding tools — Anthropic&#x27;s Claude Code and Microsoft&#x27;s GitHub — to engineering staff only. Non-technical bankers and traders, who had used the tools for months to help with tasks like monitoring client flows and modeling market positions, lost access after the bank weighed productivity gains against risk concerns. It&#x27;s a sequel to an earlier, narrower move: in April, Goldman cut Hong Kong-based bankers&#x27; access to Claude specifically, a decision first reported by the Financial Times and confirmed by Reuters.</p>
-        <p class="story__signal"><strong>Signal:</strong> a concrete enterprise pullback, not more hype — Goldman let bankers and traders use Claude Code and GitHub for months, then reversed course after a formal productivity-and-risk review, and it already did a narrower version of this in April for its Hong Kong staff.</p>
+        <h3 class="story__title" data-t="28.5">Goldman Sachs restricts AI coding tools to engineers only</h3>
+        <p data-t="33.65">Per Bloomberg&#x27;s exclusive report, which reviewed internal guidance updated in October, Goldman Sachs now limits advanced AI coding tools — Anthropic&#x27;s Claude Code and Microsoft&#x27;s GitHub — to engineering staff only. Non-technical bankers and traders, who had used the tools for months to help with tasks like monitoring client flows and modeling market positions, lost access after the bank weighed productivity gains against risk concerns. It&#x27;s a sequel to an earlier, narrower move: in April, Goldman cut Hong Kong-based bankers&#x27; access to Claude specifically, a decision first reported by the Financial Times and confirmed by Reuters.</p>
+        <p class="story__signal" data-t="74.3"><strong>Signal:</strong> a concrete enterprise pullback, not more hype — Goldman let bankers and traders use Claude Code and GitHub for months, then reversed course after a formal productivity-and-risk review, and it already did a narrower version of this in April for its Hong Kong staff.</p>
         <p class="story__source">Source: <a href="https://www.bloomberg.com/news/articles/2026-11-02/goldman-restricts-traders-and-bankers-from-using-some-ai-tools" title="https://www.bloomberg.com/news/articles/2026-11-02/goldman-restricts-traders-and-bankers-from-using-some-ai-tools">bloomberg.com/news/articles/2026-11-02/goldman-restricts-tr…</a></p>
       </article>
       <article class="story">
         <span class="story__num">02</span>
-        <h3 class="story__title">OpenAI preps a new security sprint with Cathedral Systems, quadruples bug-bounty rewards</h3>
-        <p>Per OpenAI&#x27;s own announcement, it&#x27;s planning its next internal security sprint, pairing its product teams with researchers from Cathedral Systems — the same startup whose AI agents reached a limited set of Anthropic&#x27;s sales, HR and IT systems in under 12 hours last week, a breach Anthropic confirmed (customer conversations, source code and model weights were not touched). OpenAI says it&#x27;s &quot;more than quadrupling&quot; rewards for critical findings in its Security Bug Bounty program and frames the effort as keeping the &quot;defender&#x27;s window&quot; open: using its most capable models to find and fix its own weaknesses before attackers do, building on a prior sprint where 25% of product engineers used Codex to investigate and patch vulnerabilities.</p>
-        <p class="story__signal"><strong>Signal:</strong> OpenAI doubling down on &quot;fight AI with AI&quot; defense days after Cathedral&#x27;s own red team broke into a limited slice of Anthropic&#x27;s business systems in under 12 hours — the clearest sign yet that frontier labs see offensive AI security capability as now good enough to need urgent matching defense.</p>
+        <h3 class="story__title" data-t="92.5">OpenAI preps a new security sprint with Cathedral Systems, quadruples bug-bounty rewards</h3>
+        <p data-t="99.47">Per OpenAI&#x27;s own announcement, it&#x27;s planning its next internal security sprint, pairing its product teams with researchers from Cathedral Systems — the same startup whose AI agents reached a limited set of Anthropic&#x27;s sales, HR and IT systems in under 12 hours last week, a breach Anthropic confirmed (customer conversations, source code and model weights were not touched). OpenAI says it&#x27;s &quot;more than quadrupling&quot; rewards for critical findings in its Security Bug Bounty program and frames the effort as keeping the &quot;defender&#x27;s window&quot; open: using its most capable models to find and fix its own weaknesses before attackers do, building on a prior sprint where 25% of product engineers used Codex to investigate and patch vulnerabilities.</p>
+        <p class="story__signal" data-t="148.7"><strong>Signal:</strong> OpenAI doubling down on &quot;fight AI with AI&quot; defense days after Cathedral&#x27;s own red team broke into a limited slice of Anthropic&#x27;s business systems in under 12 hours — the clearest sign yet that frontier labs see offensive AI security capability as now good enough to need urgent matching defense.</p>
         <p class="story__source">Source: <a href="https://openai.com/index/preparing-our-next-security-sprint-to-harden-openai" title="https://openai.com/index/preparing-our-next-security-sprint-to-harden-openai">openai.com/index/preparing-our-next-security-sprint-to-hard…</a></p>
       </article>
       <article class="story">
         <span class="story__num">03</span>
-        <h3 class="story__title">OpenAI built its own Git backend after a 2,442% commit surge</h3>
-        <p>Per OpenAI Developers&#x27; own post and The New Stack&#x27;s reporting, OpenAI built a Git-compatible backend called Pando in just 10 weeks to keep up with its engineers&#x27; and coding agents&#x27; rising commit volume — quarterly commits in its monorepo rose 2,442% from Q1 2024 to Q4 2026. Pando cut median push latency by nearly 80%, lifted merge reliability to 99.99% (it had dipped below 90% at times before), and now serves close to a petabyte of Git data a day, mostly from local disk cache. Co-founder Greg Brockman said OpenAI is considering offering Pando to other companies.</p>
-        <p class="story__signal"><strong>Signal:</strong> a quiet infrastructure detail that says more about AI-agent-driven dev velocity than any benchmark — OpenAI&#x27;s monorepo commit volume grew by over 24x in under three years, forcing a from-scratch Git replacement rather than just scaling what it had.</p>
+        <h3 class="story__title" data-t="170.93">OpenAI built its own Git backend after a 2,442% commit surge</h3>
+        <p data-t="178.05">Per OpenAI Developers&#x27; own post and The New Stack&#x27;s reporting, OpenAI built a Git-compatible backend called Pando in just 10 weeks to keep up with its engineers&#x27; and coding agents&#x27; rising commit volume — quarterly commits in its monorepo rose 2,442% from Q1 2024 to Q4 2026. Pando cut median push latency by nearly 80%, lifted merge reliability to 99.99% (it had dipped below 90% at times before), and now serves close to a petabyte of Git data a day, mostly from local disk cache. Co-founder Greg Brockman said OpenAI is considering offering Pando to other companies.</p>
+        <p class="story__signal" data-t="223.72"><strong>Signal:</strong> a quiet infrastructure detail that says more about AI-agent-driven dev velocity than any benchmark — OpenAI&#x27;s monorepo commit volume grew by over 24x in under three years, forcing a from-scratch Git replacement rather than just scaling what it had.</p>
         <p class="story__source">Source: <a href="https://thenewstack.io/openai-pando-git-backend" title="https://thenewstack.io/openai-pando-git-backend">thenewstack.io/openai-pando-git-backend</a></p>
       </article>
     </div>
@@ -100,11 +122,11 @@
 
   <div class="band band--wire">
     <div class="container">
-      <span class="slug">Worth watching</span>
+      <span class="slug" data-t="242.65">Worth watching</span>
       <ul class="watch">
-        <li>DHH posted running Nvidia&#x27;s N1X locally with Nemotron 3.5 Bolt at 90 tokens/sec, diagnosing a hardware issue fully offline — pushing back on the N1X&#x27;s rough reception by arguing the hardware is fine and the out-of-the-box software is the real problem.</li>
-        <li>Anthropic opened applications for its paid Anthropic Residency (academics, technical founders, engineers; no ML background required), deadline November 22 — recruiting, not research news.</li>
-        <li>FT data journalist John Burn-Murdoch&#x27;s widely-shared thread argues the productivity-data uptick people are crediting to AI predates AI and only shows up in US data — a notable pushback on &quot;AI is already in the GDP numbers&quot; claims circulating this week.</li>
+        <li data-t="244.88">DHH posted running Nvidia&#x27;s N1X locally with Nemotron 3.5 Bolt at 90 tokens/sec, diagnosing a hardware issue fully offline — pushing back on the N1X&#x27;s rough reception by arguing the hardware is fine and the out-of-the-box software is the real problem.</li>
+        <li data-t="264.9">Anthropic opened applications for its paid Anthropic Residency (academics, technical founders, engineers; no ML background required), deadline November 22 — recruiting, not research news.</li>
+        <li data-t="279.4">FT data journalist John Burn-Murdoch&#x27;s widely-shared thread argues the productivity-data uptick people are crediting to AI predates AI and only shows up in US data — a notable pushback on &quot;AI is already in the GDP numbers&quot; claims circulating this week.</li>
       </ul>
     </div>
   </div>
@@ -113,8 +135,8 @@
     <div class="container">
       <div class="cols cols--2">
         <div class="block block--paper">
-          <span class="slug">Bottom line</span>
-          <p class="lead" style="margin:0">A quieter 24 hours for new model launches, but a telling one for how the AI industry is handling its own success: a major bank pulling back coding-tool access over risk, and OpenAI pouring money and process into securing itself against the same kind of AI-agent attacks that just hit Anthropic.</p>
+          <span class="slug" data-t="298.23">Bottom line</span>
+          <p class="lead" style="margin:0" data-t="300.35">A quieter 24 hours for new model launches, but a telling one for how the AI industry is handling its own success: a major bank pulling back coding-tool access over risk, and OpenAI pouring money and process into securing itself against the same kind of AI-agent attacks that just hit Anthropic.</p>
         </div>
         <div class="block block--fill">
           <span class="slug">Sources scanned</span>
