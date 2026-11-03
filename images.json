@@ -246,5 +246,12 @@
     "page": "https://deepmind.google/blog/speeding-up-planning-decisions-with-ai",
     "rank": 3,
     "story": "Google DeepMind's Gemini-powered planning tool cuts UK council review time by up to 58%"
+  },
+  "2026-11-03": {
+    "alt": "",
+    "image": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/i3pLhBaud7.I/v0/1200x800.jpg",
+    "page": "https://www.bloomberg.com/news/articles/2026-11-02/goldman-restricts-traders-and-bankers-from-using-some-ai-tools",
+    "rank": 1,
+    "story": "Goldman Sachs restricts AI coding tools to engineers only"
   }
 }
