@@ -253,5 +253,12 @@
     "page": "https://www.bloomberg.com/news/articles/2026-11-02/goldman-restricts-traders-and-bankers-from-using-some-ai-tools",
     "rank": 1,
     "story": "Goldman Sachs restricts AI coding tools to engineers only"
+  },
+  "2026-11-06": {
+    "alt": "Anthropic logo",
+    "image": "https://www-cdn.anthropic.com/images/4zrzovbb/website/2eba335a28661a8253187053fa36add230af728b-2000x1125.jpg",
+    "page": "https://www.anthropic.com/research/provable-inference",
+    "rank": 2,
+    "story": "Anthropic open-sources FlashProve, a way to cryptographically prove which model answered"
   }
 }
