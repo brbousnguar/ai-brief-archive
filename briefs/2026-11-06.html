@@ -20,6 +20,8 @@
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "5fa2715383d04f25bb5d45fdb806263f"}'></script>
 <script defer src="../js/consent.js?v=d3824c97" data-ga="G-RH3C4X94FV"></script>
 <script defer src="../js/share.js?v=dbb1cc28"></script>
+<script>document.documentElement.classList.add('js')</script>
+<script defer src="../js/listen.js?v=5acf47fc" onerror="document.documentElement.classList.remove('js')"></script>
 <link rel="icon" href="../favicon.ico" sizes="32x32">
 <link rel="icon" href="../icons/mark.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../apple-touch-icon.png">
@@ -60,12 +62,32 @@
         <div class="cover__frame"><img src="https://www-cdn.anthropic.com/images/4zrzovbb/website/2eba335a28661a8253187053fa36add230af728b-2000x1125.jpg" alt="Anthropic logo" width="1200" height="630" fetchpriority="high" decoding="async" referrerpolicy="no-referrer" onerror="this.closest('.cover').hidden=true;var h=this.closest('.hero');if(h)h.classList.add('hero--text')"></div>
         <figcaption class="cover__credit">Picture: <a href="https://www.anthropic.com/research/provable-inference">anthropic.com</a> &middot; story 02</figcaption>
       </figure>
+      <div class="listen" id="listen" data-title="OpenAI ships GPT-6 Cyber, rated &quot;Critical&quot; for cybersecurity under its own framework" data-date="NOV 06 2026" data-slug="2026-11-06" data-duration="480.3">
+        <p class="listen__label">Listen &middot; 8:00 &middot; read by an AI voice</p>
+        <audio controls preload="none" src="../audio/2026-11-06.mp3">
+          <a href="../audio/2026-11-06.mp3">Download the audio (MP3)</a>
+        </audio>
+        <div class="listen__player">
+          <button class="listen__play" type="button" aria-label="Play the brief"><svg class="listen__i-play" viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M7 4.5v15L19.5 12z"/></svg><svg class="listen__i-pause" viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M6 4.5h4.5v15H6zM13.5 4.5H18v15h-4.5z"/></svg></button>
+          <div class="listen__main">
+            <p class="listen__head"><span class="listen__title">Listen<span class="listen__more"> to this brief</span></span><span class="listen__time"><span class="listen__cur">0:00</span> / <span class="listen__dur">8:00</span></span></p>
+            <input class="listen__seek" type="range" min="0" max="480" step="1" value="0" aria-label="Position in the audio">
+            <div class="listen__row">
+              <button class="listen__btn" type="button" data-para="-1" aria-label="Previous paragraph"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 5v14"/><path d="M18 5l-9 7 9 7z"/></svg><span aria-hidden="true">&para;</span></button>
+              <button class="listen__btn" type="button" data-para="1" aria-label="Next paragraph"><span aria-hidden="true">&para;</span><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M18 5v14"/><path d="M6 5l9 7-9 7z"/></svg></button>
+              <button class="listen__btn listen__rate" type="button" aria-label="Playback speed 1×">1×</button>
+              <button class="listen__btn listen__cast" type="button" aria-label="Play on another device" hidden><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M7 17H3V4h18v13h-4"/><path d="M12 14l5 6H7z"/></svg></button>
+              <p class="listen__note"><span class="listen__more">Read by an </span>AI voice &middot; <a href="../audio/2026-11-06.mp3" download aria-label="Download the MP3">MP3 <span aria-hidden="true">&darr;</span></a></p>
+            </div>
+          </div>
+        </div>
+      </div>
         </div>
         <div class="hero__text">
       <p class="dateline"><span>AI BRIEF</span><span class="dateline__sep">&middot;</span><time datetime="2026-11-06">NOV 06 2026</time><span class="dateline__sep">&middot;</span><time datetime="2026-11-06T07:25+01:00">07:25 CET</time></p>
-      <h1>OpenAI ships GPT-6 Cyber, rated &quot;Critical&quot; for cybersecurity under its own framework</h1>
-      <p class="lead">The model already found 81 previously-unknown high-severity Firefox bugs and powered a Linux kernel sweep that cost $1.2M in API credits, while Anthropic open-sourced a way to cryptographically prove which model answered you, and used Claude to map the first 3D structure of a bacterial vault particle.</p>
-      <p class="facts">4 stories &middot; 4 sources &middot; 5 min read</p>
+      <h1 data-t="0.0">OpenAI ships GPT-6 Cyber, rated &quot;Critical&quot; for cybersecurity under its own framework</h1>
+      <p class="lead" data-t="7.0">The model already found 81 previously-unknown high-severity Firefox bugs and powered a Linux kernel sweep that cost $1.2M in API credits, while Anthropic open-sourced a way to cryptographically prove which model answered you, and used Claude to map the first 3D structure of a bacterial vault particle.</p>
+      <p class="facts">4 stories &middot; 4 sources &middot; 5 min read &middot; listen 8:00</p>
         </div>
       </div>
     </div>
@@ -76,30 +98,30 @@
       <h2>Top signal</h2>
       <article class="story story--lead">
         <span class="story__num">01</span>
-        <h3 class="story__title">OpenAI ships GPT-6 Cyber, rated &quot;Critical&quot; for cybersecurity</h3>
-        <p>Per Reuters, OpenAI released GPT-6 Cyber on Thursday to a small group of vetted customers, rating it &quot;Critical&quot; for cybersecurity under its own safety framework — up from &quot;High&quot; for the prior GPT-5.6 Cyber. The model is built to find and exploit security flaws so defenders can fix them first, and access is expanding to all approved Daybreak Red customers over the coming weeks; OpenAI is also opening the older GPT-5.6 Cyber to all Daybreak Red customers starting now. OpenAI&#x27;s own account says the model powered the Linux kernel research it announced the day before and that security teams at Mozilla, Palo Alto Networks and Cisco are already using it. Per OpenAI&#x27;s technical report (via Unite.AI&#x27;s write-up), that Linux run analyzed 2,308 candidate findings, reproduced 1,724 vulnerabilities and generated 948 distinct local-privilege-escalation exploits, at a cost of $1,213,430 in API credits, with human researchers reviewing everything before disclosure. Mozilla&#x27;s own Firefox 159 advisory separately credits OpenAI&#x27;s security team with 81 previously-unknown high-severity vulnerabilities and 30 reclassified as more severe than first reported.</p>
-        <p class="story__signal"><strong>Signal:</strong> this is the follow-through on Tuesday&#x27;s Cathedral security sprint — not more planning, but a shipped model with real numbers: a Linux kernel sweep that reproduced 1,724 vulnerabilities and produced 948 working exploits, and a Firefox 159 advisory crediting OpenAI researchers by name for 81 previously-unknown high-severity bugs.</p>
+        <h3 class="story__title" data-t="29.23">OpenAI ships GPT-6 Cyber, rated &quot;Critical&quot; for cybersecurity</h3>
+        <p data-t="34.92">Per Reuters, OpenAI released GPT-6 Cyber on Thursday to a small group of vetted customers, rating it &quot;Critical&quot; for cybersecurity under its own safety framework — up from &quot;High&quot; for the prior GPT-5.6 Cyber. The model is built to find and exploit security flaws so defenders can fix them first, and access is expanding to all approved Daybreak Red customers over the coming weeks; OpenAI is also opening the older GPT-5.6 Cyber to all Daybreak Red customers starting now. OpenAI&#x27;s own account says the model powered the Linux kernel research it announced the day before and that security teams at Mozilla, Palo Alto Networks and Cisco are already using it. Per OpenAI&#x27;s technical report (via Unite.AI&#x27;s write-up), that Linux run analyzed 2,308 candidate findings, reproduced 1,724 vulnerabilities and generated 948 distinct local-privilege-escalation exploits, at a cost of $1,213,430 in API credits, with human researchers reviewing everything before disclosure. Mozilla&#x27;s own Firefox 159 advisory separately credits OpenAI&#x27;s security team with 81 previously-unknown high-severity vulnerabilities and 30 reclassified as more severe than first reported.</p>
+        <p class="story__signal" data-t="121.9"><strong>Signal:</strong> this is the follow-through on Tuesday&#x27;s Cathedral security sprint — not more planning, but a shipped model with real numbers: a Linux kernel sweep that reproduced 1,724 vulnerabilities and produced 948 working exploits, and a Firefox 159 advisory crediting OpenAI researchers by name for 81 previously-unknown high-severity bugs.</p>
         <p class="story__source">Source: <a href="https://www.reuters.com/technology/openai-launches-gpt-6-cyber-with-critical-cybersecurity-rating-2026-11-05" title="https://www.reuters.com/technology/openai-launches-gpt-6-cyber-with-critical-cybersecurity-rating-2026-11-05">reuters.com/technology/openai-launches-gpt-6-cyber-with-cri…</a></p>
       </article>
       <article class="story">
         <span class="story__num">02</span>
-        <h3 class="story__title">Anthropic open-sources FlashProve, a way to cryptographically prove which model answered</h3>
-        <p>Per Anthropic&#x27;s own research post, FlashProve is an open-source prototype for &quot;provable inference&quot;: a cryptographic proof that a specific reply came from a specific AI model, without exposing the model&#x27;s weights. On a single H100 GPU it proves a 400B-parameter mixture-of-experts model (Llama 4 Maverick) at roughly 110 tokens/second, with each proof only about 19 MB and verifiable in seconds — Anthropic says the best prior open method, VerInf, took over 14 hours to prove 1,000 tokens. Anthropic&#x27;s Frontier Red Team built it with collaborators at EPFL, MIT and StarkWare, and frames the use case as making it harder to hijack a chat session or spoof which model actually served a response, plus letting safety evaluators confirm they&#x27;re testing the model that&#x27;s really in production.</p>
-        <p class="story__signal"><strong>Signal:</strong> a genuinely new primitive, not an incremental benchmark — FlashProve proves a 400B-parameter model&#x27;s output 70-95x faster than the fastest prior open method (VerInf), which makes &quot;verify this response really came from this exact model&quot; practical for the first time rather than a research curiosity.</p>
+        <h3 class="story__title" data-t="148.5">Anthropic open-sources FlashProve, a way to cryptographically prove which model answered</h3>
+        <p data-t="155.12">Per Anthropic&#x27;s own research post, FlashProve is an open-source prototype for &quot;provable inference&quot;: a cryptographic proof that a specific reply came from a specific AI model, without exposing the model&#x27;s weights. On a single H100 GPU it proves a 400B-parameter mixture-of-experts model (Llama 4 Maverick) at roughly 110 tokens/second, with each proof only about 19 MB and verifiable in seconds — Anthropic says the best prior open method, VerInf, took over 14 hours to prove 1,000 tokens. Anthropic&#x27;s Frontier Red Team built it with collaborators at EPFL, MIT and StarkWare, and frames the use case as making it harder to hijack a chat session or spoof which model actually served a response, plus letting safety evaluators confirm they&#x27;re testing the model that&#x27;s really in production.</p>
+        <p class="story__signal" data-t="211.75"><strong>Signal:</strong> a genuinely new primitive, not an incremental benchmark — FlashProve proves a 400B-parameter model&#x27;s output 70-95x faster than the fastest prior open method (VerInf), which makes &quot;verify this response really came from this exact model&quot; practical for the first time rather than a research curiosity.</p>
         <p class="story__source">Source: <a href="https://www.anthropic.com/research/provable-inference" title="https://www.anthropic.com/research/provable-inference">anthropic.com/research/provable-inference</a></p>
       </article>
       <article class="story">
         <span class="story__num">03</span>
-        <h3 class="story__title">Anthropic uses Claude to map the first 3D structure of a bacterial vault particle</h3>
-        <p>Per Anthropic&#x27;s own post, its life sciences team worked with Claude to solve the first 3D structure of a vault particle — a large, barrel-shaped protein shell whose function has been unknown since its discovery by Leonard Rome and Nancy Kedersha in 1986 — found this time in a bacteriophage-infected E. coli system rather than the animal and plant cells where vaults were previously known. Anthropic says the bacterial version has 96 protein chains versus 78 in a human vault and an roughly 25% larger internal cavity, and frames the four-month project explicitly as a demonstration of both the potential and the limits of using AI to accelerate real science.</p>
-        <p class="story__signal"><strong>Signal:</strong> a concrete, verifiable science result rather than a capability claim — Anthropic&#x27;s biology team submitted an actual structure (3.2 Å resolution, bioRxiv-bound) that extends a 1986 open question in cell biology to bacteria and the viruses that infect them, with Claude doing the directed computational work, not the science itself.</p>
+        <h3 class="story__title" data-t="235.18">Anthropic uses Claude to map the first 3D structure of a bacterial vault particle</h3>
+        <p data-t="241.53">Per Anthropic&#x27;s own post, its life sciences team worked with Claude to solve the first 3D structure of a vault particle — a large, barrel-shaped protein shell whose function has been unknown since its discovery by Leonard Rome and Nancy Kedersha in 1986 — found this time in a bacteriophage-infected E. coli system rather than the animal and plant cells where vaults were previously known. Anthropic says the bacterial version has 96 protein chains versus 78 in a human vault and an roughly 25% larger internal cavity, and frames the four-month project explicitly as a demonstration of both the potential and the limits of using AI to accelerate real science.</p>
+        <p class="story__signal" data-t="286.5"><strong>Signal:</strong> a concrete, verifiable science result rather than a capability claim — Anthropic&#x27;s biology team submitted an actual structure (3.2 Å resolution, bioRxiv-bound) that extends a 1986 open question in cell biology to bacteria and the viruses that infect them, with Claude doing the directed computational work, not the science itself.</p>
         <p class="story__source">Source: <a href="https://www.anthropic.com/research/provable-inference" title="https://www.anthropic.com/research/provable-inference">anthropic.com/research/provable-inference</a></p>
       </article>
       <article class="story">
         <span class="story__num">04</span>
-        <h3 class="story__title">Mistral runs a 133-agent swarm to triage and patch a Django vulnerability</h3>
-        <p>Per Mistral&#x27;s own account and CryptoBriefing&#x27;s write-up, Mistral set 133 specialized agents loose on a recent Django CVE: some mapped the codebase, others hunted for the flaw, simulated attacks, and reproduced the bug, before a dedicated patching agent nicknamed &quot;Le Chonk&quot; fixed it — shown at 90x speed, end to end. The timing was pointed: Django published its fix on November 3, and Mistral&#x27;s demo ran the next day. Mistral is pitching the open-weight Large 4 as a self-hostable alternative for security teams wary of sending proprietary code to a closed API.</p>
-        <p class="story__signal"><strong>Signal:</strong> a slick demo more than a verified benchmark win — outside commentary notes Mistral tested this on an already-known, already-patched Django CVE (not a zero-day discovery), and that Mistral&#x27;s own published cybersecurity index still ranks Large 4 behind DeepSeek V4.1 Flash and Xiaomi&#x27;s MiMo.</p>
+        <h3 class="story__title" data-t="312.43">Mistral runs a 133-agent swarm to triage and patch a Django vulnerability</h3>
+        <p data-t="319.55">Per Mistral&#x27;s own account and CryptoBriefing&#x27;s write-up, Mistral set 133 specialized agents loose on a recent Django CVE: some mapped the codebase, others hunted for the flaw, simulated attacks, and reproduced the bug, before a dedicated patching agent nicknamed &quot;Le Chonk&quot; fixed it — shown at 90x speed, end to end. The timing was pointed: Django published its fix on November 3, and Mistral&#x27;s demo ran the next day. Mistral is pitching the open-weight Large 4 as a self-hostable alternative for security teams wary of sending proprietary code to a closed API.</p>
+        <p class="story__signal" data-t="357.62"><strong>Signal:</strong> a slick demo more than a verified benchmark win — outside commentary notes Mistral tested this on an already-known, already-patched Django CVE (not a zero-day discovery), and that Mistral&#x27;s own published cybersecurity index still ranks Large 4 behind DeepSeek V4.1 Flash and Xiaomi&#x27;s MiMo.</p>
         <p class="story__source">Source: <a href="https://cryptobriefing.com/mistral-large-4-133-agents-django-vulnerability" title="https://cryptobriefing.com/mistral-large-4-133-agents-django-vulnerability">cryptobriefing.com/mistral-large-4-133-agents-django-vulner…</a></p>
       </article>
     </div>
@@ -107,11 +129,11 @@
 
   <div class="band band--wire">
     <div class="container">
-      <span class="slug">Worth watching</span>
+      <span class="slug" data-t="379.75">Worth watching</span>
       <ul class="watch">
-        <li>Sam Altman posted on Nov 4 that &quot;people should always be in control of the future,&quot; arguing against the idea that it would be acceptable for humans to be relegated to &quot;doing things AI systems think makes sense to reward in humans&quot; — a notable, fairly philosophical alignment stance from OpenAI&#x27;s own account rather than a product note.</li>
-        <li>Tencent AI confirmed its Hy4 model is highly ranked among Chinese labs on Arena.ai&#x27;s agent benchmarks, with mixed exact framing (a prior preview run showed #2 among open models at +5.4% net improvement across 14.5K+ sessions); treat the specific &quot;#1&quot; claim as Tencent/Arena&#x27;s own framing rather than an independently verified number.</li>
-        <li>Canva CEO Melanie Perkins confirmed, per Business Insider, a reorganization affecting 22% of the company&#x27;s roughly 5,800-person workforce (about 1,271 people) — no AI-specific cause was visible in what we saw directly.</li>
+        <li data-t="381.98">Sam Altman posted on Nov 4 that &quot;people should always be in control of the future,&quot; arguing against the idea that it would be acceptable for humans to be relegated to &quot;doing things AI systems think makes sense to reward in humans&quot; — a notable, fairly philosophical alignment stance from OpenAI&#x27;s own account rather than a product note.</li>
+        <li data-t="403.88">Tencent AI confirmed its Hy4 model is highly ranked among Chinese labs on Arena.ai&#x27;s agent benchmarks, with mixed exact framing (a prior preview run showed #2 among open models at +5.4% net improvement across 14.5K+ sessions); treat the specific &quot;#1&quot; claim as Tencent/Arena&#x27;s own framing rather than an independently verified number.</li>
+        <li data-t="429.77">Canva CEO Melanie Perkins confirmed, per Business Insider, a reorganization affecting 22% of the company&#x27;s roughly 5,800-person workforce (about 1,271 people) — no AI-specific cause was visible in what we saw directly.</li>
       </ul>
     </div>
   </div>
@@ -120,8 +142,8 @@
     <div class="container">
       <div class="cols cols--2">
         <div class="block block--paper">
-          <span class="slug">Bottom line</span>
-          <p class="lead" style="margin:0">A quieter few days for new model launches but a telling one on security: OpenAI moved from announcing a security sprint to actually shipping a &quot;Critical&quot;-rated cyber model with real vulnerability counts, Anthropic open-sourced cryptographic proof-of-inference, and Mistral ran a flashy (if not fully independently verified) agent-swarm security demo — three labs converging on &quot;AI defending against AI&quot; as the live story, not a future one.</p>
+          <span class="slug" data-t="449.57">Bottom line</span>
+          <p class="lead" style="margin:0" data-t="451.7">A quieter few days for new model launches but a telling one on security: OpenAI moved from announcing a security sprint to actually shipping a &quot;Critical&quot;-rated cyber model with real vulnerability counts, Anthropic open-sourced cryptographic proof-of-inference, and Mistral ran a flashy (if not fully independently verified) agent-swarm security demo — three labs converging on &quot;AI defending against AI&quot; as the live story, not a future one.</p>
         </div>
         <div class="block block--fill">
           <span class="slug">Sources scanned</span>

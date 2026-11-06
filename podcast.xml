@@ -14,6 +14,16 @@
     <itunes:type>episodic</itunes:type>
     <lastBuildDate>Fri, 06 Nov 2026 07:25:00 +0100</lastBuildDate>
     <item>
+      <title>OpenAI ships GPT-6 Cyber, rated &quot;Critical&quot; for cybersecurity under its own framework</title>
+      <link>https://ai.heybrahim.com/briefs/2026-11-06.html</link>
+      <guid>https://ai.heybrahim.com/briefs/2026-11-06.html</guid>
+      <pubDate>Fri, 06 Nov 2026 07:25:00 +0100</pubDate>
+      <description>The model already found 81 previously-unknown high-severity Firefox bugs and powered a Linux kernel sweep that cost $1.2M in API credits, while Anthropic open-sourced a way to cryptographically prove which model answered you, and used Claude to map the first 3D structure of a bacterial vault particle.</description>
+      <enclosure url="https://ai.heybrahim.com/audio/2026-11-06.mp3" length="2402209" type="audio/mpeg"/>
+      <itunes:duration>480</itunes:duration>
+      <itunes:episodeType>full</itunes:episodeType>
+    </item>
+    <item>
       <title>Goldman Sachs restricts AI coding tools to engineers only, Bloomberg reports</title>
       <link>https://ai.heybrahim.com/briefs/2026-11-03.html</link>
       <guid>https://ai.heybrahim.com/briefs/2026-11-03.html</guid>
