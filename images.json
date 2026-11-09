@@ -260,5 +260,12 @@
     "page": "https://www.anthropic.com/research/provable-inference",
     "rank": 2,
     "story": "Anthropic open-sources FlashProve, a way to cryptographically prove which model answered"
+  },
+  "2026-11-09": {
+    "alt": "",
+    "image": "https://www.frontiermodelforum.org/uploads/2023/10/image.jpg",
+    "page": "https://www.frontiermodelforum.org/updates/introducing-the-fmf-jailbreak-rating-framework-for-frontier-cyber-threats",
+    "rank": 3,
+    "story": "OpenAI and industry peers publish a shared framework for rating cyber jailbreaks"
   }
 }
