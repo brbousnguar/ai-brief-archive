@@ -14,6 +14,16 @@
     <itunes:type>episodic</itunes:type>
     <lastBuildDate>Mon, 09 Nov 2026 17:15:00 +0100</lastBuildDate>
     <item>
+      <title>Nvidia&#x27;s board investigates Jensen Huang over an affair with a suspected Chinese spy</title>
+      <link>https://ai.heybrahim.com/briefs/2026-11-09.html</link>
+      <guid>https://ai.heybrahim.com/briefs/2026-11-09.html</guid>
+      <pubDate>Mon, 09 Nov 2026 17:15:00 +0100</pubDate>
+      <description>The CEO of the company that makes the chips the entire AI industry runs on apologized to staff and is under an independent-director probe over possible espionage exposure, while Google DeepMind used AI agents to break long-standing assumptions about legacy 1024-bit RSA encryption and OpenAI published a cross-industry framework for rating how dangerous a jailbreak really is.</description>
+      <enclosure url="https://ai.heybrahim.com/audio/2026-11-09.mp3" length="2214169" type="audio/mpeg"/>
+      <itunes:duration>443</itunes:duration>
+      <itunes:episodeType>full</itunes:episodeType>
+    </item>
+    <item>
       <title>OpenAI ships GPT-6 Cyber, rated &quot;Critical&quot; for cybersecurity under its own framework</title>
       <link>https://ai.heybrahim.com/briefs/2026-11-06.html</link>
       <guid>https://ai.heybrahim.com/briefs/2026-11-06.html</guid>
