@@ -268,5 +268,12 @@
     "rank": 3,
     "story": "OpenAI and industry peers publish a shared framework for rating cyber jailbreaks"
   },
-  "2026-11-12": null
+  "2026-11-12": null,
+  "2026-11-16": {
+    "alt": "Anthropic logo",
+    "image": "https://assets.claude.com/6d4a0d28992ade92d6fa63646fd9c9d318245c6c.jpg",
+    "page": "https://www.anthropic.com/news/roadshow-launch",
+    "rank": 1,
+    "story": "Anthropic files for its IPO, targets pricing this week"
+  }
 }

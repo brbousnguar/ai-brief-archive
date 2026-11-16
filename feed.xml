@@ -5,9 +5,38 @@
   <id>https://ai.heybrahim.com/</id>
   <link rel="alternate" type="text/html" href="https://ai.heybrahim.com/"/>
   <link rel="self" type="application/atom+xml" href="https://ai.heybrahim.com/feed.xml"/>
-  <updated>2026-11-12T15:55+01:00</updated>
+  <updated>2026-11-16T13:00+01:00</updated>
   <author><name>AI Brief</name><uri>https://ai.heybrahim.com/</uri></author>
   <icon>https://ai.heybrahim.com/icons/icon-192.png</icon>
+  <entry>
+    <title>Anthropic files for IPO as Nvidia&#x27;s ousted Jensen Huang eyes a comeback</title>
+    <link rel="alternate" type="text/html" href="https://ai.heybrahim.com/briefs/2026-11-16.html"/>
+    <id>https://ai.heybrahim.com/briefs/2026-11-16.html</id>
+    <published>2026-11-16T13:00+01:00</published>
+    <updated>2026-11-16T13:00+01:00</updated>
+    <summary>Anthropic launched its IPO roadshow this week (Nasdaq: ANT, $70-78/share), while a reinstatement campaign for Nvidia&#x27;s ousted CEO gathered political weight, and Google DeepMind shipped Gemini 4 Hydrogen.</summary>
+    <content type="html">&lt;p&gt;&lt;em&gt;Anthropic launched its IPO roadshow this week (Nasdaq: ANT, $70-78/share), while a reinstatement campaign for Nvidia&amp;#x27;s ousted CEO gathered political weight, and Google DeepMind shipped Gemini 4 Hydrogen.&lt;/em&gt;&lt;/p&gt;
+&lt;h2&gt;01 &amp;middot; Anthropic files for its IPO, targets pricing this week&lt;/h2&gt;
+&lt;p&gt;Per Anthropic&amp;#x27;s own announcement, the company launched the roadshow for its proposed initial public offering on November 10: 825,000,000 Class A shares at an expected $70.00-$78.00 each, listing on the Nasdaq Global Select Market under the ticker &amp;quot;ANT.&amp;quot; Anthropic followed up with its own IPO site on November 12 and a live-streamed fireside chat between CEO Dario Amodei and JPMorgan CEO Jamie Dimon on November 13, both posted on its own account. The filing would make Anthropic one of the largest AI-sector listings to date.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Signal:&lt;/strong&gt; this is the real milestone, not just a rumor — Anthropic actually filed the amended S-1 and launched the roadshow, with a Nasdaq ticker and a price range already set.&lt;/p&gt;
+&lt;p&gt;Source: &lt;a href=&quot;https://www.anthropic.com/news/roadshow-launch&quot; title=&quot;https://www.anthropic.com/news/roadshow-launch&quot;&gt;anthropic.com/news/roadshow-launch&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;02 &amp;middot; Nvidia: the campaign to reinstate Jensen Huang gains political weight&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://ai.heybrahim.com/stories/nvidia-jensen-huang-spy-affair.html&quot;&gt;Running story&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Per the Wall Street Journal, a &amp;quot;Stand With Jensen&amp;quot; open letter campaign — built on Replit by its CEO Amjad Masad after an urgent request from Huang&amp;#x27;s allies — buckled under traffic as NVIDIA employees and shareholders rushed to sign it demanding the board reinstate him. On the home feed, Polymarket and other accounts reported Huang is now reportedly discussing a comeback with allies, and Reuters reported separately that US Treasury Secretary Scott Bessent said Nvidia needs to &amp;quot;go outside the company&amp;quot; for its next CEO. None of this is confirmed by Nvidia itself yet, but the pressure campaign is real and growing.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Signal:&lt;/strong&gt; four days after the board&amp;#x27;s resignation announcement, this has moved from &amp;quot;fallout&amp;quot; to an active reinstatement push, with a sitting US Treasury Secretary now weighing in on the search for his replacement — bigger than the original ouster news itself.&lt;/p&gt;
+&lt;p&gt;Source: &lt;a href=&quot;https://www.wsj.com/tech/the-campaign-to-bring-back-jensen-huang-as-nvidia-ceo-e91b0b2c&quot; title=&quot;https://www.wsj.com/tech/the-campaign-to-bring-back-jensen-huang-as-nvidia-ceo-e91b0b2c&quot;&gt;wsj.com/tech/the-campaign-to-bring-back-jensen-huang-as-nvi…&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;03 &amp;middot; Google DeepMind ships Gemini 4 Hydrogen, a faster everyday model&lt;/h2&gt;
+&lt;p&gt;Per Google&amp;#x27;s own announcement, Gemini 4 Hydrogen is a flash-tier model adapted from Gemini 4 Carbon, built for rapid execution across agentic workflows rather than deep reasoning. Google says it finishes tasks 2.5x faster than Gemini 3.8 Flash at its high default setting, more than triples Terminal-Bench 4.1 scores (57% vs. 18.2%), and cuts fabricated claims by over 5x. It&amp;#x27;s rolling out across Google AI Studio, the Gemini API, the Gemini app, Search, and Google Antigravity.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Signal:&lt;/strong&gt; this is Google&amp;#x27;s third Gemini 4 release (after Carbon and Argon) and the one aimed at bringing frontier-adjacent speed to everyone rather than the top reasoning tier — the kind of model that actually changes daily-driver usage, not just benchmark charts.&lt;/p&gt;
+&lt;p&gt;Source: &lt;a href=&quot;https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-hydrogen&quot; title=&quot;https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-hydrogen&quot;&gt;blog.google/innovation-and-ai/models-and-research/gemini-mo…&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;04 &amp;middot; OpenAI opens a &amp;quot;Business Hub&amp;quot; inside ChatGPT&lt;/h2&gt;
+&lt;p&gt;Per OpenAI&amp;#x27;s own announcement (Nov 10), eligible US ecommerce and online-service businesses can now claim their business in a new &amp;quot;Business Hub,&amp;quot; verify it, and build a &amp;quot;Business Agent&amp;quot; that answers customer questions using information they provide — kept in a clearly labeled conversation separate from ChatGPT&amp;#x27;s own answers. Businesses also get aggregated insights on mentions and website clicks.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Signal:&lt;/strong&gt; this turns ChatGPT into a storefront-discovery layer businesses actively manage — not an ads product yet, but the infrastructure for one.&lt;/p&gt;
+&lt;p&gt;Source: &lt;a href=&quot;https://community.openai.com/t/introducing-businesses-in-chatgpt-in-beta/1414865&quot; title=&quot;https://community.openai.com/t/introducing-businesses-in-chatgpt-in-beta/1414865&quot;&gt;community.openai.com/t/introducing-businesses-in-chatgpt-in…&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Worth watching&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;OpenAI teased a &amp;quot;Cyber at the Frontier&amp;quot; live keynote (posted Nov 10) for further cybersecurity model announcements, following last week&amp;#x27;s GPT-6 Cyber launch — no confirmed date seen.&lt;/li&gt;&lt;li&gt;Alibaba&amp;#x27;s Qwen4-Max is trending on X again today; per Alibaba&amp;#x27;s own account it has been in a cloud-only preview since November 11, with no published weights, benchmarks, or pricing, and the preview itself closes November 25.&lt;/li&gt;&lt;/ul&gt;
+&lt;h2&gt;Bottom line&lt;/h2&gt;&lt;p&gt;The last four days turned two storylines from &amp;quot;announced&amp;quot; into &amp;quot;actually happening&amp;quot;: Anthropic&amp;#x27;s IPO went from filing to live roadshow with a price and a date, and Nvidia&amp;#x27;s leadership crisis went from a boardroom resignation to an organized reinstatement campaign with a Treasury Secretary weighing in — while the model releases (Gemini 4 Hydrogen, ChatGPT&amp;#x27;s Business Hub) were comparatively quiet, incremental news by contrast.&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;Sources scanned: X/Twitter home feed (Following tab), plus @OpenAI, @AnthropicAI, @GoogleDeepMind and @sama.&lt;/small&gt;&lt;/p&gt;</content>
+  </entry>
   <entry>
     <title>Nvidia ousts Jensen Huang as CEO after reports of affairs with two women</title>
     <link rel="alternate" type="text/html" href="https://ai.heybrahim.com/briefs/2026-11-12.html"/>
