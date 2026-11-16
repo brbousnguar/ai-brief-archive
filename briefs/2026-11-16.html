@@ -20,6 +20,8 @@
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "5fa2715383d04f25bb5d45fdb806263f"}'></script>
 <script defer src="../js/consent.js?v=d3824c97" data-ga="G-RH3C4X94FV"></script>
 <script defer src="../js/share.js?v=dbb1cc28"></script>
+<script>document.documentElement.classList.add('js')</script>
+<script defer src="../js/listen.js?v=5acf47fc" onerror="document.documentElement.classList.remove('js')"></script>
 <link rel="icon" href="../favicon.ico" sizes="32x32">
 <link rel="icon" href="../icons/mark.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../apple-touch-icon.png">
@@ -60,12 +62,32 @@
         <div class="cover__frame"><img src="https://assets.claude.com/6d4a0d28992ade92d6fa63646fd9c9d318245c6c.jpg" alt="Anthropic logo" width="1200" height="630" fetchpriority="high" decoding="async" referrerpolicy="no-referrer" onerror="this.closest('.cover').hidden=true;var h=this.closest('.hero');if(h)h.classList.add('hero--text')"></div>
         <figcaption class="cover__credit">Picture: <a href="https://www.anthropic.com/news/roadshow-launch">anthropic.com</a></figcaption>
       </figure>
+      <div class="listen" id="listen" data-title="Anthropic files for IPO as Nvidia&#x27;s ousted Jensen Huang eyes a comeback" data-date="NOV 16 2026" data-slug="2026-11-16" data-duration="311.07">
+        <p class="listen__label">Listen &middot; 5:11 &middot; read by an AI voice</p>
+        <audio controls preload="none" src="../audio/2026-11-16.mp3">
+          <a href="../audio/2026-11-16.mp3">Download the audio (MP3)</a>
+        </audio>
+        <div class="listen__player">
+          <button class="listen__play" type="button" aria-label="Play the brief"><svg class="listen__i-play" viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M7 4.5v15L19.5 12z"/></svg><svg class="listen__i-pause" viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M6 4.5h4.5v15H6zM13.5 4.5H18v15h-4.5z"/></svg></button>
+          <div class="listen__main">
+            <p class="listen__head"><span class="listen__title">Listen<span class="listen__more"> to this brief</span></span><span class="listen__time"><span class="listen__cur">0:00</span> / <span class="listen__dur">5:11</span></span></p>
+            <input class="listen__seek" type="range" min="0" max="311" step="1" value="0" aria-label="Position in the audio">
+            <div class="listen__row">
+              <button class="listen__btn" type="button" data-para="-1" aria-label="Previous paragraph"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 5v14"/><path d="M18 5l-9 7 9 7z"/></svg><span aria-hidden="true">&para;</span></button>
+              <button class="listen__btn" type="button" data-para="1" aria-label="Next paragraph"><span aria-hidden="true">&para;</span><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M18 5v14"/><path d="M6 5l9 7-9 7z"/></svg></button>
+              <button class="listen__btn listen__rate" type="button" aria-label="Playback speed 1×">1×</button>
+              <button class="listen__btn listen__cast" type="button" aria-label="Play on another device" hidden><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M7 17H3V4h18v13h-4"/><path d="M12 14l5 6H7z"/></svg></button>
+              <p class="listen__note"><span class="listen__more">Read by an </span>AI voice &middot; <a href="../audio/2026-11-16.mp3" download aria-label="Download the MP3">MP3 <span aria-hidden="true">&darr;</span></a></p>
+            </div>
+          </div>
+        </div>
+      </div>
         </div>
         <div class="hero__text">
       <p class="dateline"><span>AI BRIEF</span><span class="dateline__sep">&middot;</span><time datetime="2026-11-16">NOV 16 2026</time><span class="dateline__sep">&middot;</span><time datetime="2026-11-16T13:00+01:00">13:00 CET</time></p>
-      <h1>Anthropic files for IPO as Nvidia&#x27;s ousted Jensen Huang eyes a comeback</h1>
-      <p class="lead">Anthropic launched its IPO roadshow this week (Nasdaq: ANT, $70-78/share), while a reinstatement campaign for Nvidia&#x27;s ousted CEO gathered political weight, and Google DeepMind shipped Gemini 4 Hydrogen.</p>
-      <p class="facts">4 stories &middot; 1 running &middot; 4 sources &middot; 3 min read</p>
+      <h1 data-t="0.0">Anthropic files for IPO as Nvidia&#x27;s ousted Jensen Huang eyes a comeback</h1>
+      <p class="lead" data-t="6.25">Anthropic launched its IPO roadshow this week (Nasdaq: ANT, $70-78/share), while a reinstatement campaign for Nvidia&#x27;s ousted CEO gathered political weight, and Google DeepMind shipped Gemini 4 Hydrogen.</p>
+      <p class="facts">4 stories &middot; 1 running &middot; 4 sources &middot; 3 min read &middot; listen 5:11</p>
         </div>
       </div>
     </div>
@@ -76,31 +98,31 @@
       <h2>Top signal</h2>
       <article class="story story--lead">
         <span class="story__num">01</span>
-        <h3 class="story__title">Anthropic files for its IPO, targets pricing this week</h3>
-        <p>Per Anthropic&#x27;s own announcement, the company launched the roadshow for its proposed initial public offering on November 10: 825,000,000 Class A shares at an expected $70.00-$78.00 each, listing on the Nasdaq Global Select Market under the ticker &quot;ANT.&quot; Anthropic followed up with its own IPO site on November 12 and a live-streamed fireside chat between CEO Dario Amodei and JPMorgan CEO Jamie Dimon on November 13, both posted on its own account. The filing would make Anthropic one of the largest AI-sector listings to date.</p>
-        <p class="story__signal"><strong>Signal:</strong> this is the real milestone, not just a rumor — Anthropic actually filed the amended S-1 and launched the roadshow, with a Nasdaq ticker and a price range already set.</p>
+        <h3 class="story__title" data-t="23.2">Anthropic files for its IPO, targets pricing this week</h3>
+        <p data-t="27.85">Per Anthropic&#x27;s own announcement, the company launched the roadshow for its proposed initial public offering on November 10: 825,000,000 Class A shares at an expected $70.00-$78.00 each, listing on the Nasdaq Global Select Market under the ticker &quot;ANT.&quot; Anthropic followed up with its own IPO site on November 12 and a live-streamed fireside chat between CEO Dario Amodei and JPMorgan CEO Jamie Dimon on November 13, both posted on its own account. The filing would make Anthropic one of the largest AI-sector listings to date.</p>
+        <p class="story__signal" data-t="68.75"><strong>Signal:</strong> this is the real milestone, not just a rumor — Anthropic actually filed the amended S-1 and launched the roadshow, with a Nasdaq ticker and a price range already set.</p>
         <p class="story__source">Source: <a href="https://www.anthropic.com/news/roadshow-launch" title="https://www.anthropic.com/news/roadshow-launch">anthropic.com/news/roadshow-launch</a></p>
       </article>
       <article class="story">
         <span class="story__num">02</span>
         <a class="daycount" href="../stories/nvidia-jensen-huang-spy-affair.html">new angle</a>
-        <h3 class="story__title">Nvidia: the campaign to reinstate Jensen Huang gains political weight</h3>
-        <p>Per the Wall Street Journal, a &quot;Stand With Jensen&quot; open letter campaign — built on Replit by its CEO Amjad Masad after an urgent request from Huang&#x27;s allies — buckled under traffic as NVIDIA employees and shareholders rushed to sign it demanding the board reinstate him. On the home feed, Polymarket and other accounts reported Huang is now reportedly discussing a comeback with allies, and Reuters reported separately that US Treasury Secretary Scott Bessent said Nvidia needs to &quot;go outside the company&quot; for its next CEO. None of this is confirmed by Nvidia itself yet, but the pressure campaign is real and growing.</p>
-        <p class="story__signal"><strong>Signal:</strong> four days after the board&#x27;s resignation announcement, this has moved from &quot;fallout&quot; to an active reinstatement push, with a sitting US Treasury Secretary now weighing in on the search for his replacement — bigger than the original ouster news itself.</p>
+        <h3 class="story__title" data-t="81.42">Nvidia: the campaign to reinstate Jensen Huang gains political weight</h3>
+        <p data-t="86.97">Per the Wall Street Journal, a &quot;Stand With Jensen&quot; open letter campaign — built on Replit by its CEO Amjad Masad after an urgent request from Huang&#x27;s allies — buckled under traffic as NVIDIA employees and shareholders rushed to sign it demanding the board reinstate him. On the home feed, Polymarket and other accounts reported Huang is now reportedly discussing a comeback with allies, and Reuters reported separately that US Treasury Secretary Scott Bessent said Nvidia needs to &quot;go outside the company&quot; for its next CEO. None of this is confirmed by Nvidia itself yet, but the pressure campaign is real and growing.</p>
+        <p class="story__signal" data-t="128.5"><strong>Signal:</strong> four days after the board&#x27;s resignation announcement, this has moved from &quot;fallout&quot; to an active reinstatement push, with a sitting US Treasury Secretary now weighing in on the search for his replacement — bigger than the original ouster news itself.</p>
         <p class="story__source">Source: <a href="https://www.wsj.com/tech/the-campaign-to-bring-back-jensen-huang-as-nvidia-ceo-e91b0b2c" title="https://www.wsj.com/tech/the-campaign-to-bring-back-jensen-huang-as-nvidia-ceo-e91b0b2c">wsj.com/tech/the-campaign-to-bring-back-jensen-huang-as-nvi…</a></p>
       </article>
       <article class="story">
         <span class="story__num">03</span>
-        <h3 class="story__title">Google DeepMind ships Gemini 4 Hydrogen, a faster everyday model</h3>
-        <p>Per Google&#x27;s own announcement, Gemini 4 Hydrogen is a flash-tier model adapted from Gemini 4 Carbon, built for rapid execution across agentic workflows rather than deep reasoning. Google says it finishes tasks 2.5x faster than Gemini 3.8 Flash at its high default setting, more than triples Terminal-Bench 4.1 scores (57% vs. 18.2%), and cuts fabricated claims by over 5x. It&#x27;s rolling out across Google AI Studio, the Gemini API, the Gemini app, Search, and Google Antigravity.</p>
-        <p class="story__signal"><strong>Signal:</strong> this is Google&#x27;s third Gemini 4 release (after Carbon and Argon) and the one aimed at bringing frontier-adjacent speed to everyone rather than the top reasoning tier — the kind of model that actually changes daily-driver usage, not just benchmark charts.</p>
+        <h3 class="story__title" data-t="145.8">Google DeepMind ships Gemini 4 Hydrogen, a faster everyday model</h3>
+        <p data-t="151.5">Per Google&#x27;s own announcement, Gemini 4 Hydrogen is a flash-tier model adapted from Gemini 4 Carbon, built for rapid execution across agentic workflows rather than deep reasoning. Google says it finishes tasks 2.5x faster than Gemini 3.8 Flash at its high default setting, more than triples Terminal-Bench 4.1 scores (57% vs. 18.2%), and cuts fabricated claims by over 5x. It&#x27;s rolling out across Google AI Studio, the Gemini API, the Gemini app, Search, and Google Antigravity.</p>
+        <p class="story__signal" data-t="187.75"><strong>Signal:</strong> this is Google&#x27;s third Gemini 4 release (after Carbon and Argon) and the one aimed at bringing frontier-adjacent speed to everyone rather than the top reasoning tier — the kind of model that actually changes daily-driver usage, not just benchmark charts.</p>
         <p class="story__source">Source: <a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-hydrogen" title="https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-hydrogen">blog.google/innovation-and-ai/models-and-research/gemini-mo…</a></p>
       </article>
       <article class="story">
         <span class="story__num">04</span>
-        <h3 class="story__title">OpenAI opens a &quot;Business Hub&quot; inside ChatGPT</h3>
-        <p>Per OpenAI&#x27;s own announcement (Nov 10), eligible US ecommerce and online-service businesses can now claim their business in a new &quot;Business Hub,&quot; verify it, and build a &quot;Business Agent&quot; that answers customer questions using information they provide — kept in a clearly labeled conversation separate from ChatGPT&#x27;s own answers. Businesses also get aggregated insights on mentions and website clicks.</p>
-        <p class="story__signal"><strong>Signal:</strong> this turns ChatGPT into a storefront-discovery layer businesses actively manage — not an ads product yet, but the infrastructure for one.</p>
+        <h3 class="story__title" data-t="205.8">OpenAI opens a &quot;Business Hub&quot; inside ChatGPT</h3>
+        <p data-t="210.32">Per OpenAI&#x27;s own announcement (Nov 10), eligible US ecommerce and online-service businesses can now claim their business in a new &quot;Business Hub,&quot; verify it, and build a &quot;Business Agent&quot; that answers customer questions using information they provide — kept in a clearly labeled conversation separate from ChatGPT&#x27;s own answers. Businesses also get aggregated insights on mentions and website clicks.</p>
+        <p class="story__signal" data-t="237.3"><strong>Signal:</strong> this turns ChatGPT into a storefront-discovery layer businesses actively manage — not an ads product yet, but the infrastructure for one.</p>
         <p class="story__source">Source: <a href="https://community.openai.com/t/introducing-businesses-in-chatgpt-in-beta/1414865" title="https://community.openai.com/t/introducing-businesses-in-chatgpt-in-beta/1414865">community.openai.com/t/introducing-businesses-in-chatgpt-in…</a></p>
       </article>
     </div>
@@ -108,10 +130,10 @@
 
   <div class="band band--wire">
     <div class="container">
-      <span class="slug">Worth watching</span>
+      <span class="slug" data-t="248.62">Worth watching</span>
       <ul class="watch">
-        <li>OpenAI teased a &quot;Cyber at the Frontier&quot; live keynote (posted Nov 10) for further cybersecurity model announcements, following last week&#x27;s GPT-6 Cyber launch — no confirmed date seen.</li>
-        <li>Alibaba&#x27;s Qwen4-Max is trending on X again today; per Alibaba&#x27;s own account it has been in a cloud-only preview since November 11, with no published weights, benchmarks, or pricing, and the preview itself closes November 25.</li>
+        <li data-t="250.85">OpenAI teased a &quot;Cyber at the Frontier&quot; live keynote (posted Nov 10) for further cybersecurity model announcements, following last week&#x27;s GPT-6 Cyber launch — no confirmed date seen.</li>
+        <li data-t="264.43">Alibaba&#x27;s Qwen4-Max is trending on X again today; per Alibaba&#x27;s own account it has been in a cloud-only preview since November 11, with no published weights, benchmarks, or pricing, and the preview itself closes November 25.</li>
       </ul>
     </div>
   </div>
@@ -120,8 +142,8 @@
     <div class="container">
       <div class="cols cols--2">
         <div class="block block--paper">
-          <span class="slug">Bottom line</span>
-          <p class="lead" style="margin:0">The last four days turned two storylines from &quot;announced&quot; into &quot;actually happening&quot;: Anthropic&#x27;s IPO went from filing to live roadshow with a price and a date, and Nvidia&#x27;s leadership crisis went from a boardroom resignation to an organized reinstatement campaign with a Treasury Secretary weighing in — while the model releases (Gemini 4 Hydrogen, ChatGPT&#x27;s Business Hub) were comparatively quiet, incremental news by contrast.</p>
+          <span class="slug" data-t="281.25">Bottom line</span>
+          <p class="lead" style="margin:0" data-t="283.38">The last four days turned two storylines from &quot;announced&quot; into &quot;actually happening&quot;: Anthropic&#x27;s IPO went from filing to live roadshow with a price and a date, and Nvidia&#x27;s leadership crisis went from a boardroom resignation to an organized reinstatement campaign with a Treasury Secretary weighing in — while the model releases (Gemini 4 Hydrogen, ChatGPT&#x27;s Business Hub) were comparatively quiet, incremental news by contrast.</p>
         </div>
         <div class="block block--fill">
           <span class="slug">Sources scanned</span>
