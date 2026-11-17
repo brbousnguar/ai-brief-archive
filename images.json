@@ -275,5 +275,12 @@
     "page": "https://www.anthropic.com/news/roadshow-launch",
     "rank": 1,
     "story": "Anthropic files for its IPO, targets pricing this week"
+  },
+  "2026-11-17": {
+    "alt": "Academic research collage featuring a monarch butterfly, botanical drawings, a river, and scientific imagery against a blue background.",
+    "image": "https://images.ctfassets.net/kftzwdyauwt9/793p1h1iUmksoWkDep5NRR/580e87d687cea7ef8e8288bef51c7bd4/academic-researchers-seo-card.png?w=1600&h=900&fit=fill",
+    "page": "https://openai.com/index/expanding-chatgpt-for-academic-researchers",
+    "rank": 2,
+    "story": "OpenAI expands free ChatGPT access to 200,000 scientists, publishes productivity data"
   }
 }

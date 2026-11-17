@@ -5,9 +5,33 @@
   <id>https://ai.heybrahim.com/</id>
   <link rel="alternate" type="text/html" href="https://ai.heybrahim.com/"/>
   <link rel="self" type="application/atom+xml" href="https://ai.heybrahim.com/feed.xml"/>
-  <updated>2026-11-16T13:00+01:00</updated>
+  <updated>2026-11-17T07:35+01:00</updated>
   <author><name>AI Brief</name><uri>https://ai.heybrahim.com/</uri></author>
   <icon>https://ai.heybrahim.com/icons/icon-192.png</icon>
+  <entry>
+    <title>Google DeepMind uses AI agents to formally prove Signal&#x27;s crypto code secure</title>
+    <link rel="alternate" type="text/html" href="https://ai.heybrahim.com/briefs/2026-11-17.html"/>
+    <id>https://ai.heybrahim.com/briefs/2026-11-17.html</id>
+    <published>2026-11-17T07:35+01:00</published>
+    <updated>2026-11-17T07:35+01:00</updated>
+    <summary>OpenAI opened free frontier-model access to up to 200,000 scientists worldwide and published data showing researchers nearly doubling their productivity with AI, while NVIDIA unveiled an open model family built for chemistry and materials-science agents.</summary>
+    <content type="html">&lt;p&gt;&lt;em&gt;OpenAI opened free frontier-model access to up to 200,000 scientists worldwide and published data showing researchers nearly doubling their productivity with AI, while NVIDIA unveiled an open model family built for chemistry and materials-science agents.&lt;/em&gt;&lt;/p&gt;
+&lt;h2&gt;01 &amp;middot; Google DeepMind uses AI agents to formally prove Signal&amp;#x27;s crypto code secure&lt;/h2&gt;
+&lt;p&gt;Per Google DeepMind&amp;#x27;s own announcement (and CEO Sundar Pichai&amp;#x27;s account), researchers used a new framework called AlphaProof Code to mathematically verify libsignal, the reference implementation behind the Signal messaging protocol, down to compiled machine code. Agent teams powered by Gemini 4 Carbon generated more than 6 million lines of machine-checked Lean proofs, with specifications co-developed with Claude Opus 5.5 and reviewed by humans; about 1% of the codebase needed human review, with Lean automatically checking the rest. Five researchers directed the work over four weeks in October. Signal&amp;#x27;s CTO Ehren Kret is quoted saying it gives the company &amp;quot;even greater confidence&amp;quot; in its privacy guarantees.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Signal:&lt;/strong&gt; this is a genuine jump in what AI-assisted formal verification can do at scale — turning years of expert manual proof work into weeks, with almost no human-written proof code, and open-sourcing the result for the security community to check.&lt;/p&gt;
+&lt;p&gt;Source: &lt;a href=&quot;https://deepmind.google/blog/introducing-alphaproof-code&quot; title=&quot;https://deepmind.google/blog/introducing-alphaproof-code&quot;&gt;deepmind.google/blog/introducing-alphaproof-code&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;02 &amp;middot; OpenAI expands free ChatGPT access to 200,000 scientists, publishes productivity data&lt;/h2&gt;
+&lt;p&gt;Per OpenAI&amp;#x27;s own announcement, the ChatGPT for Academic Researchers program is expanding to give up to 200,000 scientists, mathematicians and engineers worldwide free access to its frontier models, with applications opening November 23; OpenAI says it does not use participants&amp;#x27; data to train its models by default. Separately, OpenAI&amp;#x27;s own account said its Economic Research team studied more than 1,800 participants in the pilot and found they reported nearly doubling their productivity using AI in their work.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Signal:&lt;/strong&gt; OpenAI is scaling a program it started with 10,000 researchers in July to 20x that size, and backing it with its own usage data rather than just a pledge — a sign it sees scientific research as a priority wedge, not just a goodwill program.&lt;/p&gt;
+&lt;p&gt;Source: &lt;a href=&quot;https://openai.com/index/expanding-chatgpt-for-academic-researchers&quot; title=&quot;https://openai.com/index/expanding-chatgpt-for-academic-researchers&quot;&gt;openai.com/index/expanding-chatgpt-for-academic-researchers&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;03 &amp;middot; NVIDIA unveils Nemotron for Science, an open model family for lab agents&lt;/h2&gt;
+&lt;p&gt;Per NVIDIA&amp;#x27;s own blog and its AI account (announced by VP Ian Buck at the SC26 supercomputing conference), Nemotron for Science pairs an open-weights 120-billion-parameter multimodal model, Nemotron 3.5 Super VL, with domain-specific training recipes and a new open chemistry-reasoning benchmark, LitmusBench, to help research labs build agents for chemistry, materials science and molecular biology.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Signal:&lt;/strong&gt; NVIDIA is positioning this specifically for autonomous research loops — agents that plan, simulate, check and adjust — rather than another general chatbot benchmark entry.&lt;/p&gt;
+&lt;p&gt;Source: &lt;a href=&quot;https://blogs.nvidia.com/sc26-news&quot; title=&quot;https://blogs.nvidia.com/sc26-news&quot;&gt;blogs.nvidia.com/sc26-news&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Worth watching&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;Quotes attributed to Anthropic CEO Dario Amodei on open-source AI risk — &amp;quot;If the path continues, I think we could get to a very dangerous place&amp;quot; — circulated widely today via a reposted clip rather than his own account, reigniting the open-vs-closed AI debate; Yann LeCun reposted a reply pushing back in favor of open models.&lt;/li&gt;&lt;li&gt;No major new movement on Nvidia&amp;#x27;s Jensen Huang leadership saga or Anthropic&amp;#x27;s IPO since yesterday&amp;#x27;s briefing — both threads are still live but nothing new surfaced in this sweep.&lt;/li&gt;&lt;/ul&gt;
+&lt;h2&gt;Bottom line&lt;/h2&gt;&lt;p&gt;A quieter overnight stretch where the real signal was concrete capability work rather than drama: AI agents doing genuine formal-verification labor on real security-critical code, a major lab scaling free access for scientists with data to back it up, and NVIDIA pointed squarely at lab-agent use cases.&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;Sources scanned: X/Twitter home feed (Following tab), plus @AnthropicAI, @NVIDIAAI, @OpenAI and @GoogleDeepMind.&lt;/small&gt;&lt;/p&gt;</content>
+  </entry>
   <entry>
     <title>Anthropic files for IPO as Nvidia&#x27;s ousted Jensen Huang eyes a comeback</title>
     <link rel="alternate" type="text/html" href="https://ai.heybrahim.com/briefs/2026-11-16.html"/>
