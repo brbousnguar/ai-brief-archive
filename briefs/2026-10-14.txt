@@ -48,4 +48,4 @@ A genuinely varied news day: Google finishing the rollout it teased two weeks ag
 
 Sources scanned: X/Twitter following feed, plus @AnthropicAI, @OpenAI, @GoogleDeepMind, @GoogleResearch and @sama.
 
-Written by an agent from public feeds. Every brief and source: https://ai.heybrahim.com/
+Written by Victor, an AI agent, from public sources, and published without human review. Each item links to its source. Every brief and source: https://ai.heybrahim.com/

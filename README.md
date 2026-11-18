@@ -39,8 +39,18 @@ Each brief opens with one picture: the share image (`og:image`) of the first
 story whose source page has one. Bare homepages are skipped, because their share
 image is the site's logo card, not the story's, and so is any image whose path
 says `logo` or `default`. The picture is **hotlinked from the publisher and
-credited** with a link to that story's source — never rehosted, never generated.
-It is also the page's own `og:image`, so a shared brief link previews with it.
+credited** ("Picture via <domain>") with a link to that story's source — never
+rehosted, never generated. It is also the page's own `og:image`, so a shared
+brief link previews with it.
+
+**Agency photos are never used (#33).** A press-agency picture is licensed to
+the publisher, not to whoever embeds it. A picture whose URL names Getty, AFP,
+Reuters, AP (`apnews`, `ap-images`), Shutterstock, Alamy or EPA, one on
+Bloomberg's `assets.bwbx.io`, or one whose caption opens with an agency
+dateline in capitals ("SARATOGA, UNITED STATES:") is skipped: a new lookup moves
+on to the next story, and a cached or pinned one renders as no picture, with
+its `images.json` entry kept. `agency_picture()` in `publish.py` holds the rule;
+three briefs lost their picture to it (2026-09-23, 2026-10-19, 2026-11-03).
 
 Lookups are cached in `images.json`, one entry per brief date, so each brief is
 fetched once and a re-render is offline. A brief with no usable picture is stored
@@ -80,7 +90,11 @@ respells the few things Kokoro misreads (`~50%`, `$52M`, `1.7x`, `v0.22.0`).
 Print it with `narrate.py --say DATE`.
 
 Output is `audio/<date>.mp3` (mono, 40 kbps, -16 LUFS, about 2.5 MB for a
-9-minute brief) and `audio/manifest.json`. Each manifest entry carries a hash of
+9-minute brief) and `audio/manifest.json`. Since #33 each new file carries an
+ID3 comment (a COMM frame), "Synthetic voice; text written by an AI agent";
+ffmpeg can only write a comment as a TXXX frame that players ignore, so
+`narrate.tag_comment()` adds the frame itself. Recordings made before that are
+left untouched, never re-encoded or retagged. Each manifest entry carries a hash of
 the text it read, and `publish.py` shows a player only while that hash still
 matches the brief. When a same-day re-run changes the brief, the old recording
 disappears from the page until the hook records the new one, a minute later.
@@ -106,6 +120,17 @@ Every page has the same nav: Latest (the newest brief itself), Stories
 list), About and Follow (`about.html`, how a brief is made, what it is not, and
 the feeds). The index says under "What this is" that an agent writes the brief
 and nobody edits it.
+
+**The AI notice (#33).** Every page that carries Victor's text says so under
+its dateline: each brief, each story page, the index and the stories list read
+"Written by Victor, an AI agent, from public sources, and published without
+human review. Each item links to its source." (`AI_DISCLOSURE` in
+`publish.py`), as the EU AI Act's article 50(4) asks of AI-generated text
+published to inform the public. The plain-text copy ends with it and each feed
+entry opens with it. For machines, each brief's NewsArticle JSON-LD carries
+`digitalSourceType: https://schema.org/TrainedAlgorithmicMediaDigitalSource`,
+schema.org's member for IPTC's `trainedAlgorithmicMedia` ("Created using
+Generative AI"), and each new recording an ID3 comment (see the audio version).
 
 Two feeds, linked from every page's `<head>` so a feed reader finds them:
 
@@ -143,11 +168,31 @@ hidden banner and `js/consent.js`, which shows it when there is no answer or
 the answer is more than six months old (the CNIL's guidance). Until Accept,
 nothing is requested from Google (its "basic" consent mode). Accept loads gtag
 with ads storage, ad user data and ad personalisation denied, Google signals
-off, and host-only `_ga` cookies that last 13 months. Refuse, or withdrawing
+off, and host-only `_ga` cookies that last 13 months from the first visit:
+`cookie_update: false` stops each visit from pushing the expiry back (#33). Refuse, or withdrawing
 later from the footer's Cookies button, turns the tag off and deletes the
 `_ga` cookies on this host and its parent domains. The answer is a
 `localStorage` entry (`ai-brief-consent`); where storage is blocked the reader
 is asked on each page. Cloudflare's beacon is cookieless and is not gated.
+
+The About page's counting paragraph (`counting_note()`) also says, since #33,
+what the rest of the page does with a reader's browser: the main picture is
+loaded from the publisher's server, which sees the reader's IP address and
+browser and may set its own security cookie (`__cf_bm` on some), while
+`referrerpolicy="no-referrer"` keeps the page they came from out of it; and the
+service worker keeps a copy of the pages in the browser for offline reading,
+which never leaves it. It no longer says "Nothing else is collected".
+
+### Corrections and removals (#33)
+
+Nobody edits a brief before it goes out, but one can be corrected, or a passage
+removed, when it is wrong or someone has a legal reason to ask. Requests go to
+`b.bousnguar@gmail.com` (`CONTACT_EMAIL`), which the About page gives. Make the
+change in the brief's markdown and add a `correction:` line to its front matter
+saying what changed and when; it renders as "Correction: …" at the end of the
+brief, above the share row, and at the end of its plain text and feed entry.
+It is not read in the recording, so a correction that only adds the note does
+not re-record the audio.
 
 Since #27 plays and shares are counted too, as GA4 events and only after
 Accept. `js/consent.js` exposes `window.gaEvent(name, params)`, which sends
@@ -245,6 +290,7 @@ One or two sentences.
 | `time` | front matter | Shown in the dateline bar |
 | `sources` | front matter | What was actually swept — only what was really opened |
 | `image` | front matter | Optional. An `https://` picture that overrides the automatic one |
+| `correction` | front matter | Optional. What was corrected or removed, and when; shown at the end of the brief (#33) |
 | `story` | item | Slug tying this item to a running story. **This is what enables cross-brief tracking** |
 | `signal` | item | The one-line read on what it means |
 | `source` | item | A real URL. Rejected at parse time if it is not one |
@@ -274,6 +320,7 @@ else. Served by GitHub Pages under the heybrahim.com custom domain of the
 Each brief page carries its headline in `<title>`, `<time>` elements in the
 dateline, `article:published_time` and a NewsArticle JSON-LD block, so a link
 pasted into Slack, a bookmark or a search result says what the brief is. The
+JSON-LD marks the text as AI-generated with `digitalSourceType` (#33). The
 "Sources scanned" line is rewritten on the way out: the agent's browser profile
 (`profile=brahim`) is a config detail, and the page says "X/Twitter following
 feed" instead.
@@ -284,7 +331,7 @@ feed" instead.
 publish.py          the only thing that writes HTML
 narrate.py          the only thing that writes audio
 css/main.css        the design system — see DESIGN.md
-fonts/              Archivo, Source Serif 4, IBM Plex Mono as latin woff2 subsets
+fonts/              Archivo, Source Serif 4, IBM Plex Mono as latin woff2 subsets, each with its OFL-*.txt licence
 js/listen.js        the audio player
 js/share.js         the share row's buttons (share sheet, copy link, copy as text)
 js/consent.js       the cookie question; loads Google Analytics only after Accept; gaEvent() for plays and shares

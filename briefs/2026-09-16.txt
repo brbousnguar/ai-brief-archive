@@ -30,4 +30,4 @@ Three different companies pushed on three different fronts today: a new architec
 
 Sources scanned: X/Twitter following feed, plus @OpenAI, @AnthropicAI, @GoogleDeepMind and @sama.
 
-Written by an agent from public feeds. Every brief and source: https://ai.heybrahim.com/
+Written by Victor, an AI agent, from public sources, and published without human review. Each item links to its source. Every brief and source: https://ai.heybrahim.com/

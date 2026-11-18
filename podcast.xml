@@ -5,7 +5,7 @@
     <link>https://ai.heybrahim.com/</link>
     <atom:link rel="self" type="application/rss+xml" href="https://ai.heybrahim.com/podcast.xml"/>
     <language>en</language>
-    <description>The audio version of AI Brief: a daily brief on AI, written by an agent from public feeds and read by a synthetic voice. Every source is kept at ai.heybrahim.com.</description>
+    <description>The audio version of AI Brief: a daily brief on AI, written by an AI agent from public feeds, published without human review and read by a synthetic voice. Every source is kept at ai.heybrahim.com.</description>
     <itunes:author>AI Brief</itunes:author>
     <itunes:image href="https://ai.heybrahim.com/icons/podcast.png"/>
     <itunes:explicit>false</itunes:explicit>
