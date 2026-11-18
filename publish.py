@@ -72,7 +72,7 @@ from dataclasses import asdict, dataclass, field
 from datetime import date as Date, datetime, timedelta
 from html.parser import HTMLParser
 from pathlib import Path
-from urllib.parse import quote, urljoin, urlparse
+from urllib.parse import quote, unquote, urljoin, urlparse
 
 ROOT = Path(__file__).resolve().parent
 DEFAULT_SOURCE = Path.home() / "Server/agents/openclaw/victor/briefs"
@@ -107,6 +107,18 @@ GENERIC_IMAGE = re.compile(r"default|logo|favicon|placeholder", re.IGNORECASE)
 # How long a brief keeps retrying a source that refused or timed out (403, 429…)
 # before it settles for no picture.
 RETRY_DAYS = 7
+# A press-agency photo is licensed to the publisher, not to anyone who embeds
+# it, so it is never the main picture (#33). Matched on the picture's URL, query
+# decoded: the long names anywhere, the short ones (AFP, EPA) only as a word
+# of their own so "separate" or "prepare" never trips it.
+AGENCY_IMAGE = re.compile(
+    r"getty|reuters|apnews|ap-images|shutterstock|alamy|(?<![a-z])(?:afp|epa)(?![a-z])",
+    re.IGNORECASE,
+)
+AGENCY_HOSTS = {"assets.bwbx.io"}  # Bloomberg's picture host
+# An agency caption opens with a dateline in capitals: "SARATOGA, UNITED STATES:"
+# or Getty's "SAN FRANCISCO, CALIFORNIA - MARCH 10:".
+AGENCY_CAPTION = re.compile(r"^[A-Z][A-Z .'’-]+,\s*[A-Z][A-Z .'’-]+(?:\s[-–—]\s[A-Z]+\.? \d{1,2})?\s*:")
 
 # Written by narrate.py: audio/<date>.mp3 plus a manifest keyed by brief date.
 AUDIO_DIR = "audio"
@@ -135,6 +147,14 @@ GA4_ID = "G-RH3C4X94FV"  # GA4 account "heybrahim", property "AI Brief", stream 
 NAV = (("latest", "Latest"), ("stories", "Stories"), ("archive", "Archive"),
        ("about", "About"), ("follow", "Follow"))
 
+# The AI-writing notice (EU AI Act art. 50(4), #33): under the dateline of every
+# page that carries Victor's text, in the plain-text copy and in the feed. Text
+# an agent wrote and nobody reviewed has to say so where it is read.
+AI_DISCLOSURE = ("Written by Victor, an AI agent, from public sources, and published "
+                 "without human review. Each item links to its source.")
+# Where corrections and removal requests go (#33). Already public on heybrahim.com.
+CONTACT_EMAIL = "b.bousnguar@gmail.com"
+
 
 class BriefError(ValueError):
     """A source file that cannot be rendered. Never guess past one."""
@@ -162,6 +182,7 @@ class Brief:
     time: str = ""
     sources: str = ""
     image: str = ""
+    correction: str = ""
     items: list[Item] = field(default_factory=list)
     watching: list[str] = field(default_factory=list)
     bottom_line: str = ""
@@ -215,6 +236,7 @@ def parse_brief(path: Path) -> Brief:
         time=meta.get("time", ""),
         sources=meta.get("sources", ""),
         image=meta.get("image", ""),
+        correction=meta.get("correction", ""),
     )
     if brief.image and not brief.image.startswith("https://"):
         raise BriefError(f"{path.name}: image must be an https:// URL -> {brief.image!r}")
@@ -358,6 +380,18 @@ class Cover:
         return urlparse(self.page).netloc.removeprefix("www.")
 
 
+def agency_picture(image: str, alt: str = "") -> bool:
+    """True when a picture looks like a press-agency photo (#33): an agency's
+    name in its URL, Bloomberg's picture host, or an agency dateline opening
+    its caption. Such a brief renders without a picture."""
+    host = urlparse(image).netloc.lower()
+    return bool(
+        host in AGENCY_HOSTS
+        or AGENCY_IMAGE.search(unquote(image))
+        or AGENCY_CAPTION.match((alt or "").strip())
+    )
+
+
 class _MetaParser(HTMLParser):
     def __init__(self) -> None:
         super().__init__()
@@ -411,7 +445,9 @@ def share_image(url: str) -> tuple[str, str] | None:
     if not image:
         return None
     image = urljoin(final, image)
-    if not image.startswith("https://") or GENERIC_IMAGE.search(urlparse(image).path):
+    alt = parser.meta.get("og:image:alt", "")
+    if (not image.startswith("https://") or GENERIC_IMAGE.search(urlparse(image).path)
+            or agency_picture(image, alt)):
         return None
 
     # Only "gone" disqualifies the image. Image CDNs often refuse a bot user
@@ -423,7 +459,7 @@ def share_image(url: str) -> tuple[str, str] | None:
     except urllib.error.HTTPError as exc:
         if exc.code in (404, 410):
             return None
-    return image, parser.meta.get("og:image:alt", "")
+    return image, alt
 
 
 def resolve_cover(brief: Brief, cache: dict, fetch: bool) -> Cover | None:
@@ -431,7 +467,17 @@ def resolve_cover(brief: Brief, cache: dict, fetch: bool) -> Cover | None:
 
     The first story whose source page has a real share image wins. Bare
     homepages are skipped: their share image is the site's, not the story's.
+    So are agency photos (#33): a new lookup moves on to the next story, and
+    one already cached, or pinned, renders as no picture. The cache keeps the
+    entry, so the record of what was found stays.
     """
+    cover = _resolve_cover(brief, cache, fetch)
+    if cover and agency_picture(cover.image, cover.alt):
+        return None
+    return cover
+
+
+def _resolve_cover(brief: Brief, cache: dict, fetch: bool) -> Cover | None:
     if brief.image:
         return Cover(image=brief.image, page=brief.image, story=brief.title)
     if brief.slug in cache:
@@ -709,8 +755,21 @@ def dateline(label: str, brief: Brief) -> str:
     return f'<p class="dateline">{sep.join(parts)}</p>'
 
 
+def ai_notice() -> str:
+    """The AI-writing notice (#33), set under the dateline of every page that
+    carries Victor's text: a brief, a story, the index and the stories list.
+    Quiet like a caption, never hidden, never shortened."""
+    return f'<p class="caption" style="margin:0 0 1rem;max-width:62ch">{E(AI_DISCLOSURE)}</p>'
+
+
 def article_jsonld(brief: Brief, cover: Cover | None) -> dict:
-    """NewsArticle structured data, for search and unfurls (#13)."""
+    """NewsArticle structured data, for search and unfurls (#13).
+
+    `digitalSourceType` marks the text as AI-generated in a form machines read
+    (EU AI Act art. 50(2), #33). It is schema.org's property on CreativeWork;
+    its value is the schema.org member that stands for IPTC's
+    trainedAlgorithmicMedia ("Created using Generative AI",
+    https://cv.iptc.org/newscodes/digitalsourcetype/trainedAlgorithmicMedia)."""
     url = f"{SITE_URL}briefs/{brief.slug}.html"
     data = {
         "@context": "https://schema.org",
@@ -721,6 +780,7 @@ def article_jsonld(brief: Brief, cover: Cover | None) -> dict:
         "url": url,
         "mainEntityOfPage": url,
         "isAccessibleForFree": True,
+        "digitalSourceType": "https://schema.org/TrainedAlgorithmicMediaDigitalSource",
         "author": {"@type": "Organization", "name": "AI Brief", "url": SITE_URL},
         "publisher": {"@type": "Person", "name": "Brahim Bousnguar", "url": HOME_URL},
     }
@@ -782,7 +842,9 @@ def consent_banner(up: str) -> str:
 
 
 def counting_note() -> str:
-    """What is counted, for the About page (#21), from the same two constants. Plays and shares since #27."""
+    """What is counted, for the About page (#21), from the same two constants. Plays and shares since #27.
+    Since #33 it also says what the publisher's picture and the offline copy mean
+    for a reader, so nothing on the page is left unsaid."""
     said = []
     if CF_BEACON_TOKEN:
         said.append(
@@ -792,18 +854,26 @@ def counting_note() -> str:
     if GA4_ID:
         said.append(
             ("Google Analytics counts them too, but" if CF_BEACON_TOKEN else "Google Analytics counts visits, but")
-            + " only if you accept: it then sets its own cookies on this site for 13 months, "
-            "with its advertising features off. With that yes it also notes when a recording "
-            "starts or plays to the end, and when a brief is shared and by which button."
+            + " only if you accept: it then sets its own cookies on this site for 13 months from "
+            "your first visit, with its advertising features off. With that yes it also notes when "
+            "a recording starts or plays to the end, and when a brief is shared and by which button."
         )
     if not said:
-        return "Nothing counts the visits."
-    said.append("Nothing else is collected.")
+        said.append("Nothing counts the visits.")
     if GA4_ID:
         said.append(
             "Your answer stays in your browser for six months. Cookies, at the foot of every page, "
             "changes it, and refusing deletes the Google cookies."
         )
+    said.append(
+        "The picture at the top of a brief is loaded from the publisher's own server, so that site "
+        "receives your IP address and browser type, and may set its own security cookie. Nothing "
+        "about the page you came from is sent."
+    )
+    said.append(
+        "The site keeps a copy of its pages in your browser so it opens offline; nothing in it "
+        "reaches me."
+    )
     return " ".join(said)
 
 
@@ -974,7 +1044,7 @@ def cover_figure(cover: Cover) -> str:
         '        <div class="cover__frame">'
         f'<img src="{E(cover.image)}" alt="{E(cover.alt)}" width="1200" height="630" '
         f'fetchpriority="high" decoding="async" referrerpolicy="no-referrer" onerror="{gone}"></div>\n'
-        f'        <figcaption class="cover__credit">Picture: '
+        f'        <figcaption class="cover__credit">Picture via '
         f'<a href="{E(cover.page)}">{E(cover.credit)}</a>{which}</figcaption>\n'
         "      </figure>"
     )
@@ -1045,7 +1115,9 @@ def plain_text(brief: Brief, stories: dict[str, Story]) -> str:
         lines += ["BOTTOM LINE", brief.bottom_line, ""]
     if brief.sources:
         lines += [f"Sources scanned: {public_sources(brief.sources)}", ""]
-    lines.append(f"Written by an agent from public feeds. Every brief and source: {SITE_URL}")
+    if brief.correction:
+        lines += [f"Correction: {brief.correction}", ""]
+    lines.append(f"{AI_DISCLOSURE} Every brief and source: {SITE_URL}")
     return "\n".join(lines) + "\n"
 
 
@@ -1224,6 +1296,7 @@ def render_stories(stories: dict[str, Story]) -> str:
         '  <div class="band">\n    <div class="container">',
         '      <p class="dateline"><span>RUNNING STORIES</span><span class="dateline__sep">&middot;</span>'
         f"<span>{len(running)} OPEN</span></p>",
+        "      " + ai_notice(),
         "      <h1>Running stories</h1>",
         '      <p class="lead" style="max-width:62ch">A story gets a page of its own the second time it '
         "appears, with every appearance on one timeline, so a repeat shows what changed instead of "
@@ -1256,7 +1329,7 @@ def render_about(briefs: list[Brief]) -> str:
         '      <p class="dateline"><span>ABOUT</span><span class="dateline__sep">&middot;</span>'
         f"<span>SINCE {E(first.stamp)}</span></p>",
         "      <h1>A daily brief on AI, written by an agent</h1>",
-        '      <p class="lead" style="max-width:62ch">Victor, an agent running on a Mac mini, reads the '
+        '      <p class="lead" style="max-width:62ch">Victor, an AI agent running on a Mac mini, reads the '
         "public feeds each morning, picks the few stories that matter and writes them up. This site "
         "keeps every brief it has written, with the sources, and tracks the stories that keep "
         "coming back.</p>",
@@ -1283,7 +1356,8 @@ def render_about(briefs: list[Brief]) -> str:
         '          <p style="margin-bottom:0">The brief goes out on Telegram first. A job on the same '
         "machine renders this page from the markdown within a minute, then records the audio "
         "version with a local synthetic voice and publishes that too. Nobody edits a brief before "
-        "it goes out, and none is deleted after.</p>",
+        "it goes out. A brief is corrected, or a passage removed, when it is wrong or when someone "
+        "has a legal reason to ask; the change is noted at the bottom of the brief.</p>",
         "        </div>",
         "      </div>\n    </div>\n  </div>\n",
         '  <div class="band">\n    <div class="container">',
@@ -1295,8 +1369,9 @@ def render_about(briefs: list[Brief]) -> str:
         "Nothing here is advice.</p>",
         '      <p style="max-width:62ch;margin:0">The picture on a brief is the share image of one of '
         "its own stories, loaded from the publisher and credited under it. Nothing is rehosted or "
-        f'generated. A publisher who would rather not appear can say so through <a href="{HOME_URL}">'
-        "heybrahim.com</a> and the picture goes.</p>",
+        "generated, and agency photos (Getty, AFP, Reuters and the like) are left out. A publisher "
+        f'who would rather not appear can write to <a href="mailto:{CONTACT_EMAIL}">{CONTACT_EMAIL}</a> '
+        "and the picture goes.</p>",
         "    </div>\n  </div>\n",
         '  <div class="band band--sunk" id="follow">\n    <div class="container">',
         "      <h2>Follow</h2>",
@@ -1324,15 +1399,17 @@ def render_about(briefs: list[Brief]) -> str:
         "      <h2>Who</h2>",
         f'      <p style="max-width:62ch;margin:0">Made by <a href="{HOME_URL}">Brahim Bousnguar</a>, '
         "who built Victor and this archive. The code that renders it is public on "
-        f'<a href="{REPO_URL}">GitHub</a>. Corrections and requests go through heybrahim.com.</p>',
+        f'<a href="{REPO_URL}">GitHub</a>. For a correction, or to ask for a passage to be removed, '
+        f'write to <a href="mailto:{CONTACT_EMAIL}">{CONTACT_EMAIL}</a>.</p>',
         f'      <p id="counting" style="max-width:62ch;margin:1rem 0 0">{counting_note()}</p>',
         "    </div>\n  </div>\n",
     ])
 
 
 def brief_html(brief: Brief, stories: dict[str, Story]) -> str:
-    """The brief as plain HTML with absolute links, for the Atom feed (#15)."""
-    out = []
+    """The brief as plain HTML with absolute links, for the Atom feed (#15).
+    Opens with the AI-writing notice (#33), as the page does."""
+    out = [f"<p><small>{E(AI_DISCLOSURE)}</small></p>"]
     if brief.lead:
         out.append(f"<p><em>{E(brief.lead)}</em></p>")
     for rank, item in enumerate(brief.items, start=1):
@@ -1351,6 +1428,8 @@ def brief_html(brief: Brief, stories: dict[str, Story]) -> str:
         out.append(f"<h2>Bottom line</h2><p>{E(brief.bottom_line)}</p>")
     if brief.sources:
         out.append(f"<p><small>Sources scanned: {E(public_sources(brief.sources))}</small></p>")
+    if brief.correction:
+        out.append(f"<p><small>Correction: {E(brief.correction)}</small></p>")
     return "\n".join(out)
 
 
@@ -1381,7 +1460,7 @@ def render_feed(briefs: list[Brief], stories: dict[str, Story]) -> str:
         '<?xml version="1.0" encoding="utf-8"?>',
         '<feed xmlns="http://www.w3.org/2005/Atom">',
         "  <title>AI Brief</title>",
-        "  <subtitle>A daily brief on AI, written by an agent from public feeds, with every source kept.</subtitle>",
+        "  <subtitle>A daily brief on AI, written by an AI agent from public feeds and published without human review, with every source kept.</subtitle>",
         f"  <id>{SITE_URL}</id>",
         f'  <link rel="alternate" type="text/html" href="{SITE_URL}"/>',
         f'  <link rel="self" type="application/atom+xml" href="{SITE_URL}{FEED_PATH}"/>',
@@ -1426,7 +1505,7 @@ def render_podcast(briefs: list[Brief], recordings: dict[str, dict]) -> str:
         f"    <link>{SITE_URL}</link>",
         f'    <atom:link rel="self" type="application/rss+xml" href="{SITE_URL}{PODCAST_PATH}"/>',
         "    <language>en</language>",
-        "    <description>The audio version of AI Brief: a daily brief on AI, written by an agent from public feeds and read by a synthetic voice. Every source is kept at ai.heybrahim.com.</description>",
+        "    <description>The audio version of AI Brief: a daily brief on AI, written by an AI agent from public feeds, published without human review and read by a synthetic voice. Every source is kept at ai.heybrahim.com.</description>",
         "    <itunes:author>AI Brief</itunes:author>",
         f'    <itunes:image href="{SITE_URL}{PODCAST_ART}"/>',
         "    <itunes:explicit>false</itunes:explicit>",
@@ -1445,7 +1524,7 @@ def render_llms(briefs: list[Brief]) -> str:
     """llms.txt: where everything is, for an agent that lands here (#15)."""
     return f"""# AI Brief
 
-> A daily brief on AI, written by an agent from public feeds and published as written, most weekday mornings around 07:30 Paris time. Every brief is kept with its sources, and a story that comes back gets a page that tracks it across days.
+> A daily brief on AI, written by an AI agent from public feeds and published without human review, most weekday mornings around 07:30 Paris time. Every brief is kept with its sources, and a story that comes back gets a page that tracks it across days.
 
 ## Read
 - Latest brief: {SITE_URL}briefs/{briefs[0].slug}.html
@@ -1489,6 +1568,7 @@ def render_brief(
         media.append(listen_player(brief, audio, paragraphs=len(times)))
     text = [
         "      " + dateline("AI BRIEF", brief),
+        "      " + ai_notice(),
         f"      <h1{h1_class(brief.title)}{at('title')}>{H(brief.title)}</h1>",
     ]
     if brief.lead:
@@ -1544,6 +1624,10 @@ def render_brief(
         out.append("        </div>\n      </div>\n    </div>\n  </div>\n")
 
     out.append('  <div class="band">\n    <div class="container">')
+    if brief.correction:
+        # A correction or a removal is noted where the brief ends (#33).
+        out.append(f'      <p class="caption" id="correction" style="max-width:62ch;margin:0 0 1.5rem">'
+                   f"<strong>Correction:</strong> {E(brief.correction)}</p>")
     out.append(share_row(brief, plain_text(brief, stories)))
     out.append(pager(older, newer))
     out.append("    </div>\n  </div>\n")
@@ -1570,6 +1654,7 @@ def render_story(story: Story) -> str:
         '  <div class="band">\n    <div class="container">',
         f'      <p class="dateline"><span>RUNNING STORY</span>'
         f'<span class="dateline__sep">&middot;</span><span>DAY {story.days}</span></p>',
+        "      " + ai_notice(),
         f"      <h1{h1_class(story.title)}>{H(story.title)}</h1>",
         "    </div>\n  </div>\n",
         '  <div class="band band--sunk">\n    <div class="container">',
@@ -1606,6 +1691,7 @@ def render_index(
     audio = recordings.get(latest.slug)
     text = [
         "      " + dateline("LATEST", latest),
+        "      " + ai_notice(),
         f"      <h1{h1_class(latest.title)}>{H(latest.title)}</h1>",
         f'      <p class="lead">{E(latest.lead)}</p>',
         '      <p style="display:flex;flex-wrap:wrap;gap:0.75rem">'
@@ -1628,8 +1714,9 @@ def render_index(
         "of items, ninety seconds, read on a commute and discarded. This is the layer underneath it: "
         "running stories tracked across days rather than restated each morning, every source link "
         "kept, and nothing thrown away.</p>",
-        '      <p class="caption" style="max-width:62ch;margin:0">Written by an agent most weekday '
-        'mornings from public feeds, and published as written. <a href="about.html">How it is made</a> '
+        '      <p class="caption" style="max-width:62ch;margin:0">Written by Victor, an AI agent, most '
+        'weekday mornings from public feeds, and published without human review. '
+        '<a href="about.html">How it is made</a> '
         '&middot; <a href="about.html#follow">Follow by feed or podcast</a></p>',
         "    </div>\n  </div>\n",
         *tally(briefs, stories, recordings),

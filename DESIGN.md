@@ -91,7 +91,9 @@ top of `main.css`. Archivo and Source Serif 4 are variable and carry their
 weight range in one file; Plex Mono is static, one file per weight. The two
 faces the first screen is set in are preloaded. The service worker caches them,
 so the installed app reads in its own faces offline, and no reader's IP goes to
-Google for a font.
+Google for a font. All three are under the SIL Open Font License, and each
+ships with its licence beside it (`fonts/OFL-Archivo.txt`,
+`OFL-IBMPlexMono.txt`, `OFL-SourceSerif4.txt`, #33).
 
 **Source links.** `Source:` on a story is a link, labelled with the host and
 path (cut at 60 characters) and carrying the full URL. It was plain text until
@@ -157,6 +159,20 @@ copy link, copy as text) render `hidden` and `js/share.js` shows them; Email,
 LinkedIn, X and the plain-text file are links and need nothing. The status
 line (`.share__status`) keeps its height so a "Link copied" does not move the
 pager.
+
+### The AI notice (#33)
+
+Every page that carries the agent's text (a brief, a story page, the index,
+the stories list) says who wrote it directly under its dateline, before the
+headline: "Written by Victor, an AI agent, from public sources, and published
+without human review. Each item links to its source." It is a `.caption`,
+quiet and in the reading face, on paper, no wider than 62ch, with the dateline's
+1rem above and 1rem before the headline. Like the player's "AI voice" note it
+is never dropped or shortened to save space; it is the EU AI Act's article
+50(4) notice, and it has to be readable where the text is.
+
+A corrected brief ends with its correction note, a `.caption` above the share
+row that opens with a bold "Correction:".
 
 ### The cookie question (#25)
 
@@ -232,8 +248,10 @@ phone. Every "/" in a heading is followed by a `<wbr>`, because
 "OpenAI/Anthropic" otherwise breaks inside a word at display size.
 
 - **Borrowed, not ours.** Hotlinked from the publisher, never rehosted, and
-  always credited — `.cover__credit` names the source domain and links to the
-  story, plus `· story 0N` when the picture is not the lead's.
+  always credited — `.cover__credit` reads "Picture via <domain>" and links to
+  the story, plus `· story 0N` when the picture is not the lead's. Never an
+  agency photo (Getty, AFP, Reuters, AP, Shutterstock, Alamy, EPA, Bloomberg):
+  a brief whose picture is one goes without (#33).
 - **One fixed frame.** `aspect-ratio: 1.91 / 1` (the share-image standard), with
   `object-fit: cover` and `object-position: 50% 0`. The ratio reserves space, so
   the page does not jump when the image arrives. The crop is anchored to the top

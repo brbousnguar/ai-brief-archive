@@ -4,10 +4,12 @@
 // says yes. The banner is in the page, `hidden`; this script shows it when
 // there is no answer yet, or the answer is more than six months old (the
 // CNIL's guidance). Yes loads gtag with ads storage, ad user data and ad
-// personalisation denied, and host-only cookies that last 13 months. No, or
-// withdrawing a yes from the footer's Cookies button, turns the tag off and
-// deletes its cookies. The answer lives in localStorage; when that is
-// blocked, nothing is stored and the reader is simply asked again.
+// personalisation denied, and host-only cookies that last 13 months from
+// the first visit: cookie_update is off, so a later visit never extends
+// them (#33). No, or withdrawing a yes from the footer's Cookies button,
+// turns the tag off and deletes its cookies. The answer lives in
+// localStorage; when that is blocked, nothing is stored and the reader is
+// simply asked again.
 //
 // Cloudflare Web Analytics is a separate, cookieless beacon and is not
 // affected.
@@ -67,6 +69,7 @@
     gtag("config", id, {
       cookie_domain: "none",          // host-only: the cookie stays on this site
       cookie_expires: COOKIE_SECONDS,
+      cookie_update: false,           // 13 months from the first visit, not renewed by each one
       allow_google_signals: false,
       allow_ad_personalization_signals: false
     });

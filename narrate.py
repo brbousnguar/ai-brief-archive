@@ -94,8 +94,32 @@ def record(model, brief: publish.Brief, wav: Path) -> tuple[float, list[float]]:
     return len(audio) / rate, marks
 
 
+# Written into every new recording's ID3 tags, so a player or a crawler that
+# reads the file alone still learns it is synthetic (EU AI Act art. 50(2), #33).
+# Recordings made before this are left as they are: never re-encoded or retagged.
+AI_COMMENT = "Synthetic voice; text written by an AI agent"
+
+
+def tag_comment(mp3: Path, text: str) -> None:
+    """Add an ID3v2.3 COMM (comment) frame to the tag ffmpeg wrote.
+
+    ffmpeg stores a "comment" key as a TXXX frame, which players do not show
+    as the comment, and it cannot write COMM; so the frame goes in by hand,
+    first in the tag, and the tag's size grows by the frame's."""
+    data = mp3.read_bytes()
+    if data[:4] != b"ID3\x03" or data[5] & 0xC0:  # v2.3, no unsynchronisation or extended header
+        raise ValueError(f"{mp3.name}: expected a plain ID3v2.3 tag")
+    size = (data[6] << 21) | (data[7] << 14) | (data[8] << 7) | data[9]
+    body = b"\x00" + b"eng" + b"\x00" + text.encode("latin-1")  # Latin-1, no description
+    frame = b"COMM" + len(body).to_bytes(4, "big") + b"\x00\x00" + body
+    size += len(frame)
+    syncsafe = bytes((size >> shift) & 0x7F for shift in (21, 14, 7, 0))
+    mp3.write_bytes(data[:6] + syncsafe + frame + data[10:])
+
+
 def encode(wav: Path, mp3: Path, brief: publish.Brief) -> None:
-    """Loudness-normalise to -16 LUFS (the podcast norm) and encode, tagged."""
+    """Loudness-normalise to -16 LUFS (the podcast norm) and encode, tagged,
+    with a comment that says the voice and the text are machine-made."""
     subprocess.run(
         [
             "ffmpeg", "-v", "error", "-y", "-i", str(wav),
@@ -110,6 +134,7 @@ def encode(wav: Path, mp3: Path, brief: publish.Brief) -> None:
         ],
         check=True,
     )
+    tag_comment(mp3, AI_COMMENT)
 
 
 def duration(mp3: Path) -> float:
