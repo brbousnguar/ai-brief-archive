@@ -893,7 +893,7 @@ def page(
 
 <footer class="site-footer">
   <div class="container">
-    <p style="margin:0"><a href="{up}index.html">&larr; All briefs</a> &middot; <a href="{up}stories/index.html">Stories</a> &middot; <a href="{up}sources.html">Sources</a> &middot; <a href="{up}about.html">About</a> &middot; <a href="{up}{FEED_PATH}">Feed</a> &middot; <a href="{up}{PODCAST_PATH}">Podcast</a> &middot; <a href="{HOME_URL}">heybrahim.com</a>{_cookies_link()}</p>
+    <p style="margin:0"><a href="{up}index.html">&larr; All briefs</a> &middot; <a href="{up}stories/index.html">Stories</a> &middot; <a href="{up}sources.html">Sources</a> &middot; <a href="{up}about.html">About</a> &middot; <a href="{up}{FEED_PATH}">Feed</a> &middot; <a href="{up}{PODCAST_PATH}">Podcast</a> &middot; <a href="{HOME_URL}">heybrahim.com</a> &middot; <a href="{HOME_URL}privacy.html#ai-brief">Privacy</a> &middot; <a href="{HOME_URL}privacy.html#legal">Legal notice</a>{_cookies_link()}</p>
   </div>
 </footer>{consent_banner(up)}
 </body>
