@@ -116,6 +116,9 @@ AGENCY_IMAGE = re.compile(
     re.IGNORECASE,
 )
 AGENCY_HOSTS = {"assets.bwbx.io"}  # Bloomberg's picture host
+# Covers looked at by hand and left out: a news photo of a person, most likely an
+# agency or staff photo licensed to the publisher, that the rules above miss (#35).
+NO_PICTURE = {"2026-09-22", "2026-09-30", "2026-10-05"}
 # An agency caption opens with a dateline in capitals: "SARATOGA, UNITED STATES:"
 # or Getty's "SAN FRANCISCO, CALIFORNIA - MARCH 10:".
 AGENCY_CAPTION = re.compile(r"^[A-Z][A-Z .'’-]+,\s*[A-Z][A-Z .'’-]+(?:\s[-–—]\s[A-Z]+\.? \d{1,2})?\s*:")
@@ -471,6 +474,8 @@ def resolve_cover(brief: Brief, cache: dict, fetch: bool) -> Cover | None:
     one already cached, or pinned, renders as no picture. The cache keeps the
     entry, so the record of what was found stays.
     """
+    if brief.slug in NO_PICTURE:
+        return None
     cover = _resolve_cover(brief, cache, fetch)
     if cover and agency_picture(cover.image, cover.alt):
         return None
@@ -1712,8 +1717,8 @@ def render_index(
         '      <span class="slug">What this is</span>',
         '      <p class="lead" style="max-width:62ch">The Telegram brief is triage &mdash; a handful '
         "of items, ninety seconds, read on a commute and discarded. This is the layer underneath it: "
-        "running stories tracked across days rather than restated each morning, every source link "
-        "kept, and nothing thrown away.</p>",
+        "running stories tracked across days rather than restated each morning, and every source link "
+        "kept.</p>",
         '      <p class="caption" style="max-width:62ch;margin:0">Written by Victor, an AI agent, most '
         'weekday mornings from public feeds, and published without human review. '
         '<a href="about.html">How it is made</a> '

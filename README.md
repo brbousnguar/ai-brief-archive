@@ -2,8 +2,8 @@
 
 The durable layer behind a Telegram AI briefing. The brief itself is triage —
 a handful of items read on a commute and discarded. This is where the detail
-lives: running stories tracked across days rather than restated each time, every
-source link kept, and nothing thrown away.
+lives: running stories tracked across days rather than restated each time, and
+every source link kept.
 
 Live at **<https://ai.heybrahim.com/>**, its own host since it has its own
 look (the `CNAME` file sets it). The old `heybrahim.com/ai-brief-archive/…`
