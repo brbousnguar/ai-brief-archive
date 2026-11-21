@@ -282,5 +282,12 @@
     "page": "https://openai.com/index/expanding-chatgpt-for-academic-researchers",
     "rank": 2,
     "story": "OpenAI expands free ChatGPT access to 200,000 scientists, publishes productivity data"
+  },
+  "2026-11-21": {
+    "alt": "Math equations with purple digital concept.",
+    "image": "https://static.scientificamerican.com/dam/asset/cee10388-a264-4ba7-b944-7f0a8daf537d/riemann.jpg?m=1795217260.215&w=1200",
+    "page": "https://www.scientificamerican.com/article/anthropic-mathematician-claims-to-prove-riemann-hypothesis-most-famous-problem-in-all-of-math",
+    "rank": 1,
+    "story": "Anthropic mathematician claims an AI-assisted proof of the Riemann Hypothesis"
   }
 }
