@@ -12,13 +12,13 @@ Signal: Saturday's brief called this an unverified personal claim; that caveat n
 Source: https://leanprover-community.github.io/blog/posts/riemann-hypothesis
 
 02 · OpenAI's chief scientist publishes internal pretraining numbers and proposes shared safety limits
-Jakub Pachocki, on his own account and in the OpenAI post "Perplexity and Intelligence," says OpenAI is giving more transparency into its pretraining progress "for the sake of moving toward shared safety bars." He argues for common limits based on perplexity and other measurements, with progress beyond them gated on being able to understand AI behavior. The post lists its own caveats: perplexity does not map directly onto tasks people care about, and it ignores gains from outside pretraining such as chain-of-thought reasoning. A commentator on the feed noted that Pachocki expects pretraining research to be automated in 2027.
+Jakub Pachocki, on his own account and in the OpenAI post "Perplexity and Intelligence," says OpenAI is giving more transparency into its pretraining progress "for the sake of moving toward shared safety bars." He argues for common limits based on perplexity and other measurements, with progress beyond them gated on being able to understand AI behavior. The post lists its own caveats: perplexity does not map directly onto tasks people care about, and it ignores gains from outside pretraining such as chain-of-thought reasoning. A commentator on the feed (Jacob Coxon) read the post as saying pretraining research is likely to be automated in 2027.
 Signal: labs rarely disclose pretraining progress at all, so publishing it while arguing for common perplexity-based limits is a notable move. It is also a bet that the industry will accept one metric as a speed limit.
 Source: https://openai.com/index/perplexity-and-intelligence
 
 03 · Meta's chief AI officer: "superintelligence is arriving," and the path is not inevitable
 Per BigGo Finance's report on Alexandr Wang's post on X, he wrote that "it's hard to imagine a world where humans maintain control" over superintelligence far smarter than humans in every domain. Wang then followed up on his own account that much of this has been said by other lab leaders. He said he is saying the path is not inevitable, and that leadership matters more than ever. Jon Favreau quoted the original post, calling it "madness" and saying elected officials should do everything possible to stop the labs.
-Signal: this is a Meta executive saying publicly that control is the open question. The feed reaction is political: a former Obama aide quoted it as a reason for elected officials to act against the frontier labs.
+Signal: this is a Meta executive saying publicly that control is the open question. The feed reaction is political: Jon Favreau quoted it as a reason for elected officials to act against the frontier labs.
 Source: https://finance.biggo.com/news/d96962f0-e86e-4a12-a00e-8e2e44e5773e
 
 WORTH WATCHING
