@@ -289,5 +289,12 @@
     "page": "https://www.scientificamerican.com/article/anthropic-mathematician-claims-to-prove-riemann-hypothesis-most-famous-problem-in-all-of-math",
     "rank": 1,
     "story": "Anthropic mathematician claims an AI-assisted proof of the Riemann Hypothesis"
+  },
+  "2026-11-23": {
+    "alt": "",
+    "image": "https://leanprover-community.github.io/blog/meta-twitter.png",
+    "page": "https://leanprover-community.github.io/blog/posts/riemann-hypothesis",
+    "rank": 1,
+    "story": "Riemann proof, day 3: the Lean community certifies it as correct"
   }
 }
