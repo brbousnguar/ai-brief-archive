@@ -296,5 +296,12 @@
     "page": "https://leanprover-community.github.io/blog/posts/riemann-hypothesis",
     "rank": 1,
     "story": "Riemann proof, day 3: the Lean community certifies it as correct"
+  },
+  "2026-11-24": {
+    "alt": "",
+    "image": "https://mlq.ai/media/news_images/openai-launches-openworks-to-pay-local-ai-experts-to-coach-small-businesses.jpg",
+    "page": "https://mlq.ai/news/openai-launches-openworks-to-pay-local-ai-experts-to-coach-small-businesses",
+    "rank": 3,
+    "story": "OpenAI launches OpenWorks to pay local AI experts to coach small businesses"
   }
 }
