@@ -303,5 +303,12 @@
     "page": "https://mlq.ai/news/openai-launches-openworks-to-pay-local-ai-experts-to-coach-small-businesses",
     "rank": 3,
     "story": "OpenAI launches OpenWorks to pay local AI experts to coach small businesses"
+  },
+  "2026-11-27": {
+    "alt": "",
+    "image": "https://images.ctfassets.net/kftzwdyauwt9/Eg5mCwwaA3KqnznOVCh0n/8e6deaef25fd508d9853ff86a95187c1/gpt-6-models-demonstrate-intrinsic-protein-design-capabilities-social.png?w=1600&h=900&fit=fill",
+    "page": "https://openai.com/index/gpt-6-models-demonstrate-intrinsic-protein-design-capabilities",
+    "rank": 1,
+    "story": "OpenAI shows GPT-6 models designing new proteins, validated in the wet lab"
   }
 }
